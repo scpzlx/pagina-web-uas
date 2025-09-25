@@ -1,0 +1,225 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    background-color: #1E28B7;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+    flex-wrap: wrap;
+}
+
+.navbar .logoUas img {
+    height: 60px;;
+}
+
+.menu {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 100px;
+    flex-wrap: wrap;
+    
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    
+}
+
+/* HERO */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 10%;
+    background-color: #fff;
+    flex-wrap: wrap;
+}
+
+.hero-text {
+    max-width: 50%;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+    color: #8C8500;
+    margin-bottom: 15px;
+}
+
+.hero-text p {
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.hero-image {
+    max-width: 250px;
+    width: 100%;
+}
+
+/* BOTONES */
+.btn {
+    background-color: white;
+    border: 2px solid #1E28B7;
+    color: #1E28B7;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #1E28B7;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #ddd;
+    border: none;
+    color: #333;
+    padding: 8px 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.btn-secondary:hover {
+    background-color: #fff;
+}
+
+/* CONVOCATORIAS */ 
+.convocatorias {
+    background-color: #e6e6e6;
+    padding: 40px 10%;
+    text-align: center;
+}
+
+.convocatorias h2 {
+    color: #1d3a4a;
+    margin-bottom: 30px;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.card {
+    border-radius: 20px;
+    padding: 20px;
+    width: 280px;
+    color: white;
+    text-align: center;
+}
+
+.card h3 {
+    margin: 15px 0 10px;
+}
+
+.card p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.card-blue {
+    background-color: #1E28B7;
+}
+
+.card-yellow {
+    background-color: #FFD500;
+    color: #333;
+}
+
+/* NOTICIAS */
+.noticias {
+    padding: 40px 10%;
+    text-align: center;
+}
+
+.noticias h2 {
+    color: #111;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* RESPONSIVE DESIGN */ 
+
+/* Tablets */
+@media (max-width: 992px) {
+    .hero{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-text {
+        max-width: 100%;
+    }
+
+    .hero-image {
+        margin-top: 20px;
+    }
+
+    .cards {
+        justify-content: center;
+    }
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 300px;
+    }
+}
