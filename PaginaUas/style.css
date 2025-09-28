@@ -118,7 +118,7 @@
 .cards {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 40px;
   margin-bottom: 25px;
   flex-wrap: wrap;
 }
@@ -129,6 +129,7 @@
   width: 280px;
   color: white;
   text-align: center;
+  transition: transform 0.3 ease, box-shadow 0.3s ease;
 }
 
 .card h3 {
@@ -147,37 +148,137 @@
 .card-yellow {
   background-color: #ffd500;
   color: #333;
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  z-index: 2;
 }
 
 /* NOTICIAS */
 .noticias {
-  padding: 40px 10%;
-  text-align: center;
+  width: 100%;
+  font-family: Arial, sans-serif;
 }
 
 .noticias h2 {
-  color: #111;
+  text-align: center;
+  font-size: 2rem;
+  margin: 30px 0;
+}
+
+.news-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.news-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 40px 20px;
+}
+
+.news-card img {
+  width: 300px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.news-content {
+  flex: 1;
+}
+
+.news-title {
+  font-size: 1.5rem;
+  font-weight: bold;  
+  margin-bottom: 15px;
+}
+
+.news-text {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.news-card.yellow {
+  background-color: #ffd500;
+  color: #000;
+}
+
+.news-card.blue {
+  background-color: #1e28b7;
+  color: #fff;
+}
+
+/* CALENDARIO */
+.calendario {
+  background-color: #e6e6e6;
+  padding: 50px 20px;
+  font-family: arial, sans-serif;
+}
+
+.calendario-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.calendario-info {
+  flex: 1;
+}
+
+.calendario-info h2 {
+  font-size: 2rem;
+  color: #2f4f4f;
+  margin-bottom: 20px;
+}
+
+.calendario-info p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.calendario-info img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+  display: block;
+  margin: 30px 0 auto;
+}
+
+.calendario-img {
+  flex: 1;
+  text-align: center;
+}
+
+.calendario-img img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 8px;
 }
 
 /* FOOTER */
 .footer {
   background: #1e1fb2;
   color: white;
-  padding: 30px 50px;
+  padding: 15px 30px;   /* menos padding */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 50px;
   width: 100%;
-  position: relative;
+  flex-wrap: wrap;  
 }
 
 
 .footer-left {
   display: flex;
   align-items: center;
-  gap: 25px;
-  flex: 0 0 240px;
+  gap: 15px;
 }
 
 .logoUas {
@@ -207,14 +308,17 @@
 }
 
 .footer-center {
-  text-align: left;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   flex: 1;
-  margin: 0 40px;
-  padding-left: 0;
+  margin: 0 20px;
 }
 
 .university-name {
-  font-size: 20px;
+  font-size: clamp(16px, 2vw, 24px);
   font-weight: 600;
   margin-bottom: 5px;
   letter-spacing: -0.5px;
@@ -222,7 +326,7 @@
 }
 
 .university-subtitle {
-  font-size: 18px;
+  font-size: clamp(12px, 1.5vw, 18px);
   font-weight: 400;
   margin-bottom: 18px;
   opacity: 0.95;
@@ -232,12 +336,13 @@
 .social-icons {
   display: flex;
   gap: 9px;
-  justify-content: flex-start;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .social-icon {
-  width: 30px;
-  height: 30px;
+  width: clamp(20px, 2vw, 30px);
+  height: clamp(20px, 2vw, 30px);
   background-color: white;
   border-radius: 50%;
   display: flex;
@@ -249,8 +354,8 @@
 }
 
 .social-icon img {
-  width: 20px;
-  height: 20px;
+  width: clamp(12px, 1.5vw, 20px);
+  height: clamp(12px, 1.5vw, 20px);
   object-fit: contain;
 }
 
@@ -261,13 +366,14 @@
 
 .footer-right {
   text-align: left;
-  flex: 0 0 320px;
-  padding-left: 30px;
-  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  min-width: 200px;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  padding-left: 20px;
+  font-size: 14px;
 }
 
 .contact-title {
-  font-size: 18px;
+  font-size: clamp(14px, 1.6vw, 20px);
   font-weight: 600;
   margin-bottom: 18px;
   letter-spacing: -0.3px;
@@ -278,7 +384,7 @@
   align-items: flex-start;
   gap: 12px;
   margin-bottom: 12px;
-  font-size: 13px;
+  font-size: clamp(11px, 1.3vw, 14px);
   opacity: 0.95;
   padding: 6px 0;
   transition: all 0.3s ease;
@@ -321,6 +427,7 @@
 address {
   font-style: normal;
 }
+
 
 /* RESPONSIVE DESIGN */
 
@@ -373,10 +480,20 @@ address {
   }
 }
 
+/* NOTICIAS RESPONSIVE */
+@media (max-width: 768px){
+  .news-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
 /*ESTA ES LA PARTE RESPONSIVE DEL FOOTER (FALTA PULIR)*/
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .footer {
-    padding: 35px 30px;
+    flex-direction: row;
+    gap: 15px;
+    padding: 20px 15px;
   }
 
   .footer-center {
