@@ -40,6 +40,67 @@
   font-weight: bold;
 }
 
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex; 
+}
+
+.navbar ul li {
+  position: relative; 
+  margin-right: 20px;
+}
+
+
+.navbar ul li ul.dropdown-content {
+  display: none; 
+  position: absolute; 
+  top: 100%; 
+  left: 0;
+  background-color: #ffd500;
+  padding: 10px 0;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  min-width: 180px; 
+  z-index: 1000;
+}
+
+/* Items dentro del submenú */
+.navbar ul li ul.dropdown-content li {
+  margin-bottom: 5px; /* espacio entre subtemas */
+  padding: 0;
+}
+
+/* Para que el último item no tenga margen extra */
+.navbar ul li ul.dropdown-content li:last-child {
+  margin-bottom: 0;
+}
+
+.navbar ul li ul.dropdown-content li a {
+  display: block;
+  padding: 8px 15px;
+  color: #333;
+  text-decoration: none;
+}
+
+.navbar ul li ul.dropdown-content li a {
+  display: block;
+  padding: 8px 15px;
+  color: #333; 
+  text-decoration: none;
+  transition: color 0.3s; /* Suaviza el cambio de color */
+}
+
+.navbar ul li ul.dropdown-content li a:hover {
+  color: #ffffff; 
+  background-color: transparent; 
+}
+
+
+.navbar ul li:hover ul.dropdown-content {
+  display: block;
+}
+
 /* HERO */
 .hero {
   display: flex;
