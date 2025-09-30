@@ -65,13 +65,11 @@
   z-index: 1000;
 }
 
-/* Items dentro del submenú */
 .navbar ul li ul.dropdown-content li {
-  margin-bottom: 5px; /* espacio entre subtemas */
+  margin-bottom: 5px; 
   padding: 0;
 }
 
-/* Para que el último item no tenga margen extra */
 .navbar ul li ul.dropdown-content li:last-child {
   margin-bottom: 0;
 }
@@ -88,7 +86,7 @@
   padding: 8px 15px;
   color: #333; 
   text-decoration: none;
-  transition: color 0.3s; /* Suaviza el cambio de color */
+  transition: color 0.3s;
 }
 
 .navbar ul li ul.dropdown-content li a:hover {
@@ -166,52 +164,120 @@
 
 /* CONVOCATORIAS */
 .convocatorias {
-  background-color: #e6e6e6;
-  padding: 40px 10%;
+  padding: 60px 20px;
+  background-color: #d4d4d4;
   text-align: center;
 }
 
 .convocatorias h2 {
-  color: #1d3a4a;
-  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #1e3a5f;
+  margin-bottom: 40px;
+  font-weight: 700;
 }
 
-.cards {
+.carousel-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto 40px;
   display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-bottom: 25px;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+.viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.4s ease;
 }
 
 .card {
+  min-width: 280px;
+  flex-shrink: 0;
+  padding: 40px 30px;
   border-radius: 20px;
-  padding: 20px;
-  width: 280px;
-  color: white;
   text-align: center;
-  transition: transform 0.3 ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.card-blue {
+  background-color: #1e2199;
+  color: white;
+}
+
+.card-yellow {
+  background-color: #ffd000;
+  color: #333;
+}
+
+.card .icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
 }
 
 .card h3 {
-  margin: 15px 0 10px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
 }
 
 .card p {
   font-size: 0.9rem;
-  margin-bottom: 15px;
+  line-height: 1.5;
+  opacity: 0.9;
+  margin: 0;
+  min-height: 60px;
 }
 
-.card-blue {
-  background-color: #1e28b7;
+.card-yellow .btn-secondary {
+  color: #1e2199;;
 }
 
-.card-yellow {
-  background-color: #ffd500;
-  color: #333;
-  transform: scale(1.1);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-  z-index: 2;
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.arrow {
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #1e3a5f;
+  cursor: pointer;
+  padding: 10px;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.arrow:hover {
+  transform: scale(1.2);
+}
+
+.btn {
+  background-color: #2d5f7f;
+  color: white;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #1e3a5f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* NOTICIAS */
@@ -273,7 +339,7 @@
 
 /* CALENDARIO */
 .calendario {
-  background-color: #e6e6e6;
+  background-color: #d4d4d4;
   padding: 50px 20px;
   font-family: arial, sans-serif;
 }
@@ -546,6 +612,22 @@ address {
   .news-card {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+/* CONVOCATORIAS RESPONSIVE */
+@media (max-width: 768px) {
+  .carousel-container {
+    gap: 10px;
+  }
+  
+  .card {
+    min-width: 250px;
+    padding: 30px 20px;
+  }
+  
+  .arrow {
+    font-size: 1.5rem;
   }
 }
 
