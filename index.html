@@ -20,7 +20,7 @@
         </div>
         <div class="menu">
           <ul>
-            <li><a href="#">Inicio</a></li>
+            <li><a href="index.html">Inicio</a></li>
 
             <li class="dropdown">
               <a href="#">Facultad</a>
@@ -54,6 +54,8 @@
                 <li><a href="#">Laboratorio de computo</a></li>
                 <li><a href="#">Secretaria académica</a></li>
                 <li><a href="#">Coordinaciones de carreras</a></li>
+                <li><a href="#">Secretaria administrativa</a></li>
+                <li><a href="#">ADIUAS</a></li>
               </ul>
             </li>
 
@@ -66,6 +68,9 @@
             </li>
           </ul>
         </div>
+        <div class="logoEscuelaNavbar">
+          <img src="images/logoEscuelaIFooter.png" alt="Logo Escuela" />
+        </div> 
       </nav>
     </header>
 
@@ -82,9 +87,6 @@
           to meet your financial requirements.
         </p>
         <button class="btn">Saber más</button>
-      </div>
-      <div class="hero-image">
-        <img src="images/LogoEscuela.jpeg" alt="Logo Escuela" />
       </div>
     </section>
 
@@ -160,7 +162,7 @@
       <h2>Noticias recientes</h2>
       <div class="news-section">
         <!-- Noticia 1 -->
-        <div class="news-card yellow">
+        <div class="news-card yellow fade-in">
           <img src="images/Noticia1.jpg" alt="Noticia 1" />
           <div class="news-content">
             <div class="news-title">
@@ -177,7 +179,7 @@
         </div>
 
         <!-- Noticia 2 -->
-        <div class="news-card">
+        <div class="news-card fade-in">
           <div class="news-content">
             <div class="news-title">Proceso de inscripción</div>
             <p class="news-text">
@@ -192,7 +194,7 @@
         </div>
 
         <!-- Noticia 3 -->
-        <div class="news-card blue">
+        <div class="news-card blue fade-in">
           <img src="images/Noticia3.jpg" alt="Noticia3" />
           <div class="news-content">
             <div class="news-title">Exámenes extraordinarios</div>
@@ -222,10 +224,15 @@
         </div>
 
         <div class="calendario-img">
-          <img src="images/calendario.jpg" alt="Calendario escolar 2025-2026" />
+          <img src="images/calendario.jpg" alt="Calendario escolar 2025-2026" id="calendarioImg" />
         </div>
       </div>
     </section>
+
+    <div id="modalCalendario" class="modal">
+      <span class="close-modal">&times;</span>
+      <img src="modal-content" id="imgModal">
+    </div>
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -327,6 +334,9 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/calendario-image.js""></script>
+    <script src="js/hero-animation.js""></script>
+    <script src="js/noticias-animation.js"></script>
   </body>
 </html>
