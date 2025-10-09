@@ -95,10 +95,10 @@
       <h2>Convocatorias</h2>
 
       <div class="carousel-container">
-        <button class="arrow left">&#10094;</button>
+        <button class="arrow left" onclick="moveCarousel(-1)">&#10094;</button>
 
         <div class="viewport">
-          <div class="track">
+          <div class="track" id="track">
             <div class="card card-blue">
               <div class="icon">👤</div>
               <h3>Personal loan</h3>
@@ -151,7 +151,7 @@
           </div>
         </div>
 
-        <button class="arrow right">&#10095;</button>
+        <button class="arrow right" onclick="moveCarousel(1)">&#10095;</button>
       </div>
 
       <button class="btn">Saber más</button>

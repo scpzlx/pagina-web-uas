@@ -228,7 +228,8 @@
   margin: 0 auto 40px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 0;
+  padding: 0 60px;
 }
 
 .viewport {
@@ -284,6 +285,18 @@
   min-height: 60px;
 }
 
+.btn-secondary {
+  background-color: white;
+  color: #1e2199;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
 .card-yellow .btn-secondary {
   color: #1e2199;;
 }
@@ -302,6 +315,16 @@
   padding: 10px;
   transition: transform 0.2s ease;
   flex-shrink: 0;
+  position: absolute;
+  z-index: 10;
+}
+
+.arrow.left {
+  left: 0;
+}
+
+.arrow.right {
+  right: 0;
 }
 
 .arrow:hover {
