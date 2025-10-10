@@ -224,17 +224,18 @@
 
 .carousel-container {
   position: relative;
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto 40px;
   display: flex;
   align-items: center;
-  gap: 0;
-  padding: 0 60px;
+  padding: 0 40px;
 }
 
 .viewport {
   overflow: hidden;
   width: 100%;
+  padding: 0 60px;
+  box-sizing: border-box;
 }
 
 .track {
@@ -314,17 +315,17 @@
   cursor: pointer;
   padding: 10px;
   transition: transform 0.2s ease;
-  flex-shrink: 0;
   position: absolute;
+  top: 50%;
   z-index: 10;
 }
 
 .arrow.left {
-  left: 0;
+  left: 10px;
 }
 
 .arrow.right {
-  right: 0;
+  right: 10px;
 }
 
 .arrow:hover {

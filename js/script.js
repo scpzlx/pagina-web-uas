@@ -6,13 +6,16 @@ const arrowLeft = document.querySelector('.arrow.left');
 const arrowRight = document.querySelector('.arrow.right');
 
 function updateCarousel() {
+ const viewport = document.querySelector('.viewport');
+  const viewportWidth = viewport.offsetWidth;
   const cardWidth = cards[0].offsetWidth + 20; // width + gap
-  const offset = -currentIndex * cardWidth;
+  const offset = -currentIndex * cardWidth + (viewportWidth - cardWidth) / 2;
   track.style.transform = `translateX(${offset}px)`;
-  
-  // Actualizar estado de las flechas
+
   arrowLeft.disabled = currentIndex === 0;
   arrowRight.disabled = currentIndex === totalCards - 1;
+
+
 }
 
 function moveCarousel(direction) {
