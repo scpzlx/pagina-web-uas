@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalle de Noticia - Universidad</title>
+    <link rel="stylesheet" href="styles-detalle.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="content-wrapper">
+        <!-- Contenido principal -->
+        <main class="main-content">
+          <!-- Imagen principal con título -->
+          <div class="hero-section">
+            <img
+              id="hero-image"
+              src=""
+              alt="Imagen principal"
+              class="hero-image"
+            />
+            <div class="hero-overlay">
+              <h1 id="news-title" class="hero-title"></h1>
+            </div>
+          </div>
+
+          <!-- Barra de compartir -->
+          <div class="share-bar">
+            <span class="share-text">COMPARTE ESTA NOTICIA</span>
+            <div class="share-buttons">
+              <a
+                href="#"
+                class="share-btn facebook"
+                id="share-facebook"
+                target="_blank"
+                title="Compartir en Facebook"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                class="share-btn twitter"
+                id="share-twitter"
+                target="_blank"
+                title="Compartir en Twitter"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                class="share-btn google"
+                id="share-google"
+                target="_blank"
+                title="Compartir en Google+"
+              >
+                <i class="fab fa-google-plus-g"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Fecha y título -->
+          <div class="article-header">
+            <p id="news-date" class="article-date"></p>
+            <h2 id="news-full-title" class="article-title"></h2>
+          </div>
+
+          <!-- Contenido del artículo -->
+          <div id="news-content" class="article-content">
+            <!-- El contenido se cargará dinámicamente -->
+          </div>
+
+          <!-- Video (si existe) -->
+          <div id="news-video" class="video-container" style="display: none">
+            <!-- El video se cargará dinámicamente -->
+          </div>
+
+          <!-- Barra de compartir inferior -->
+          <div class="share-bar share-bar-bottom">
+            <span class="share-text">COMPARTE ESTA NOTICIA</span>
+            <div class="share-buttons">
+              <a
+                href="#"
+                class="share-btn facebook"
+                id="share-facebook-bottom"
+                target="_blank"
+                title="Compartir en Facebook"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                class="share-btn twitter"
+                id="share-twitter-bottom"
+                target="_blank"
+                title="Compartir en Twitter"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                class="share-btn google"
+                id="share-google-bottom"
+                target="_blank"
+                title="Compartir en Google+"
+              >
+                <i class="fab fa-google-plus-g"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Galería de imágenes relacionadas -->
+          <div class="related-gallery">
+            <div class="gallery-container">
+              <button class="gallery-nav prev" id="gallery-prev">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <div class="gallery-wrapper">
+                <div id="gallery-images" class="gallery-images">
+                  <!-- Las imágenes se cargarán dinámicamente -->
+                </div>
+              </div>
+              <button class="gallery-nav next" id="gallery-next">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </main>
+
+        <!-- Sidebar de noticias relacionadas -->
+        <aside class="sidebar">
+          <div class="sidebar-header">
+            <h3>OTRAS<br />NOTICIAS</h3>
+          </div>
+          <div id="related-news" class="related-news-list">
+            <!-- Otras noticias se cargarán dinámicamente -->
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <script src="js/scriptDetalleNoticia.js"></script>
+  </body>
+</html>
