@@ -6,7 +6,7 @@ const arrowLeft = document.querySelector('.arrow.left');
 const arrowRight = document.querySelector('.arrow.right');
 
 function updateCarousel() {
- const viewport = document.querySelector('.viewport');
+  const viewport = document.querySelector('.viewport');
   const viewportWidth = viewport.offsetWidth;
   const cardWidth = cards[0].offsetWidth + 20; // width + gap
   const offset = -currentIndex * cardWidth + (viewportWidth - cardWidth) / 2;
@@ -20,14 +20,14 @@ function updateCarousel() {
 
 function moveCarousel(direction) {
   currentIndex += direction;
-  
+
   // Limitar el índice
   if (currentIndex < 0) {
     currentIndex = 0;
   } else if (currentIndex >= totalCards) {
     currentIndex = totalCards - 1;
   }
-  
+
   updateCarousel();
 }
 
