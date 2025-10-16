@@ -131,13 +131,13 @@
 
 .departamento-indicator {
     background: #ffd500;
-    padding: 50px 20px;
+    padding: 40px 20px;
     text-align: center;
 }
 
 .departamento-indicator h1 {
     color: #1a237e;
-    font-size: 3em;
+    font-size: 2.5em;
 }
 
 .servicios-section {

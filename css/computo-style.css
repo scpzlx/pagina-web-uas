@@ -136,13 +136,11 @@
     background: #ffd500;
     padding: 40px 20px;
     text-align: center;
-    color: #1e1fb2;
-    margin-bottom: 40px;
 }
 
 .departamento-indicator h1 {
+    color: #1e1fb2;
     font-size: 2.5em;
-    font-weight: 700;
 }
 
 /* SECCION OBJETIVO */

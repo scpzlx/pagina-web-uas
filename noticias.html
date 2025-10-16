@@ -1,72 +1,200 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noticias - Universidad</title>
-    <link rel="stylesheet" href="css/styles-noticias.css" />
-  </head>
-  <a href="admin-panel-noticias.html" target="_blank"
-    >TEST admin-panel-noticias</a
-  >
-  <body>
-    <div class="container">
-      <!-- Barra de filtros -->
-      <div class="filter-bar">
-        <div class="filter-group">
-          <label for="filter-month">FILTRAR: MES:</label>
-          <select id="filter-month" class="filter-select">
-            <option value="" selected>Todos</option>
-            <option value="1">Enero</option>
-            <option value="2">Febrero</option>
-            <option value="3">Marzo</option>
-            <option value="4">Abril</option>
-            <option value="5">Mayo</option>
-            <option value="6">Junio</option>
-            <option value="7">Julio</option>
-            <option value="8">Agosto</option>
-            <option value="9">Septiembre</option>
-            <option value="10">Octubre</option>
-            <option value="11">Noviembre</option>
-            <option value="12">Diciembre</option>
-          </select>
-        </div>
 
-        <div class="filter-group">
-          <label for="filter-year">AÑO:</label>
-          <select id="filter-year" class="filter-select">
-            <option value="">Todos</option>
-            <option value="2023">2023</option>
-            <option value="2024">2024</option>
-            <option value="2025" selected>2025</option>
-          </select>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noticias - Universidad</title>
+  <link rel="stylesheet" href="css/styles-noticias.css" />
+</head>
+<!-- <a href="admin-panel-noticias.html" target="_blank">TEST admin-panel-noticias</a> -->
 
-        <div class="filter-group">
-          <label for="filter-category">CATEGORÍA:</label>
-          <select id="filter-category" class="filter-select">
-            <option value="" selected>TODAS</option>
-            <option value="actividades-generales">Actividades Generales</option>
-            <option value="academico">Académico</option>
-            <option value="investigacion">Investigación</option>
-            <option value="extension">Extensión</option>
-            <option value="cultura">Cultura</option>
-            <option value="deportes">Deportes</option>
-          </select>
-        </div>
+<body>
+  <!-- HEADER -->
+  <header>
+    <nav class="navbar">
+      <div class="logoUas">
+        <img src="images/LogoUas.png" alt="UAS logo" />
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+
+          <li class="dropdown">
+            <a href="#">Facultad</a>
+            <ul class="dropdown-content">
+              <li><a href="#">Nuestra Historia y Filosofia</a></li>
+              <li><a href="#">Infraestructura</a></li>
+              <li><a href="#">Normativa</a></li>
+              <li><a href="organigrama.html">Organigrama</a></li>
+              <li><a href="#">Directorio</a></li>
+              <li><a href="#">Consejos Tecnicos</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#">Oferta educativa</a>
+            <ul class="dropdown-content">
+              <li><a href="#">Artes Visuales</a></li>
+              <li><a href="#">Diseño y Arte Multimedia</a></li>
+              <li><a href="#">Fotografía y Produccion de Video</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#">Departamentos</a>
+            <ul class="dropdown-content">
+              <li><a href="#">Servicio social</a></li>
+              <li><a href="#">Control escolar</a></li>
+              <li><a href="biblioteca.html">Biblioteca</a></li>
+              <li><a href="#">Vinculación</a></li>
+              <li><a href="#">Difusion cultural</a></li>
+              <li><a href="computo.html">Laboratorio de computo</a></li>
+              <li><a href="#">Secretaria académica</a></li>
+              <li><a href="#">Coordinaciones de carreras</a></li>
+              <li><a href="#">Secretaria administrativa</a></li>
+              <li><a href="#">ADIUAS</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#">Difusion</a>
+            <ul class="dropdown-content">
+              <li><a href="#">Eventos</a></li>
+              <li><a href="noticias.html">Noticias</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="logoEscuelaNavbar">
+        <img src="images/logoEscuelaIFooter.png" alt="Logo Escuela" />
+      </div>
+    </nav>
+  </header>
+
+  <div class="departamento-indicator">
+        <h1>📰 Noticias</h1>
+    </div>
+
+  <div class="container">
+    <!-- Barra de filtros -->
+    <div class="filter-bar">
+      <div class="filter-group">
+        <label for="filter-month">FILTRAR: MES:</label>
+        <select id="filter-month" class="filter-select">
+          <option value="" selected>Todos</option>
+          <option value="1">Enero</option>
+          <option value="2">Febrero</option>
+          <option value="3">Marzo</option>
+          <option value="4">Abril</option>
+          <option value="5">Mayo</option>
+          <option value="6">Junio</option>
+          <option value="7">Julio</option>
+          <option value="8">Agosto</option>
+          <option value="9">Septiembre</option>
+          <option value="10">Octubre</option>
+          <option value="11">Noviembre</option>
+          <option value="12">Diciembre</option>
+        </select>
       </div>
 
-      <!-- Contenedor de noticias -->
-      <div id="news-container" class="news-list">
-        <!-- Las noticias se cargarán dinámicamente desde JavaScript -->
+      <div class="filter-group">
+        <label for="filter-year">AÑO:</label>
+        <select id="filter-year" class="filter-select">
+          <option value="">Todos</option>
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+          <option value="2025" selected>2025</option>
+        </select>
       </div>
 
-      <!-- Mensaje cuando no hay resultados -->
-      <div id="no-results" class="no-results" style="display: none">
-        <p>No se encontraron noticias con los filtros seleccionados.</p>
+      <div class="filter-group">
+        <label for="filter-category">CATEGORÍA:</label>
+        <select id="filter-category" class="filter-select">
+          <option value="" selected>TODAS</option>
+          <option value="actividades-generales">Actividades Generales</option>
+          <option value="academico">Académico</option>
+          <option value="investigacion">Investigación</option>
+          <option value="extension">Extensión</option>
+          <option value="cultura">Cultura</option>
+          <option value="deportes">Deportes</option>
+        </select>
       </div>
     </div>
 
-    <script src="js/scriptNoticia.js"></script>
-  </body>
+    <!-- Contenedor de noticias -->
+    <div id="news-container" class="news-list">
+      <!-- Las noticias se cargarán dinámicamente desde JavaScript -->
+    </div>
+
+    <!-- Mensaje cuando no hay resultados -->
+    <div id="no-results" class="no-results" style="display: none">
+      <p>No se encontraron noticias con los filtros seleccionados.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <section class="footer-left">
+      <img src="images/LogoUas.png" alt="Logo UAS" class="logoUas" />
+      <img src="images/logoEscuelaIFooter.png" alt="Logo Secundario" class="logoEscuela" />
+    </section>
+
+    <section class="footer-center">
+      <h3 class="university-name">Universidad Autónoma de Sinaloa</h3>
+      <p class="university-subtitle">Sursum Versus</p>
+      <div class="social-icons">
+        <a class="social-icon" href="https://www.facebook.com/profile.php?id=100064772854058&locale=es_LA"
+          target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <img src="images/facebook.svg" alt="Facebook de la Universidad Autónoma de Sinaloa" />
+        </a>
+        <a class="social-icon" href="#" aria-label="WhatsApp">
+          <img src="images/whatsapp.svg" alt="WhatsApp de la Universidad Autónoma de Sinaloa" />
+        </a>
+        <a class="social-icon" href="#" aria-label="LinkedIn">
+          <img src="images/LinkedIn.svg" alt="LinkedIn de la Universidad Autónoma de Sinaloa" />
+        </a>
+        <a class="social-icon" href="https://www.instagram.com/edav_uas/" aria-label="Instagram" target="_blank">
+          <img src="images/ig.svg" alt="Instagram de la Universidad Autónoma de Sinaloa" />
+        </a>
+      </div>
+    </section>
+
+    <section class="footer-right">
+      <h2 class="contact-title">Contáctanos</h2>
+      <address>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <img src="images/telefono.svg" alt="Teléfono" />
+          </div>
+          <a class="contact-text" href="tel:+526677581400" aria-label="Llamar al +52 667 758 1400">+52 667 758
+            1400</a>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <img src="images/correo.svg" alt="Email" />
+          </div>
+          <a class="contact-text" href="mailto:sau.uas@uas.edu.mx"
+            aria-label="Enviar correo a sau.uas@uas.edu.mx">sau.uas@uas.edu.mx</a>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <img src="images/ubicacion.svg" alt="Ubicación" />
+          </div>
+          <a class="contact-text" href="https://maps.app.goo.gl/SuGR9hH1BfbpKvx2A" target="_blank"
+            rel="noopener noreferrer">
+            Blvd. Francisco Labastida Ochoa<br />
+            Desarrollo Urbano Tres Ríos<br />
+            Culiacán, Sinaloa - 80020
+          </a>
+        </div>
+      </address>
+    </section>
+  </footer>
+
+  <script src="js/scriptNoticia.js"></script>
+</body>
+
 </html>

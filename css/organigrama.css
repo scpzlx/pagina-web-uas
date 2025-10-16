@@ -17,40 +17,15 @@ body {
 }
 
 /* HERO SECTION */
-.hero-section {
+.departamento-indicator {
   background: #ffd500;
-  color: #1e1fb2;
-  padding: 80px 20px 60px;
+  padding: 40px 20px;
   text-align: center;
-  position: relative;
-  overflow: hidden;
 }
 
-.hero-section::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -10%;
-  width: 400px;
-  height: 400px;
-  background: rgba(255, 193, 7, 0.1);
-  border-radius: 50%;
-}
-
-.hero-section h1 {
-  font-size: 2.8em;
-  margin-bottom: 15px;
-  position: relative;
-  z-index: 1;
-}
-
-.hero-section p {
-  font-size: 1.2em;
-  opacity: 0.95;
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
+.departamento-indicator h1 {
+  color: #1e1fb2;
+  font-size: 2.5em;
 }
 
 /* OBJETIVO PRINCIPAL */
