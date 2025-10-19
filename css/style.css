@@ -11,7 +11,7 @@
   background-color: #1e28b7;
   color: white;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-b  etween;
   padding: 10px 40px;
   flex-wrap: wrap;
 }
@@ -706,31 +706,46 @@ address {
 
 /* RESPONSIVE DESIGN */
 
-/* NAVBAR RESPONSIVE PARA PANTALLAS MEDIANAS */
+/* Tablets y pantallas medianas (hasta 1024px) */
 @media screen and (max-width: 1024px) {
   .navbar {
-    padding: 15px 20px;
+    padding: 10px 20px;
   }
 
   .navbar ul {
-    gap: 25px;
+    gap: 30px;
   }
 
-  .navbar .logoUas img {
-    height: 50px;
+  .hero {
+    padding: 80px 5%;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .calendario-container {
+    gap: 20px;
   }
 }
 
-/* NAVBAR RESPONSIVE PARA PANTALLAS PEQUENAS */
+/* Tablets pequeñas (hasta 768px) */
 @media screen and (max-width: 768px) {
+  /* NAVBAR */
   .navbar {
     flex-direction: column;
     padding: 15px;
     gap: 15px;
   }
 
-  .navbar .logoUas {
-    margin-bottom: 15px;
+  .navbar .logoUas,
+  .navbar .logoEscuelaNavbar {
+    margin-bottom: 0;
+  }
+
+  .navbar .logoUas img,
+  .navbar .logoEscuelaNavbar img {
+    height: 45px;
   }
 
   .menu {
@@ -741,17 +756,12 @@ address {
     flex-direction: column;
     gap: 15px;
     width: 100%;
-    text-align: center;
+    align-items: center;
   }
 
   .navbar ul li {
     width: 100%;
-  }
-
-  .navbar ul li a {
-    display: block;
-    padding: 10px;
-    width: 100%;
+    text-align: center;
   }
 
   .navbar ul li.dropdown > a {
@@ -762,63 +772,39 @@ address {
     position: static;
     width: 100%;
     box-shadow: none;
-    margin-top: 10px;
+    background-color: rgba(255, 213, 0, 0.95);
   }
 
-  .navbar ul li:hover ul.dropdown-content {
-    display: block;
-  }
-}
-
-/* Tablets */
-@media (max-width: 992px) {
+  /* HERO */
   .hero {
-    flex-direction: column;
-    text-align: center;
+    padding: 60px 20px;
+    min-height: 400px;
   }
 
-  .hero-text {
-    max-width: 100%;
-  }
-
-  .hero-image {
-    margin-top: 20px;
-  }
-
-  .cards {
-    justify-content: center;
-  }
-}
-
-/* Celulares */
-@media (max-width: 600px) {
   .hero-text h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
-  .cards {
-    flex-direction: column;
-    align-items: center;
+  .hero-text p {
+    font-size: 1rem;
   }
 
-  .card {
-    width: 100%;
-    max-width: 300px;
+  /* CONVOCATORIAS */
+  .convocatorias {
+    padding: 40px 15px;
   }
-}
 
-/* NOTICIAS RESPONSIVE */
-@media (max-width: 768px) {
-  .news-card {
-    flex-direction: column;
-    text-align: center;
+  .convocatorias h2 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
   }
-}
 
-/* CONVOCATORIAS RESPONSIVE */
-@media (max-width: 768px) {
   .carousel-container {
-    gap: 10px;
+    padding: 0 20px;
+  }
+
+  .viewport {
+    padding: 0 40px;
   }
 
   .card {
@@ -826,34 +812,75 @@ address {
     padding: 30px 20px;
   }
 
-  .arrow {
+  .card h3 {
+    font-size: 1.2rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+  }
+
+  /* NOTICIAS */
+  .noticias h2 {
     font-size: 1.5rem;
-  }
-}
-
-/*ESTA ES LA PARTE RESPONSIVE DEL FOOTER (FALTA PULIR)*/
-@media (max-width: 768px) {
-  .footer {
-    flex-direction: row;
-    gap: 15px;
-    padding: 20px 15px;
+    margin: 20px 0;
   }
 
-  .footer-center {
-    margin: 0 20px;
+  .news-card {
+    flex-direction: column;
+    padding: 30px 15px;
+    gap: 20px;
   }
 
-  .university-name {
-    font-size: 26px;
+  .news-card:nth-child(2) {
+    flex-direction: column-reverse;
   }
-}
 
-@media (max-width: 768px) {
-  .footer {
+  .news-card img {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .news-title {
+    font-size: 1.3rem;
+  }
+
+  .news-text {
+    font-size: 0.95rem;
+  }
+
+  /* CALENDARIO */
+  .calendario {
+    padding: 40px 15px;
+  }
+
+  .calendario-container {
     flex-direction: column;
     gap: 30px;
-    text-align: center;
+  }
+
+  .calendario-info h2 {
+    font-size: 1.6rem;
+  }
+
+  .calendario-info p {
+    font-size: 0.95rem;
+  }
+
+  .calendario-info img {
+    max-width: 100%;
+  }
+
+  .calendario-img img {
+    max-width: 100%;
+  }
+
+  /* FOOTER */
+  .footer {
+    flex-direction: column;
     padding: 30px 20px;
+    gap: 25px;
+    text-align: center;
   }
 
   .footer-left {
@@ -861,54 +888,248 @@ address {
   }
 
   .footer-center {
-    text-align: center;
-    padding-left: 0;
     margin: 0;
-  }
-
-  .social-icons {
-    justify-content: center;
   }
 
   .footer-right {
     border-left: none;
-    border-top: 2px solid rgba(255, 255, 255, 0.2);
-    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
     padding-left: 0;
+    padding-top: 20px;
     text-align: center;
+    width: 100%;
   }
 
   .contact-item {
     justify-content: center;
   }
+}
+
+/* Móviles (hasta 480px) */
+@media screen and (max-width: 480px) {
+  /* NAVBAR */
+  .navbar .logoUas img,
+  .navbar .logoEscuelaNavbar img {
+    height: 40px;
+  }
+
+  .navbar ul {
+    gap: 10px;
+  }
+
+  .navbar a {
+    font-size: 0.9rem;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 40px 15px;
+    min-height: 350px;
+  }
+
+  .hero-text h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .hero-text p {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .btnHero {
+    padding: 10px 25px;
+    font-size: 0.9rem;
+  }
+
+  /* CONVOCATORIAS */
+  .convocatorias {
+    padding: 30px 10px;
+  }
+
+  .convocatorias h2 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  .carousel-container {
+    padding: 0 10px;
+  }
+
+  .viewport {
+    padding: 0 30px;
+  }
+
+  .card {
+    min-width: 220px;
+    padding: 25px 15px;
+  }
+
+  .card .icon {
+    font-size: 2.5rem;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+
+  .card p {
+    font-size: 0.8rem;
+    min-height: 50px;
+  }
+
+  .btn-secondary {
+    padding: 8px 20px;
+    font-size: 0.85rem;
+  }
+
+  .arrow {
+    font-size: 1.5rem;
+    padding: 5px;
+  }
+
+  .arrow.left {
+    left: 5px;
+  }
+
+  .arrow.right {
+    right: 5px;
+  }
+
+  .btn {
+    padding: 10px 30px;
+    font-size: 0.9rem;
+  }
+
+  /* NOTICIAS */
+  .noticias h2 {
+    font-size: 1.3rem;
+  }
+
+  .news-card {
+    padding: 25px 10px;
+  }
+
+  .news-card img {
+    width: 100%;
+  }
+
+  .news-title {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .news-text {
+    font-size: 0.85rem;
+  }
+
+  /* CALENDARIO */
+  .calendario {
+    padding: 30px 10px;
+  }
+
+  .calendario-info h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+
+  .calendario-info p {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 25px 15px;
+    gap: 20px;
+  }
+
+  .logoUas,
+  .logoEscuela {
+    width: 60px;
+    height: 60px;
+  }
 
   .university-name {
-    font-size: 24px;
+    font-size: 16px;
+  }
+
+  .university-subtitle {
+    font-size: 12px;
+  }
+
+  .social-icons {
+    gap: 8px;
+  }
+
+  .social-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .social-icon img {
+    width: 16px;
+    height: 16px;
   }
 
   .contact-title {
-    font-size: 20px;
-  }
-}
-
-/* RESPONSIVE CALENDARIO */
-@media screen and (max-width: 768px) {
-  .calendario-container {
-    flex-direction: column;
+    font-size: 16px;
+    margin-bottom: 15px;
   }
 
-  .calendario-img img {
-    max-width: 100%;
+  .contact-item {
+    font-size: 12px;
+    gap: 10px;
+    margin-bottom: 10px;
   }
 
-  .modal-content {
-    max-width: 95%;
-    margin: 30px auto;
+  .contact-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .contact-icon img {
+    width: 12px;
+    height: 12px;
   }
 
   .close-modal {
     top: 10px;
     right: 20px;
     font-size: 40px;
+  }
+
+  .modal-content {
+    margin: 30px auto;
+    width: 95%;
+  }
+}
+
+/* Móviles muy pequeños (hasta 375px) */
+@media screen and (max-width: 375px) {
+  .hero-text h1 {
+    font-size: 1.3rem;
+  }
+
+  .convocatorias h2,
+  .noticias h2 {
+    font-size: 1.2rem;
+  }
+
+  .card {
+    min-width: 200px;
+    padding: 20px 12px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .news-title {
+    font-size: 1rem;
+  }
+
+  .calendario-info h2 {
+    font-size: 1.2rem;
   }
 }
