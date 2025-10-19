@@ -133,14 +133,14 @@
 
 /* DEPARTAMENTO INDICATOR */
 .departamento-indicator {
-  background: #ffd500;
-  padding: 40px 20px;
-  text-align: center;
+    background: #ffd500;
+    padding: 60px 20px;
+    text-align: center;
 }
 
 .departamento-indicator h1 {
-  color: #1e1fb2;
-  font-size: 2.5em;
+    color: #1e1fb2;
+    font-size: 2.5em;
 }
 
 /* INFO SECTION */
@@ -263,7 +263,6 @@
   font-size: 1em;
   margin-top: 10px;
 }
-
 
 /* PERFIL SECTION */
 .section-perfil {
@@ -630,59 +629,6 @@ address {
 }
 
 /* RESPONSIVE */
-@media (max-width: 768px) {
-  .departamento-indicator h1 {
-    font-size: 2em;
-  }
-
-  .hero-info h2 {
-    font-size: 1.8em;
-  }
-
-  .perfil-content h2, 
-  .plan-estudios h2 {
-    font-size: 1.8em;
-  }
-
-  .semestre-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-badge {
-    font-size: 0.9em;
-    padding: 12px 25px;
-  }
-
-  .navbar ul {
-    gap: 30px;
-  }
-
-  .perfil-content {
-    padding: 40px 20px;
-  }
-}
-
-/* Responsive para la sección intro */
-@media (max-width: 768px) {
-  .intro-content {
-    grid-template-columns: 1fr;
-  }
-
-  .intro-image img {
-    height: 300px;
-  }
-
-  .qr-code {
-    width: 150px;
-    height: 150px;
-  }
-
-  .area-badge {
-    font-size: 1em;
-    padding: 15px 20px;
-  }
-}
-
 /* RESPONSIVE DESIGN */
 
 /* NAVBAR RESPONSIVE PARA PANTALLAS MEDIANAS */
@@ -793,10 +739,55 @@ address {
   }
 }
 
+@media (max-width: 768px) {
+  .departamento-indicator h1 {
+    font-size: 2em;
+  }
 
+  .hero-info h2 {
+    font-size: 1.8em;
+  }
 
+  .perfil-content h2, 
+  .plan-estudios h2 {
+    font-size: 1.8em;
+  }
 
+  .semestre-grid {
+    grid-template-columns: 1fr;
+  }
 
+  .hero-badge {
+    font-size: 0.9em;
+    padding: 12px 25px;
+  }
 
+  .navbar ul {
+    gap: 30px;
+  }
 
+  .perfil-content {
+    padding: 40px 20px;
+  }
+}
 
+/* Responsive para la sección intro */
+@media (max-width: 768px) {
+  .intro-content {
+    grid-template-columns: 1fr;
+  }
+
+  .intro-image img {
+    height: 300px;
+  }
+
+  .qr-code {
+    width: 150px;
+    height: 150px;
+  }
+
+  .area-badge {
+    font-size: 1em;
+    padding: 15px 20px;
+  }
+}
