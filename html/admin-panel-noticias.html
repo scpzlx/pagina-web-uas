@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Administración - Noticias</title>
+  <link rel="stylesheet" href="/css/styles-admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <div class="admin-container">
+    <!-- Header -->
+    <header class="admin-header">
+      <h1>
+        <i class="fas fa-newspaper"></i> Panel de Administración de Noticias
+      </h1>
+      <div class="header-actions">
+        <button class="btn-view-site" onclick="window.open('/index.html', '_blank')">
+          <i class="fas fa-eye"></i> Ver Sitio
+        </button>
+      </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="admin-content">
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('crear')">
+          <i class="fas fa-plus-circle"></i> Crear Noticia
+        </button>
+        <button class="tab-btn" onclick="showTab('gestionar')">
+          <i class="fas fa-list"></i> Gestionar Noticias
+        </button>
+      </div>
+
+      <!-- Tab: Crear Noticia -->
+      <div id="tab-crear" class="tab-content active">
+        <div class="form-container">
+          <h2>Nueva Noticia</h2>
+
+          <form id="news-form">
+            <!-- Título -->
+            <div class="form-group">
+              <label for="news-title-input">
+                <i class="fas fa-heading"></i> Título de la Noticia *
+              </label>
+              <input type="text" id="news-title-input" class="form-control"
+                placeholder="Escribe el título completo de la noticia" required />
+              <small>Este será el título principal que aparecerá en ambas
+                páginas</small>
+            </div>
+
+            <!-- Descripción corta -->
+            <div class="form-group">
+              <label for="news-short-desc">
+                <i class="fas fa-align-left"></i> Descripción Corta *
+              </label>
+              <textarea id="news-short-desc" class="form-control" rows="3"
+                placeholder="Escribe una descripción breve para la lista de noticias (máximo 200 caracteres)"
+                maxlength="200" required></textarea>
+              <small>Aparecerá en la página principal de noticias</small>
+            </div>
+
+            <!-- Fecha -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="news-date">
+                  <i class="fas fa-calendar"></i> Fecha de Publicación *
+                </label>
+                <input type="date" id="news-date" class="form-control" required />
+              </div>
+
+              <!-- Categoría -->
+              <div class="form-group">
+                <label for="news-category">
+                  <i class="fas fa-tag"></i> Categoría *
+                </label>
+                <select id="news-category" class="form-control" required>
+                  <option value="">Seleccionar categoría</option>
+                  <option value="actividades-generales">
+                    Actividades Generales
+                  </option>
+                  <option value="academico">Académico</option>
+                  <option value="investigacion">Investigación</option>
+                  <option value="extension">Extensión</option>
+                  <option value="cultura">Cultura</option>
+                  <option value="deportes">Deportes</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Contenido completo -->
+            <div class="form-group">
+              <label for="news-content">
+                <i class="fas fa-file-alt"></i> Contenido Completo *
+              </label>
+              <div class="content-helper">
+                <button type="button" class="btn-helper" onclick="addParagraph()">
+                  <i class="fas fa-plus"></i> Agregar Párrafo
+                </button>
+                <small>Cada línea será un párrafo separado en la noticia</small>
+              </div>
+              <div id="paragraphs-container">
+                <div class="paragraph-item">
+                  <textarea class="form-control paragraph-input" rows="4"
+                    placeholder="Escribe el primer párrafo de la noticia..." required></textarea>
+                  <button type="button" class="btn-remove-paragraph" onclick="removeParagraph(this)"
+                    style="display: none">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Imágenes -->
+            <div class="form-group">
+              <label> <i class="fas fa-images"></i> Imágenes </label>
+
+              <!-- Imagen miniatura -->
+              <div class="image-input-group">
+                <label for="news-thumbnail">Imagen Miniatura (para lista) *</label>
+                <div class="file-input-wrapper">
+                  <input type="url" id="news-thumbnail" class="form-control"
+                    placeholder="https://ejemplo.com/imagen-miniatura.jpg" />
+                  <div class="file-input-container">
+                    <input type="file" id="thumbnail-file" accept="image/*"
+                      onchange="handleFileSelect(event, 'thumbnail')" />
+                    <label for="thumbnail-file" class="file-input-label">
+                      <i class="fas fa-upload"></i> Subir desde PC
+                    </label>
+                  </div>
+                </div>
+                <div id="thumbnail-preview" class="file-preview"></div>
+                <small>Imagen pequeña para la lista de noticias (recomendado:
+                  600x400px)</small>
+              </div>
+
+              <!-- Imagen hero -->
+              <div class="image-input-group">
+                <label for="news-hero">Imagen Principal/Hero *</label>
+                <div class="file-input-wrapper">
+                  <input type="url" id="news-hero" class="form-control"
+                    placeholder="https://ejemplo.com/imagen-hero.jpg" />
+                  <div class="file-input-container">
+                    <input type="file" id="hero-file" accept="image/*" onchange="handleFileSelect(event, 'hero')" />
+                    <label for="hero-file" class="file-input-label">
+                      <i class="fas fa-upload"></i> Subir desde PC
+                    </label>
+                  </div>
+                </div>
+                <div id="hero-preview" class="file-preview"></div>
+                <small>Imagen grande para el detalle de la noticia (recomendado:
+                  1200x600px)</small>
+              </div>
+            </div>
+
+            <!-- Galería de imágenes -->
+            <div class="form-group">
+              <label>
+                <i class="fas fa-images"></i> Galería de Imágenes (Opcional)
+              </label>
+              <div class="gallery-helper">
+                <button type="button" class="btn-helper" onclick="addGalleryImage()">
+                  <i class="fas fa-plus"></i> Agregar Imagen a Galería
+                </button>
+                <small>Imágenes que aparecerán en el carrusel del detalle de la
+                  noticia</small>
+              </div>
+              <div id="gallery-container">
+                <!-- Las imágenes de galería se agregarán aquí -->
+              </div>
+            </div>
+
+            <!-- Video (opcional) -->
+            <div class="form-group">
+              <label for="news-video">
+                <i class="fas fa-video"></i> Video de YouTube (Opcional)
+              </label>
+              <input type="url" id="news-video" class="form-control"
+                placeholder="https://www.youtube.com/embed/VIDEO_ID" />
+              <small>URL del video embebido de YouTube (formato:
+                https://www.youtube.com/embed/VIDEO_ID)</small>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                <i class="fas fa-times"></i> Cancelar
+              </button>
+              <button type="button" class="btn btn-primary" onclick="previewNews()">
+                <i class="fas fa-eye"></i> Vista Previa
+              </button>
+              <button type="submit" class="btn btn-success">
+                <i class="fas fa-save"></i> Guardar Noticia
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tab: Gestionar Noticias -->
+      <div id="tab-gestionar" class="tab-content">
+        <div class="manage-container">
+          <h2>Noticias Publicadas</h2>
+
+          <div class="search-bar">
+            <input type="text" id="search-news" class="form-control" placeholder="Buscar noticias..."
+              onkeyup="searchNews()" />
+          </div>
+
+          <div id="news-list" class="news-list">
+            <!-- La lista de noticias se cargará aquí -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Vista Previa -->
+  <div id="preview-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Vista Previa de la Noticia</h2>
+        <button class="close-modal" onclick="closePreview()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="preview-content">
+        <!-- La vista previa se mostrará aquí -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Confirmación -->
+  <div id="confirm-modal" class="modal">
+    <div class="modal-content modal-small">
+      <div class="modal-body">
+        <i class="fas fa-exclamation-triangle" style="font-size: 48px; color: #ff9800; margin-bottom: 20px"></i>
+        <h3 id="confirm-title">¿Estás seguro?</h3>
+        <p id="confirm-message">Esta acción no se puede deshacer.</p>
+        <div class="modal-actions">
+          <button class="btn btn-secondary" onclick="closeConfirm()">
+            Cancelar
+          </button>
+          <button class="btn btn-danger" id="confirm-action-btn">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/scriptAdmin.js"></script>
+</body>
+
+</html>
