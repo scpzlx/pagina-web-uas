@@ -143,178 +143,336 @@
   font-size: 2.5em;
 }
 
-/* REGLAMENTO */
-.container {
+/* INFO SECTION */
+.hero-info {
+  background: linear-gradient(135deg, #1e1fb2 0%, #3b82f6 50%, #fdd835 100%);
+  padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-info::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><path d="M0,50 Q25,30 50,50 T100,50" stroke="rgba(255,255,255,0.1)" stroke-width="2" fill="none"/></svg>') repeat;
+  opacity: 0.3;
+}
+
+.hero-info-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero-info h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: white;
+    font-weight: 700;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 15px 35px;
+    border-radius: 30px;
+    margin: 10px;
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 1.1em;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* SECTION INFO -IMAGEN Y AREA */
+.section-intro {
+  background: white;
+  padding: 60px 20px;
+}
+
+.intro-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
 }
 
-.section {
-  margin: 60px 0;
-}
-
-.section-title {
-  font-size: 2.2em;
-  color: #1a1a8e;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: bold;
-}
-
-.cards-grid {
+.intro-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
 }
 
-.card {
+.intro-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.intro-info {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.area-conocimiento h3, .qr-section h3 {
+  color: #1e3a8a;
+  font-size: 1.8em;
+  margin-bottom: 15px;
+}
+
+.area-badge {
+  background: linear-gradient(135deg, #1e28b7 0%, #3b82f6 100%);
+  color: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(30, 40, 183, 0.3);
+}
+
+.qr-section {
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(to right, #f8fafc, #e0f2fe);
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.qr-code {
+  width: 200px;
+  height: 200px;
+  margin: 20px auto;
+  display: block;
+  padding: 15px;
   background: white;
   border-radius: 15px;
-  padding: 35px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.qr-section p {
+  color: #475569;
+  font-size: 1em;
+  margin-top: 10px;
+}
+
+
+/* PERFIL SECTION */
+.section-perfil {
+  background: #f5f5f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.perfil-content {
+  background: linear-gradient(to right, #f8fafc, #e0f2fe);
+  padding: 60px 40px;
+  margin: 40px 0;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.perfil-content h2 {
+    color: #1e3a8a;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.perfil-text {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #475569;
+  text-align: justify;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* PLAN DE ESTUDIOS */
+.plan-estudios {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.plan-estudios h2 {
+  color: #1e3a8a;
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.semestre-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.semestre-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 5px solid #1e28b7;
 }
 
-.card:hover {
+.semestre-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
-.card h3 {
+.semestre-card h3 {
+  color: #1e3a8a;
   font-size: 1.5em;
   margin-bottom: 20px;
-  color: #1a1a8e;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #fbbf24;
 }
 
-.card ul {
-  list-style: none;
-  padding: 0;
-}
-
-.card li {
-  padding: 12px 0;
-  border-bottom: 1px solid #f0f0f0;
+.materia-item {
+  padding: 10px 0;
   display: flex;
-  align-items: start;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.card li:last-child {
+.materia-item:last-child {
   border-bottom: none;
 }
 
-.card li:before {
-  content: "→";
-  color: #ffc107;
+.materia-item {
+  flex: 1;
+  color: #475569;
+  padding-right: 15px;
+}
+
+.creditos {
+  background: #fbbf24;
+  color: #1e3a8a;
+  padding: 5px 15px;
+  border-radius: 20px;
   font-weight: bold;
-  margin-right: 12px;
-  font-size: 1.2em;
+  font-size: 0.9em;
+  flex-shrink: 0;
 }
 
-.servicios-section {
-  background: linear-gradient(135deg, #ffc107 0%, #ffdb4d 100%);
+/* INFO SECTION - CERTIFICACIONES */
+.info-section {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
   padding: 60px 20px;
-  margin: 60px 0;
+  margin: 40px 0;
+  color: white;
 }
 
-.servicios-section .section-title {
-  color: #1a1a8e;
-}
-
-.servicios-grid {
+.info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-  max-width: 1200px;
-  margin: 40px auto 0;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.servicio-card {
-  background: white;
+.info-card {
+  background: rgba(255, 255, 255, 0.15);
   padding: 30px;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  backdrop-filter: blur(10px);
   transition: transform 0.3s ease;
 }
 
-.servicio-card:hover {
+.info-card:hover {
   transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.25);
 }
 
-.servicio-icon {
-  width: 70px;
-  height: 70px;
-  background: #1a1a8e;
-  border-radius: 50%;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2em;
+.info-card h3 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #1e3a8a;
 }
 
-.servicio-card h4 {
-  color: #1a1a8e;
-  font-size: 1.3em;
+.info-card p, .info-card ul {
+  color: white;
+  font-size: 1.05em;
+}
+
+.info-card ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.info-card ul li {
+  padding: 5px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.info-card ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #1e3a8a;
   font-weight: bold;
 }
 
-.normas-section {
-  background: #f8f9fa;
+/* CONTACTO SECTION */
+.contacto-section {
+  background: #1e3a8a;
+  color: white;
   padding: 60px 20px;
-  margin: 60px 0;
+  text-align: center;
 }
 
-.normas-list {
-  max-width: 900px;
+.contacto-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+}
+
+.contacto-info {
+  max-width: 800px;
   margin: 0 auto;
-  background: white;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-}
-
-.normas-list li {
-  padding: 15px 0;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.normas-list li:last-child {
-  border-bottom: none;
-}
-
-.normas-list li strong {
-  color: #1a1a8e;
-}
-
-.alert-box {
-  background: #fff3cd;
-  border-left: 5px solid #ffc107;
-  padding: 20px;
-  margin: 30px 0;
-  border-radius: 5px;
-}
-
-.alert-box strong {
-  color: #856404;
-  display: block;
-  margin-bottom: 10px;
   font-size: 1.1em;
+  line-height: 2;
+}
+
+.contacto-info a {
+  color: #fbbf24;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contacto-info a:hover {
+  text-decoration: underline;
 }
 
 /* FOOTER */
 .footer {
   background: #1e1fb2;
   color: white;
-  padding: 15px 30px;
-  /* menos padding */
+  padding: 15px 30px;   /* menos padding */
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  flex-wrap: wrap;
+  flex-wrap: wrap;  
 }
 
 
@@ -471,222 +629,64 @@ address {
   font-style: normal;
 }
 
-/* RESPONSIVE DESIGN */
-@media (max-width: 1024px) {
-  .servicios-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    max-width: 800px;
-  }
-
-  .servicio-card {
-    padding: 30px 20px;
-  }
-
-  .servicio-icon {
-    width: 70px;
-    height: 70px;
-    font-size: 2em;
-  }
-
-  .servicio-card h4 {
-    font-size: 1.1em;
-  }
-}
-
-@media (max-width: 768px) {
-  .header h1 {
-    font-size: 2em;
-  }
-
-  .section-title {
-    font-size: 1.8em;
-  }
-
-  .cards-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .servicios-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .servicio-card {
-    padding: 30px 20px;
-  }
-
-  .servicio-icon {
-    width: 70px;
-    height: 70px;
-    font-size: 2em;
-  }
-
-  .servicio-card h4 {
-    font-size: 1.2em;
-  }
-}
-
-/* NAVBAR RESPONSIVE PARA PANTALLAS MEDIANAS */
-@media screen and (max-width: 1024px) {
-  .navbar {
-    padding: 15px 20px;
-  }
-
-  .navbar ul {
-    gap: 25px;
-  }
-
-  .navbar .logoUas img {
-    height: 50px;
-  }
-}
-
-/* NAVBAR RESPONSIVE PARA PANTALLAS PEQUENAS */
-@media screen and (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    padding: 15px;
-    gap: 15px;
-  }
-
-  .navbar .logoUas {
-    margin-bottom: 15px;
-  }
-
-  .menu {
-    width: 100%;
-  }
-
-  .navbar ul {
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    text-align: center;
-  }
-
-  .navbar ul li {
-    width: 100%;
-  }
-
-  .navbar ul li a {
-    display: block;
-    padding: 10px;
-    width: 100%;
-  }
-
-  .navbar ul li.dropdown>a {
-    justify-content: center;
-  }
-
-  .navbar ul li ul.dropdown-content {
-    position: static;
-    width: 100%;
-    box-shadow: none;
-    margin-top: 10px;
-  }
-
-  .navbar ul li:hover ul.dropdown-content {
-    display: block;
-  }
-}
-
-/*ESTA ES LA PARTE RESPONSIVE DEL FOOTER (FALTA PULIR)*/
-@media (max-width: 768px) {
-  .footer {
-    flex-direction: row;
-    gap: 15px;
-    padding: 20px 15px;
-  }
-
-  .footer-center {
-    margin: 0 20px;
-  }
-
-  .university-name {
-    font-size: 26px;
-  }
-}
-
-@media (max-width: 768px) {
-  .footer {
-    flex-direction: column;
-    gap: 30px;
-    text-align: center;
-    padding: 30px 20px;
-  }
-
-  .footer-left {
-    justify-content: center;
-  }
-
-  .footer-center {
-    text-align: center;
-    padding-left: 0;
-    margin: 0;
-  }
-
-  .social-icons {
-    justify-content: center;
-  }
-
-  .footer-right {
-    border-left: none;
-    border-top: 2px solid rgba(255, 255, 255, 0.2);
-    padding-top: 20px;
-    padding-left: 0;
-    text-align: center;
-  }
-
-  .contact-item {
-    justify-content: center;
-  }
-
-  .university-name {
-    font-size: 24px;
-  }
-
-  .contact-title {
-    font-size: 20px;
-  }
-}
-
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .departamento-indicator h1 {
+    font-size: 2em;
+  }
+
+  .hero-info h2 {
     font-size: 1.8em;
   }
 
-  .section-title {
-    font-size: 1.5em;
+  .perfil-content h2, 
+  .plan-estudios h2 {
+    font-size: 1.8em;
   }
 
-  .usuarios-grid {
+  .semestre-grid {
     grid-template-columns: 1fr;
   }
 
-  .prohibiciones-grid {
-    grid-template-columns: 1fr;
+  .hero-badge {
+    font-size: 0.9em;
+    padding: 12px 25px;
   }
 
-  .sanciones-grid {
-    grid-template-columns: 1fr;
+  .navbar ul {
+    gap: 30px;
   }
 
-  .limites-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .objetivo-card,
-  .normas-container,
-  .limites-container,
-  .mensaje-box {
-    padding: 25px;
+  .perfil-content {
+    padding: 40px 20px;
   }
 }
 
-@media (max-width: 480px) {
-  .limites-grid {
+/* Responsive para la sección intro */
+@media (max-width: 768px) {
+  .intro-content {
     grid-template-columns: 1fr;
   }
+
+  .intro-image img {
+    height: 300px;
+  }
+
+  .qr-code {
+    width: 150px;
+    height: 150px;
+  }
+
+  .area-badge {
+    font-size: 1em;
+    padding: 15px 20px;
+  }
 }
+
+
+
+
+
+
+
+
