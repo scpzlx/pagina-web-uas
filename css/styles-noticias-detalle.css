@@ -4,6 +4,31 @@
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
+/* boton para cerrar las noticias */
+.close-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  color: #1a1a8e;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  font-weight: 300;
+}
+
+.close-button:hover {
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: rotate(90deg);
+}
 
 body {
   background-color: #d4d4d4;
