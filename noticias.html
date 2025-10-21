@@ -14,11 +14,18 @@
   <header>
     <nav class="navbar">
       <div class="logoUas">
-        <img src="/images/LogoUas.png" alt="UAS logo" />
+        <img src="images/LogoUas.png" alt="UAS logo" />
       </div>
-      <div class="menu">
+
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="menu" id="menu">
         <ul>
-          <li><a href="/index.html">Inicio</a></li>
+          <li><a href="index.html">Inicio</a></li>
 
           <li class="dropdown">
             <a href="#">Facultad</a>
@@ -69,10 +76,12 @@
         </ul>
       </div>
       <div class="logoEscuelaNavbar">
-        <img src="/images/logoEscuelaIFooter.png" alt="Logo Escuela" />
+        <img src="images/logoEscuelaIFooter.png" alt="Logo Escuela" />
       </div>
     </nav>
   </header>
+
+  <div class="overlay" id="overlay"></div>
 
   <div class="departamento-indicator">
         <h1>📰 Noticias</h1>
@@ -197,6 +206,7 @@
   </footer>
 
   <script src="/js/scriptNoticia.js"></script>
+  <script src="js/hamburguer.navbar.js"></script>
 </body>
 
 </html>

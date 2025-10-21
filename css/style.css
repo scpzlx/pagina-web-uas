@@ -11,9 +11,10 @@
   background-color: #1e28b7;
   color: white;
   align-items: center;
-  justify-content: space-b  etween;
+  justify-content: space-between;
   padding: 10px 40px;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .navbar .logoUas {
@@ -30,6 +31,52 @@
 
 .navbar .logoEscuelaNavbar img {
   height: 60px;
+}
+
+/* BOTON HAMBURGUER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  margin: 4px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-6px, -6px);
+}
+
+/* Overlay para cerrar el menú */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.overlay.active {
+  display: block;
 }
 
 .menu {
@@ -731,48 +778,186 @@ address {
 
 /* Tablets pequeñas (hasta 768px) */
 @media screen and (max-width: 768px) {
-  /* NAVBAR */
   .navbar {
+    padding: 10px 20px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: #1e28b7;
     flex-direction: column;
-    padding: 15px;
-    gap: 15px;
+    justify-content: flex-start;
+    padding-top: 80px;
+    padding-bottom: 20px;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    /* Estilos de scrollbar personalizados */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
   }
 
-  .navbar .logoUas,
+  /* Scrollbar para Webkit (Chrome, Safari, Edge) */
+  .menu::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .menu::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .menu::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+
+  .menu::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .menu.active {
+    right: 0;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .navbar ul li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .navbar ul li a {
+    padding: 15px 20px;
+    display: block;
+    white-space: normal;
+  }
+
+  .navbar ul li.dropdown > a::after {
+    position: absolute;
+    right: 20px;
+    transform: rotate(0deg);
+  }
+
+  .navbar ul li.dropdown.active > a::after {
+    transform: rotate(90deg);
+  }
+
+  .navbar ul li ul.dropdown-content {
+    position: static;
+    display: none;
+    background-color: rgba(255, 213, 0, 0.1);
+    box-shadow: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .navbar ul li.dropdown.active ul.dropdown-content {
+    display: block;
+    max-height: 1000px; /* Aumentado para permitir más contenido */
+    overflow-y: auto; /* Permite scroll en el dropdown si es necesario */
+    /* Estilos de scrollbar para dropdowns */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+
+  /* Scrollbar para dropdowns en Webkit */
+  .navbar ul li.dropdown.active ul.dropdown-content::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .navbar ul li.dropdown.active ul.dropdown-content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .navbar ul li.dropdown.active ul.dropdown-content::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+  }
+
+  .navbar ul li ul.dropdown-content li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .navbar ul li ul.dropdown-content li a {
+    color: white;
+    padding: 12px 20px 12px 40px;
+    font-size: 0.95rem;
+  }
+
+  .navbar ul li ul.dropdown-content li a:hover {
+    background-color: rgba(255, 213, 0, 0.2);
+  }
+
+  /* Deshabilitar hover en móviles */
+  .navbar ul li:hover ul.dropdown-content {
+    display: none;
+  }
+
   .navbar .logoEscuelaNavbar {
-    margin-bottom: 0;
+    order: -1;
   }
+}
 
+/* Móviles pequeños (hasta 480px) */
+@media screen and (max-width: 480px) {
   .navbar .logoUas img,
   .navbar .logoEscuelaNavbar img {
     height: 45px;
   }
 
   .menu {
-    width: 100%;
+    width: 85%;
   }
 
-  .navbar ul {
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    align-items: center;
+  .navbar ul li a {
+    font-size: 0.95rem;
   }
 
-  .navbar ul li {
-    width: 100%;
-    text-align: center;
+  /* HERO */
+  .hero {
+    padding: 60px 20px;
+    min-height: 400px;
   }
 
-  .navbar ul li.dropdown > a {
-    justify-content: center;
+  .hero-text h1 {
+    font-size: 1.8rem;
   }
 
-  .navbar ul li ul.dropdown-content {
-    position: static;
-    width: 100%;
-    box-shadow: none;
-    background-color: rgba(255, 213, 0, 0.95);
+  .hero-text p {
+    font-size: 1rem;
+  }
+}
+/* Móviles pequeños (hasta 480px) */
+@media screen and (max-width: 480px) {
+  .navbar .logoUas img,
+  .navbar .logoEscuelaNavbar img {
+    height: 45px;
+  }
+
+  .menu {
+    width: 85%;
+  }
+
+  .navbar ul li a {
+    font-size: 0.95rem;
   }
 
   /* HERO */

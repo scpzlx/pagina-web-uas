@@ -13,11 +13,18 @@
     <header>
         <nav class="navbar">
             <div class="logoUas">
-                <img src="/images/LogoUas.png" alt="UAS logo" />
+                <img src="images/LogoUas.png" alt="UAS logo" />
             </div>
-            <div class="menu">
+
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="menu" id="menu">
                 <ul>
-                    <li><a href="/index.html">Inicio</a></li>
+                    <li><a href="index.html">Inicio</a></li>
 
                     <li class="dropdown">
                         <a href="#">Facultad</a>
@@ -68,10 +75,12 @@
                 </ul>
             </div>
             <div class="logoEscuelaNavbar">
-                <img src="/images/logoEscuelaIFooter.png" alt="Logo Escuela" />
+                <img src="images/logoEscuelaIFooter.png" alt="Logo Escuela" />
             </div>
         </nav>
     </header>
+
+    <div class="overlay" id="overlay"></div>
 
     <!-- DEPARTAMENTO INDICATOR -->
     <div class="departamento-indicator">
@@ -381,17 +390,20 @@
 
                 <div class="info-card">
                     <h3>Competencias sello de la UAS</h3>
-                    <p>Los temas de género, ética y sustentabilidad, así como los transversales y de formación integral se incorporan dentro de los contenidos temáticos de las materias.</p>
+                    <p>Los temas de género, ética y sustentabilidad, así como los transversales y de formación integral
+                        se incorporan dentro de los contenidos temáticos de las materias.</p>
                 </div>
 
                 <div class="info-card">
                     <h3>Actividades de formación integral</h3>
-                    <p>Extracurriculares; comprenden los aspectos académicos, científicos, de actividad física y deportiva, artísticos y culturales.</p>
+                    <p>Extracurriculares; comprenden los aspectos académicos, científicos, de actividad física y
+                        deportiva, artísticos y culturales.</p>
                 </div>
 
                 <div class="info-card">
                     <h3>Servicio Social</h3>
-                    <p>Obligatorio de acuerdo con el Artículo 15 del Reglamento de Servicio Social de la UAS; duración no menor de seis meses ni mayor a un año, cumpliendo al menos 480 horas.</p>
+                    <p>Obligatorio de acuerdo con el Artículo 15 del Reglamento de Servicio Social de la UAS; duración
+                        no menor de seis meses ni mayor a un año, cumpliendo al menos 480 horas.</p>
                 </div>
 
                 <div class="info-card">
@@ -404,20 +416,20 @@
     </section>
 
     <!-- CONTACTO -->
-     <section class="section-contacto">
+    <section class="section-contacto">
         <div class="contacto-section">
             <h2>Escuela de Diseño y Artes Visuales</h2>
             <div class="contacto-info">
                 <p><strong>Ubicacion:</strong></p>
                 <p>Blvd. Francisco Labastida Ochoa (malecón nuevo) rumbo a La Limita,<br>
-                a 300 mts. de la carretera a Imala.<br>
-                CP. 80064 Culiacán, Sinaloa, México</p>
+                    a 300 mts. de la carretera a Imala.<br>
+                    CP. 80064 Culiacán, Sinaloa, México</p>
                 <p><Strong>Teléfono:</Strong> <a href="tel:6677137155">667 713 7155</a></p>
             </div>
         </div>
-     </section>
+    </section>
 
-      <!-- FOOTER -->
+    <!-- FOOTER -->
     <footer class="footer">
         <section class="footer-left">
             <img src="/images/LogoUas.png" alt="Logo UAS" class="logoUas" />
@@ -478,6 +490,8 @@
             </address>
         </section>
     </footer>
+
+    <script src="js/hamburguer.navbar.js"></script>
 </body>
 
 </html>
