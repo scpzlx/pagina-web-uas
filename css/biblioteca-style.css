@@ -756,7 +756,8 @@ address {
   }
 
   .navbar ul li ul.dropdown-content li a:hover {
-    background-color: rgba(255, 213, 0, 0.2);
+    background-color: #ffd500;
+    color: #1a237e;
   }
 
   /* Deshabilitar hover en móviles */
