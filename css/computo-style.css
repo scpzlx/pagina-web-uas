@@ -777,50 +777,39 @@ address {
 }
 
 /* RESPONSIVE DESIGN */
-/* RESPONSIVE FOOTER */
-@media (max-width: 768px) {
-  .footer {
-    flex-direction: column;
+
+/* Tablets y pantallas medianas (hasta 1024px) */
+@media screen and (max-width: 1024px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .navbar ul {
     gap: 30px;
-    text-align: center;
-    padding: 30px 20px;
   }
 
-  .footer-left {
-    justify-content: center;
+  .departamento-indicator h1 {
+    font-size: 2rem;
   }
 
-  .footer-center {
-    text-align: center;
-    padding-left: 0;
-    margin: 0;
+  .objetivo-card {
+    padding: 30px;
   }
 
-  .social-icons {
-    justify-content: center;
+  .section-title {
+    font-size: 1.8rem;
+    margin: 40px 0 25px;
   }
 
-  .footer-right {
-    border-left: none;
-    border-top: 2px solid rgba(255, 255, 255, 0.2);
-    padding-top: 20px;
-    padding-left: 0;
-    text-align: center;
-  }
-
-  .contact-item {
-    justify-content: center;
-  }
-
-  .university-name {
-    font-size: 24px;
-  }
-
-  .contact-title {
-    font-size: 20px;
+  .usuarios-grid,
+  .normas-container,
+  .prohibiciones-grid,
+  .sanciones-grid {
+    gap: 20px;
   }
 }
 
+/* Tablets pequeñas (hasta 768px) */
 @media screen and (max-width: 768px) {
   .navbar {
     padding: 10px 20px;
@@ -959,6 +948,54 @@ address {
   .navbar .logoEscuelaNavbar {
     order: -1;
   }
+
+  /* CONTENIDO */
+  .departamento-indicator {
+    padding: 30px 15px;
+  }
+
+  .departamento-indicator h1 {
+    font-size: 1.8rem;
+  }
+
+  .objetivo-section,
+  .usuarios-section,
+  .normas-section,
+  .prohibiciones-section,
+  .horarios-section,
+  .sanciones-section,
+  .mensaje-final-section {
+    padding: 40px 0;
+  }
+
+  .objetivo-card {
+    padding: 25px 20px;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+    margin: 40px 0 25px;
+  }
+
+  .usuarios-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prohibiciones-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .sanciones-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .horario-info {
+    grid-template-columns: 1fr;
+  }
+
+  .limites-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
 }
 
 /* Móviles pequeños (hasta 480px) */
@@ -976,17 +1013,608 @@ address {
     font-size: 0.95rem;
   }
 
-  /* HERO */
-  .hero {
-    padding: 60px 20px;
-    min-height: 400px;
+  /* DEPARTAMENTO INDICATOR */
+  .departamento-indicator {
+    padding: 25px 15px;
   }
 
-  .hero-text h1 {
+  .departamento-indicator h1 {
+    font-size: 1.5rem;
+  }
+
+  /* OBJETIVO */
+  .objetivo-section {
+    padding: 30px 0;
+  }
+
+  .objetivo-card {
+    padding: 25px 20px;
+    margin: 0 10px;
+  }
+
+  .objetivo-card h2 {
+    font-size: 1.3rem;
+  }
+
+  .objetivo-card p {
+    font-size: 0.95rem;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 1.5rem;
+    margin: 30px 0 20px;
+  }
+
+  .section-title::after {
+    width: 60px;
+    height: 3px;
+  }
+
+  /* USUARIOS */
+  .usuarios-section {
+    padding: 40px 15px;
+  }
+
+  .usuarios-grid {
+    gap: 20px;
+    margin: 0 10px 40px;
+  }
+
+  .usuario-card {
+    padding: 25px 20px;
+  }
+
+  .usuario-card .numero {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 1rem;
+  }
+
+  .usuario-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .usuario-card p {
+    font-size: 0.9rem;
+  }
+
+  /* NORMAS */
+  .normas-section {
+    padding: 40px 15px;
+  }
+
+  .normas-container {
+    padding: 25px 20px;
+    margin: 0 10px 25px;
+  }
+
+  .normas-container h3 {
+    font-size: 1.2rem;
+  }
+
+  .norma-item {
+    padding: 12px;
+  }
+
+  .norma-item .icon {
+    min-width: 28px;
+    height: 28px;
+    line-height: 28px;
+  }
+
+  .norma-item p {
+    font-size: 0.9rem;
+  }
+
+  /* PROHIBICIONES */
+  .prohibiciones-section {
+    padding: 40px 15px;
+  }
+
+  .prohibiciones-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin: 20px 10px 0;
+  }
+
+  .prohibicion-card {
+    padding: 20px;
+  }
+
+  .prohibicion-icon {
     font-size: 1.8rem;
   }
 
-  .hero-text p {
+  .prohibicion-card p {
+    font-size: 0.9rem;
+  }
+
+  /* HORARIOS */
+  .horarios-section {
+    padding: 40px 15px;
+  }
+
+  .horario-card {
+    padding: 30px 20px;
+    margin: 0 10px 30px;
+  }
+
+  .horario-card h3 {
+    font-size: 1.4rem;
+  }
+
+  .horario-info {
+    gap: 15px;
+  }
+
+  .horario-box {
+    padding: 20px;
+  }
+
+  .horario-box h4 {
+    font-size: 1.1rem;
+  }
+
+  /* LIMITES */
+  .limites-container {
+    padding: 30px 20px;
+    margin: 20px 10px;
+  }
+
+  .limites-container h3 {
+    font-size: 1.3rem;
+  }
+
+  .limites-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+  }
+
+  .limite-card {
+    padding: 20px;
+  }
+
+  .limite-numero {
+    font-size: 2.5rem;
+  }
+
+  .limite-card p {
+    font-size: 0.85rem;
+  }
+
+  .advertencia-box {
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  .advertencia-box p {
+    font-size: 0.9rem;
+  }
+
+  /* SANCIONES */
+  .sanciones-section {
+    padding: 40px 15px;
+  }
+
+  .sanciones-grid {
+    gap: 20px;
+    margin: 20px 10px 0;
+  }
+
+  .sancion-card {
+    padding: 25px 20px;
+  }
+
+  .sancion-nivel {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .sancion-card h4 {
+    font-size: 1.2rem;
+  }
+
+  .sancion-card p,
+  .sancion-card ul li {
+    font-size: 0.9rem;
+  }
+
+  .sancion-nota {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+
+  /* MENSAJE FINAL */
+  .mensaje-final-section {
+    padding: 40px 15px;
+  }
+
+  .mensaje-box {
+    padding: 30px 20px;
+    margin: 0 10px;
+  }
+
+  .mensaje-box h3 {
+    font-size: 1.4rem;
+  }
+
+  .mensaje-box p {
     font-size: 1rem;
+  }
+
+  /* FOOTER */
+  .footer {
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 25px;
+    text-align: center;
+  }
+
+  .footer-left {
+    justify-content: center;
+  }
+
+  .footer-center {
+    margin: 0;
+  }
+
+  .footer-right {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 0;
+    padding-top: 20px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .contact-item {
+    justify-content: center;
+  }
+}
+
+/* Móviles (hasta 480px) */
+@media screen and (max-width: 480px) {
+  /* NAVBAR */
+  .navbar .logoUas img,
+  .navbar .logoEscuelaNavbar img {
+    height: 40px;
+  }
+
+  .navbar ul {
+    gap: 10px;
+  }
+
+  .navbar a {
+    font-size: 0.9rem;
+  }
+
+  /* DEPARTAMENTO INDICATOR */
+  .departamento-indicator {
+    padding: 20px 10px;
+  }
+
+  .departamento-indicator h1 {
+    font-size: 1.3rem;
+  }
+
+  /* OBJETIVO */
+  .objetivo-section {
+    padding: 25px 0;
+  }
+
+  .objetivo-card {
+    padding: 20px 15px;
+    margin: 0 5px;
+  }
+
+  .objetivo-card h2 {
+    font-size: 1.1rem;
+  }
+
+  .objetivo-card p {
+    font-size: 0.85rem;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 1.3rem;
+    margin: 25px 0 15px;
+  }
+
+  /* USUARIOS */
+  .usuarios-section {
+    padding: 30px 10px;
+  }
+
+  .usuarios-grid {
+    gap: 15px;
+    margin: 0 5px 30px;
+  }
+
+  .usuario-card {
+    padding: 20px 15px;
+  }
+
+  .usuario-card .numero {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 0.95rem;
+  }
+
+  .usuario-card h3 {
+    font-size: 1rem;
+  }
+
+  .usuario-card p {
+    font-size: 0.85rem;
+  }
+
+  /* NORMAS */
+  .normas-section {
+    padding: 30px 10px;
+  }
+
+  .normas-container {
+    padding: 20px 15px;
+    margin: 0 5px 20px;
+  }
+
+  .normas-container h3 {
+    font-size: 1.1rem;
+  }
+
+  .norma-item {
+    padding: 10px;
+  }
+
+  .norma-item .icon {
+    min-width: 26px;
+    height: 26px;
+    line-height: 26px;
+    font-size: 0.8rem;
+  }
+
+  .norma-item p {
+    font-size: 0.85rem;
+  }
+
+  /* PROHIBICIONES */
+  .prohibiciones-section {
+    padding: 30px 10px;
+  }
+
+  .prohibiciones-grid {
+    margin: 15px 5px 0;
+    gap: 12px;
+  }
+
+  .prohibicion-card {
+    padding: 18px 15px;
+  }
+
+  .prohibicion-icon {
+    font-size: 1.5rem;
+  }
+
+  .prohibicion-card p {
+    font-size: 0.85rem;
+  }
+
+  /* HORARIOS */
+  .horarios-section {
+    padding: 30px 10px;
+  }
+
+  .horario-card {
+    padding: 25px 15px;
+    margin: 0 5px 25px;
+  }
+
+  .horario-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .horario-info {
+    gap: 12px;
+  }
+
+  .horario-box {
+    padding: 18px 15px;
+  }
+
+  .horario-box h4 {
+    font-size: 1rem;
+  }
+
+  .horario-box p {
+    font-size: 0.9rem;
+  }
+
+  /* LIMITES */
+  .limites-container {
+    padding: 25px 15px;
+    margin: 15px 5px;
+  }
+
+  .limites-container h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .limites-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .limite-card {
+    padding: 18px 15px;
+  }
+
+  .limite-numero {
+    font-size: 2rem;
+  }
+
+  .limite-card p {
+    font-size: 0.8rem;
+  }
+
+  .advertencia-box {
+    padding: 12px;
+  }
+
+  .advertencia-box p {
+    font-size: 0.85rem;
+  }
+
+  /* SANCIONES */
+  .sanciones-section {
+    padding: 30px 10px;
+  }
+
+  .sanciones-grid {
+    gap: 15px;
+    margin: 15px 5px 0;
+  }
+
+  .sancion-card {
+    padding: 20px 15px;
+  }
+
+  .sancion-nivel {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+
+  .sancion-card h4 {
+    font-size: 1.1rem;
+  }
+
+  .sancion-card p,
+  .sancion-card ul li {
+    font-size: 0.85rem;
+  }
+
+  .sancion-nota {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+
+  /* MENSAJE FINAL */
+  .mensaje-final-section {
+    padding: 30px 10px;
+  }
+
+  .mensaje-box {
+    padding: 25px 15px;
+    margin: 0 5px;
+  }
+
+  .mensaje-box h3 {
+    font-size: 1.2rem;
+  }
+
+  .mensaje-box p {
+    font-size: 0.9rem;
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 25px 15px;
+    gap: 20px;
+  }
+
+  .logoUas,
+  .logoEscuela {
+    width: 60px;
+    height: 60px;
+  }
+
+  .university-name {
+    font-size: 16px;
+  }
+
+  .university-subtitle {
+    font-size: 12px;
+  }
+
+  .social-icons {
+    gap: 8px;
+  }
+
+  .social-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .social-icon img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .contact-title {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .contact-item {
+    font-size: 12px;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .contact-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .contact-icon img {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Móviles muy pequeños (hasta 375px) */
+@media screen and (max-width: 375px) {
+  .departamento-indicator h1 {
+    font-size: 1.2rem;
+  }
+
+  .objetivo-card h2 {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .usuario-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .normas-container h3 {
+    font-size: 1rem;
+  }
+
+  .horario-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .limites-container h3 {
+    font-size: 1.1rem;
+  }
+
+  .limite-numero {
+    font-size: 1.8rem;
+  }
+
+  .sancion-card h4 {
+    font-size: 1rem;
+  }
+
+  .mensaje-box h3 {
+    font-size: 1.1rem;
   }
 }
