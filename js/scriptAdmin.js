@@ -1,152 +1,11 @@
-// ===========================================
-// GESTIÓN DE GALERÍA
-// ===========================================
-let galleryCounter = 0;
+// scriptAdmin.js - Panel de administración
+// Conectado a MySQL via API
 
-function addGalleryImage() {
-    const container = document.getElementById('gallery-container');
-    galleryCounter++;
-    const uniqueId = 'gallery-file-' + galleryCounter;
-    
-    const div = document.createElement('div');
-    div.className = 'gallery-item';
-    div.innerHTML = '<div class="gallery-item-inputs"><input type="url" class="form-control gallery-input" placeholder="https://ejemplo.com/imagen' + galleryCounter + '.jpg"><div class="file-input-container"><input type="file" id="' + uniqueId + '" accept="image/*"><label for="' + uniqueId + '" class="file-input-label"><i class="fas fa-upload"></i> Subir desde PC</label></div><div class="file-preview"></div></div><button type="button" class="btn-remove-gallery" onclick="removeGalleryImage(this)"><i class="fas fa-times"></i> Eliminar</button>';
-    
-    container.appendChild(div);
-    
-    // Agregar event listener al input file
-    const fileInput = document.getElementById(uniqueId);
-    const urlInput = div.querySelector('.gallery-input');
-    fileInput.addEventListener('change', function(event) {
-        handleGalleryFileSelect(event, urlInput);
-    });
-}// ===========================================
-// SISTEMA DE ALMACENAMIENTO
-// ===========================================
-// Por ahora usamos localStorage, pero está preparado para MySQL
+const API_URL = '/api';
 
-// Cargar noticias iniciales si no existen en localStorage
-function initializeDefaultNews() {
-    const existingNews = localStorage.getItem('newsDatabase');
-    if (!existingNews) {
-        // Noticias por defecto (las mismas de script.js y script-detalle.js)
-        const defaultNews = [
-            {
-                id: 1,
-                title: "La UAS es primer lugar entre las universidades públicas estatales del país y tercer lugar general por cuarto año consecutivo, de acuerdo con el Ranking Mundial de Universidades de Times Higher Education",
-                shortDescription: "Por sus indicadores de excelencia, la Universidad Autónoma de Sinaloa (UAS) se ubica en el primer lugar entre las universidades públicas estatales del país y por cuarto año consecutivo se mantiene en el tercer lugar entre las instituciones mexicanas, tanto públicas ...",
-                date: "2025-10-09",
-                category: "actividades-generales",
-                categoryLabel: "ACTIVIDADES GENERALES",
-                thumbnailImage: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&h=400&fit=crop",
-                heroImage: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&h=600&fit=crop",
-                content: [
-                    "Por sus indicadores de excelencia, la Universidad Autónoma de Sinaloa (UAS) se ubica en el primer lugar entre las universidades públicas estatales del país y por cuarto año consecutivo se mantiene en el tercer lugar entre las instituciones mexicanas, tanto públicas como privadas, de acuerdo con el Ranking Mundial de Universidades elaborado y difundido por el Times Higher Education (THE), instrumento de medición de indicadores más grande y diverso en el sector académico del mundo.",
-                    "Este Ranking dio a conocer los resultados este jueves y evalúa indicadores como la docencia, la calidad de la investigación y su impacto, la vinculación con los sectores productivos, la internacionalización y las publicaciones de impacto donde se toma en cuenta las veces que son citados los investigadores en otras partes del mundo, entre otros aspectos."
-                ],
-                videoUrl: null,
-                gallery: []
-            },
-            {
-                id: 2,
-                title: "Es necesario centrarse en el bienestar emocional y cognitivo tanto de los pacientes de cáncer de mama como de sus acompañantes para rescatar la resiliencia, la salud y el amor propio",
-                shortDescription: "Contar con redes de apoyo y resiliencia es de gran importancia cuando las personas reciben un diagnóstico de cáncer de mama...",
-                date: "2025-10-09",
-                category: "actividades-generales",
-                categoryLabel: "ACTIVIDADES GENERALES",
-                thumbnailImage: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&h=400&fit=crop",
-                heroImage: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=1200&h=600&fit=crop",
-                content: ["Contar con redes de apoyo y resiliencia es de gran importancia cuando las personas reciben un diagnóstico de cáncer de mama..."],
-                videoUrl: null,
-                gallery: []
-            }
-        ];
-        saveAllNews(defaultNews);
-    }
-}
+let editingNewsId = null;
 
-// Función para obtener todas las noticias
-function getAllNews() {
-    const newsJSON = localStorage.getItem('newsDatabase');
-    if (newsJSON) {
-        return JSON.parse(newsJSON);
-    }
-    return [];
-}
-
-// Función para guardar todas las noticias
-function saveAllNews(newsArray) {
-    localStorage.setItem('newsDatabase', JSON.stringify(newsArray));
-}
-
-// Función para obtener el próximo ID
-function getNextId() {
-    const news = getAllNews();
-    if (news.length === 0) return 1;
-    const maxId = Math.max.apply(Math, news.map(function(n) { return n.id; }));
-    return maxId + 1;
-}
-
-// ===========================================
-// MANEJO DE ARCHIVOS (IMÁGENES Y VIDEOS)
-// ===========================================
-function handleFileSelect(event, type) {
-    const file = event.target.files[0];
-    if (!file) return;
-    
-    const reader = new FileReader();
-    
-    reader.onload = function(e) {
-        const dataURL = e.target.result;
-        
-        // Actualizar el input correspondiente con el data URL
-        if (type === 'thumbnail') {
-            document.getElementById('news-thumbnail').value = dataURL;
-            showFilePreview('thumbnail-preview', file.name, 'imagen');
-        } else if (type === 'hero') {
-            document.getElementById('news-hero').value = dataURL;
-            showFilePreview('hero-preview', file.name, 'imagen');
-        } else if (type === 'video') {
-            document.getElementById('news-video').value = dataURL;
-            showFilePreview('video-preview', file.name, 'video');
-        } else if (type === 'gallery') {
-            // Para galería, se maneja diferente
-            return dataURL;
-        }
-    };
-    
-    reader.readAsDataURL(file);
-}
-
-function showFilePreview(previewId, fileName, fileType) {
-    const preview = document.getElementById(previewId);
-    const icon = fileType === 'video' ? 'fa-video' : 'fa-image';
-    preview.innerHTML = '<i class="fas ' + icon + '"></i> Archivo seleccionado: ' + fileName;
-    preview.classList.add('show');
-}
-
-// Para galería (cada imagen individual)
-function handleGalleryFileSelect(event, inputElement) {
-    const file = event.target.files[0];
-    if (!file) return;
-    
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        inputElement.value = e.target.result;
-        
-        // Mostrar preview al lado del input
-        const preview = inputElement.nextElementSibling;
-        if (preview && preview.classList.contains('file-preview')) {
-            preview.innerHTML = '<i class="fas fa-check-circle"></i> Archivo cargado: ' + file.name;
-            preview.classList.add('show');
-        }
-    };
-    reader.readAsDataURL(file);
-}
-
-// ===========================================
-// GESTIÓN DE TABS
-// ===========================================
+// Mostrar/ocultar tabs
 function showTab(tabName) {
     const tabs = document.querySelectorAll('.tab-content');
     tabs.forEach(function(tab) {
@@ -170,9 +29,7 @@ function showTab(tabName) {
     }
 }
 
-// ===========================================
-// GESTIÓN DE PÁRRAFOS
-// ===========================================
+// Agregar párrafo
 function addParagraph() {
     const container = document.getElementById('paragraphs-container');
     const paragraphCount = container.children.length;
@@ -184,6 +41,7 @@ function addParagraph() {
     container.appendChild(div);
 }
 
+// Eliminar párrafo
 function removeParagraph(button) {
     const container = document.getElementById('paragraphs-container');
     if (container.children.length > 1) {
@@ -193,27 +51,26 @@ function removeParagraph(button) {
     }
 }
 
-// ===========================================
-// GESTIÓN DE GALERÍA
-// ===========================================
+// Agregar imagen a galería
+let galleryCounter = 0;
+
 function addGalleryImage() {
     const container = document.getElementById('gallery-container');
-    const imageCount = container.children.length;
+    galleryCounter++;
     
     const div = document.createElement('div');
     div.className = 'gallery-item';
-    div.innerHTML = '<input type="url" class="form-control gallery-input" placeholder="https://ejemplo.com/imagen' + (imageCount + 1) + '.jpg"><button type="button" class="btn-remove-gallery" onclick="removeGalleryImage(this)"><i class="fas fa-times"></i> Eliminar</button>';
+    div.innerHTML = '<div class="gallery-item-inputs"><input type="url" class="form-control gallery-input" placeholder="https://ejemplo.com/imagen' + galleryCounter + '.jpg"></div><button type="button" class="btn-remove-gallery" onclick="removeGalleryImage(this)"><i class="fas fa-times"></i> Eliminar</button>';
     
     container.appendChild(div);
 }
 
+// Eliminar imagen de galería
 function removeGalleryImage(button) {
     button.parentElement.remove();
 }
 
-// ===========================================
-// OBTENER DATOS DEL FORMULARIO
-// ===========================================
+// Obtener datos del formulario
 function getFormData() {
     const title = document.getElementById('news-title-input').value.trim();
     const shortDesc = document.getElementById('news-short-desc').value.trim();
@@ -223,7 +80,6 @@ function getFormData() {
     const hero = document.getElementById('news-hero').value.trim();
     const video = document.getElementById('news-video').value.trim();
     
-    // Obtener párrafos
     const paragraphInputs = document.querySelectorAll('.paragraph-input');
     const content = [];
     paragraphInputs.forEach(function(input) {
@@ -233,7 +89,6 @@ function getFormData() {
         }
     });
     
-    // Obtener imágenes de galería
     const galleryInputs = document.querySelectorAll('.gallery-input');
     const gallery = [];
     galleryInputs.forEach(function(input) {
@@ -243,7 +98,6 @@ function getFormData() {
         }
     });
     
-    // Obtener label de categoría
     const categorySelect = document.getElementById('news-category');
     const categoryLabel = categorySelect.options[categorySelect.selectedIndex].text;
     
@@ -261,9 +115,7 @@ function getFormData() {
     };
 }
 
-// ===========================================
-// VALIDACIÓN
-// ===========================================
+// Validar formulario
 function validateForm(data) {
     if (!data.title) {
         alert('Por favor ingresa un título');
@@ -296,9 +148,7 @@ function validateForm(data) {
     return true;
 }
 
-// ===========================================
-// FORMATEAR FECHA
-// ===========================================
+// Formatear fecha
 function formatDateForDisplay(dateString) {
     const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     const date = new Date(dateString + 'T00:00:00');
@@ -308,9 +158,7 @@ function formatDateForDisplay(dateString) {
     return month + ' ' + day + ', ' + year;
 }
 
-// ===========================================
-// VISTA PREVIA
-// ===========================================
+// Vista previa
 function previewNews() {
     const newsData = getFormData();
     
@@ -345,14 +193,13 @@ function previewNews() {
     document.getElementById('preview-modal').classList.add('show');
 }
 
+// Cerrar vista previa
 function closePreview() {
     document.getElementById('preview-modal').classList.remove('show');
 }
 
-// ===========================================
-// GUARDAR NOTICIA
-// ===========================================
-function saveNews(event) {
+// Guardar noticia (crear o actualizar)
+async function saveNews(event) {
     event.preventDefault();
     
     const newsData = getFormData();
@@ -361,35 +208,41 @@ function saveNews(event) {
         return;
     }
     
-    const allNews = getAllNews();
-    const newId = getNextId();
-    
-    const newNews = {
-        id: newId,
-        title: newsData.title,
-        shortDescription: newsData.shortDescription,
-        date: newsData.date,
-        category: newsData.category,
-        categoryLabel: newsData.categoryLabel,
-        thumbnailImage: newsData.thumbnailImage,
-        heroImage: newsData.heroImage,
-        content: newsData.content,
-        videoUrl: newsData.videoUrl,
-        gallery: newsData.gallery
-    };
-    
-    allNews.push(newNews);
-    saveAllNews(allNews);
-    
-    alert('¡Noticia guardada exitosamente!\n\nID: ' + newId + '\nTítulo: ' + newsData.title);
-    
-    resetForm();
-    showTab('gestionar');
+    try {
+        let url = API_URL + '/create-news.php';
+        let method = 'POST';
+        
+        if (editingNewsId) {
+            url = API_URL + '/update-news.php';
+            newsData.id = editingNewsId;
+        }
+        
+        const response = await fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newsData)
+        });
+        
+        const result = await response.json();
+        
+        if (!result.success) {
+            throw new Error(result.message || 'Error al guardar la noticia');
+        }
+        
+        alert(editingNewsId ? 'Noticia actualizada exitosamente' : 'Noticia creada exitosamente');
+        
+        resetForm();
+        showTab('gestionar');
+        
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error al guardar la noticia: ' + error.message);
+    }
 }
 
-// ===========================================
-// RESETEAR FORMULARIO
-// ===========================================
+// Resetear formulario
 function resetForm() {
     document.getElementById('news-form').reset();
     
@@ -397,48 +250,57 @@ function resetForm() {
     paragraphsContainer.innerHTML = '<div class="paragraph-item"><textarea class="form-control paragraph-input" rows="4" placeholder="Escribe el primer párrafo de la noticia..." required></textarea><button type="button" class="btn-remove-paragraph" onclick="removeParagraph(this)" style="display: none;"><i class="fas fa-times"></i></button></div>';
     
     document.getElementById('gallery-container').innerHTML = '';
+    
+    editingNewsId = null;
 }
 
-// ===========================================
-// CARGAR LISTA DE NOTICIAS
-// ===========================================
-function loadNewsList() {
-    const allNews = getAllNews();
+// Cargar lista de noticias
+async function loadNewsList() {
     const container = document.getElementById('news-list');
+    container.innerHTML = '<div style="text-align: center; padding: 40px;"><p>Cargando noticias...</p></div>';
     
-    if (allNews.length === 0) {
-        container.innerHTML = '<div style="text-align: center; padding: 40px; color: #666;"><i class="fas fa-inbox" style="font-size: 48px; margin-bottom: 20px; display: block;"></i><p>No hay noticias publicadas aún</p></div>';
-        return;
+    try {
+        const response = await fetch(API_URL + '/get-all-news.php');
+        const result = await response.json();
+        
+        if (!result.success) {
+            throw new Error(result.message || 'Error al cargar noticias');
+        }
+        
+        const allNews = result.data;
+        
+        if (allNews.length === 0) {
+            container.innerHTML = '<div style="text-align: center; padding: 40px; color: #666;"><i class="fas fa-inbox" style="font-size: 48px; margin-bottom: 20px; display: block;"></i><p>No hay noticias publicadas aún</p></div>';
+            return;
+        }
+        
+        let html = '';
+        allNews.forEach(function(news) {
+            html += '<div class="news-item" data-id="' + news.id + '">';
+            html += '<div class="news-item-info">';
+            html += '<h3>' + news.title + '</h3>';
+            html += '<div class="news-item-meta">';
+            html += '<span><i class="fas fa-calendar"></i> ' + formatDateForDisplay(news.date) + '</span>';
+            html += '<span><i class="fas fa-tag"></i> ' + news.categoryLabel + '</span>';
+            html += '<span><i class="fas fa-hashtag"></i> ID: ' + news.id + '</span>';
+            html += '</div>';
+            html += '</div>';
+            html += '<div class="news-item-actions">';
+            html += '<button class="btn-icon btn-edit" onclick="editNews(' + news.id + ')" title="Editar"><i class="fas fa-edit"></i></button>';
+            html += '<button class="btn-icon btn-delete" onclick="confirmDelete(' + news.id + ')" title="Eliminar"><i class="fas fa-trash"></i></button>';
+            html += '</div>';
+            html += '</div>';
+        });
+        
+        container.innerHTML = html;
+        
+    } catch (error) {
+        console.error('Error:', error);
+        container.innerHTML = '<div style="text-align: center; padding: 40px; color: #dc3545;"><p>Error al cargar las noticias</p></div>';
     }
-    
-    allNews.sort(function(a, b) {
-        return new Date(b.date) - new Date(a.date);
-    });
-    
-    let html = '';
-    allNews.forEach(function(news) {
-        html += '<div class="news-item" data-id="' + news.id + '">';
-        html += '<div class="news-item-info">';
-        html += '<h3>' + news.title + '</h3>';
-        html += '<div class="news-item-meta">';
-        html += '<span><i class="fas fa-calendar"></i> ' + formatDateForDisplay(news.date) + '</span>';
-        html += '<span><i class="fas fa-tag"></i> ' + news.categoryLabel + '</span>';
-        html += '<span><i class="fas fa-hashtag"></i> ID: ' + news.id + '</span>';
-        html += '</div>';
-        html += '</div>';
-        html += '<div class="news-item-actions">';
-        html += '<button class="btn-icon btn-edit" onclick="editNews(' + news.id + ')" title="Editar"><i class="fas fa-edit"></i></button>';
-        html += '<button class="btn-icon btn-delete" onclick="confirmDelete(' + news.id + ')" title="Eliminar"><i class="fas fa-trash"></i></button>';
-        html += '</div>';
-        html += '</div>';
-    });
-    
-    container.innerHTML = html;
 }
 
-// ===========================================
-// BUSCAR NOTICIAS
-// ===========================================
+// Buscar noticias
 function searchNews() {
     const searchTerm = document.getElementById('search-news').value.toLowerCase();
     const newsItems = document.querySelectorAll('.news-item');
@@ -453,171 +315,92 @@ function searchNews() {
     });
 }
 
-// ===========================================
-// EDITAR NOTICIA
-// ===========================================
-function editNews(newsId) {
-    const allNews = getAllNews();
-    const news = allNews.find(function(n) { return n.id === newsId; });
-    
-    if (!news) {
-        alert('Noticia no encontrada');
-        return;
-    }
-    
-    document.getElementById('news-title-input').value = news.title;
-    document.getElementById('news-short-desc').value = news.shortDescription;
-    document.getElementById('news-date').value = news.date;
-    document.getElementById('news-category').value = news.category;
-    document.getElementById('news-thumbnail').value = news.thumbnailImage;
-    document.getElementById('news-hero').value = news.heroImage;
-    document.getElementById('news-video').value = news.videoUrl || '';
-    
-    const paragraphsContainer = document.getElementById('paragraphs-container');
-    paragraphsContainer.innerHTML = '';
-    news.content.forEach(function(paragraph, index) {
-        const div = document.createElement('div');
-        div.className = 'paragraph-item';
-        div.innerHTML = '<textarea class="form-control paragraph-input" rows="4" required>' + paragraph + '</textarea><button type="button" class="btn-remove-paragraph" onclick="removeParagraph(this)" style="' + (index === 0 ? 'display: none;' : '') + '"><i class="fas fa-times"></i></button>';
-        paragraphsContainer.appendChild(div);
-    });
-    
-    const galleryContainer = document.getElementById('gallery-container');
-    galleryContainer.innerHTML = '';
-    if (news.gallery) {
-        news.gallery.forEach(function(img) {
+// Editar noticia
+async function editNews(newsId) {
+    try {
+        const response = await fetch(API_URL + '/get-news-by-id.php?id=' + newsId);
+        const result = await response.json();
+        
+        if (!result.success) {
+            throw new Error(result.message || 'Noticia no encontrada');
+        }
+        
+        const news = result.data;
+        
+        document.getElementById('news-title-input').value = news.title;
+        document.getElementById('news-short-desc').value = news.shortDescription;
+        document.getElementById('news-date').value = news.date;
+        document.getElementById('news-category').value = news.category;
+        document.getElementById('news-thumbnail').value = news.thumbnailImage || '';
+        document.getElementById('news-hero').value = news.heroImage || '';
+        document.getElementById('news-video').value = news.videoUrl || '';
+        
+        const paragraphsContainer = document.getElementById('paragraphs-container');
+        paragraphsContainer.innerHTML = '';
+        news.content.forEach(function(paragraph, index) {
             const div = document.createElement('div');
-            div.className = 'gallery-item';
-            div.innerHTML = '<input type="url" class="form-control gallery-input" value="' + img + '"><button type="button" class="btn-remove-gallery" onclick="removeGalleryImage(this)"><i class="fas fa-times"></i> Eliminar</button>';
-            galleryContainer.appendChild(div);
+            div.className = 'paragraph-item';
+            div.innerHTML = '<textarea class="form-control paragraph-input" rows="4" required>' + paragraph + '</textarea><button type="button" class="btn-remove-paragraph" onclick="removeParagraph(this)" style="' + (index === 0 ? 'display: none;' : '') + '"><i class="fas fa-times"></i></button>';
+            paragraphsContainer.appendChild(div);
         });
+        
+        const galleryContainer = document.getElementById('gallery-container');
+        galleryContainer.innerHTML = '';
+        if (news.gallery && news.gallery.length > 0) {
+            news.gallery.forEach(function(img) {
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                div.innerHTML = '<div class="gallery-item-inputs"><input type="url" class="form-control gallery-input" value="' + img + '"></div><button type="button" class="btn-remove-gallery" onclick="removeGalleryImage(this)"><i class="fas fa-times"></i> Eliminar</button>';
+                galleryContainer.appendChild(div);
+            });
+        }
+        
+        editingNewsId = newsId;
+        
+        showTab('crear');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        alert('Editando noticia ID: ' + newsId + '\n\nRecuerda hacer click en "Guardar Noticia" para aplicar los cambios.');
+        
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error al cargar la noticia: ' + error.message);
     }
-    
-    const form = document.getElementById('news-form');
-    form.setAttribute('data-edit-id', newsId);
-    
-    showTab('crear');
-    
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    alert('Editando noticia ID: ' + newsId + '\n\nRecuerda hacer click en "Guardar Noticia" para aplicar los cambios.');
 }
 
-// ===========================================
-// CONFIRMAR ELIMINACIÓN
-// ===========================================
+// Confirmar eliminación
 function confirmDelete(newsId) {
-    const allNews = getAllNews();
-    const news = allNews.find(function(n) { return n.id === newsId; });
-    
-    if (!news) {
-        alert('Noticia no encontrada');
-        return;
-    }
-    
-    document.getElementById('confirm-title').textContent = '¿Eliminar esta noticia?';
-    document.getElementById('confirm-message').textContent = news.title;
-    
-    const confirmBtn = document.getElementById('confirm-action-btn');
-    confirmBtn.onclick = function() {
+    if (confirm('¿Estás seguro de que quieres eliminar esta noticia?\n\nEsta acción no se puede deshacer.')) {
         deleteNews(newsId);
-    };
-    
-    document.getElementById('confirm-modal').classList.add('show');
+    }
 }
 
-function closeConfirm() {
-    document.getElementById('confirm-modal').classList.remove('show');
+// Eliminar noticia
+async function deleteNews(newsId) {
+    try {
+        const response = await fetch(API_URL + '/delete-news.php?id=' + newsId);
+        const result = await response.json();
+        
+        if (!result.success) {
+            throw new Error(result.message || 'Error al eliminar la noticia');
+        }
+        
+        alert('Noticia eliminada exitosamente');
+        loadNewsList();
+        
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error al eliminar la noticia: ' + error.message);
+    }
 }
 
-// ===========================================
-// ELIMINAR NOTICIA
-// ===========================================
-function deleteNews(newsId) {
-    let allNews = getAllNews();
-    allNews = allNews.filter(function(n) { return n.id !== newsId; });
-    saveAllNews(allNews);
-    
-    closeConfirm();
-    loadNewsList();
-    
-    alert('Noticia eliminada exitosamente');
-}
-
-// ===========================================
-// INICIALIZACIÓN
-// ===========================================
+// Inicialización
 document.addEventListener('DOMContentLoaded', function() {
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('news-date').value = today;
     
     const form = document.getElementById('news-form');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const editId = form.getAttribute('data-edit-id');
-        if (editId) {
-            const newsData = getFormData();
-            if (!validateForm(newsData)) {
-                return;
-            }
-            
-            let allNews = getAllNews();
-            const index = allNews.findIndex(function(n) { return n.id === parseInt(editId); });
-            
-            if (index !== -1) {
-                allNews[index] = {
-                    id: parseInt(editId),
-                    title: newsData.title,
-                    shortDescription: newsData.shortDescription,
-                    date: newsData.date,
-                    category: newsData.category,
-                    categoryLabel: newsData.categoryLabel,
-                    thumbnailImage: newsData.thumbnailImage,
-                    heroImage: newsData.heroImage,
-                    content: newsData.content,
-                    videoUrl: newsData.videoUrl,
-                    gallery: newsData.gallery
-                };
-                
-                saveAllNews(allNews);
-                alert('¡Noticia actualizada exitosamente!');
-                form.removeAttribute('data-edit-id');
-                resetForm();
-                showTab('gestionar');
-            }
-        } else {
-            saveNews(event);
-        }
-    });
+    form.addEventListener('submit', saveNews);
     
     loadNewsList();
 });
-
-// ===========================================
-// EXPORTAR PARA MYSQL (PREPARADO PARA FUTURO)
-// ===========================================
-function exportToMySQL() {
-    const allNews = getAllNews();
-    
-    console.log('=== SCRIPT SQL PARA CREAR TABLA ===');
-    console.log('CREATE TABLE noticias (');
-    console.log('  id INT PRIMARY KEY AUTO_INCREMENT,');
-    console.log('  title TEXT NOT NULL,');
-    console.log('  shortDescription TEXT,');
-    console.log('  date DATE NOT NULL,');
-    console.log('  category VARCHAR(100),');
-    console.log('  categoryLabel VARCHAR(100),');
-    console.log('  thumbnailImage TEXT,');
-    console.log('  heroImage TEXT,');
-    console.log('  content TEXT,');
-    console.log('  videoUrl TEXT,');
-    console.log('  gallery TEXT,');
-    console.log('  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP');
-    console.log(');');
-    console.log('');
-    console.log('=== DATOS ACTUALES (JSON) ===');
-    console.log(JSON.stringify(allNews, null, 2));
-    
-    alert('Revisa la consola del navegador (F12) para ver el script SQL');
-}

@@ -1,317 +1,328 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escuela de diseño y artes visuales</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Escuela de diseño y artes visuales</title>
-  <link rel="stylesheet" href="/css/style.css" />
-</head>
-
-<body>
-  <!-- HEADER -->
-  <header>
-    <nav class="navbar">
-      <div class="logoUas">
-        <img src="images/LogoUas.png" alt="UAS logo" />
-      </div>
-
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
-      <div class="menu" id="menu">
-        <ul>
-          <li><a href="index.html">Inicio</a></li>
-
-          <li class="dropdown">
-            <a href="#">Facultad</a>
-            <ul class="dropdown-content">
-              <li><a href="#">Nuestra Historia y Filosofia</a></li>
-              <li><a href="#">Infraestructura</a></li>
-              <li><a href="#">Normativa</a></li>
-              <li><a href="organigrama.html">Organigrama</a></li>
-              <li><a href="#">Directorio</a></li>
-              <li><a href="#">Consejos Tecnicos</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a href="#">Oferta educativa</a>
-            <ul class="dropdown-content">
-              <li><a href="artes-visuales.html">Artes Visuales</a></li>
-              <li><a href="diseno-arte-multimedia.html">Diseño y Arte Multimedia</a></li>
-              <li><a href="fotografia-produccion-video.html">Fotografía y Produccion de Video</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a href="#">Departamentos</a>
-            <ul class="dropdown-content">
-              <li><a href="#">Servicio social</a></li>
-              <li><a href="#">Control escolar</a></li>
-              <li><a href="biblioteca.html">Biblioteca</a></li>
-              <li><a href="#">Vinculación</a></li>
-              <li><a href="#">Difusion cultural</a></li>
-              <li><a href="computo.html">Laboratorio de computo</a></li>
-              <li><a href="taller-escultura.html">Taller de escultura</a></li>
-              <li><a href="taller-grabado.html">Taller de grabado</a></li>
-              <li><a href="#">Secretaria académica</a></li>
-              <li><a href="#">Coordinaciones de carreras</a></li>
-              <li><a href="#">Secretaria administrativa</a></li>
-              <li><a href="#">ADIUAS</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a href="#">Difusion</a>
-            <ul class="dropdown-content">
-              <li><a href="#">Eventos</a></li>
-              <li><a href="noticias.html">Noticias</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="logoEscuelaNavbar">
-        <img src="images/logoEscuelaIFooter.png" alt="Logo Escuela" />
-      </div>
-    </nav>
-  </header>
-
-  <div class="overlay" id="overlay"></div>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text">
-      <h1>
-        Escuela de Diseño y <br />
-        Artes Visuales
-      </h1>
-      <p>
-        En la Escuela de Diseño y Artes Visuales de la UAS creemos en el poder del arte para transformar la realidad.
-        Aquí formamos creadores capaces de comunicar ideas, emociones y valores a través de la imagen, el color y la
-        forma.
-        Fomentamos la experimentación, la innovación y el pensamiento crítico, impulsando proyectos que combinan
-        técnica, creatividad y compromiso con la cultura y la sociedad.
-        Nuestro objetivo es que cada estudiante encuentre su propia voz artística y contribuya al mundo con una visión
-        única y auténtica.
-      </p>
-      <!-- <button class="btn">Saber más</button> -->
-    </div>
-  </section>
-
-  <!-- CONVOCATORIAS -->
-  <section class="convocatorias">
-    <h2>Convocatorias</h2>
-
-    <div class="carousel-container">
-      <button class="arrow left" onclick="moveCarousel(-1)">&#10094;</button>
-
-      <div class="viewport">
-        <div class="track" id="track">
-          <div class="card card-blue">
-            <div class="icon">👤</div>
-            <h3>Personal loan</h3>
-            <p>
-              Personal loans provide borrowers with flexibility in how they
-              use the funds.
-            </p>
-            <button class="btn-secondary">Apply Now</button>
-          </div>
-
-          <div class="card card-yellow">
-            <div class="icon">💼</div>
-            <h3>Business loan</h3>
-            <p>
-              Business Loan Services provide financial assistance to
-              businesses for various purposes.
-            </p>
-            <button class="btn-secondary">Apply Now</button>
-          </div>
-
-          <div class="card card-blue">
-            <div class="icon">🚗</div>
-            <h3>Auto Loan</h3>
-            <p>
-              Auto Loan Services provide financing options for individuals and
-              businesses to purchase a vehicle.
-            </p>
-            <button class="btn-secondary">Apply Now</button>
-          </div>
-
-          <div class="card card-yellow">
-            <div class="icon">🚗</div>
-            <h3>Auto Loan</h3>
-            <p>
-              Auto Loan Services provide financing options for individuals and
-              businesses to purchase a vehicle.
-            </p>
-            <button class="btn-secondary">Apply Now</button>
-          </div>
-
-          <div class="card card-blue">
-            <div class="icon">🚗</div>
-            <h3>Auto Loan</h3>
-            <p>
-              Auto Loan Services provide financing options for individuals and
-              businesses to purchase a vehicle.
-            </p>
-            <button class="btn-secondary">Apply Now</button>
-          </div>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <nav class="navbar">
+        <div class="logoUas">
+          <img src="images/LogoUas.png" alt="UAS logo" />
         </div>
-      </div>
 
-      <button class="arrow right" onclick="moveCarousel(1)">&#10095;</button>
-    </div>
-
-    <button class="btn">Saber más</button>
-  </section>
-
-  <!-- NOTICIAS -->
-  <section class="noticias">
-    <h2>Noticias recientes</h2>
-    <div class="news-section">
-      <!-- Noticia 1 -->
-      <div class="news-card yellow fade-in">
-        <img src="images/Noticia1.jpg" alt="Noticia 1" />
-        <div class="news-content">
-          <div class="news-title">
-            ¿Te interesa el arte de la pintura, en especial cuando es creada
-            por mujeres?
-          </div>
-          <p class="news-text">
-            Acompáñanos en esta interesante conferencia donde exploraremos el papel de las mujeres en la historia del
-            arte sinaloense.
-            La Dra. Aracema Manjarrez Bastidas compartirá su investigación sobre las pintoras que han contribuido al
-            desarrollo cultural y visual del estado, destacando sus obras, contextos y aportaciones al arte
-            contemporáneo.
-            Una oportunidad para reconocer y valorar el talento femenino en las artes visuales.
-          </p>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
-      </div>
 
-      <!-- Noticia 2 -->
-      <div class="news-card fade-in">
-        <div class="news-content">
-          <div class="news-title">Proceso de inscripción</div>
-          <p class="news-text">
-            Para completar el proceso de inscripción, los aspirantes deben obtener su ficha de preinscripción y realizar
-            el pago del recibo correspondiente. Una vez efectuado el pago, deberán conservar el comprobante y seguir las
-            indicaciones establecidas por la Universidad Autónoma de Sinaloa (UAS) para continuar con los siguientes
-            pasos del proceso. Es importante verificar las fechas y requisitos publicados por la institución para evitar
-            contratiempos.
-          </p>
+        <div class="menu" id="menu">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+
+            <li class="dropdown">
+              <a href="#">Facultad</a>
+              <ul class="dropdown-content">
+                <li><a href="#">Nuestra Historia y Filosofia</a></li>
+                <li><a href="#">Infraestructura</a></li>
+                <li><a href="#">Normativa</a></li>
+                <li><a href="organigrama.html">Organigrama</a></li>
+                <li><a href="#">Directorio</a></li>
+                <li><a href="#">Consejos Tecnicos</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#">Oferta educativa</a>
+              <ul class="dropdown-content">
+                <li><a href="artes-visuales.html">Artes Visuales</a></li>
+                <li>
+                  <a href="diseno-arte-multimedia.html"
+                    >Diseño y Arte Multimedia</a
+                  >
+                </li>
+                <li>
+                  <a href="fotografia-produccion-video.html"
+                    >Fotografía y Produccion de Video</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#">Departamentos</a>
+              <ul class="dropdown-content">
+                <li><a href="#">Servicio social</a></li>
+                <li><a href="#">Control escolar</a></li>
+                <li><a href="biblioteca.html">Biblioteca</a></li>
+                <li><a href="#">Vinculación</a></li>
+                <li><a href="#">Difusion cultural</a></li>
+                <li><a href="computo.html">Laboratorio de computo</a></li>
+                <li><a href="taller-escultura.html">Taller de escultura</a></li>
+                <li><a href="taller-grabado.html">Taller de grabado</a></li>
+                <li><a href="#">Secretaria académica</a></li>
+                <li><a href="#">Coordinaciones de carreras</a></li>
+                <li><a href="#">Secretaria administrativa</a></li>
+                <li><a href="#">ADIUAS</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#">Difusion</a>
+              <ul class="dropdown-content">
+                <li><a href="#">Eventos</a></li>
+                <li><a href="noticias.html">Noticias</a></li>
+              </ul>
+            </li>
+          </ul>
         </div>
-        <img src="images/Noticia2.jpg" alt="Noticia 2" />
-      </div>
-
-      <!-- Noticia 3 -->
-      <div class="news-card blue fade-in">
-        <img src="images/Noticia3.jpg" alt="Noticia3" />
-        <div class="news-content">
-          <div class="news-title">Exámenes extraordinarios</div>
-          <p class="news-text">
-            Los exámenes extraordinarios son una oportunidad para que los estudiantes regularicen materias pendientes.
-            El proceso inicia con la solicitud y pago del recibo en las fechas establecidas por la universidad.
-            Posteriormente, los alumnos deberán presentarse a los exámenes en el periodo de aplicación correspondiente.
-            Es importante consultar los lineamientos específicos de cada unidad académica para evitar contratiempos.
-          </p>
+        <div class="logoEscuelaNavbar">
+          <img src="images/logoEscuelaIFooter.png" alt="Logo Escuela" />
         </div>
-      </div>
-    </div>
-  </section>
+      </nav>
+    </header>
 
-  <!-- CALENDARIO -->
-  <section class="calendario">
-    <div class="calendario-container">
-      <div class="calendario-info">
-        <h2>Calendario escolar <br />ciclo 2025- 2026</h2>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>
+          Escuela de Diseño y <br />
+          Artes Visuales
+        </h1>
         <p>
-          ¡Ya está disponible el calendario escolar del ciclo 2025–2026!
-          Aquí podrás conocer los periodos de clases, vacaciones, inscripciones, exámenes y eventos académicos.
-          Mantente al día y prepárate para un año lleno de aprendizaje, creatividad y experiencias artísticas en la
-          Escuela de Diseño y Artes Visuales.
+          En la Escuela de Diseño y Artes Visuales de la UAS creemos en el poder
+          del arte para transformar la realidad. Aquí formamos creadores capaces
+          de comunicar ideas, emociones y valores a través de la imagen, el
+          color y la forma. Fomentamos la experimentación, la innovación y el
+          pensamiento crítico, impulsando proyectos que combinan técnica,
+          creatividad y compromiso con la cultura y la sociedad. Nuestro
+          objetivo es que cada estudiante encuentre su propia voz artística y
+          contribuya al mundo con una visión única y auténtica.
         </p>
-        <img src="images/Maestros.jpg" alt="Universitarios ilustres" />
+        <!-- <button class="btn">Saber más</button> -->
+      </div>
+    </section>
+
+    <!-- CONVOCATORIAS -->
+    <section class="convocatorias">
+      <h2>Convocatorias</h2>
+
+      <div class="carousel-container">
+        <button class="arrow left" onclick="moveCarousel(-1)">&#10094;</button>
+
+        <div class="viewport">
+          <div class="track" id="track">
+            <div class="card card-blue">
+              <div class="icon">👤</div>
+              <h3>Personal loan</h3>
+              <p>
+                Personal loans provide borrowers with flexibility in how they
+                use the funds.
+              </p>
+              <button class="btn-secondary">Apply Now</button>
+            </div>
+
+            <div class="card card-yellow">
+              <div class="icon">💼</div>
+              <h3>Business loan</h3>
+              <p>
+                Business Loan Services provide financial assistance to
+                businesses for various purposes.
+              </p>
+              <button class="btn-secondary">Apply Now</button>
+            </div>
+
+            <div class="card card-blue">
+              <div class="icon">🚗</div>
+              <h3>Auto Loan</h3>
+              <p>
+                Auto Loan Services provide financing options for individuals and
+                businesses to purchase a vehicle.
+              </p>
+              <button class="btn-secondary">Apply Now</button>
+            </div>
+
+            <div class="card card-yellow">
+              <div class="icon">🚗</div>
+              <h3>Auto Loan</h3>
+              <p>
+                Auto Loan Services provide financing options for individuals and
+                businesses to purchase a vehicle.
+              </p>
+              <button class="btn-secondary">Apply Now</button>
+            </div>
+
+            <div class="card card-blue">
+              <div class="icon">🚗</div>
+              <h3>Auto Loan</h3>
+              <p>
+                Auto Loan Services provide financing options for individuals and
+                businesses to purchase a vehicle.
+              </p>
+              <button class="btn-secondary">Apply Now</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="arrow right" onclick="moveCarousel(1)">&#10095;</button>
       </div>
 
-      <div class="calendario-img">
-        <img src="images/calendario.jpg" alt="Calendario escolar 2025-2026" id="calendarioImg" />
+      <button class="btn">Saber más</button>
+    </section>
+
+    <!-- NOTICIAS -->
+    <section class="noticias">
+      <h2>Noticias -</h2>
+      <div class="news-section" id="latest-news-container">
+        <!-- Las 3 últimas noticias se cargarán aquí dinámicamente -->
       </div>
+      <div class="noticias-button-container">
+        <button class="btn" onclick="window.location.href='index.html'">
+          Ver todas las noticias
+        </button>
+      </div>
+    </section>
+
+    <!-- CALENDARIO -->
+    <section class="calendario">
+      <div class="calendario-container">
+        <div class="calendario-info">
+          <h2>Calendario escolar <br />ciclo 2025- 2026</h2>
+          <p>
+            ¡Ya está disponible el calendario escolar del ciclo 2025–2026! Aquí
+            podrás conocer los periodos de clases, vacaciones, inscripciones,
+            exámenes y eventos académicos. Mantente al día y prepárate para un
+            año lleno de aprendizaje, creatividad y experiencias artísticas en
+            la Escuela de Diseño y Artes Visuales.
+          </p>
+          <img src="images/Maestros.jpg" alt="Universitarios ilustres" />
+        </div>
+
+        <div class="calendario-img">
+          <img
+            src="images/calendario.jpg"
+            alt="Calendario escolar 2025-2026"
+            id="calendarioImg"
+          />
+        </div>
+      </div>
+    </section>
+
+    <div id="modalCalendario" class="modal">
+      <span class="close-modal">&times;</span>
+      <!-- <img src="modal-content" id="imgModal"> -->
     </div>
-  </section>
 
-  <div id="modalCalendario" class="modal">
-    <span class="close-modal">&times;</span>
-    <!-- <img src="modal-content" id="imgModal"> -->
-  </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+      <section class="footer-left">
+        <img src="images/LogoUas.png" alt="Logo UAS" class="logoUas" />
+        <img
+          src="images/logoEscuelaIFooter.png"
+          alt="Logo Secundario"
+          class="logoEscuela"
+        />
+      </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <section class="footer-left">
-      <img src="images/LogoUas.png" alt="Logo UAS" class="logoUas" />
-      <img src="images/logoEscuelaIFooter.png" alt="Logo Secundario" class="logoEscuela" />
-    </section>
-
-    <section class="footer-center">
-      <h3 class="university-name">Universidad Autónoma de Sinaloa</h3>
-      <p class="university-subtitle">Sursum Versus</p>
-      <div class="social-icons">
-        <a class="social-icon" href="https://www.facebook.com/profile.php?id=100064772854058&locale=es_LA"
-          target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-          <img src="images/facebook.svg" alt="Facebook de la Universidad Autónoma de Sinaloa" />
-        </a>
-        <a class="social-icon" href="#" aria-label="WhatsApp">
-          <img src="images/whatsapp.svg" alt="WhatsApp de la Universidad Autónoma de Sinaloa" />
-        </a>
-        <a class="social-icon" href="#" aria-label="LinkedIn">
-          <img src="images/LinkedIn.svg" alt="LinkedIn de la Universidad Autónoma de Sinaloa" />
-        </a>
-        <a class="social-icon" href="https://www.instagram.com/edav_uas/" aria-label="Instagram" target="_blank">
-          <img src="images/ig.svg" alt="Instagram de la Universidad Autónoma de Sinaloa" />
-        </a>
-      </div>
-    </section>
-
-    <section class="footer-right">
-      <h2 class="contact-title">Contáctanos</h2>
-      <address>
-        <div class="contact-item">
-          <div class="contact-icon">
-            <img src="images/telefono.svg" alt="Teléfono" />
-          </div>
-          <a class="contact-text" href="tel:+526677581400" aria-label="Llamar al +52 667 758 1400">+52 667 758 1400</a>
-        </div>
-
-        <div class="contact-item">
-          <div class="contact-icon">
-            <img src="images/correo.svg" alt="Email" />
-          </div>
-          <a class="contact-text" href="mailto:sau.uas@uas.edu.mx"
-            aria-label="Enviar correo a sau.uas@uas.edu.mx">sau.uas@uas.edu.mx</a>
-        </div>
-
-        <div class="contact-item">
-          <div class="contact-icon">
-            <img src="images/ubicacion.svg" alt="Ubicación" />
-          </div>
-          <a class="contact-text" href="https://maps.app.goo.gl/SuGR9hH1BfbpKvx2A" target="_blank"
-            rel="noopener noreferrer">
-            Blvd. Francisco Labastida Ochoa<br />
-            Desarrollo Urbano Tres Ríos<br />
-            Culiacán, Sinaloa - 80020
+      <section class="footer-center">
+        <h3 class="university-name">Universidad Autónoma de Sinaloa</h3>
+        <p class="university-subtitle">Sursum Versus</p>
+        <div class="social-icons">
+          <a
+            class="social-icon"
+            href="https://www.facebook.com/profile.php?id=100064772854058&locale=es_LA"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
+            <img
+              src="images/facebook.svg"
+              alt="Facebook de la Universidad Autónoma de Sinaloa"
+            />
+          </a>
+          <a class="social-icon" href="#" aria-label="WhatsApp">
+            <img
+              src="images/whatsapp.svg"
+              alt="WhatsApp de la Universidad Autónoma de Sinaloa"
+            />
+          </a>
+          <a class="social-icon" href="#" aria-label="LinkedIn">
+            <img
+              src="images/LinkedIn.svg"
+              alt="LinkedIn de la Universidad Autónoma de Sinaloa"
+            />
+          </a>
+          <a
+            class="social-icon"
+            href="https://www.instagram.com/edav_uas/"
+            aria-label="Instagram"
+            target="_blank"
+          >
+            <img
+              src="images/ig.svg"
+              alt="Instagram de la Universidad Autónoma de Sinaloa"
+            />
           </a>
         </div>
-      </address>
-    </section>
-  </footer>
+      </section>
 
-  <script src="js/script.js"></script>
-  <script src="js/calendario-image.js""></script>
-  <script src=" js/hero-animation.js""> </script> <script src="js/noticias-animation.js"></script>
-  <script src="js/hamburguer.navbar.js"></script>
-</body>
+      <section class="footer-right">
+        <h2 class="contact-title">Contáctanos</h2>
+        <address>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <img src="images/telefono.svg" alt="Teléfono" />
+            </div>
+            <a
+              class="contact-text"
+              href="tel:+526677581400"
+              aria-label="Llamar al +52 667 758 1400"
+              >+52 667 758 1400</a
+            >
+          </div>
 
+          <div class="contact-item">
+            <div class="contact-icon">
+              <img src="images/correo.svg" alt="Email" />
+            </div>
+            <a
+              class="contact-text"
+              href="mailto:sau.uas@uas.edu.mx"
+              aria-label="Enviar correo a sau.uas@uas.edu.mx"
+              >sau.uas@uas.edu.mx</a
+            >
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <img src="images/ubicacion.svg" alt="Ubicación" />
+            </div>
+            <a
+              class="contact-text"
+              href="https://maps.app.goo.gl/SuGR9hH1BfbpKvx2A"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Blvd. Francisco Labastida Ochoa<br />
+              Desarrollo Urbano Tres Ríos<br />
+              Culiacán, Sinaloa - 80020
+            </a>
+          </div>
+        </address>
+      </section>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/calendario-image.js"></script>
+    <script src=" js/hero-animation.js"></script>
+    <script src="js/noticias-animation.js"></script>
+    <script src="js/hamburguer.navbar.js"></script>
+  </body>
 </html>
