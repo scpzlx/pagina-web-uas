@@ -10,75 +10,7 @@
 
 <body>
     <!-- HEADER -->
-    <header>
-        <nav class="navbar">
-            <div class="logoUas">
-                <img src="images/LogoUas.png" alt="UAS logo" />
-            </div>
-
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
-            <div class="menu" id="menu">
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-
-                    <li class="dropdown">
-                        <a href="#">Facultad</a>
-                        <ul class="dropdown-content">
-                            <li><a href="#">Nuestra Historia y Filosofia</a></li>
-                            <li><a href="#">Infraestructura</a></li>
-                            <li><a href="#">Normativa</a></li>
-                            <li><a href="organigrama.html">Organigrama</a></li>
-                            <li><a href="#">Directorio</a></li>
-                            <li><a href="#">Consejos Tecnicos</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#">Oferta educativa</a>
-                        <ul class="dropdown-content">
-                            <li><a href="artes-visuales.html">Artes Visuales</a></li>
-                            <li><a href="diseno-arte-multimedia.html">Diseño y Arte Multimedia</a></li>
-                            <li><a href="fotografia-produccion-video.html">Fotografía y Produccion de Video</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#">Departamentos</a>
-                        <ul class="dropdown-content">
-                            <li><a href="#">Servicio social</a></li>
-                            <li><a href="#">Control escolar</a></li>
-                            <li><a href="biblioteca.html">Biblioteca</a></li>
-                            <li><a href="#">Vinculación</a></li>
-                            <li><a href="#">Difusion cultural</a></li>
-                            <li><a href="computo.html">Laboratorio de computo</a></li>
-                            <li><a href="taller-escultura.html">Taller de escultura</a></li>
-                            <li><a href="taller-grabado.html">Taller de grabado</a></li>
-                            <li><a href="#">Secretaria académica</a></li>
-                            <li><a href="#">Coordinaciones de carreras</a></li>
-                            <li><a href="#">Secretaria administrativa</a></li>
-                            <li><a href="#">ADIUAS</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#">Difusion</a>
-                        <ul class="dropdown-content">
-                            <li><a href="#">Eventos</a></li>
-                            <li><a href="noticias.html">Noticias</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="logoEscuelaNavbar">
-                <img src="images/logoEscuelaIFooter.png" alt="Logo Escuela" />
-            </div>
-        </nav>
-    </header>
+    <div id="header-container"></div>
 
     <div class="overlay" id="overlay"></div>
 
@@ -454,69 +386,12 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="footer">
-        <section class="footer-left">
-            <img src="/images/LogoUas.png" alt="Logo UAS" class="logoUas" />
-            <img src="/images/logoEscuelaIFooter.png" alt="Logo Secundario" class="logoEscuela" />
-        </section>
-
-        <section class="footer-center">
-            <h3 class="university-name">Universidad Autónoma de Sinaloa</h3>
-            <p class="university-subtitle">Sursum Versus</p>
-            <div class="social-icons">
-                <a class="social-icon" href="https://www.facebook.com/profile.php?id=100064772854058&locale=es_LA"
-                    target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <img src="/images/facebook.svg" alt="Facebook de la Universidad Autónoma de Sinaloa" />
-                </a>
-                <a class="social-icon" href="#" aria-label="WhatsApp">
-                    <img src="/images/whatsapp.svg" alt="WhatsApp de la Universidad Autónoma de Sinaloa" />
-                </a>
-                <a class="social-icon" href="#" aria-label="LinkedIn">
-                    <img src="/images/LinkedIn.svg" alt="LinkedIn de la Universidad Autónoma de Sinaloa" />
-                </a>
-                <a class="social-icon" href="https://www.instagram.com/edav_uas/" aria-label="Instagram"
-                    target="_blank">
-                    <img src="/images/ig.svg" alt="Instagram de la Universidad Autónoma de Sinaloa" />
-                </a>
-            </div>
-        </section>
-
-        <section class="footer-right">
-            <h2 class="contact-title">Contáctanos</h2>
-            <address>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <img src="/images/telefono.svg" alt="Teléfono" />
-                    </div>
-                    <a class="contact-text" href="tel:+526677581400" aria-label="Llamar al +52 667 758 1400">+52 667 758
-                        1400</a>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <img src="/images/correo.svg" alt="Email" />
-                    </div>
-                    <a class="contact-text" href="mailto:sau.uas@uas.edu.mx"
-                        aria-label="Enviar correo a sau.uas@uas.edu.mx">sau.uas@uas.edu.mx</a>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <img src="/images/ubicacion.svg" alt="Ubicación" />
-                    </div>
-                    <a class="contact-text" href="https://maps.app.goo.gl/SuGR9hH1BfbpKvx2A" target="_blank"
-                        rel="noopener noreferrer">
-                        Blvd. Francisco Labastida Ochoa<br />
-                        Desarrollo Urbano Tres Ríos<br />
-                        Culiacán, Sinaloa - 80020
-                    </a>
-                </div>
-            </address>
-        </section>
-    </footer>
+    <div id="footer-container"></div>
 
     <script src="/js/organigrama.js"></script>
     <script src="js/hamburguer.navbar.js"></script>
+    <script src="presentation/header.js"></script>
+    <script src="presentation/footer.js"></script>
 </body>
 
 </html>

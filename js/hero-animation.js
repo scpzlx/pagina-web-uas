@@ -12,6 +12,17 @@ const heroImages = [
 
 let currentImageIndex = 0;
 
+// Precargar todas las imagenes
+function preloadImages() {
+    heroImages.forEach(imageSrc => {
+        const img = new Image();
+        img.src = imageSrc;
+    });
+}
+
+// Llamar a la funcion de precarga cuando se carga la pagina
+preloadImages();
+
 function changeHeroBackground() {
     currentImageIndex = (currentImageIndex + 1) % heroImages.length;
     heroSection.style.backgroundImage = `url(${heroImages[currentImageIndex]})`;
