@@ -63,17 +63,17 @@ function addGalleryImage() {
     const div = document.createElement('div');
     div.className = 'gallery-item';
     div.innerHTML = '<div class="gallery-item-inputs">' +
-        '<input type="url" id="' + urlInputId + '" class="form-control gallery-input" placeholder="https://ejemplo.com/imagen' + galleryCounter + '.jpg o sube desde PC">' +
-        '<div class="file-input-container" style="margin-top: 10px;">' +
-            '<input type="file" id="' + uniqueId + '" accept="image/*" style="display: none;">' +
-            '<label for="' + uniqueId + '" class="file-input-label">' +
-                '<i class="fas fa-upload"></i> Subir desde PC' +
+        '<input type="url" id="' + urlInputId + '" class="form-control gallery-input" placeholder="https://ejemplo.com/imagen' + galleryCounter + '.jpg">' +
+        '<div class="file-input-container">' +
+            '<input type="file" id="' + uniqueId + '" accept="image/*">' +
+            '<label for="' + uniqueId + '" class="file-input-label" title="Subir desde PC">' +
+                '<i class="fas fa-upload"></i>' +
             '</label>' +
         '</div>' +
         '<div class="file-preview"></div>' +
     '</div>' +
-    '<button type="button" class="btn-remove-gallery">' +
-        '<i class="fas fa-times"></i> Eliminar' +
+    '<button type="button" class="btn-remove-gallery" onclick="removeGalleryImage(this)" title="Eliminar imagen">' +
+        '<i class="fas fa-times"></i>' +
     '</button>';
     
     container.appendChild(div);

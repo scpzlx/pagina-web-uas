@@ -267,18 +267,12 @@ body {
 
 .file-input-wrapper {
   display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
 }
 
 .file-input-wrapper input[type="url"] {
   flex: 1;
-  min-width: 250px;
-  padding: 10px 12px;
-  border: 2px solid #e0e0e0;
-  border-radius: 4px;
-  font-size: 13px;
 }
 
 .file-input-wrapper input[type="url"]:focus {
@@ -303,7 +297,6 @@ body {
   position: relative;
   overflow: hidden;
   display: inline-block;
-  width: auto;
 }
 
 .file-input-container input[type="file"] {
@@ -311,46 +304,38 @@ body {
   left: -9999px;
 }
 
-/* Botón de "Subir desde PC" - Estilo UAS */
 .file-input-label {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 10px 16px;
+  width: 45px;
+  height: 45px;
   background-color: #003d7a;
   color: white;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  border: 2px solid #003d7a;
-  min-width: 140px;
-  max-width: 200px;
+  font-size: 18px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: none;
 }
 
 .file-input-label:hover {
   background-color: #002855;
-  border-color: #002855;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 61, 122, 0.3);
+  transform: scale(1.05);
 }
 
 .file-input-label i {
-  font-size: 12px;
+  margin: 0;
 }
 
 .file-preview {
-  margin-top: 8px;
-  padding: 8px 12px;
+  margin-top: 10px;
+  padding: 10px;
   background-color: #e8f4f8;
-  border-radius: 4px;
+  border-radius: 3px;
   font-size: 12px;
   color: #003d7a;
   display: none;
-  border-left: 3px solid #003d7a;
 }
 
 .file-preview.show {
@@ -358,7 +343,7 @@ body {
 }
 
 .file-preview i {
-  margin-right: 6px;
+  margin-right: 5px;
 }
 
 /* Galería */
@@ -370,20 +355,24 @@ body {
 
 .gallery-item {
   display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  padding: 16px;
+  gap: 10px;
+  align-items: center;
+  padding: 15px;
   background-color: #f9f9f9;
-  border-radius: 6px;
+  border-radius: 5px;
   border: 2px solid #e0e0e0;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .gallery-item-inputs {
   flex: 1;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 10px;
+}
+
+.gallery-item-inputs input[type="url"] {
+  flex: 1;
 }
 
 .btn-remove-gallery {
@@ -397,14 +386,6 @@ body {
   white-space: nowrap;
 }
 
-.gallery-item-inputs input[type="url"] {
-  width: 100%;
-  padding: 10px 12px;
-  border: 2px solid #e0e0e0;
-  border-radius: 4px;
-  font-size: 13px;
-}
-
 .gallery-item-inputs input[type="url"]:focus {
   outline: none;
   border-color: #003d7a;
@@ -415,27 +396,25 @@ body {
   background-color: #dc3545;
   color: white;
   border: none;
-  padding: 10px 16px;
+  width: 45px;
+  height: 45px;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  font-size: 13px;
-  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  min-width: 100px;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
 }
 
 .btn-remove-gallery:hover {
   background-color: #c82333;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+  transform: scale(1.05);
 }
 
 .btn-remove-gallery i {
-  font-size: 12px;
+  margin: 0;
 }
 
 /* Botones de acción */

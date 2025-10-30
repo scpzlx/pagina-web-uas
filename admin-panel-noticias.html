@@ -173,15 +173,19 @@
                         accept="image/*"
                         onchange="handleFileSelect(event, 'thumbnail')"
                       />
-                      <label for="thumbnail-file" class="file-input-label">
-                        <i class="fas fa-upload"></i> Subir desde PC
+                      <label
+                        for="thumbnail-file"
+                        class="file-input-label"
+                        title="Subir desde PC"
+                      >
+                        <i class="fas fa-upload"></i>
                       </label>
                     </div>
                   </div>
                   <div id="thumbnail-preview" class="file-preview"></div>
                   <small
-                    >Imagen pequeña para la lista de noticias (recomendado:
-                    600x400px)</small
+                    >Imagen pequeña para la lista (máx. 2MB, 800x600px
+                    recomendado)</small
                   >
                 </div>
 
@@ -202,15 +206,19 @@
                         accept="image/*"
                         onchange="handleFileSelect(event, 'hero')"
                       />
-                      <label for="hero-file" class="file-input-label">
-                        <i class="fas fa-upload"></i> Subir desde PC
+                      <label
+                        for="hero-file"
+                        class="file-input-label"
+                        title="Subir desde PC"
+                      >
+                        <i class="fas fa-upload"></i>
                       </label>
                     </div>
                   </div>
                   <div id="hero-preview" class="file-preview"></div>
                   <small
-                    >Imagen grande para el detalle de la noticia (recomendado:
-                    1200x600px)</small
+                    >Imagen grande para el detalle (máx. 5MB, 1920x1080px
+                    recomendado)</small
                   >
                 </div>
               </div>
@@ -258,17 +266,20 @@
                         accept="video/*"
                         onchange="handleVideoUpload(event)"
                       />
-                      <label for="video-file" class="file-input-label">
-                        <i class="fas fa-upload"></i> Subir video (máx. 50MB)
+                      <label
+                        for="video-file"
+                        class="file-input-label"
+                        title="Subir video desde PC"
+                      >
+                        <i class="fas fa-video"></i>
                       </label>
                     </div>
                   </div>
                   <div id="video-preview" class="file-preview"></div>
                   <small
                     ><strong>Instrucciones:</strong> Puedes pegar cualquier link
-                    de YouTube o Facebook, se convertirá automáticamente.
-                    También puedes subir un video desde tu PC (máximo
-                    50MB).</small
+                    de YouTube o Facebook (se convierte automáticamente) o subir
+                    un video desde tu PC (máx. 50MB).</small
                   >
                 </div>
               </div>
