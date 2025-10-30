@@ -57,17 +57,85 @@ let galleryCounter = 0;
 function addGalleryImage() {
     const container = document.getElementById('gallery-container');
     galleryCounter++;
+    const uniqueId = 'gallery-file-' + galleryCounter;
+    const urlInputId = 'gallery-url-' + galleryCounter;
     
     const div = document.createElement('div');
     div.className = 'gallery-item';
-    div.innerHTML = '<div class="gallery-item-inputs"><input type="url" class="form-control gallery-input" placeholder="https://ejemplo.com/imagen' + galleryCounter + '.jpg"></div><button type="button" class="btn-remove-gallery" onclick="removeGalleryImage(this)"><i class="fas fa-times"></i> Eliminar</button>';
+    div.innerHTML = '<div class="gallery-item-inputs">' +
+        '<input type="url" id="' + urlInputId + '" class="form-control gallery-input" placeholder="https://ejemplo.com/imagen' + galleryCounter + '.jpg o sube desde PC">' +
+        '<div class="file-input-container" style="margin-top: 10px;">' +
+            '<input type="file" id="' + uniqueId + '" accept="image/*" style="display: none;">' +
+            '<label for="' + uniqueId + '" class="file-input-label">' +
+                '<i class="fas fa-upload"></i> Subir desde PC' +
+            '</label>' +
+        '</div>' +
+        '<div class="file-preview"></div>' +
+    '</div>' +
+    '<button type="button" class="btn-remove-gallery">' +
+        '<i class="fas fa-times"></i> Eliminar' +
+    '</button>';
     
     container.appendChild(div);
-}
-
-// Eliminar imagen de galería
-function removeGalleryImage(button) {
-    button.parentElement.remove();
+    
+    // Event listener para el botón eliminar
+    const removeBtn = div.querySelector('.btn-remove-gallery');
+    removeBtn.addEventListener('click', function() {
+        div.remove();
+    });
+    
+    // Event listener para el input file
+    const fileInput = document.getElementById(uniqueId);
+    const urlInput = document.getElementById(urlInputId);
+    const preview = div.querySelector('.file-preview');
+    
+    fileInput.addEventListener('change', async function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        
+        // Validar tamaño (3MB)
+        if (file.size > 3 * 1024 * 1024) {
+            alert('La imagen es demasiado grande. Máximo: 3MB');
+            fileInput.value = '';
+            return;
+        }
+        
+        // Validar tipo
+        if (!file.type.startsWith('image/')) {
+            alert('Solo se permiten imágenes');
+            fileInput.value = '';
+            return;
+        }
+        
+        preview.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subiendo...';
+        preview.classList.add('show');
+        
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('type', 'gallery');
+            
+            const response = await fetch('/api/upload-file.php', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            
+            if (!result.success) {
+                throw new Error(result.message || 'Error al subir imagen');
+            }
+            
+            // Actualizar URL input con la ruta del archivo
+            urlInput.value = window.location.origin + result.url;
+            preview.innerHTML = '<i class="fas fa-check-circle"></i> ' + file.name + ' (' + result.size + ')';
+            
+        } catch (error) {
+            console.error('Error:', error);
+            preview.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error: ' + error.message;
+            alert('Error al subir la imagen: ' + error.message);
+        }
+    });
 }
 
 // Obtener datos del formulario
@@ -78,7 +146,13 @@ function getFormData() {
     const category = document.getElementById('news-category').value;
     const thumbnail = document.getElementById('news-thumbnail').value.trim();
     const hero = document.getElementById('news-hero').value.trim();
-    const video = document.getElementById('news-video').value.trim();
+    const videoInput = document.getElementById('news-video').value.trim();
+    
+    // Convertir URLs de video automáticamente
+    let videoUrl = null;
+    if (videoInput) {
+        videoUrl = convertToEmbedUrl(videoInput);
+    }
     
     const paragraphInputs = document.querySelectorAll('.paragraph-input');
     const content = [];
@@ -110,9 +184,44 @@ function getFormData() {
         thumbnailImage: thumbnail,
         heroImage: hero,
         content: content,
-        videoUrl: video || null,
+        videoUrl: videoUrl,
         gallery: gallery
     };
+}
+
+// NUEVA FUNCIÓN: Convertir URLs de video a formato embebido
+function convertToEmbedUrl(url) {
+    // Si ya es una URL embed, devolverla tal cual
+    if (url.includes('/embed/') || url.includes('facebook.com/plugins/video.php')) {
+        return url;
+    }
+    
+    // Convertir YouTube
+    // Acepta: https://www.youtube.com/watch?v=VIDEO_ID
+    //         https://youtu.be/VIDEO_ID
+    //         https://m.youtube.com/watch?v=VIDEO_ID
+    const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+    const youtubeMatch = url.match(youtubeRegex);
+    
+    if (youtubeMatch && youtubeMatch[1]) {
+        return 'https://www.youtube.com/embed/' + youtubeMatch[1];
+    }
+    
+    // Convertir Facebook
+    // Acepta: https://www.facebook.com/user/videos/VIDEO_ID/
+    //         https://fb.watch/VIDEO_ID/
+    const facebookRegex = /(?:facebook\.com\/.*\/videos\/(\d+)|fb\.watch\/([a-zA-Z0-9_-]+))/;
+    const facebookMatch = url.match(facebookRegex);
+    
+    if (facebookMatch) {
+        const videoId = facebookMatch[1] || facebookMatch[2];
+        // Encode la URL original para Facebook embed
+        const encodedUrl = encodeURIComponent(url);
+        return 'https://www.facebook.com/plugins/video.php?href=' + encodedUrl + '&show_text=false&width=734';
+    }
+    
+    // Si no es YouTube ni Facebook, devolver la URL original
+    return url;
 }
 
 // Validar formulario

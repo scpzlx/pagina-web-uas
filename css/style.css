@@ -395,86 +395,6 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* NOTICIAS */
-.noticias {
-  width: 100%;
-  font-family: Arial, sans-serif;
-}
-
-.noticias h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin: 30px 0;
-}
-
-.news-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.news-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  padding: 40px 20px;
-}
-
-.news-card img {
-  width: 300px;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-.news-content {
-  flex: 1;
-}
-
-.news-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-.news-text {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.news-card.yellow {
-  background-color: #ffd500;
-  color: #000;
-}
-
-.news-card.blue {
-  background-color: #1e28b7;
-  color: #fff;
-}
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.news-card:nth-child(1) {
-  transition-delay: 0s;
-}
-
-.news-card:nth-child(2) {
-  transition-delay: 0.2s;
-}
-
-.news-card:nth-child(3) {
-  transition-delay: 0.4s;
-}
-
 /* CALENDARIO */
 .calendario {
   background-color: #d4d4d4;
@@ -1006,35 +926,6 @@ address {
     font-size: 0.85rem;
   }
 
-  /* NOTICIAS */
-  .noticias h2 {
-    font-size: 1.5rem;
-    margin: 20px 0;
-  }
-
-  .news-card {
-    flex-direction: column;
-    padding: 30px 15px;
-    gap: 20px;
-  }
-
-  .news-card:nth-child(2) {
-    flex-direction: column-reverse;
-  }
-
-  .news-card img {
-    width: 100%;
-    max-width: 400px;
-  }
-
-  .news-title {
-    font-size: 1.3rem;
-  }
-
-  .news-text {
-    font-size: 0.95rem;
-  }
-
   /* CALENDARIO */
   .calendario {
     padding: 40px 15px;
@@ -1187,43 +1078,6 @@ address {
     font-size: 0.9rem;
   }
 
-  /* NOTICIAS */
-  .noticias h2 {
-    font-size: 1.3rem;
-  }
-
-  .news-card {
-    padding: 25px 10px;
-  }
-
-  .news-card img {
-    width: 100%;
-  }
-
-  .news-title {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-  }
-
-  .news-text {
-    font-size: 0.85rem;
-  }
-
-  /* CALENDARIO */
-  .calendario {
-    padding: 30px 10px;
-  }
-
-  .calendario-info h2 {
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-  }
-
-  .calendario-info p {
-    font-size: 0.85rem;
-    margin-bottom: 15px;
-  }
-
   /* FOOTER */
   .footer {
     padding: 25px 15px;
@@ -1297,8 +1151,7 @@ address {
     font-size: 1.3rem;
   }
 
-  .convocatorias h2,
-  .noticias h2 {
+  .convocatorias h2 {
     font-size: 1.2rem;
   }
 
