@@ -1,0 +1,100 @@
+
+/* CONVOCATORIA SECTION */
+.convocatoria-section {
+    background-color: #f5f5f5;
+    padding: 60px 20px;
+    min-height: calc(100vh - 400px);
+}
+
+.convocatoria-container {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.convocatoria-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.convocatoria-image:hover {
+    transform: scale(1.02);
+}
+
+/* RESPONSIVE DESIGN */
+
+/* Tablets y pantallas medianas (hasta 1024px) */
+@media screen and (max-width: 1024px) {
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .departamento-indicator h1 {
+    font-size: 2.2em;
+  }
+
+  .convocatoria-section {
+    padding: 50px 20px;
+  }
+
+  .convocatoria-container {
+    padding: 30px;
+  }
+}
+
+/* Tablets pequeñas (hasta 768px) */
+@media screen and (max-width: 768px) {
+
+  /* CONVOCATORIA SECTION */
+  .convocatoria-section {
+    padding: 40px 15px;
+  }
+
+  .convocatoria-container {
+    padding: 20px;
+  }
+
+  .convocatoria-image {
+    border-radius: 8px;
+  }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media screen and (max-width: 480px) {
+  
+  /* CONVOCATORIA SECTION */
+  .convocatoria-section {
+    padding: 30px 10px;
+  }
+
+  .convocatoria-container {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .convocatoria-image {
+    border-radius: 8px;
+  }
+}
+
+/* Móviles muy pequeños (hasta 375px) */
+@media screen and (max-width: 375px) {
+
+  .convocatoria-section {
+    padding: 25px 8px;
+  }
+
+  .convocatoria-container {
+    padding: 12px;
+  }
+
+  .convocatoria-image {
+    border-radius: 6px;
+  }
+}

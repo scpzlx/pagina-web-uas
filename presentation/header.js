@@ -14,7 +14,7 @@ const headerHTML = `
 
       <div class="menu" id="menu">
         <ul>
-          <li><a href="index.html">Inicio</a></li>
+          <li><a href="index-original.html">Inicio</a></li>
 
           <li class="dropdown">
             <a href="#">Facultad</a>
@@ -41,7 +41,7 @@ const headerHTML = `
             <a href="#">Departamentos</a>
             <ul class="dropdown-content">
               <li><a href="#">Servicio social</a></li>
-              <li><a href="#">Control escolar</a></li>
+              <li><a href="control-escolar.html">Control escolar</a></li>
               <li><a href="biblioteca.html">Biblioteca</a></li>
               <li><a href="#">Vinculación</a></li>
               <li><a href="#">Difusion cultural</a></li>
