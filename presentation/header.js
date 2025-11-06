@@ -141,10 +141,10 @@ function initHamburgerMenu() {
     // Resetear todo cuando la ventana se ridemensiona
     window.addEventListener('resize', function() {
       if  (window.innerWidth > 768) {
-        hamburger.classList.remove('actie');
+        hamburger.classList.remove('active');
         menu.classList.remove('active');
         overlay.classList.remove('active');
-        dropdowns.body.style.overflow = 'auto';
+        document.body.style.overflow = 'auto';
         dropdowns.forEach(function(dropdown) {
           dropdown.classList.remove('active');
         });
