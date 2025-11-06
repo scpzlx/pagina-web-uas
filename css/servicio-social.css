@@ -1,0 +1,720 @@
+
+/* SECCION 1 HERO */
+.hero-section {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f5f5f5 100%);
+    padding: 60px 20px;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 2.5em;
+    color: #1a237e;
+    margin-bottom: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.hero-text p {
+    text-align: justify;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 1.05em;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+}
+
+.hero-footer {
+    text-align: justify;
+    line-height: 1.8;
+    color: #333;
+    font-size: 1.05em;
+    margin-top: 30px;
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    border-left: 5px solid #ffd500;
+}
+
+/* SECCION 2 MISION */
+.mision-section {
+    background: white;
+    padding: 60px 20px;
+}
+
+.mision-content {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.mision-image {
+    background: #e8eaf6;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mision-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.mision-item {
+    margin-bottom: 35px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 5px solid #1a237e;
+    transition: all 0.3s ease;
+}
+
+.mision-item:hover {
+    border-left-color: #ffd500;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transform: translateX(5px);
+}
+
+.mision-item h2 {
+    color: #1a237e;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.mision-item p {
+    line-height: 1.8;
+    color: #333;
+    font-size: 1.05em;
+}
+
+/* SECCION 3 */
+.valores-section {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e3f2fd 100%);
+    padding: 60px 20px;
+}
+
+.valores-content {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.valores-text h2 {
+    color: #1a237e;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.valores-text p {
+    text-align: justify;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 1.05em;
+}
+
+.valores-image {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 100px;
+    min-height: 400px;
+}
+
+.valores-image img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+/* SECCION 4 */
+.section-title {
+    color: #1a237e;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.normatividad-section {
+    background: white;
+    padding: 60px 20px;
+}
+
+.normatividad-content {
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.normatividad-image {
+    background: #e8eaf6;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    top: 100px;
+}
+
+.normatividad-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.normatividad-categoria {
+    margin-bottom: 35px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 5px solid #ffd500;
+}
+
+.normatividad-categoria h3 {
+    color: #1a237e;
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.normatividad-categoria ul {
+    padding: 0;
+}
+
+.normatividad-categoria li {
+    margin-bottom: 12px;
+}
+
+.normatividad-categoria a {
+    color: #1977d2;
+    text-decoration: underline;
+    font-size: 1.05em;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.normatividad-categoria a:hover {
+    color: #1a237e;
+    transform: translateX(5px);
+}
+
+/* SECCION 5 */
+.documentos-section {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f5f5f5 100%);
+    padding: 60px 20px;
+}
+
+.documentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.documento-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.documento-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.documento-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* SECCION 6 */
+.directorio-section {
+    background: white;
+    padding: 60px 20px;
+}
+
+.directorio-content {
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.directorio-image {
+    background: #e8eaf6;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    top: 100px;
+}
+
+.directorio-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.directorio-lista {
+    display: grid;
+    gap: 20px;
+}
+
+.directorio-item {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 5px solid #ffd500;
+    transition: all 0.3s ease;
+}
+
+.directorio-item:hover {
+    border-left-color: #1a237e;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transform: translateX(5px);
+}
+
+.directorio-item h3 {
+    color: #1a237e;
+    font-size: 1.3em;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.directorio-item p {
+    color: #666;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+/* SECCION 7 */
+.certificacion-title {
+    color: #1a237e;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.certificacion-section {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e3f2fd 100%);
+    padding: 60px 20px;
+}
+
+.certificacion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.certificacion-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.certificacion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.certificacion-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* RESPONSIVE */
+/* Tablets y pantallas medianas (hasta 1024px) */
+@media screen and (max-width: 1024px) {
+    .main-title {
+        font-size: 2em;
+    }
+
+    .section-title {
+        font-size: 2em;
+    }
+
+    .certificacion-title {
+        font-size: 2em;
+    }
+
+    .hero-content {
+        gap: 30px;
+    }
+
+    .mision-content {
+        gap: 40px;
+    }
+
+    .valores-content {
+        gap: 40px;
+    }
+
+    .normatividad-content {
+        gap: 40px;
+    }
+
+    .directorio-content {
+        gap: 40px;
+    }
+
+    .documentos-grid {
+        gap: 25px;
+    }
+
+    .certificacion-grid {
+        gap: 30px;
+    }
+}
+
+/* Tablets pequeñas (hasta 768px) */
+@media screen and (max-width: 768px) {
+    /* SECCION 1 HERO */
+    .hero-section {
+        padding: 40px 15px;
+    }
+
+    .main-title {
+        font-size: 1.8em;
+        margin-bottom: 35px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .hero-text p {
+        font-size: 0.95em;
+        margin-bottom: 20px;
+    }
+
+    .hero-footer {
+        font-size: 0.95em;
+        padding: 20px;
+        margin-top: 25px;
+    }
+
+    /* SECCION 2 MISION */
+    .mision-section {
+        padding: 40px 15px;
+    }
+
+    .mision-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .mision-image {
+        top: 0;
+        order: -1;
+    }
+
+    .mision-item {
+        margin-bottom: 25px;
+        padding: 20px;
+    }
+
+    .mision-item h2 {
+        font-size: 1.6em;
+    }
+
+    .mision-item p {
+        font-size: 0.95em;
+    }
+
+    /* SECCION 3 VALORES */
+    .valores-section {
+        padding: 40px 15px;
+    }
+
+    .valores-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .valores-text h2 {
+        font-size: 2em;
+    }
+
+    .valores-text p {
+        font-size: 0.95em;
+        margin-bottom: 20px;
+    }
+
+    .valores-image {
+        top: 0;
+        min-height: 300px;
+    }
+
+    .valores-image img {
+        max-width: 280px;
+    }
+
+    /* SECCION 4 NORMATIVIDAD */
+    .normatividad-section {
+        padding: 40px 15px;
+    }
+
+    .section-title {
+        font-size: 1.8em;
+    }
+
+    .normatividad-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .normatividad-image {
+        top: 0;
+        order: -1;
+    }
+
+    .normatividad-categoria {
+        margin-bottom: 25px;
+        padding: 20px;
+    }
+
+    .normatividad-categoria h3 {
+        font-size: 1.2em;
+    }
+
+    .normatividad-categoria a {
+        font-size: 0.95em;
+    }
+
+    /* SECCION 5 DOCUMENTOS */
+    .documentos-section {
+        padding: 40px 15px;
+    }
+
+    .documentos-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* SECCION 6 DIRECTORIO */
+    .directorio-section {
+        padding: 40px 15px;
+    }
+
+    .directorio-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .directorio-image {
+        top: 0;
+        order: -1;
+    }
+
+    .directorio-lista {
+        gap: 15px;
+    }
+
+    .directorio-item {
+        padding: 18px;
+    }
+
+    .directorio-item h3 {
+        font-size: 1.2em;
+    }
+
+    .directorio-item p {
+        font-size: 0.95em;
+    }
+
+    /* SECCION 7 CERTIFICACION */
+    .certificacion-section {
+        padding: 40px 15px;
+    }
+
+    .certificacion-title {
+        font-size: 1.8em;
+    }
+
+    .certificacion-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media screen and (max-width: 480px) {
+    /* SECCION 1 HERO */
+    .hero-section {
+        padding: 30px 15px;
+    }
+
+    .main-title {
+        font-size: 1.6em;
+        margin-bottom: 30px;
+    }
+
+    .hero-text p {
+        font-size: 0.9em;
+    }
+
+    .hero-footer {
+        font-size: 0.9em;
+        padding: 15px;
+    }
+
+    /* SECCION 2 MISION */
+    .mision-section {
+        padding: 30px 15px;
+    }
+
+    .mision-item {
+        padding: 20px;
+    }
+
+    .mision-item h2 {
+        font-size: 1.4em;
+    }
+
+    .mision-item p {
+        font-size: 0.9em;
+    }
+
+    /* SECCION 3 VALORES */
+    .valores-section {
+        padding: 30px 15px;
+    }
+
+    .valores-text h2 {
+        font-size: 1.8em;
+    }
+
+    .valores-text p {
+        font-size: 0.9em;
+    }
+
+    .valores-image {
+        min-height: 250px;
+    }
+
+    .valores-image img {
+        max-width: 250px;
+    }
+
+    /* SECCION 4 NORMATIVIDAD */
+    .normatividad-section {
+        padding: 30px 15px;
+    }
+
+    .section-title {
+        font-size: 1.6em;
+    }
+
+    .normatividad-categoria {
+        padding: 20px;
+    }
+
+    .normatividad-categoria h3 {
+        font-size: 1.1em;
+    }
+
+    .normatividad-categoria a {
+        font-size: 0.9em;
+    }
+
+    /* SECCION 5 DOCUMENTOS */
+    .documentos-section {
+        padding: 30px 15px;
+    }
+
+    /* SECCION 6 DIRECTORIO */
+    .directorio-section {
+        padding: 30px 15px;
+    }
+
+    .directorio-item {
+        padding: 15px;
+    }
+
+    .directorio-item h3 {
+        font-size: 1.1em;
+    }
+
+    .directorio-item p {
+        font-size: 0.9em;
+    }
+
+    /* SECCION 7 CERTIFICACION */
+    .certificacion-section {
+        padding: 30px 15px;
+    }
+
+    .certificacion-title {
+        font-size: 1.6em;
+    }
+}
+
+/* Móviles muy pequeños (hasta 375px) */
+@media screen and (max-width: 375px) {
+    .main-title {
+        font-size: 1.4em;
+    }
+
+    .section-title {
+        font-size: 1.4em;
+    }
+
+    .certificacion-title {
+        font-size: 1.4em;
+    }
+
+    .mision-item h2 {
+        font-size: 1.2em;
+    }
+
+    .valores-text h2 {
+        font-size: 1.6em;
+    }
+
+    .normatividad-categoria h3 {
+        font-size: 1em;
+    }
+
+    .directorio-item h3 {
+        font-size: 1em;
+    }
+
+    .valores-image img {
+        max-width: 220px;
+    }
+}

@@ -40,7 +40,7 @@ const headerHTML = `
           <li class="dropdown">
             <a href="#">Departamentos</a>
             <ul class="dropdown-content">
-              <li><a href="#">Servicio social</a></li>
+              <li><a href="servicio-social.html">Servicio social</a></li>
               <li><a href="control-escolar.html">Control escolar</a></li>
               <li><a href="biblioteca.html">Biblioteca</a></li>
               <li><a href="#">Vinculación</a></li>
@@ -51,7 +51,7 @@ const headerHTML = `
               <li><a href="#">Secretaria académica</a></li>
               <li><a href="#">Coordinaciones de carreras</a></li>
               <li><a href="#">Secretaria administrativa</a></li>
-              <li><a href="#">ADIUAS</a></li>
+              <li><a href="ADIUAS.html">ADIUAS</a></li>
             </ul>
           </li>
 
