@@ -1,0 +1,204 @@
+<!-- INDEX TEMPORAL PARA REALIZAR PRUEBAS -->
+<!-- INDEX TEMPORAL PARA REALIZAR PRUEBAS -->
+<!-- INDEX TEMPORAL PARA REALIZAR PRUEBAS -->
+<!-- INDEX TEMPORAL PARA REALIZAR PRUEBAS -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/favicon.ico" />
+    <link rel="apple-touch-icon" href="images/favicon.ico" />
+    <title>Escuela de diseño y artes visuales</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Georgia", "Times New Roman", serif;
+        background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: white;
+        border-radius: 8px;
+        padding: 60px 50px;
+        max-width: 900px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border-top: 4px solid #c41e3a;
+      }
+
+      h1 {
+        color: #212529;
+        font-size: 2.2em;
+        margin-bottom: 20px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      .subtitle {
+        color: #495057;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        font-weight: 400;
+      }
+
+      .content-section {
+        padding: 30px 0;
+      }
+
+      .status-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 24px;
+        background: #f8f9fa;
+        border-radius: 50px;
+        border: 1px solid #dee2e6;
+        font-size: 0.95em;
+        color: #495057;
+        margin: 20px 0;
+      }
+
+      .status-dot {
+        width: 10px;
+        height: 10px;
+        background: #ffc107;
+        border-radius: 50%;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .spinner {
+        display: block;
+        width: 50px;
+        height: 50px;
+        border: 5px solid #e9ecef;
+        border-top: 5px solid #6c757d;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 30px auto 0 auto;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Footer con logos */
+      .footer-section {
+        margin-top: 60px;
+        padding-top: 25px;
+        border-top: 2px solid #e9ecef;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .footer-section img {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .footer-text {
+        text-align: center;
+        flex: 1;
+      }
+
+      .institution-name {
+        color: #212529;
+        font-size: 1.1em;
+        font-weight: 600;
+        line-height: 1.6;
+      }
+
+      .institution-subtitle {
+        color: #6c757d;
+        font-size: 1em;
+        margin-top: 8px;
+        font-weight: 400;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 40px 25px;
+        }
+
+        h1 {
+          font-size: 1.8em;
+        }
+
+        .subtitle {
+          font-size: 1.05em;
+        }
+
+        .footer-section {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .footer-section img {
+          width: 80px;
+          height: 80px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content-section">
+        <h1>Sitio Web en Construcción</h1>
+        <p class="subtitle">Portal Institucional en Desarrollo</p>
+
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>En Proceso de Actualización</span>
+        </div>
+
+        <div class="spinner"></div>
+      </div>
+
+      <!-- Footer con logos a los lados -->
+      <div class="footer-section">
+        <img src="images/LogoUas.png" alt="Logo UAS" />
+
+        <div class="footer-text">
+          <p class="institution-name">Universidad Autónoma de Sinaloa</p>
+          <p class="institution-subtitle">
+            Unidad Académica Escuela de Diseño y Artes Visuales
+          </p>
+        </div>
+
+        <img src="images/logoEscuelaIFooter.png" alt="Logo EDAV" />
+      </div>
+    </div>
+  </body>
+</html>

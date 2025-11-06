@@ -1,204 +1,160 @@
-<!-- INDEX TEMPORAL PARA REALIZAR PRUEBAS -->
-<!-- INDEX TEMPORAL PARA REALIZAR PRUEBAS -->
-<!-- INDEX TEMPORAL PARA REALIZAR PRUEBAS -->
-<!-- INDEX TEMPORAL PARA REALIZAR PRUEBAS -->
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escuela de diseño y artes visuales</title>
+    <link rel="stylesheet" href="/css/style-original.css" />
+    <link rel="stylesheet" href="css/styles-noticias-index.css" />
+    <link rel="stylesheet" href="css/styles-base.css" />
     <link rel="icon" type="image/png" href="images/favicon.ico" />
     <link rel="apple-touch-icon" href="images/favicon.ico" />
-    <title>Escuela de diseño y artes visuales</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Georgia", "Times New Roman", serif;
-        background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-      }
-
-      .container {
-        background: white;
-        border-radius: 8px;
-        padding: 60px 50px;
-        max-width: 900px;
-        width: 100%;
-        text-align: center;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        border-top: 4px solid #c41e3a;
-      }
-
-      h1 {
-        color: #212529;
-        font-size: 2.2em;
-        margin-bottom: 20px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-      }
-
-      .subtitle {
-        color: #495057;
-        font-size: 1.2em;
-        margin-bottom: 10px;
-        font-weight: 400;
-      }
-
-      .content-section {
-        padding: 30px 0;
-      }
-
-      .status-indicator {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px 24px;
-        background: #f8f9fa;
-        border-radius: 50px;
-        border: 1px solid #dee2e6;
-        font-size: 0.95em;
-        color: #495057;
-        margin: 20px 0;
-      }
-
-      .status-dot {
-        width: 10px;
-        height: 10px;
-        background: #ffc107;
-        border-radius: 50%;
-        animation: pulse 2s ease-in-out infinite;
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.5;
-        }
-      }
-
-      .spinner {
-        display: block;
-        width: 50px;
-        height: 50px;
-        border: 5px solid #e9ecef;
-        border-top: 5px solid #6c757d;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin: 30px auto 0 auto;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      /* Footer con logos */
-      .footer-section {
-        margin-top: 60px;
-        padding-top: 25px;
-        border-top: 2px solid #e9ecef;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 20px;
-      }
-
-      .footer-section img {
-        width: 90px;
-        height: 90px;
-        object-fit: cover;
-        border-radius: 8px;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .footer-text {
-        text-align: center;
-        flex: 1;
-      }
-
-      .institution-name {
-        color: #212529;
-        font-size: 1.1em;
-        font-weight: 600;
-        line-height: 1.6;
-      }
-
-      .institution-subtitle {
-        color: #6c757d;
-        font-size: 1em;
-        margin-top: 8px;
-        font-weight: 400;
-      }
-
-      @media (max-width: 768px) {
-        .container {
-          padding: 40px 25px;
-        }
-
-        h1 {
-          font-size: 1.8em;
-        }
-
-        .subtitle {
-          font-size: 1.05em;
-        }
-
-        .footer-section {
-          flex-direction: column;
-          text-align: center;
-        }
-
-        .footer-section img {
-          width: 80px;
-          height: 80px;
-        }
-      }
-    </style>
   </head>
   <body>
-    <div class="container">
-      <div class="content-section">
-        <h1>Sitio Web en Construcción</h1>
-        <p class="subtitle">Portal Institucional en Desarrollo</p>
+    <!-- HEADER -->
+    <div id="header-container"></div>
 
-        <div class="status-indicator">
-          <span class="status-dot"></span>
-          <span>En Proceso de Actualización</span>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>
+          Escuela de Diseño y <br />
+          Artes Visuales
+        </h1>
+        <p>
+          En la Escuela de Diseño y Artes Visuales de la UAS creemos en el poder
+          del arte para transformar la realidad. Aquí formamos creadores capaces
+          de comunicar ideas, emociones y valores a través de la imagen, el
+          color y la forma. Fomentamos la experimentación, la innovación y el
+          pensamiento crítico, impulsando proyectos que combinan técnica,
+          creatividad y compromiso con la cultura y la sociedad. Nuestro
+          objetivo es que cada estudiante encuentre su propia voz artística y
+          contribuya al mundo con una visión única y auténtica.
+        </p>
+        <!-- <button class="btn">Saber más</button> -->
+      </div>
+    </section>
+
+    <!-- CONVOCATORIAS -->
+    <section class="convocatorias">
+      <h2>Convocatorias</h2>
+
+      <div class="carousel-container">
+        <button class="arrow left" onclick="moveCarousel(-1)">&#10094;</button>
+
+        <div class="viewport">
+          <div class="track" id="track">
+            <div class="card card-blue">
+              <div class="icon">👤</div>
+              <h3>Personal loan</h3>
+              <p>
+                Personal loans provide borrowers with flexibility in how they
+                use the funds.
+              </p>
+              <button class="btn-secondary">Apply Now</button>
+            </div>
+
+            <div class="card card-yellow">
+              <div class="icon">💼</div>
+              <h3>Business loan</h3>
+              <p>
+                Business Loan Services provide financial assistance to
+                businesses for various purposes.
+              </p>
+              <button class="btn-secondary">Apply Now</button>
+            </div>
+
+            <div class="card card-blue">
+              <div class="icon">🚗</div>
+              <h3>Auto Loan</h3>
+              <p>
+                Auto Loan Services provide financing options for individuals and
+                businesses to purchase a vehicle.
+              </p>
+              <button class="btn-secondary">Apply Now</button>
+            </div>
+
+            <div class="card card-yellow">
+              <div class="icon">🚗</div>
+              <h3>Auto Loan</h3>
+              <p>
+                Auto Loan Services provide financing options for individuals and
+                businesses to purchase a vehicle.
+              </p>
+              <button class="btn-secondary">Apply Now</button>
+            </div>
+
+            <div class="card card-blue">
+              <div class="icon">🚗</div>
+              <h3>Auto Loan</h3>
+              <p>
+                Auto Loan Services provide financing options for individuals and
+                businesses to purchase a vehicle.
+              </p>
+              <button class="btn-secondary">Apply Now</button>
+            </div>
+          </div>
         </div>
 
-        <div class="spinner"></div>
+        <button class="arrow right" onclick="moveCarousel(1)">&#10095;</button>
       </div>
 
-      <!-- Footer con logos a los lados -->
-      <div class="footer-section">
-        <img src="images/LogoUas.png" alt="Logo UAS" />
+      <button class="btn">Saber más</button>
+    </section>
 
-        <div class="footer-text">
-          <p class="institution-name">Universidad Autónoma de Sinaloa</p>
-          <p class="institution-subtitle">
-            Unidad Académica Escuela de Diseño y Artes Visuales
+    <!-- NOTICIAS -->
+    <section class="noticias">
+      <h2>Noticias -</h2>
+      <div class="news-section" id="latest-news-container">
+        <!-- Las 3 últimas noticias se cargarán aquí dinámicamente -->
+      </div>
+      <div class="noticias-button-container">
+        <button class="btn" onclick="window.location.href='noticias.html'">
+          Ver todas las noticias
+        </button>
+      </div>
+    </section>
+
+    <!-- CALENDARIO -->
+    <section class="calendario">
+      <div class="calendario-container">
+        <div class="calendario-info">
+          <h2>Calendario escolar <br />ciclo 2025- 2026</h2>
+          <p>
+            ¡Ya está disponible el calendario escolar del ciclo 2025–2026! Aquí
+            podrás conocer los periodos de clases, vacaciones, inscripciones,
+            exámenes y eventos académicos. Mantente al día y prepárate para un
+            año lleno de aprendizaje, creatividad y experiencias artísticas en
+            la Escuela de Diseño y Artes Visuales.
           </p>
+          <img src="images/Maestros.jpg" alt="Universitarios ilustres" />
         </div>
 
-        <img src="images/logoEscuelaIFooter.png" alt="Logo EDAV" />
+        <div class="calendario-img">
+          <img
+            src="images/calendario.jpg"
+            alt="Calendario escolar 2025-2026"
+            id="calendarioImg"
+          />
+        </div>
       </div>
+    </section>
+
+    <div id="modalCalendario" class="modal">
+      <span class="close-modal">&times;</span>
+      <!-- <img src="modal-content" id="imgModal"> -->
     </div>
+
+    <!-- FOOTER -->
+    <div id="footer-container"></div>
+
+    <script src="js/script.js"></script>
+    <script src="js/calendario-image.js"></script>
+    <script src="js/hero-animation.js"></script>
+    <script src="js/noticias-animation.js"></script>
+    <script src="presentation/footer.js"></script>
+    <script src="presentation/header.js"></script>
   </body>
 </html>

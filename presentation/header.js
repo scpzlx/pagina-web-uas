@@ -14,7 +14,7 @@ const headerHTML = `
 
       <div class="menu" id="menu">
         <ul>
-          <li><a href="index-original.html">Inicio</a></li>
+          <li><a href="index.html">Inicio</a></li>
 
           <li class="dropdown">
             <a href="#">Facultad</a>
