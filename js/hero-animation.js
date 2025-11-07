@@ -11,11 +11,25 @@ const heroImages = [
 ];
 
 let currentImageIndex = 0;
+let imagesLoaded = 0;
 
 // Precargar todas las imagenes
 function preloadImages() {
+
+    let loadedCount = 0;
+    const totalImages = heroImages.length;
+
     heroImages.forEach(imageSrc => {
         const img = new Image();
+        img.onload = function () {
+            loadedCount++;
+            if (loadedCount === totalImages) {
+                imagesLoaded = true;
+                console.log('Todas las imagenes precargadas correctamente');
+                // Iniciar el carrusel solo cuando todas las imagnes esten cargadas
+                setInterval(changeHeroBackground, 4000)
+            }
+        };
         img.src = imageSrc;
     });
 }
@@ -24,8 +38,14 @@ function preloadImages() {
 preloadImages();
 
 function changeHeroBackground() {
-    currentImageIndex = (currentImageIndex + 1) % heroImages.length;
-    heroSection.style.backgroundImage = `url(${heroImages[currentImageIndex]})`;
-}
+    if (!imagesLoaded) return;
 
-setInterval(changeHeroBackground, 4000);
+    currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+
+    // Crear una nueva imagen para precargar antes de cambiar
+    const newImg = new Image();
+    newImg.onload = function() {
+        heroSection.style.backgroundImage = `url(${heroImages[currentImageIndex]})`;
+    };
+    newImg.src = heroImages[currentImageIndex]
+}

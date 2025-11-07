@@ -5,12 +5,13 @@
   align-items: center;
   padding: 100px 10%;
   min-height: 500px;
-  background-image: url(images/EscuelaEntrada.jpg);
+  background-image: url(/images/EscuelaEntrada.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
   transition: background-image 1s ease-in-out;
+  background-color: #1e28b7;
 }
 
 .hero::before {
@@ -52,7 +53,7 @@
   border: none;
   border-radius: 25px;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: bold; 
   cursor: pointer;
   transition: all 0.3s ease;
 }
