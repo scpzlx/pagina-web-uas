@@ -1,0 +1,631 @@
+
+
+.objetivo-section {
+    padding: 60px 0;
+}
+
+.objetivo-card {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #ffd500;
+}
+
+.objetivo-card p {
+    color: #555;
+    line-height: 1.8;
+    font-size: 1.05em;
+}
+
+/* MISION, VISION Y OBJETIVO */
+.section-title {
+    text-align: center;
+    font-size: 2.5em;
+    color: #1a237e;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.info-section {
+    background-color: #f5f5f5;
+    padding: 60px 20px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.info-card {
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 5px solid #ffd500;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.info-card h3 {
+    font-style: 1.8em;
+    margin-bottom: 20px;
+    color: #1a237e;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-card p {
+    font-size: 1em;
+    line-height: 1.8;
+    color: #555;
+    text-align: justify;
+}
+
+.icon {
+    font-size: 1.5em;
+}
+
+/* FUNCIONES */
+.funciones-section {
+    padding: 60px 20px;
+    background: white;
+}
+
+.funciones-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #f8f9fa;
+    padding: 40px;
+    border-radius: 15px;
+    border-left: 5px solid #ffd500;
+    line-height: 1.9;
+    font-size: 1.05em;
+    text-align: justify;
+    color: #444;
+}
+
+/* MOVILIDAD SECTION */
+.movilidad-section {
+    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+    color: white;
+    padding: 60px 20px;
+}
+
+.movilidad-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.movilidad-text h2 {
+    color: #ffd500;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.movilidad-text p {
+    font-size: 1.1em;
+    line-height: 1.9;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.movilidad-text h3 {
+    color: #ffd500;
+    font-size: 1.6em;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.movilidad-image {
+    text-align: center;
+}
+
+.movilidad-image img {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.btn-download {
+    display: inline-block;
+    background: #ffd500;
+    color: #1a237e;
+    padding: 15px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 213, 0, 0.3);
+}
+
+.btn-download:hover {
+    background: #ffed4e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 213, 0, 0.5);
+}
+
+/* EN QUE CONSISTE */
+.consiste-section {
+    background-color: #f5f5f5;
+    padding: 60px 20px;
+}
+
+.consiste-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.consiste-image img {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.consiste-text h2 {
+    color: #1a237e;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+.consiste-text p {
+    font-size: 1.05em;
+    line-height: 1.9;
+    color: #555;
+    text-align: justify;
+}
+
+/* OBJETIVOS */
+.objetivos-section {
+    padding: 60px 20px;
+    background: white;
+}
+
+.objetivos-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.objetivos-list {
+    background: #f8f9fa;
+    padding: 35px;
+    border-radius: 15px;
+    border-left: 5px solid #ffd500;
+}
+
+.objetivos-list h2 {
+    color: #1a237e;
+    font-size: 2.2em;
+    margin-bottom: 25px;
+}
+
+.objetivos-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.objetivos-list li {
+    padding: 12px 0;
+    padding-left: 30px;
+    position: relative;
+    font-size: 1.05em;
+    line-height: 1.7;
+    color: #555;
+}
+
+.objetivos-list li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #ffd500;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.objetivos-image img {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* CONVOCATORIAS */
+.convocatorias-section {
+    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+    padding: 60px 20px;
+}
+
+.convocatorias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.convocatoria-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.convocatoria-card:hover {
+    transform: translateY(-5px);
+}
+
+.convocatoria-card img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.convocatoria-card h3 {
+    color: #1a237e;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+/* RESPONSIVE */
+/* Tablets y pantallas medianas (hasta 1024px) */
+@media screen and (max-width: 1024px) {
+    .section-title {
+        font-size: 2em;
+    }
+
+    .info-grid {
+        gap: 25px;
+    }
+
+    .info-card {
+        padding: 30px;
+    }
+
+    .movilidad-content,
+    .consiste-content,
+    .objetivos-container {
+        gap: 25px;
+    }
+
+    .convocatorias-grid {
+        gap: 25px;
+    }
+}
+
+/* Tablets pequeñas (hasta 768px) */
+@media screen and (max-width: 768px) {
+    .departamento-header {
+        padding: 40px 15px;
+    }
+
+    .departamento-header h1 {
+        font-size: 2em;
+    }
+
+    .departamento-header p {
+        font-size: 1em;
+    }
+
+    .info-section {
+        padding: 40px 15px;
+    }
+
+    .section-title {
+        font-size: 1.8em;
+        margin-bottom: 35px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .info-card {
+        padding: 25px;
+    }
+
+    .info-card h3 {
+        font-size: 1.5em;
+    }
+
+    .icon {
+        font-size: 1.3em;
+    }
+
+    /* Funciones Section */
+    .funciones-section {
+        padding: 40px 15px;
+    }
+
+    .funciones-content {
+        padding: 25px;
+    }
+
+    /* Movilidad Section */
+    .movilidad-section {
+        padding: 40px 15px;
+    }
+
+    .movilidad-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .movilidad-text h2 {
+        font-size: 1.8em;
+    }
+
+    .movilidad-text h3 {
+        font-size: 1.4em;
+    }
+
+    .movilidad-text p {
+        font-size: 1em;
+    }
+
+    /* Consiste Section */
+    .consiste-section {
+        padding: 40px 15px;
+    }
+
+    .consiste-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .consiste-text h2 {
+        font-size: 1.8em;
+    }
+
+    /* Objetivos Section */
+    .objetivos-section {
+        padding: 40px 15px;
+    }
+
+    .objetivos-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .objetivos-list {
+        padding: 25px;
+    }
+
+    .objetivos-list h2 {
+        font-size: 1.8em;
+    }
+
+    .objetivos-list li {
+        font-size: 1em;
+    }
+
+    /* Convocatorias Section */
+    .convocatorias-section {
+        padding: 40px 15px;
+    }
+
+    .convocatorias-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .convocatoria-card {
+        padding: 25px;
+    }
+
+    .convocatoria-card h3 {
+        font-size: 1.3em;
+    }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media screen and (max-width: 480px) {
+    .departamento-header {
+        padding: 30px 10px;
+    }
+
+    .departamento-header h1 {
+        font-size: 1.6em;
+    }
+
+    .departamento-header p {
+        font-size: 0.95em;
+    }
+
+    .info-section {
+        padding: 30px 15px;
+    }
+
+    .section-title {
+        font-size: 1.6em;
+        margin-bottom: 30px;
+    }
+
+    .info-card {
+        padding: 20px;
+    }
+
+    .info-card h3 {
+        font-size: 1.3em;
+    }
+
+    .info-card p {
+        font-size: 0.95em;
+    }
+
+    .icon {
+        font-size: 1.2em;
+    }
+
+    .funciones-section {
+        padding: 30px 15px;
+    }
+
+    .funciones-content {
+        padding: 20px;
+        font-size: 0.95em;
+    }
+
+    .movilidad-section {
+        padding: 30px 15px;
+    }
+
+    .movilidad-text h2 {
+        font-size: 1.6em;
+    }
+
+    .movilidad-text h3 {
+        font-size: 1.3em;
+    }
+
+    .movilidad-text p {
+        font-size: 0.95em;
+    }
+
+    .btn-download {
+        padding: 12px 20px;
+        font-size: 0.9em;
+    }
+
+    .consiste-section {
+        padding: 30px 15px;
+    }
+
+    .consiste-text h2 {
+        font-size: 1.6em;
+    }
+
+    .consiste-text p {
+        font-size: 0.95em;
+    }
+
+    .objetivos-section {
+        padding: 30px 15px;
+    }
+
+    .objetivos-list {
+        padding: 20px;
+    }
+
+    .objetivos-list h2 {
+        font-size: 1.6em;
+    }
+
+    .objetivos-list li {
+        font-size: 0.95em;
+    }
+
+    .convocatorias-section {
+        padding: 30px 15px;
+    }
+
+    .convocatoria-card {
+        padding: 20px;
+    }
+
+    .convocatoria-card h3 {
+        font-size: 1.2em;
+    }
+}
+
+/* Móviles muy pequeños (hasta 375px) */
+@media screen and (max-width: 375px) {
+    .departamento-header h1 {
+        font-size: 1.3em;
+    }
+
+    .departamento-header p {
+        font-size: 0.9em;
+    }
+
+    .section-title {
+        font-size: 1.4em;
+    }
+
+    .info-card h3 {
+        font-size: 1.2em;
+    }
+
+    .info-card p {
+        font-size: 0.9em;
+    }
+
+    .icon {
+        font-size: 1.1em;
+    }
+
+    .funciones-content {
+        padding: 15px;
+        font-size: 0.9em;
+    }
+
+    .movilidad-text h2 {
+        font-size: 1.4em;
+    }
+
+    .movilidad-text h3 {
+        font-size: 1.2em;
+    }
+
+    .movilidad-text p {
+        font-size: 0.9em;
+    }
+
+    .btn-download {
+        padding: 10px 18px;
+        font-size: 0.85em;
+    }
+
+    .consiste-text h2 {
+        font-size: 1.4em;
+    }
+
+    .consiste-text p {
+        font-size: 0.9em;
+    }
+
+    .objetivos-list {
+        padding: 15px;
+    }
+
+    .objetivos-list h2 {
+        font-size: 1.4em;
+    }
+
+    .objetivos-list li {
+        font-size: 0.9em;
+    }
+
+    .convocatoria-card {
+        padding: 15px;
+    }
+
+    .convocatoria-card h3 {
+        font-size: 1.1em;
+    }
+}
+
+
+

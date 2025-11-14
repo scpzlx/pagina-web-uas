@@ -101,6 +101,22 @@
   background: #1a237e;
 }
 
+/* IMAGEN DE ENCABEZADO EN TARJETAS */
+.departamento-header-img {
+  width: calc(100% + 70px);
+  height: 200px;
+  margin: -35px -35px 20px -35px;
+  overflow: hidden;
+  border-radius: 15px 15px 0 0;
+}
+
+.departamento-header-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* DEPARTAMENTOS GRID */
 .departamentos-grid {
   display: grid;
@@ -291,6 +307,12 @@
   .departamento-card {
     padding: 30px;
   }
+
+  .departamento-header-img {
+    width: calc(100% + 60px);
+    margin: -30px -30px 15px -30px;
+    height: 180px;
+  }
 }
 
 /* Tablets pequeñas (hasta 768px) */
@@ -367,6 +389,12 @@
 
   .departamento-card h3 {
     font-size: 1.4em;
+  }
+
+  .departamento-header-img {
+    width: calc(100% + 50px);
+    margin: -25px -25px 15px -25px;
+    height: 160px;
   }
 }
 
@@ -490,6 +518,12 @@
   .funciones-content li::before {
     font-size: 1em;
   }
+
+  .departamento-header-img {
+    width: calc(100% + 40px);
+    margin: -20px -20px 15px -20px;
+    height: 140px;
+  }
 }
 
 /* Móviles muy pequeños (hasta 375px) */
@@ -550,5 +584,11 @@
 
   .funciones-content li {
     font-size: 0.85em;
+  }
+
+  .departamento-header-img {
+    width: calc(100% + 36px);
+    margin: -18px -18px 12px -18px;
+    height: 120px;
   }
 }

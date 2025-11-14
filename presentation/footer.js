@@ -16,9 +16,6 @@ const footerHTML = `
         <a class="social-icon" href="#" aria-label="WhatsApp">
           <img src="images/whatsapp.svg" alt="WhatsApp de la Universidad Autónoma de Sinaloa" />
         </a>
-        <a class="social-icon" href="#" aria-label="LinkedIn">
-          <img src="images/LinkedIn.svg" alt="LinkedIn de la Universidad Autónoma de Sinaloa" />
-        </a>
         <a class="social-icon" href="https://www.instagram.com/edav_uas/" aria-label="Instagram" target="_blank">
           <img src="images/ig.svg" alt="Instagram de la Universidad Autónoma de Sinaloa" />
         </a>
