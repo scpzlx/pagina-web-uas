@@ -50,7 +50,7 @@ const headerHTML = `
               <li><a href="taller-grabado.html">Taller de grabado</a></li>
               <li><a href="#">Secretaria académica</a></li>
               <li><a href="#">Coordinaciones de carreras</a></li>
-              <li><a href="#">Secretaria administrativa</a></li>
+              <li><a href="secretaria-administrativa.html">Secretaria administrativa</a></li>
               <li><a href="ADIUAS.html">ADIUAS</a></li>
             </ul>
           </li>
