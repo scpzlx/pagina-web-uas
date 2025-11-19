@@ -20,17 +20,102 @@
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
+    margin-bottom: 40px;
 }
 
 .convocatoria-image:hover {
     transform: scale(1.02);
 }
 
+/* LINKS */
+.links-section {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 3px solid #ffd500;
+}
+
+.links-title {
+  color: #1a237e;
+  font-size: 1.8em;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 35px;
+}
+
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border-left: 4px solid #ffd500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.link-card:hover {
+  background: #1a237e;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(26, 35, 126, 0.2);
+}
+
+.link-icon {
+  font-size: 1.8em;
+  flex-shrink: 0;
+}
+
+.link-text {
+  font-size: 1.05em;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* CONTACTO */
+.contacto-info {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 10px;
+  margin-top: 30px;
+  border-left: 5px solid #1a237e;
+}
+
+.contacto-info h4 {
+  color: #1a237e;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+.contacto-info p {
+  margin: 8px 0;
+  color: #555;
+  font-size: 1.05em;
+}
+
+.contacto-info a {
+  color: #1a237e;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contacto-info a:hover {
+  color: #ffd500;
+  text-decoration: underline;
+}
+
 /* RESPONSIVE DESIGN */
 
 /* Tablets y pantallas medianas (hasta 1024px) */
 @media screen and (max-width: 1024px) {
-
   .container {
     padding: 0 15px;
   }
@@ -46,12 +131,18 @@
   .convocatoria-container {
     padding: 30px;
   }
+
+  .links-title {
+    font-size: 1.6em;
+  }
+
+  .links-grid {
+    gap: 15px;
+  }
 }
 
 /* Tablets pequeñas (hasta 768px) */
 @media screen and (max-width: 768px) {
-
-  /* CONVOCATORIA SECTION */
   .convocatoria-section {
     padding: 40px 15px;
   }
@@ -62,13 +153,42 @@
 
   .convocatoria-image {
     border-radius: 8px;
+    margin-bottom: 30px;
+  }
+
+  .links-section {
+    margin-top: 30px;
+    padding-top: 25px;
+  }
+
+  .links-title {
+    font-size: 1.5em;
+  }
+
+  .links-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .link-card {
+    padding: 15px;
+  }
+
+  .contacto-info {
+    padding: 20px;
+  }
+
+  .contacto-info h4 {
+    font-size: 1.3em;
+  }
+
+  .contacto-info p {
+    font-size: 1em;
   }
 }
 
 /* Móviles pequeños (hasta 480px) */
 @media screen and (max-width: 480px) {
-  
-  /* CONVOCATORIA SECTION */
   .convocatoria-section {
     padding: 30px 10px;
   }
@@ -80,12 +200,47 @@
 
   .convocatoria-image {
     border-radius: 8px;
+    margin-bottom: 25px;
+  }
+
+  .links-section {
+    margin-top: 25px;
+    padding-top: 20px;
+  }
+
+  .links-title {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+  }
+
+  .link-card {
+    padding: 12px 15px;
+    gap: 10px;
+  }
+
+  .link-icon {
+    font-size: 1.5em;
+  }
+
+  .link-text {
+    font-size: 0.95em;
+  }
+
+  .contacto-info {
+    padding: 15px;
+  }
+
+  .contacto-info h4 {
+    font-size: 1.2em;
+  }
+
+  .contacto-info p {
+    font-size: 0.95em;
   }
 }
 
 /* Móviles muy pequeños (hasta 375px) */
 @media screen and (max-width: 375px) {
-
   .convocatoria-section {
     padding: 25px 8px;
   }
@@ -96,5 +251,29 @@
 
   .convocatoria-image {
     border-radius: 6px;
+  }
+
+  .links-title {
+    font-size: 1.2em;
+  }
+
+  .link-card {
+    padding: 10px 12px;
+  }
+
+  .link-icon {
+    font-size: 1.3em;
+  }
+
+  .link-text {
+    font-size: 0.9em;
+  }
+
+  .contacto-info h4 {
+    font-size: 1.1em;
+  }
+
+  .contacto-info p {
+    font-size: 0.9em;
   }
 }
