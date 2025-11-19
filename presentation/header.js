@@ -24,7 +24,7 @@ const headerHTML = `
               <li><a href="normatividad.html">Normativida</a></li>
               <li><a href="organigrama.html">Organigrama</a></li>
               <li><a href="#">Directorio</a></li>
-              <li><a href="#">Consejos Tecnicos</a></li>
+              <li><a href="consejos-tecnicos.html">Consejos Tecnicos</a></li>
             </ul>
           </li>
 
