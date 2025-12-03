@@ -1,9 +1,9 @@
-// scriptNoticia.js - Lista completa de noticias con filtros
+// scriptEvento.js - Lista completa de eventos con filtros
 // Conectado a MySQL via API
 
-const API_URL = '/api';
+const API_URL = '/api/events';
 
-let allNewsData = [];
+let allEventsData = [];
 let currentFilters = {
     month: '',
     year: '',
@@ -20,64 +20,64 @@ function formatDate(dateString) {
     return month + ' ' + day + ', ' + year;
 }
 
-// Función para crear tarjeta de noticia
-function createNewsCard(news) {
-    return '<article class="news-card" data-id="' + news.id + '">' +
-        '<div class="news-image">' +
-            '<img src="' + news.thumbnailImage + '" alt="' + news.title + '">' +
-            '<div class="news-category">' + news.categoryLabel + '</div>' +
+// Función para crear tarjeta de evento
+function createEventsCard(events) {
+    return '<article class="events-card" data-id="' + events.id + '">' +
+        '<div class="events-image">' +
+            '<img src="' + events.thumbnailImage + '" alt="' + events.title + '">' +
+            '<div class="events-category">' + events.categoryLabel + '</div>' +
         '</div>' +
-        '<div class="news-content">' +
+        '<div class="events-content">' +
             '<div>' +
-                '<div class="news-date">' + formatDate(news.date) + '</div>' +
-                '<h2 class="news-title">' +
-                    '<a href="noticia-detalle.html?id=' + news.id + '">' + news.title + '</a>' +
+                '<div class="events-date">' + formatDate(events.date) + '</div>' +
+                '<h2 class="events-title">' +
+                    '<a href="evento-detalle.html?id=' + events.id + '">' + events.title + '</a>' +
                 '</h2>' +
-                '<p class="news-description">' + news.shortDescription + '</p>' +
+                '<p class="events-description">' + events.shortDescription + '</p>' +
             '</div>' +
-            '<div class="news-button">' +
-                '<button class="btn-read-more" onclick="window.location.href=\'noticia-detalle.html?id=' + news.id + '\'">LEER NOTICIA</button>' +
+            '<div class="events-button">' +
+                '<button class="btn-read-more" onclick="window.location.href=\'evento-detalle.html?id=' + events.id + '\'">LEER EVENTO</button>' +
             '</div>' +
         '</div>' +
     '</article>';
 }
 
-// Función para filtrar noticias
-function filterNews() {
+// Función para filtrar eventos
+function filterEvents() {
     const month = currentFilters.month;
     const year = currentFilters.year;
     const category = currentFilters.category;
     
-    let filtered = allNewsData;
+    let filtered = allEventsData;
     
     if (month) {
-        filtered = filtered.filter(function(news) {
-            const newsDate = new Date(news.date + 'T00:00:00');
-            return (newsDate.getMonth() + 1) === parseInt(month);
+        filtered = filtered.filter(function(events) {
+            const eventsDate = new Date(events.date + 'T00:00:00');
+            return (eventsDate.getMonth() + 1) === parseInt(month);
         });
     }
     
     if (year) {
-        filtered = filtered.filter(function(news) {
-            const newsDate = new Date(news.date + 'T00:00:00');
-            return newsDate.getFullYear() === parseInt(year);
+        filtered = filtered.filter(function(events) {
+            const eventsDate = new Date(events.date + 'T00:00:00');
+            return eventsDate.getFullYear() === parseInt(year);
         });
     }
     
     if (category) {
-        filtered = filtered.filter(function(news) {
-            return news.category === category;
+        filtered = filtered.filter(function(events) {
+            return events.category === category;
         });
     }
     
     return filtered;
 }
 
-// Función para renderizar noticias
-function renderNews() {
-    const container = document.getElementById('news-container');
+// Función para renderizar eventos
+function renderEvents() {
+    const container = document.getElementById('events-container');
     const noResults = document.getElementById('no-results');
-    const filtered = filterNews();
+    const filtered = filterEvents();
     
     if (filtered.length === 0) {
         container.innerHTML = '';
@@ -88,8 +88,8 @@ function renderNews() {
         if (noResults) {
             noResults.style.display = 'none';
         }
-        const html = filtered.map(function(news) {
-            return createNewsCard(news);
+        const html = filtered.map(function(events) {
+            return createEventsCard(events);
         }).join('');
         container.innerHTML = html;
     }
@@ -97,46 +97,46 @@ function renderNews() {
 
 // Función para mostrar loading
 function showLoading() {
-    const container = document.getElementById('news-container');
+    const container = document.getElementById('events-container');
     if (container) {
-        container.innerHTML = '<div style="text-align: center; padding: 60px;"><p style="font-size: 18px; color: #666;">Cargando noticias...</p></div>';
+        container.innerHTML = '<div style="text-align: center; padding: 60px;"><p style="font-size: 18px; color: #666;">Cargando eventos...</p></div>';
     }
 }
 
 // Función para mostrar error
 function showError(message) {
-    const container = document.getElementById('news-container');
+    const container = document.getElementById('events-container');
     if (container) {
         container.innerHTML = '<div style="text-align: center; padding: 40px; color: #dc3545;"><i class="fas fa-exclamation-triangle" style="font-size: 48px; margin-bottom: 20px; display: block;"></i><p style="font-size: 16px;">' + message + '</p></div>';
     }
 }
 
-// Cargar noticias desde la base de datos
-async function loadNewsFromDatabase() {
-    console.log('Cargando noticias desde MySQL...');
+// Cargar eventos desde la base de datos
+async function loadEventsFromDatabase() {
+    console.log('Cargando eventos desde MySQL...');
     showLoading();
     
     try {
-        const response = await fetch(API_URL + '/get-all-news.php');
+        const response = await fetch(API_URL + '/get-all-events.php');
         const result = await response.json();
         
         if (!result.success) {
-            throw new Error(result.message || 'Error al cargar noticias');
+            throw new Error(result.message || 'Error al cargar eventos');
         }
         
-        allNewsData = result.data;
-        console.log('Noticias cargadas:', allNewsData.length);
-        renderNews();
+        allEventsData = result.data;
+        console.log('Eventos cargadas:', allEventsData.length);
+        renderEvents();
         
     } catch (error) {
-        console.error('Error al cargar noticias:', error);
-        showError('Error al cargar las noticias. Por favor, intenta más tarde.');
+        console.error('Error al cargar eventos:', error);
+        showError('Error al cargar los eventos. Por favor, intenta más tarde.');
     }
 }
 
 // Inicializar cuando se carga la página
 document.addEventListener('DOMContentLoaded', function() {
-    loadNewsFromDatabase();
+    loadEventsFromDatabase();
     
     const monthFilter = document.getElementById('filter-month');
     const yearFilter = document.getElementById('filter-year');
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
         currentFilters.month = monthFilter.value;
         monthFilter.addEventListener('change', function() {
             currentFilters.month = this.value;
-            renderNews();
+            renderEvents();
         });
     }
     
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
         currentFilters.year = yearFilter.value;
         yearFilter.addEventListener('change', function() {
             currentFilters.year = this.value;
-            renderNews();
+            renderEvents();
         });
     }
     
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
         currentFilters.category = categoryFilter.value;
         categoryFilter.addEventListener('change', function() {
             currentFilters.category = this.value;
-            renderNews();
+            renderEvents();
         });
     }
 });

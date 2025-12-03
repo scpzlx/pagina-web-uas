@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel de Administración - Noticias</title>
-    <link rel="stylesheet" href="/css/styles-admin.css" />
+    <title>Panel de Administración - Eventos</title>
+    <link rel="stylesheet" href="/css/admin-panel-eventos.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -16,7 +16,7 @@
       <!-- Header -->
       <header class="admin-header">
         <h1>
-          <i class="fas fa-newspaper"></i> Panel de Administración de Noticias
+          <i class="fas fa-eventspaper"></i> Panel de Administración de Eventos
         </h1>
         <div class="header-actions">
           <button
@@ -33,29 +33,29 @@
         <!-- Tabs -->
         <div class="tabs">
           <button class="tab-btn active" onclick="showTab('crear')">
-            <i class="fas fa-plus-circle"></i> Crear Noticia
+            <i class="fas fa-plus-circle"></i> Crear Evento
           </button>
           <button class="tab-btn" onclick="showTab('gestionar')">
-            <i class="fas fa-list"></i> Gestionar Noticias
+            <i class="fas fa-list"></i> Gestionar Eventos
           </button>
         </div>
 
-        <!-- Tab: Crear Noticia -->
+        <!-- Tab: Crear Evento -->
         <div id="tab-crear" class="tab-content active">
           <div class="form-container">
-            <h2>Nueva Noticia</h2>
+            <h2>Nuevo Evento</h2>
 
-            <form id="news-form">
+            <form id="events-form">
               <!-- Título -->
               <div class="form-group">
-                <label for="news-title-input">
-                  <i class="fas fa-heading"></i> Título de la Noticia *
+                <label for="events-title-input">
+                  <i class="fas fa-heading"></i> Título del Evento *
                 </label>
                 <input
                   type="text"
-                  id="news-title-input"
+                  id="events-title-input"
                   class="form-control"
-                  placeholder="Escribe el título completo de la noticia"
+                  placeholder="Escribe el título completo del evento"
                   required
                 />
                 <small
@@ -66,29 +66,29 @@
 
               <!-- Descripción corta -->
               <div class="form-group">
-                <label for="news-short-desc">
+                <label for="events-short-desc">
                   <i class="fas fa-align-left"></i> Descripción Corta *
                 </label>
                 <textarea
-                  id="news-short-desc"
+                  id="events-short-desc"
                   class="form-control"
                   rows="3"
-                  placeholder="Escribe una descripción breve para la lista de noticias (máximo 200 caracteres)"
+                  placeholder="Escribe una descripción breve para la lista de eventos (máximo 200 caracteres)"
                   maxlength="200"
                   required
                 ></textarea>
-                <small>Aparecerá en la página principal de noticias</small>
+                <small>Aparecerá en la página principal de eventos</small>
               </div>
 
               <!-- Fecha -->
               <div class="form-row">
                 <div class="form-group">
-                  <label for="news-date">
+                  <label for="events-date">
                     <i class="fas fa-calendar"></i> Fecha de Publicación *
                   </label>
                   <input
                     type="date"
-                    id="news-date"
+                    id="events-date"
                     class="form-control"
                     required
                   />
@@ -96,10 +96,10 @@
 
                 <!-- Categoría -->
                 <div class="form-group">
-                  <label for="news-category">
+                  <label for="events-category">
                     <i class="fas fa-tag"></i> Categoría *
                   </label>
-                  <select id="news-category" class="form-control" required>
+                  <select id="events-category" class="form-control" required>
                     <option value="">Seleccionar categoría</option>
                     <option value="actividades-generales">
                       Actividades Generales
@@ -115,7 +115,7 @@
 
               <!-- Contenido completo -->
               <div class="form-group">
-                <label for="news-content">
+                <label for="events-content">
                   <i class="fas fa-file-alt"></i> Contenido Completo *
                 </label>
                 <div class="content-helper">
@@ -127,7 +127,7 @@
                     <i class="fas fa-plus"></i> Agregar Párrafo
                   </button>
                   <small
-                    >Cada línea será un párrafo separado en la noticia</small
+                    >Cada línea será un párrafo separado en el evento</small
                   >
                 </div>
                 <div id="paragraphs-container">
@@ -135,7 +135,7 @@
                     <textarea
                       class="form-control paragraph-input"
                       rows="4"
-                      placeholder="Escribe el primer párrafo de la noticia..."
+                      placeholder="Escribe el primer párrafo del evento..."
                       required
                     ></textarea>
                     <button
@@ -156,13 +156,13 @@
 
                 <!-- Imagen miniatura -->
                 <div class="image-input-group">
-                  <label for="news-thumbnail"
+                  <label for="events-thumbnail"
                     >Imagen Miniatura (para lista) *</label
                   >
                   <div class="file-input-wrapper">
                     <input
                       type="url"
-                      id="news-thumbnail"
+                      id="events-thumbnail"
                       class="form-control"
                       placeholder="https://ejemplo.com/imagen-miniatura.jpg"
                     />
@@ -191,11 +191,11 @@
 
                 <!-- Imagen hero -->
                 <div class="image-input-group">
-                  <label for="news-hero">Imagen Principal/Hero *</label>
+                  <label for="events-hero">Imagen Principal/Hero *</label>
                   <div class="file-input-wrapper">
                     <input
                       type="url"
-                      id="news-hero"
+                      id="events-hero"
                       class="form-control"
                       placeholder="https://ejemplo.com/imagen-hero.jpg"
                     />
@@ -248,14 +248,14 @@
 
               <!-- Video (opcional) -->
               <div class="form-group">
-                <label for="news-video">
+                <label for="events-video">
                   <i class="fas fa-video"></i> Video (Opcional)
                 </label>
                 <div class="image-input-group">
                   <div class="file-input-wrapper">
                     <input
                       type="url"
-                      id="news-video"
+                      id="events-video"
                       class="form-control"
                       placeholder="Pega aquí el link de YouTube o Facebook"
                     />
@@ -296,35 +296,35 @@
                 <button
                   type="button"
                   class="btn btn-primary"
-                  onclick="previewNews()"
+                  onclick="previewevents()"
                 >
                   <i class="fas fa-eye"></i> Vista Previa
                 </button>
                 <button type="submit" class="btn btn-success">
-                  <i class="fas fa-save"></i> Guardar Noticia
+                  <i class="fas fa-save"></i> Guardar Evento
                 </button>
               </div>
             </form>
           </div>
         </div>
 
-        <!-- Tab: Gestionar Noticias -->
+        <!-- Tab: Gestionar Eventos -->
         <div id="tab-gestionar" class="tab-content">
           <div class="manage-container">
-            <h2>Noticias Publicadas</h2>
+            <h2>Eventos Publicadas</h2>
 
             <div class="search-bar">
               <input
                 type="text"
-                id="search-news"
+                id="search-events"
                 class="form-control"
-                placeholder="Buscar noticias..."
-                onkeyup="searchNews()"
+                placeholder="Buscar eventos..."
+                onkeyup="searchevents()"
               />
             </div>
 
-            <div id="news-list" class="news-list">
-              <!-- La lista de noticias se cargará aquí -->
+            <div id="events-list" class="events-list">
+              <!-- La lista de eventos se cargará aquí -->
             </div>
           </div>
         </div>
@@ -335,7 +335,7 @@
     <div id="preview-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
-          <h2>Vista Previa de la Noticia</h2>
+          <h2>Vista Previa del Evento</h2>
           <button class="close-modal" onclick="closePreview()">
             <i class="fas fa-times"></i>
           </button>
@@ -368,6 +368,6 @@
       </div>
     </div>
 
-    <script src="/js/news/scriptAdmin.js"></script>
+    <script src="js/events/scriptAdminEvents.js"></script>
   </body>
 </html>

@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Detalle de Noticia - Universidad</title>
-    <link rel="stylesheet" href="/css/styles-noticias-detalle.css" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Evento - Universidad</title>
+    <link rel="stylesheet" href="css/eventos-detalle.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
   </head>
-  <body>
-    <button onclick="window.history.back()" class="close-button">×</button>       <!-- boton para cerrar las noticias-->
+
+</head>
+<body>
+
+    <button onclick="window.history.back()" class="close-button">×</button>       <!-- boton para cerrar los eventos-->
     <div class="container">
       <div class="content-wrapper">
         <!-- Contenido principal -->
@@ -25,13 +28,13 @@
               class="hero-image"
             />
             <div class="hero-overlay">
-              <h1 id="news-title" class="hero-title"></h1>
+              <h1 id="events-title" class="hero-title"></h1>
             </div>
           </div>
 
           <!-- Barra de compartir -->
           <div class="share-bar">
-            <span class="share-text">COMPARTE ESTA NOTICIA</span>
+            <span class="share-text">COMPARTE ESTE EVENTO</span>
             <div class="share-buttons">
               <a
                 href="#"
@@ -65,23 +68,23 @@
 
           <!-- Fecha y título -->
           <div class="article-header">
-            <p id="news-date" class="article-date"></p>
-            <h2 id="news-full-title" class="article-title"></h2>
+            <p id="events-date" class="article-date"></p>
+            <h2 id="events-full-title" class="article-title"></h2>
           </div>
 
           <!-- Contenido del artículo -->
-          <div id="news-content" class="article-content">
+          <div id="events-content" class="article-content">
             <!-- El contenido se cargará dinámicamente -->
           </div>
 
           <!-- Video (si existe) -->
-          <div id="news-video" class="video-container" style="display: none">
+          <div id="events-video" class="video-container" style="display: none">
             <!-- El video se cargará dinámicamente -->
           </div>
 
           <!-- Barra de compartir inferior -->
           <div class="share-bar share-bar-bottom">
-            <span class="share-text">COMPARTE ESTA NOTICIA</span>
+            <span class="share-text">COMPARTE ESTA EVENTO</span>
             <div class="share-buttons">
               <a
                 href="#"
@@ -131,18 +134,18 @@
           </div>
         </main>
 
-        <!-- Sidebar de noticias relacionadas -->
+        <!-- Sidebar de eventos relacionadas -->
         <aside class="sidebar">
           <div class="sidebar-header">
-            <h3>OTRAS<br />NOTICIAS</h3>
+            <h3>OTROS<br />EVENTOS</h3>
           </div>
-          <div id="related-news" class="related-news-list">
-            <!-- Otras noticias se cargarán dinámicamente -->
+          <div id="related-events" class="related-events-list">
+            <!-- Otros eventos se cargarán dinámicamente -->
           </div>
         </aside>
       </div>
     </div>
-
-    <script src="/js/news/scriptDetalleNoticia.js"></script>
-  </body>
+    
+    <script src="js/events/scriptDetalleEvento.js"></script>
+</body>
 </html>

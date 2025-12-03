@@ -57,7 +57,7 @@ const headerHTML = `
           <li class="dropdown">
             <a href="#">Difusion</a>
             <ul class="dropdown-content">
-              <li><a href="#">Eventos</a></li>
+              <li><a href="eventos.html">Eventos</a></li>
               <li><a href="noticias.html">Noticias</a></li>
             </ul>
           </li>

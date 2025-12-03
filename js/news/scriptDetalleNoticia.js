@@ -1,7 +1,7 @@
 // scriptDetalleNoticia.js - Detalle de una noticia
 // Conectado a MySQL via API
 
-const API_URL = '/api';
+const API_URL = '/api/news';
 
 // Función para obtener parámetro de URL
 function getUrlParameter(name) {

@@ -7,6 +7,7 @@
   <title>Escuela de diseño y artes visuales</title>
   <link rel="stylesheet" href="/css/style-original.css" />
   <link rel="stylesheet" href="css/styles-noticias-index.css" />
+  <link rel="stylesheet" href="css/eventos-index.css">
   <link rel="stylesheet" href="css/styles-base.css" />
   <link rel="icon" type="image/png" href="images/favicon.ico" />
   <link rel="apple-touch-icon" href="images/favicon.ico" />
@@ -39,76 +40,22 @@
     </div>
   </section>
 
-  <!-- CONVOCATORIAS -->
-  <section class="convocatorias">
-    <h2>Convocatorias</h2>
-
-    <div class="carousel-container">
-      <button class="arrow left" onclick="moveCarousel(-1)">&#10094;</button>
-
-      <div class="viewport">
-        <div class="track" id="track">
-          <div class="card card-blue">
-            <div class="icon">👤</div>
-            <h3>Personal loan</h3>
-            <p>
-              Personal loans provide borrowers with flexibility in how they
-              use the funds.
-            </p>
-            <button class="btn-secondary">Apply Now</button>
-          </div>
-
-          <div class="card card-yellow">
-            <div class="icon">💼</div>
-            <h3>Business loan</h3>
-            <p>
-              Business Loan Services provide financial assistance to
-              businesses for various purposes.
-            </p>
-            <button class="btn-secondary">Apply Now</button>
-          </div>
-
-          <div class="card card-blue">
-            <div class="icon">🚗</div>
-            <h3>Auto Loan</h3>
-            <p>
-              Auto Loan Services provide financing options for individuals and
-              businesses to purchase a vehicle.
-            </p>
-            <button class="btn-secondary">Apply Now</button>
-          </div>
-
-          <div class="card card-yellow">
-            <div class="icon">🚗</div>
-            <h3>Auto Loan</h3>
-            <p>
-              Auto Loan Services provide financing options for individuals and
-              businesses to purchase a vehicle.
-            </p>
-            <button class="btn-secondary">Apply Now</button>
-          </div>
-
-          <div class="card card-blue">
-            <div class="icon">🚗</div>
-            <h3>Auto Loan</h3>
-            <p>
-              Auto Loan Services provide financing options for individuals and
-              businesses to purchase a vehicle.
-            </p>
-            <button class="btn-secondary">Apply Now</button>
-          </div>
-        </div>
-      </div>
-
-      <button class="arrow right" onclick="moveCarousel(1)">&#10095;</button>
+  <!-- EVENTOS -->
+  <section class="eventos">
+    <h2>Eventos</h2>
+    <div class="events-section" id="latest-events-container">
+      <!-- los ultimos 3 eventos se cargarán aquí dinámicamente -->
     </div>
-
-    <button class="btn">Saber más</button>
+    <div class="eventos-button-container">
+      <button class="btn" onclick="window.location.href='eventos.html'">
+        Ver todos los eventos
+      </button>
+    </div>
   </section>
 
   <!-- NOTICIAS -->
   <section class="noticias">
-    <h2>Noticias -</h2>
+    <h2>Noticias</h2>
     <div class="news-section" id="latest-news-container">
       <!-- Las 3 últimas noticias se cargarán aquí dinámicamente -->
     </div>
@@ -150,7 +97,8 @@
   <!-- FOOTER -->
   <div id="footer-container"></div>
 
-  <script src="js/script.js"></script>
+  <script src="js/news/noticia-index.js"></script>
+  <script src="js/events/evento-index.js"></script>
   <script src="js/calendario-image.js"></script>
   <script src="js/hero-animation.js"></script>
   <script src="js/noticias-animation.js"></script>

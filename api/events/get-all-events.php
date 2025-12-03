@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once __DIR__ . '/../config.php';
 
 $conn = getConnection();
 
@@ -15,7 +15,7 @@ try {
                 hero_image as heroImage,
                 video_url as videoUrl,
                 status
-            FROM noticias 
+            FROM eventos 
             WHERE status = 'published'
             ORDER BY date DESC, id DESC";
     
@@ -25,12 +25,12 @@ try {
         throw new Exception('Error en la consulta: ' . $conn->error);
     }
     
-    $news = [];
+    $events = [];
     
     while ($row = $result->fetch_assoc()) {
         $contentSql = "SELECT paragraph_text 
-                       FROM noticia_content 
-                       WHERE noticia_id = ? 
+                       FROM evento_content 
+                       WHERE evento_id = ? 
                        ORDER BY paragraph_order ASC";
         $contentStmt = $conn->prepare($contentSql);
         $contentStmt->bind_param("i", $row['id']);
@@ -45,8 +45,8 @@ try {
         $contentStmt->close();
         
         $gallerySql = "SELECT image_url 
-                       FROM noticia_gallery 
-                       WHERE noticia_id = ? 
+                       FROM evento_gallery 
+                       WHERE evento_id = ? 
                        ORDER BY image_order ASC";
         $galleryStmt = $conn->prepare($gallerySql);
         $galleryStmt->bind_param("i", $row['id']);
@@ -60,13 +60,13 @@ try {
         $row['gallery'] = $gallery;
         $galleryStmt->close();
         
-        $news[] = $row;
+        $events[] = $row;
     }
     
     echo json_encode([
         'success' => true,
-        'data' => $news,
-        'count' => count($news)
+        'data' => $events,
+        'count' => count($events)
     ]);
     
 } catch (Exception $e) {

@@ -1,7 +1,7 @@
 // scriptAdmin.js - Panel de administración
 // Conectado a MySQL via API
 
-const API_URL = '/api';
+const API_URL = '/api/news';
 
 let editingNewsId = null;
 
