@@ -54,7 +54,7 @@ try {
         $thumbnailImage,
         $heroImage,
         $videoUrl,
-        $newsId
+        $eventsId
     );
     
     if (!$stmt->execute()) {
