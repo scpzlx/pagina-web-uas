@@ -3,6 +3,7 @@ const footerHTML = `
     <section class="footer-left">
       <img src="images/LogoUas.png" alt="Logo UAS" class="logoUas" />
       <img src="images/logoEscuelaIFooter.png" alt="Logo Secundario" class="logoEscuela" />
+      <img src="images/logo_uas_futuro.png" alt="UAS visión futuro" class="logoFuturo">
     </section>
 
     <section class="footer-center">
@@ -53,7 +54,7 @@ const footerHTML = `
         </div>
       </address>
     </section>
-  </footer
+  </footer>
 `;
 
 document.addEventListener('DOMContentLoaded', function() {

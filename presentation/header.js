@@ -4,6 +4,7 @@ const headerHTML = `
     <nav class="navbar">
       <div class="logoUas">
         <img src="images/LogoUas.png" alt="UAS logo" />
+        <img src="images/logo_uas_futuro.png" alt="UAS visión futuro">
       </div>
 
       <div class="hamburger" id="hamburger">

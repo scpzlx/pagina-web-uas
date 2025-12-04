@@ -43,6 +43,9 @@ body {
 
 .navbar .logoUas {
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .navbar .logoUas img {
@@ -194,7 +197,7 @@ body {
 .footer {
   background: #1e1fb2;
   color: white;
-  padding: 15px 30px; /* menos padding */
+  padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -217,7 +220,7 @@ body {
   transition: transform 0.3s ease;
 }
 
-.logo-img:hover {
+.logoUas:hover {
   transform: scale(1.05);
 }
 
@@ -230,7 +233,20 @@ body {
   transition: transform 0.3s ease;
 }
 
-.grid-img:hover {
+.logoEscuela:hover {
+  transform: scale(1.05);
+}
+
+.logoFuturo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 12px;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.logoFuturo:hover {
   transform: scale(1.05);
 }
 
@@ -355,14 +371,154 @@ address {
   font-style: normal;
 }
 
-/* Tablets y pantallas medianas (hasta 1024px) */
-@media screen and (max-width: 1024px) {
+/* Pantallas grandes (más de 1200px) - menú normal */
+@media screen and (min-width: 1201px) {
+  .hamburger {
+    display: none;
+  }
+
+  .menu {
+    display: flex;
+  }
+
+  .navbar ul {
+    gap: 70px;
+  }
+}
+
+/* Tablets y pantallas medianas (hasta 1200px) */
+@media screen and (max-width: 1200px) {
   .navbar {
     padding: 10px 20px;
   }
 
+  .hamburger {
+    display: flex;
+  }
+
+  .menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: #1e28b7;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 80px;
+    padding-bottom: 20px;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+
+  .menu::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .menu::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .menu::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+
+  .menu::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .menu.active {
+    right: 0;
+  }
+
   .navbar ul {
-    gap: 30px;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .navbar ul li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .navbar ul li a {
+    padding: 15px 20px;
+    display: block;
+    white-space: normal;
+  }
+
+  .navbar ul li.dropdown > a::after {
+    position: absolute;
+    right: 20px;
+    transform: rotate(0deg);
+  }
+
+  .navbar ul li.dropdown.active > a::after {
+    transform: rotate(90deg);
+  }
+
+  .navbar ul li ul.dropdown-content {
+    position: static;
+    display: none;
+    background-color: rgba(255, 213, 0, 0.1);
+    box-shadow: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .navbar ul li.dropdown.active ul.dropdown-content {
+    display: block;
+    max-height: 1000px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+
+  .navbar ul li.dropdown.active ul.dropdown-content::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .navbar ul li.dropdown.active ul.dropdown-content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .navbar ul li.dropdown.active ul.dropdown-content::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+  }
+
+  .navbar ul li ul.dropdown-content li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .navbar ul li ul.dropdown-content li a {
+    color: white;
+    padding: 12px 20px 12px 40px;
+    font-size: 0.95rem;
+  }
+
+  .navbar ul li ul.dropdown-content li a:hover {
+    background-color: #ffd500;
+    color: #1a237e;
+  }
+
+  .navbar ul li:hover ul.dropdown-content {
+    display: none;
+  }
+
+  .navbar .logoEscuelaNavbar {
+    order: -1;
   }
 }
 
@@ -380,6 +536,14 @@ address {
 
   .navbar {
     padding: 10px 20px;
+  }
+
+  .navbar .logoUas {
+    gap: 8px;
+  }
+
+  .navbar .logoUas img {
+    height: 50px;
   }
 
   .hamburger {
@@ -553,6 +717,18 @@ address {
     font-size: 1.6em;
   }
 
+  .navbar .logoUas {
+    gap: 5px;
+  }
+
+  .navbar .logoUas img {
+    height: 40px;
+  }
+
+  .navbar .logoEscuelaNavbar img {
+    height: 40px;
+  }
+
   .container {
     margin: 30px auto;
     padding: 0 15px;
@@ -569,7 +745,11 @@ address {
 
   .navbar .logoUas img,
   .navbar .logoEscuelaNavbar img {
-    height: 40px;
+    height: 35px;
+  }
+
+  .navbar .logoUas {
+    gap: 3px;
   }
 
   .navbar ul {
