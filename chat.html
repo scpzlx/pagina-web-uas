@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat Informativo UAS</title>
+
+<style>
+    body {
+        font-family: "Segoe UI", sans-serif;
+        background: #f3f4f8;
+        margin: 0;
+        padding: 0;
+    }
+
+    .chat-btn {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background: #1f29b7;
+        color: white;
+        padding: 15px 22px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 17px;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        transition: 0.3s;
+        z-index: 2000;
+    }
+    .chat-btn:hover {
+        transform: scale(1.05);
+        background: #18229a;
+    }
+
+    .chat-window {
+        width: 380px;
+        height: 550px;
+        background: white;
+        position: fixed;
+        bottom: 90px;
+        right: 25px;
+        border-radius: 20px;
+        box-shadow: 0 6px 30px rgba(0,0,0,0.3);
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        animation: abrir 0.3s ease;
+        z-index: 2000;
+    }
+
+    @keyframes abrir {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .chat-header {
+        background: #1f29b7;
+        padding: 15px;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        border-bottom: 4px solid #fed501;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .close-chat {
+        cursor: pointer;
+        font-size: 24px;
+        font-weight: bold;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: 0.2s;
+    }
+
+    .close-chat:hover {
+        background: rgba(255,255,255,0.2);
+    }
+
+    .chat-body {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        background: #eef1f8;
+    }
+
+    .message {
+        margin-bottom: 12px;
+        padding: 12px;
+        border-radius: 12px;
+        max-width: 80%;
+        font-size: 14px;
+        line-height: 1.4;
+        animation: aparecer 0.25s ease;
+    }
+
+    @keyframes aparecer {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bot {
+        background: white;
+        border-left: 4px solid #fed501;
+    }
+
+    .user {
+        background: #1f29b7;
+        color: white;
+        margin-left: auto;
+        border-right: 4px solid #fed501;
+    }
+
+    .options {
+        background: white;
+        padding: 10px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        animation: aparecer 0.25s ease;
+        border: 2px solid #fed501;
+    }
+
+    .option-btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        background: #1f29b7;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.2s;
+        text-align: left;
+    }
+
+    .option-btn:hover {
+        background: #fed501;
+        color: #1f29b7;
+        transform: translateX(5px);
+    }
+
+    .back-btn {
+        background: #6c757d;
+        margin-top: 10px;
+    }
+
+    .back-btn:hover {
+        background: #5a6268;
+        transform: translateX(0);
+    }
+
+    .chat-input {
+        display: flex;
+        padding: 10px;
+        background: #f1f1f1;
+        border-top: 2px solid #fed501;
+    }
+
+    .chat-input input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+
+    .chat-input button {
+        background: #1f29b7;
+        border: none;
+        color: white;
+        padding: 10px 15px;
+        margin-left: 5px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .chat-input button:hover {
+        background: #fed501;
+        color: #1f29b7;
+    }
+
+    .typing {
+        display: inline-block;
+        padding: 10px 15px;
+        background: white;
+        border-radius: 12px;
+        border-left: 4px solid #fed501;
+    }
+
+    .typing span {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #1f29b7;
+        margin: 0 2px;
+        animation: typing 1.4s infinite;
+    }
+
+    .typing span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .typing span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+        0%, 60%, 100% {
+            transform: translateY(0);
+        }
+        30% {
+            transform: translateY(-10px);
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="chat-btn" onclick="toggleChat()">💬 Ayuda</div>
+
+<div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+        <span>Chat de Información UAS</span>
+        <span class="close-chat" onclick="toggleChat()">×</span>
+    </div>
+
+    <div class="chat-body" id="chatBody">
+        <!-- Los mensajes se agregarán aquí dinámicamente -->
+    </div>
+
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Escribe 'hola' para comenzar..." onkeydown="if(event.key==='Enter') sendMessage()">
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
+</div>
+
+<script>
+const API = "api/backend.php";
+
+// Variables globales
+let categorias = [];
+let subcategorias = [];
+let preguntas = [];
+let conversationState = "inicio"; // inicio, categoria_seleccionada, subcategoria_seleccionada
+let selectedCategoria = null;
+let selectedSubcategoria = null;
+let chatInitialized = false;
+
+/* ----------------------------------------------------------
+      CARGAR DATOS AL INICIO
+----------------------------------------------------------- */
+async function loadData() {
+    try {
+        // Cargar categorías
+        const resCat = await fetch(API + "?action=get_categories");
+        const dataCat = await resCat.json();
+        if (dataCat.success) {
+            categorias = dataCat.data;
+        }
+
+        // Cargar todas las subcategorías
+        const resSub = await fetch(API + "?action=get_all_subcategories");
+        const dataSub = await resSub.json();
+        if (dataSub.success) {
+            subcategorias = dataSub.data;
+        }
+
+        // Cargar preguntas y respuestas
+        const resPreg = await fetch(API + "?action=get_questions");
+        const dataPreg = await resPreg.json();
+        if (dataPreg.success) {
+            preguntas = dataPreg.data;
+        }
+
+        console.log("Datos cargados:", { categorias, subcategorias, preguntas });
+    } catch (error) {
+        console.error("Error al cargar datos:", error);
+    }
+}
+
+// Cargar datos al iniciar
+loadData();
+
+/* ----------------------------------------------------------
+      FUNCIONES DEL CHAT
+----------------------------------------------------------- */
+
+function toggleChat() {
+    let chat = document.getElementById("chatWindow");
+    if (chat.style.display === "flex") {
+        chat.style.display = "none";
+    } else {
+        chat.style.display = "flex";
+        if (!chatInitialized) {
+            initChat();
+            chatInitialized = true;
+        }
+    }
+}
+
+function initChat() {
+    addBotMessage("👋 ¡Hola! Soy tu asistente virtual de la Facultad de Diseño y Artes Visuales de la UAS.");
+    setTimeout(() => {
+        addBotMessage("Estoy aquí para ayudarte a encontrar la información que necesitas. Escribe 'hola' o 'ayuda' para comenzar.");
+    }, 500);
+}
+
+function sendMessage() {
+    let input = document.getElementById("userInput");
+    let text = input.value.trim();
+    if (text === "") return;
+
+    addUserMessage(text);
+    input.value = "";
+
+    setTimeout(() => processMessage(text), 600);
+}
+
+function addUserMessage(text) {
+    let chatBody = document.getElementById("chatBody");
+    let msg = document.createElement("div");
+    msg.classList.add("message", "user");
+    msg.innerText = text;
+    chatBody.appendChild(msg);
+    scrollToBottom();
+}
+
+function addBotMessage(text) {
+    let chatBody = document.getElementById("chatBody");
+    let msg = document.createElement("div");
+    msg.classList.add("message", "bot");
+    msg.innerHTML = text;
+    chatBody.appendChild(msg);
+    scrollToBottom();
+}
+
+function showTyping() {
+    let chatBody = document.getElementById("chatBody");
+    let typing = document.createElement("div");
+    typing.classList.add("typing");
+    typing.id = "typing";
+    typing.innerHTML = "<span></span><span></span><span></span>";
+    chatBody.appendChild(typing);
+    scrollToBottom();
+}
+
+function removeTyping() {
+    let typing = document.getElementById("typing");
+    if (typing) typing.remove();
+}
+
+function scrollToBottom() {
+    let chatBody = document.getElementById("chatBody");
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+/* ----------------------------------------------------------
+      PROCESAR MENSAJES
+----------------------------------------------------------- */
+
+function processMessage(text) {
+    text = text.toLowerCase().trim();
+
+    // Comandos especiales
+    if (text === "hola" || text === "ayuda" || text === "inicio" || text === "empezar" || text === "comenzar") {
+        showCategorias();
+        return;
+    }
+
+    if (text === "menu" || text === "volver" || text === "regresar") {
+        resetConversation();
+        showCategorias();
+        return;
+    }
+
+    // Si no reconoce el comando
+    addBotMessage("🤔 No entendí tu mensaje. Escribe 'menu' para ver las opciones disponibles.");
+}
+
+function resetConversation() {
+    conversationState = "inicio";
+    selectedCategoria = null;
+    selectedSubcategoria = null;
+}
+
+/* ----------------------------------------------------------
+      MOSTRAR CATEGORÍAS
+----------------------------------------------------------- */
+
+function showCategorias() {
+    conversationState = "inicio";
+    selectedCategoria = null;
+    selectedSubcategoria = null;
+
+    showTyping();
+    setTimeout(() => {
+        removeTyping();
+        addBotMessage("📚 Selecciona una categoría para continuar:");
+        
+        let chatBody = document.getElementById("chatBody");
+        let optionsDiv = document.createElement("div");
+        optionsDiv.classList.add("options");
+        
+        if (categorias.length === 0) {
+            optionsDiv.innerHTML = "<p style='text-align:center; color:#666;'>No hay categorías disponibles</p>";
+        } else {
+            categorias.forEach(cat => {
+                let btn = document.createElement("button");
+                btn.classList.add("option-btn");
+                btn.innerText = cat.nombre;
+                btn.onclick = () => selectCategoria(cat.id, cat.nombre);
+                optionsDiv.appendChild(btn);
+            });
+        }
+        
+        chatBody.appendChild(optionsDiv);
+        scrollToBottom();
+    }, 800);
+}
+
+/* ----------------------------------------------------------
+      SELECCIONAR CATEGORÍA
+----------------------------------------------------------- */
+
+function selectCategoria(catId, catNombre) {
+    selectedCategoria = catId;
+    conversationState = "categoria_seleccionada";
+    
+    addUserMessage(catNombre);
+    
+    showTyping();
+    setTimeout(() => {
+        removeTyping();
+        
+        // Filtrar subcategorías de esta categoría
+        let subsDeCategoria = subcategorias.filter(s => s.categoria_id == catId);
+        
+        if (subsDeCategoria.length === 0) {
+            addBotMessage("😕 No hay subcategorías disponibles para esta categoría.");
+            setTimeout(() => {
+                addBotMessage("Escribe 'menu' para volver al inicio.");
+            }, 500);
+            return;
+        }
+        
+        addBotMessage("📋 Perfecto, selecciona una subcategoría:");
+        
+        let chatBody = document.getElementById("chatBody");
+        let optionsDiv = document.createElement("div");
+        optionsDiv.classList.add("options");
+        
+        subsDeCategoria.forEach(sub => {
+            let btn = document.createElement("button");
+            btn.classList.add("option-btn");
+            btn.innerText = sub.nombre;
+            btn.onclick = () => selectSubcategoria(sub.id, sub.nombre);
+            optionsDiv.appendChild(btn);
+        });
+        
+        // Botón de regresar
+        let backBtn = document.createElement("button");
+        backBtn.classList.add("option-btn", "back-btn");
+        backBtn.innerText = "⬅️ Volver a categorías";
+        backBtn.onclick = () => showCategorias();
+        optionsDiv.appendChild(backBtn);
+        
+        chatBody.appendChild(optionsDiv);
+        scrollToBottom();
+    }, 800);
+}
+
+/* ----------------------------------------------------------
+      SELECCIONAR SUBCATEGORÍA
+----------------------------------------------------------- */
+
+function selectSubcategoria(subId, subNombre) {
+    selectedSubcategoria = subId;
+    conversationState = "subcategoria_seleccionada";
+    
+    addUserMessage(subNombre);
+    
+    showTyping();
+    setTimeout(() => {
+        removeTyping();
+        
+        // Filtrar preguntas de esta subcategoría
+        let preguntasDeSubcategoria = preguntas.filter(p => p.subcategoria_id == subId);
+        
+        if (preguntasDeSubcategoria.length === 0) {
+            addBotMessage("😕 No hay preguntas disponibles para esta subcategoría.");
+            setTimeout(() => {
+                addBotMessage("Escribe 'menu' para volver al inicio.");
+            }, 500);
+            return;
+        }
+        
+        addBotMessage("❓ Selecciona la pregunta que deseas consultar:");
+        
+        let chatBody = document.getElementById("chatBody");
+        let optionsDiv = document.createElement("div");
+        optionsDiv.classList.add("options");
+        
+        preguntasDeSubcategoria.forEach(preg => {
+            let btn = document.createElement("button");
+            btn.classList.add("option-btn");
+            btn.innerText = preg.pregunta;
+            btn.onclick = () => showRespuesta(preg.pregunta, preg.respuesta);
+            optionsDiv.appendChild(btn);
+        });
+        
+        // Botón de regresar
+        let backBtn = document.createElement("button");
+        backBtn.classList.add("option-btn", "back-btn");
+        backBtn.innerText = "⬅️ Volver a subcategorías";
+        backBtn.onclick = () => {
+            addUserMessage("Volver");
+            selectCategoria(selectedCategoria, "");
+        };
+        optionsDiv.appendChild(backBtn);
+        
+        chatBody.appendChild(optionsDiv);
+        scrollToBottom();
+    }, 800);
+}
+
+/* ----------------------------------------------------------
+      MOSTRAR RESPUESTA
+----------------------------------------------------------- */
+
+function showRespuesta(pregunta, respuesta) {
+    addUserMessage(pregunta);
+    
+    showTyping();
+    setTimeout(() => {
+        removeTyping();
+        
+        if (!respuesta || respuesta.trim() === "") {
+            addBotMessage("😕 Lo siento, aún no tengo una respuesta para esta pregunta.");
+        } else {
+            addBotMessage("✅ " + respuesta);
+        }
+        
+        setTimeout(() => {
+            addBotMessage("¿Necesitas algo más?");
+            
+            let chatBody = document.getElementById("chatBody");
+            let optionsDiv = document.createElement("div");
+            optionsDiv.classList.add("options");
+            
+            let btnOtraPregunta = document.createElement("button");
+            btnOtraPregunta.classList.add("option-btn");
+            btnOtraPregunta.innerText = "❓ Hacer otra pregunta";
+            btnOtraPregunta.onclick = () => {
+                addUserMessage("Hacer otra pregunta");
+                selectCategoria(selectedCategoria, "");
+            };
+            optionsDiv.appendChild(btnOtraPregunta);
+            
+            let btnMenu = document.createElement("button");
+            btnMenu.classList.add("option-btn");
+            btnMenu.innerText = "🏠 Volver al menú principal";
+            btnMenu.onclick = () => {
+                addUserMessage("Menú principal");
+                showCategorias();
+            };
+            optionsDiv.appendChild(btnMenu);
+            
+            chatBody.appendChild(optionsDiv);
+            scrollToBottom();
+        }, 1000);
+    }, 800);
+}
+
+/* ----------------------------------------------------------
+      ESTILOS RESPONSIVOS
+----------------------------------------------------------- */
+
+// Adaptar tamaño del chat en móviles
+window.addEventListener('resize', function() {
+    let chat = document.getElementById('chatWindow');
+    if (window.innerWidth <= 420) {
+        chat.style.width = '90%';
+        chat.style.right = '5%';
+    } else {
+        chat.style.width = '380px';
+        chat.style.right = '25px';
+    }
+});
+</script>
+
+</body>
+</html>
