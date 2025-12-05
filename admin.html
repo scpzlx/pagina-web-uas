@@ -1,615 +1,199 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Administrador EDAV</title>
 
-<style>
-    body { background:#f4f6fa; font-family:"Segoe UI",Arial; margin:0; }
-    header { background:#1f29b7; color:white; padding:15px; text-align:center; font-size:24px; font-weight:bold; }
-    .container { width:90%; max-width:900px; margin:30px auto; background:white; padding:25px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
-    h2 { color:#1f29b7; border-left:5px solid #fed501; padding-left:10px; }
-    .section-divider { border-top:3px solid #1f29b7; margin:40px 0 30px 0; }
-    label { font-weight:bold; color:#1f29b7; }
-    select, input, textarea { width:100%; padding:10px; border:2px solid #1f29b7; border-radius:8px; margin-bottom:15px; }
-    button { background:#fed501; border:none; padding:12px 20px; border-radius:8px; font-weight:bold; cursor:pointer; color:#1f29b7; }
-    button:hover { background:#e3c300; }
-    table { width:100%; border-collapse:collapse; margin-top:25px; }
-    th { background:#1f29b7; color:white; padding:12px; }
-    td { border-bottom:1px solid #ddd; padding:10px; }
-    .delete-btn { background:#c62828; color:white; padding:8px 14px; border:none; cursor:pointer; border-radius:5px; margin-left:5px; }
-    .delete-btn:hover { background:#a02020; }
-    .edit-btn { background:#007bff; color:white; padding:8px 14px; border:none; cursor:pointer; margin-right:5px; border-radius:5px; }
-    .edit-btn:hover { background:#0056b3; }
-    
-    /* Modal */
-    .modal-bg {
-        position: fixed; top:0; left:0; width:100%; height:100%;
-        background: rgba(0,0,0,0.5); display:none; justify-content:center; align-items:center; z-index:9999;
-    }
-    .modal {
-        background:white; padding:20px; border-radius:10px; width:90%; max-width:450px;
-    }
-</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador EDAV</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="icon" type="image/png" href="images/favicon.ico" />
+
 </head>
+
 <body>
 
-<header style="display:flex; justify-content:space-between; align-items:center;">
-    <span>Panel Administrativo • Chat EDAV</span>
-    <button onclick="logout()" style="
-        background:#c62828; 
-        color:white; 
-        border:none; 
-        padding:10px 18px; 
-        border-radius:8px; 
-        cursor:pointer;
-        font-weight:bold;
-    ">Cerrar sesión</button>
-</header>
+    <!-- HEADER -->
+    <header>
+        <span>Panel Administrativo • Chat EDAV</span>
+        <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
+    </header>
 
+    <!-- CONTAINER PRINCIPAL -->
+    <div class="container">
 
-<div class="container">
+        <!-- GRID DE FORMULARIOS -->
+        <div class="forms-grid">
 
-<!-- ============================ -->
-<!--   FORMULARIOS DE REGISTRO    -->
-<!-- ============================ -->
+            <!-- FORMULARIO DE CATEGORIAS -->
+            <div class="form-section">
+                <h2>Registrar Categoria</h2>
+                <form id="categoryForm">
+                    <div>
+                        <label>Nombre de categoría</label>
+                        <input type="text" id="categoriaNombre" required placeholder="Ej: Servicios Escolares">
+                    </div>
 
-<!-- FORMULARIO DE CATEGORÍAS -->
-<h2>Registrar Categoría</h2>
-<form id="categoryForm">
-    <label>Nombre de categoría</label>
-    <input type="text" id="categoriaNombre" required>
+                    <div>
+                        <label>Descripción</label>
+                        <textarea id="categoriaDescripcion"
+                            placeholder="Describe brevemente esta categoría..."></textarea>
+                    </div>
 
-    <label>Descripción</label>
-    <textarea id="categoriaDescripcion"></textarea>
+                    <button type="submit">Guardar Categoria</button>
+                </form>
+            </div>
 
-    <button type="submit">Guardar Categoría</button>
-</form>
+            <!-- FORMULARIO DE SUBCATEGORIAS -->
+            <div class="form-section">
+                <h2>Registrar Subcategoria</h2>
+                <form id="subcategoryForm">
+                    <div>
+                        <label>Categoria</label>
+                        <select id="categoriaSelect" required>
+                            <option value="">Seleccione una categoria</option>
+                        </select>
+                    </div>
 
-<!-- FORMULARIO DE SUBCATEGORÍAS -->
-<h2 style="margin-top:30px;">Registrar Subcategoría</h2>
-<form id="subcategoryForm">
-    <label>Categoría</label>
-    <select id="categoriaSelect"></select>
+                    <div>
+                        <label>Nombre de subcategoría</label>
+                        <input type="text" id="subcategoriaNombre" required placeholder="Ej: Trámites de Titulación">
+                    </div>
 
-    <label>Nombre de subcategoría</label>
-    <input type="text" id="subcategoriaNombre" required>
+                    <div>
+                        <label>Descripción</label>
+                        <textarea id="subcategoriaDescripcion" placeholder="Describe esta subcategoría..."></textarea>
+                    </div>
 
-    <label>Descripción</label>
-    <textarea id="subcategoriaDescripcion"></textarea>
+                    <button type="submit">Guardar Subcategoría</button>
+                </form>
+            </div>
 
-    <button type="submit">Guardar Subcategoría</button>
-</form>
+            <!-- FORMULARIO DE PREGUNTAS -->
+            <div class="form-section">
+                <h2>Registrar Pregunta</h2>
+                <form id="questionForm">
+                    <div>
+                        <label>Categoría</label>
+                        <select id="categoria" required>
+                            <option value="">Seleccione una categoría</option>
+                        </select>
+                    </div>
 
-<!-- FORMULARIO DE PREGUNTAS -->
-<h2 style="margin-top:30px;">Registrar Pregunta</h2>
-<form id="questionForm">
-    <label>Categoría</label>
-    <select id="categoria"></select>
+                    <div>
+                        <label>Subcategoría</label>
+                        <select id="subcategoria" required>
+                            <option value="">Seleccione una subcategoría</option>
+                        </select>
+                    </div>
 
-    <label>Subcategoría</label>
-    <select id="subcategoria"></select>
+                    <div>
+                        <label>Pregunta</label>
+                        <input type="text" id="pregunta" required placeholder="¿Cuál es tu pregunta?">
+                    </div>
 
-    <label>Pregunta</label>
-    <input type="text" id="pregunta">
+                    <button type="submit">Guardar Pregunta</button>
+                </form>
+            </div>
 
-    <button type="submit">Guardar Pregunta</button>
-</form>
+            <!-- FORMULARIO DE RESPUESTAS -->
+            <div class="form-section">
+                <h2>Registrar Respuesta</h2>
+                <form id="answerForm">
+                    <div>
+                        <label>Pregunta</label>
+                        <select id="preguntaSelect" required>
+                            <option value="">Seleccione una pregunta</option>
+                        </select>
+                    </div>
 
-<!-- FORMULARIO DE RESPUESTAS -->
-<h2 style="margin-top:30px;">Registrar Respuesta</h2>
-<form id="answerForm">
-    <label>Pregunta</label>
-    <select id="preguntaSelect"></select>
+                    <div>
+                        <label>Respuesta</label>
+                        <textarea id="respuesta" rows="4" required
+                            placeholder="Escribe la respuesta detallada..."></textarea>
+                    </div>
 
-    <label>Respuesta</label>
-    <textarea id="respuesta" rows="4"></textarea>
+                    <button type="submit">Guardar Respuesta</button>
+                </form>
+            </div>
+        </div>
 
-    <button type="submit">Guardar Respuesta</button>
-</form>
+        <!-- SECCION DE TABLAS -->
+        <h2 class="section-title">Registros del Sistema</h2>
 
-<!-- ============================ -->
-<!--   SECCIÓN DE TABLAS          -->
-<!-- ============================ -->
-<div class="section-divider"></div>
-<h2 style="text-align:center; font-size:22px;"> Registros del Sistema</h2>
+        <!-- TABLA DE CATEGORIAS -->
+        <div class="table-section">
+            <h2>Categorías Regostradas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="categoriesTable"></tbody>
+            </table>
+        </div>
 
-<!-- TABLA DE CATEGORÍAS -->
-<h2>Categorías Registradas</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody id="categoriesTable"></tbody>
-</table>
+        <!-- TABLA DE SUBCATEGORIAS -->
+        <div class="table-section">
+            <h2>Subcategorías Registradas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="subcategoriesTable"></tbody>
+            </table>
+        </div>
 
-<!-- TABLA DE SUBCATEGORÍAS -->
-<h2 style="margin-top:30px;">Subcategorías Registradas</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Categoría</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody id="subcategoriesTable"></tbody>
-</table>
+        <!-- TABLA DE PREGUNTAS -->
+        <div class="table-section">
+            <h2>Preguntas Registradas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Subcategoría</th>
+                        <th>Pregunta</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="questionsTable"></tbody>
+            </table>
+        </div>
 
-<!-- TABLA DE PREGUNTAS -->
-<h2 style="margin-top:30px;">Preguntas Registradas</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Categoría</th>
-            <th>Subcategoría</th>
-            <th>Pregunta</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody id="questionsTable"></tbody>
-</table>
+        <!-- TABLA DE RESPUESTAS -->
+        <div class="table-section">
+            <h2>Respuestas Registradas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pregunta</th>
+                        <th>Respuesta</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="answersTable"></tbody>
+            </table>
+        </div>
 
-<!-- TABLA DE RESPUESTAS -->
-<h2 style="margin-top:30px;">Respuestas Registradas</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Pregunta</th>
-            <th>Respuesta</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody id="answersTable"></tbody>
-</table>
-
-</div>
-
-<!-- ============================================= -->
-<!-- MODAL PARA EDITAR ELEMENTOS -->
-<!-- ============================================= -->
-<div class="modal-bg" id="modalBg">
-    <div class="modal">
-        <h3 id="modalTitle">Editar</h3>
-        <div id="modalContent"></div>
-        <button onclick="closeModal()">Cerrar</button>
     </div>
-</div>
 
-<script>
+    <!-- MODAL PARA EDITAR ELEMENTOS -->
+     <div class="modal-bg" id="modalBg">
+        <div class="modal">
+            <h3 id="modalTitle">Editar</h3>
+            <div id="modalContent"></div>
+            <button onclick="closeModal()">Cerrar</button>
+        </div>
+     </div>
 
-const API = "api/backend.php";
-// PROTEGER LA PÁGINA (solo admins)
-
-
-
-/* ===============================
-   ABRIR / CERRAR MODAL
-================================*/
-function openModal(title, html) {
-    document.getElementById("modalTitle").innerHTML = title;
-    document.getElementById("modalContent").innerHTML = html;
-    document.getElementById("modalBg").style.display = "flex";
-}
-
-function closeModal() {
-    document.getElementById("modalBg").style.display = "none";
-}
-
-/* ===============================
-   CARGAR CATEGORÍAS
-================================*/
-async function loadAllCategories() {
-    const res = await fetch(API + "?action=get_categories");
-    const data = await res.json();
-
-    let selects = ["categoria", "categoriaSelect"];
-    selects.forEach(id => {
-        let s = document.getElementById(id);
-        s.innerHTML = `<option value="">Seleccione</option>`;
-        if (!data.success || !data.data) return;
-        data.data.forEach(c => {
-            s.innerHTML += `<option value="${c.id}">${c.nombre}</option>`;
-        });
-    });
-
-    // Tabla categorías
-    let table = document.getElementById("categoriesTable");
-    table.innerHTML = "";
-    if (!data.success || !data.data) return;
-    data.data.forEach(c => {
-        table.innerHTML += `
-            <tr>
-                <td>${c.nombre}</td>
-                <td>${c.descripcion}</td>
-                <td>
-                    <button class="edit-btn" onclick='editCategory(${JSON.stringify(c)})'>Editar</button>
-                    <button class="delete-btn" onclick="deleteCategory(${c.id})">Eliminar</button>
-                </td>
-            </tr>
-        `;
-    });
-}
-loadAllCategories();
-
-/* ===============================
-   ELIMINAR CATEGORÍA
-================================*/
-async function deleteCategory(id) {
-    if (!confirm("¿Eliminar esta categoría? Esto también eliminará sus subcategorías y preguntas asociadas.")) return;
-    const fd = new FormData();
-    fd.append("action", "delete_category");
-    fd.append("id", id);
-    const res = await fetch(API, { method:"POST", body:fd });
-    const data = await res.json();
-    alert(data.message);
-    if (data.success) {
-        loadAllCategories();
-        loadAllSubcategories();
-        loadQuestions();
-        loadAnswers();
-    }
-}
-
-/* ===============================
-   CARGAR SUBCATEGORÍAS
-================================*/
-async function loadAllSubcategories() {
-    const res = await fetch(API + "?action=get_categories");
-    const catData = await res.json();
-
-    const res2 = await fetch(API + "?action=get_all_subcategories");
-    const subData = await res2.json();
-
-    let table = document.getElementById("subcategoriesTable");
-    table.innerHTML = "";
-
-    if (!subData.success || !subData.data) return;
-
-    subData.data.forEach(sc => {
-        let catName = catData.data.find(c => c.id == sc.categoria_id)?.nombre ?? "";
-        table.innerHTML += `
-            <tr>
-                <td>${catName}</td>
-                <td>${sc.nombre}</td>
-                <td>${sc.descripcion}</td>
-                <td>
-                    <button class="edit-btn" onclick='editSubcategory(${JSON.stringify(sc)})'>Editar</button>
-                    <button class="delete-btn" onclick="deleteSubcategory(${sc.id})">Eliminar</button>
-                </td>
-            </tr>
-        `;
-    });
-}
-loadAllSubcategories();
-
-/* ===============================
-   ELIMINAR SUBCATEGORÍA
-================================*/
-async function deleteSubcategory(id) {
-    if (!confirm("¿Eliminar esta subcategoría? Esto también eliminará sus preguntas asociadas.")) return;
-    const fd = new FormData();
-    fd.append("action", "delete_subcategory");
-    fd.append("id", id);
-    const res = await fetch(API, { method:"POST", body:fd });
-    const data = await res.json();
-    alert(data.message);
-    if (data.success) {
-        loadAllSubcategories();
-        loadQuestions();
-        loadAnswers();
-    }
-}
-
-/* ===============================
-   CARGAR SUBCATEGORÍAS EN SELECT
-================================*/
-async function loadSubcategories(categoria_id, targetSelect) {
-    if (!categoria_id) {
-        document.getElementById(targetSelect).innerHTML = `<option value="">Seleccione</option>`;
-        return;
-    }
-    const res = await fetch(API + "?action=get_subcategories&categoria_id=" + categoria_id);
-    const data = await res.json();
-
-    let s = document.getElementById(targetSelect);
-    s.innerHTML = `<option value="">Seleccione</option>`;
-    if (!data.success || !data.data) return;
-    data.data.forEach(sc => {
-        s.innerHTML += `<option value="${sc.id}">${sc.nombre}</option>`;
-    });
-}
-document.getElementById("categoria").addEventListener("change", function() {
-    loadSubcategories(this.value, "subcategoria");
-});
-
-/* ===============================
-   GUARDAR CATEGORÍA
-================================*/
-document.getElementById("categoryForm").addEventListener("submit", async e => {
-    e.preventDefault();
-    const fd = new FormData();
-    fd.append("action", "save_category");
-    fd.append("nombre", document.getElementById("categoriaNombre").value);
-    fd.append("descripcion", document.getElementById("categoriaDescripcion").value);
-    const res = await fetch(API, { method: "POST", body: fd });
-    const data = await res.json();
-    alert(data.message);
-    if (data.success) {
-        document.getElementById("categoriaNombre").value = "";
-        document.getElementById("categoriaDescripcion").value = "";
-        loadAllCategories();
-    }
-});
-
-/* ===============================
-   GUARDAR SUBCATEGORÍA
-================================*/
-document.getElementById("subcategoryForm").addEventListener("submit", async e => {
-    e.preventDefault();
-    const fd = new FormData();
-    fd.append("action", "save_subcategory");
-    fd.append("categoria_id", document.getElementById("categoriaSelect").value);
-    fd.append("nombre", document.getElementById("subcategoriaNombre").value);
-    fd.append("descripcion", document.getElementById("subcategoriaDescripcion").value);
-    const res = await fetch(API, { method: "POST", body: fd });
-    const data = await res.json();
-    alert(data.message);
-    if (data.success) {
-        document.getElementById("subcategoriaNombre").value = "";
-        document.getElementById("subcategoriaDescripcion").value = "";
-        loadAllSubcategories();
-    }
-});
-
-/* ===============================
-   EDITAR / GUARDAR CATEGORÍA
-================================*/
-function editCategory(cat) {
-    let html = `
-        <label>Nombre</label>
-        <input id="editCategoriaNombre" value="${cat.nombre}">
-        <label>Descripción</label>
-        <textarea id="editCategoriaDescripcion">${cat.descripcion}</textarea>
-        <button onclick="saveCategoryEdit(${cat.id})">Guardar Cambios</button>
-    `;
-    openModal("Editar Categoría", html);
-}
-async function saveCategoryEdit(id) {
-    const nombre = document.getElementById("editCategoriaNombre").value;
-    const descripcion = document.getElementById("editCategoriaDescripcion").value;
-    const fd = new FormData();
-    fd.append("action", "update_category");
-    fd.append("id", id);
-    fd.append("nombre", nombre);
-    fd.append("descripcion", descripcion);
-    const res = await fetch(API, { method:"POST", body:fd });
-    const data = await res.json();
-    alert(data.message);
-    closeModal();
-    loadAllCategories();
-}
-
-/* ===============================
-   EDITAR / GUARDAR SUBCATEGORÍA
-================================*/
-function editSubcategory(sc) {
-    let html = `
-        <label>Nombre</label>
-        <input id="editSubcategoriaNombre" value="${sc.nombre}">
-        <label>Descripción</label>
-        <textarea id="editSubcategoriaDescripcion">${sc.descripcion}</textarea>
-        <button onclick="saveSubcategoryEdit(${sc.id})">Guardar Cambios</button>
-    `;
-    openModal("Editar Subcategoría", html);
-}
-async function saveSubcategoryEdit(id) {
-    const nombre = document.getElementById("editSubcategoriaNombre").value;
-    const descripcion = document.getElementById("editSubcategoriaDescripcion").value;
-    const fd = new FormData();
-    fd.append("action", "update_subcategory");
-    fd.append("id", id);
-    fd.append("nombre", nombre);
-    fd.append("descripcion", descripcion);
-    const res = await fetch(API, { method:"POST", body:fd });
-    const data = await res.json();
-    alert(data.message);
-    closeModal();
-    loadAllSubcategories();
-}
-
-/* ===============================
-   CARGAR PREGUNTAS
-================================*/
-async function loadQuestions() {
-    const res = await fetch(API + "?action=get_questions");
-    const data = await res.json();
-    let table = document.getElementById("questionsTable");
-    table.innerHTML = "";
-    if (!data.success || !data.data) return;
-    data.data.forEach(row => {
-        table.innerHTML += `
-            <tr>
-                <td>${row.categoria}</td>
-                <td>${row.subcategoria}</td>
-                <td>${row.pregunta}</td>
-                <td>
-                    <button class="edit-btn" onclick='editQuestion(${JSON.stringify(row)})'>Editar</button>
-                    <button class="delete-btn" onclick="deleteQuestion(${row.id})">Eliminar</button>
-                </td>
-            </tr>
-        `;
-    });
-}
-loadQuestions();
-
-/* ===============================
-   EDITAR / GUARDAR PREGUNTA
-================================*/
-function editQuestion(row) {
-    let html = `
-        <label>Pregunta</label>
-        <input id="editPregunta" value="${row.pregunta}">
-        <button onclick="saveQuestionEdit(${row.id})">Guardar Cambios</button>
-    `;
-    openModal("Editar Pregunta", html);
-}
-async function saveQuestionEdit(id) {
-    const pregunta = document.getElementById("editPregunta").value;
-    const fd = new FormData();
-    fd.append("action", "update_question");
-    fd.append("id", id);
-    fd.append("pregunta", pregunta);
-    const res = await fetch(API, { method:"POST", body:fd });
-    const data = await res.json();
-    alert(data.message);
-    closeModal();
-    loadQuestions();
-    loadQuestionDropdown();
-}
-
-/* ===============================
-   ELIMINAR PREGUNTA
-================================*/
-async function deleteQuestion(id) {
-    if (!confirm("¿Eliminar esta pregunta?")) return;
-    const fd = new FormData();
-    fd.append("action", "delete_question");
-    fd.append("id", id);
-    const res = await fetch(API, { method:"POST", body:fd });
-    const data = await res.json();
-    alert(data.message);
-    loadQuestions();
-    loadQuestionDropdown();
-    loadAnswers();
-}
-
-/* ===============================
-   DROPDOWN DE PREGUNTAS
-================================*/
-async function loadQuestionDropdown() {
-    const res = await fetch(API + "?action=get_questions");
-    const data = await res.json();
-    let p = document.getElementById("preguntaSelect");
-    p.innerHTML = "";
-    if (!data.success || !data.data) return;
-    data.data.forEach(q => {
-        p.innerHTML += `<option value="${q.id}">${q.pregunta}</option>`;
-    });
-}
-loadQuestionDropdown();
-
-/* ===============================
-   GUARDAR PREGUNTA
-================================*/
-document.getElementById("questionForm").addEventListener("submit", async e => {
-    e.preventDefault();
-    const fd = new FormData();
-    fd.append("action", "save_question");
-    fd.append("subcategoria_id", document.getElementById("subcategoria").value);
-    fd.append("pregunta", document.getElementById("pregunta").value);
-    const res = await fetch(API, { method:"POST", body:fd });
-    const data = await res.json();
-    alert(data.message);
-    if (data.success) {
-        document.getElementById("pregunta").value = "";
-        loadQuestions();
-        loadQuestionDropdown();
-    }
-});
-
-/* ===============================
-   CARGAR RESPUESTAS
-================================*/
-async function loadAnswers() {
-    const res = await fetch(API + "?action=get_answers");
-    const data = await res.json();
-    let table = document.getElementById("answersTable");
-    table.innerHTML = "";
-    if (!data.success || !data.data) return;
-    data.data.forEach(row => {
-        table.innerHTML += `
-            <tr>
-                <td>${row.pregunta}</td>
-                <td>${row.respuesta}</td>
-                <td>
-                    <button class="edit-btn" onclick='editAnswer(${JSON.stringify(row)})'>Editar</button>
-                    <button class="delete-btn" onclick="deleteAnswer(${row.id})">Eliminar</button>
-                </td>
-            </tr>
-        `;
-    });
-}
-loadAnswers();
-
-/* ===============================
-   EDITAR / GUARDAR RESPUESTA
-================================*/
-function editAnswer(row) {
-    let html = `
-        <label>Pregunta</label>
-        <input id="editAnswerPregunta" value="${row.pregunta}" disabled style="background:#f0f0f0;">
-        <label>Respuesta</label>
-        <textarea id="editAnswerRespuesta" rows="4">${row.respuesta}</textarea>
-        <button onclick="saveAnswerEdit(${row.pregunta_id})">Guardar Cambios</button>
-    `;
-    openModal("Editar Respuesta", html);
-}
-async function saveAnswerEdit(pregunta_id) {
-    const respuesta = document.getElementById("editAnswerRespuesta").value;
-    const fd = new FormData();
-    fd.append("action", "save_answer");
-    fd.append("pregunta_id", pregunta_id);
-    fd.append("respuesta", respuesta);
-    const res = await fetch(API, { method:"POST", body:fd });
-    const data = await res.json();
-    alert(data.message);
-    closeModal();
-    loadAnswers();
-    loadQuestions();
-}
-
-/* ===============================
-   ELIMINAR RESPUESTA
-================================*/
-async function deleteAnswer(id) {
-    if (!confirm("¿Eliminar esta respuesta?")) return;
-    const fd = new FormData();
-    fd.append("action", "delete_answer");
-    fd.append("id", id);
-    const res = await fetch(API, { method:"POST", body:fd });
-    const data = await res.json();
-    alert(data.message);
-    loadAnswers();
-    loadQuestions();
-}
-
-/* ===============================
-   GUARDAR RESPUESTA
-================================*/
-document.getElementById("answerForm").addEventListener("submit", async e => {
-    e.preventDefault();
-    const fd = new FormData();
-    fd.append("action", "save_answer");
-    fd.append("pregunta_id", document.getElementById("preguntaSelect").value);
-    fd.append("respuesta", document.getElementById("respuesta").value);
-    const res = await fetch(API, { method:"POST", body:fd });
-    const data = await res.json();
-    alert(data.message);
-    if (data.success) {
-        document.getElementById("respuesta").value = "";
-        loadAnswers();
-        loadQuestions();
-    }
-});
-
-
-</script>
+    <script src="js/admin.js"></script>
 </body>
+
 </html>

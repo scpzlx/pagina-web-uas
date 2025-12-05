@@ -400,5 +400,15 @@ if ($method === "POST" && $action === "delete_question") {
     response(true, "Pregunta eliminada");
 }
 
+/* =====================================================
+    15. LOGOUT
+===================================================== */
+if ($method === "POST" && $action === "logout") {
+    session_start();
+    session_unset();
+    session_destroy();
+    response(true, "Sesión cerrada correctamente");
+}
+
 response(false, "Acción no válida.");
 ?>
