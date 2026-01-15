@@ -1,0 +1,330 @@
+
+/* HEADER DEL DEPARTAMENTO */
+.departamento-header {
+    background: #ffd500;
+    color: #1a237e;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.departamento-header h1 {
+    font-size: 2.8em;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.departamento-header p {
+    font-size: 1.2em;
+    opacity: 0.95;
+}
+
+/* SECTION TITLE */
+.section-title {
+    text-align: center;
+    font-size: 2.5em;
+    color: #1a237e;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+/* AUTORIDADES SECTION */
+.autoridades-section {
+    background: #f5f5f5;
+    padding: 60px 20px;
+}
+
+.autoridades-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.autoridad-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid #e0e0e0;
+}
+
+.autoridad-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.autoridad-card.principal {
+    border: 3px solid #ffd500;
+}
+
+.autoridad-foto {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+}
+
+.autoridad-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+}
+
+.autoridad-info {
+    padding: 25px 20px;
+    text-align: center;
+    background: white;
+}
+
+.autoridad-info h3 {
+    color: #1a237e;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.autoridad-card.principal .cargo {
+    color: #1a237e;
+    font-weight: 700;
+}
+
+/* JEFATURAS SECTION */
+.jefaturas-section {
+    background: white;
+    padding: 60px 20px;
+}
+
+/* DEPARTAMENTOS SECTION */
+.departamentos-section {
+    background: #f5f5f5;
+    padding: 60px 20px;
+}
+
+/* PERSONAL GRID (PARA JEFATURAS Y DEPARTAMENTOS) */
+.personal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.personal-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #e0e0e0;
+}
+
+.personal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: #ffd500;
+}
+
+.personal-foto {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+}
+
+.personal-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+}
+
+.personal-info {
+    padding: 20px;
+    text-align: center;
+    background: white;
+}
+
+.personal-info h3 {
+    color: #1a237e;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.personal-info .cargo {
+    color: #666;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* Tablets y pantallas medianas (hasta 1024px) */
+@media screen and (max-width: 1024px) {
+    .section-title {
+        font-size: 2em;
+    }
+
+    .autoridades-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .personal-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+
+    .autoridad-foto {
+        height: 320px;
+    }
+
+    .personal-foto {
+        height: 280px;
+    }
+}
+
+/* Tablets pequeñas (hasta 768px) */
+@media screen and (max-width: 768px) {
+    .departamento-header {
+        padding: 25px 15px;
+    }
+
+    .departamento-header h1 {
+        font-size: 1.7em;
+    }
+
+    .departamento-header p {
+        font-size: 1em;
+    }
+
+    .section-title {
+        font-size: 1.8em;
+        margin-bottom: 35px;
+    }
+
+    .autoridades-section,
+    .jefaturas-section,
+    .departamentos-section {
+        padding: 40px 15px;
+    }
+
+    .autoridades-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .personal-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .autoridad-foto {
+        height: 350px;
+    }
+
+    .personal-foto {
+        height: 280px;
+    }
+
+    .autoridad-info h3 {
+        font-size: 1.2em;
+    }
+
+    .personal-info h3 {
+        font-size: 1em;
+    }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media screen and (max-width: 480px) {
+    .departamento-header {
+        padding: 25px 10px;
+    }
+
+    .departamento-header h1 {
+        font-size: 1.6em;
+    }
+
+    .section-title {
+        font-size: 1.6em;
+        margin-bottom: 30px;
+    }
+
+    .autoridades-section,
+    .jefaturas-section,
+    .departamentos-section {
+        padding: 30px 15px;
+    }
+
+    .autoridades-grid,
+    .personal-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .autoridad-foto {
+        height: 320px;
+    }
+
+    .personal-foto {
+        height: 260px;
+    }
+
+    .autoridad-info {
+        padding: 20px 15px;
+    }
+
+    .autoridad-info h3 {
+        font-size: 1.1em;
+    }
+
+    .personal-info {
+        padding: 18px 15px;
+    }
+
+    .personal-info h3 {
+        font-size: 0.95em;
+    }
+
+    .personal-info .cargo {
+        font-size: 0.9em;
+    }
+}
+
+/* Móviles muy pequeños (hasta 375px) */
+@media screen and (max-width: 375px) {
+    .departamento-header h1 {
+        font-size: 1.3em;
+    }
+
+    .section-title {
+        font-size: 1.4em;
+    }
+
+    .autoridad-foto {
+        height: 280px;
+    }
+
+    .personal-foto {
+        height: 240px;
+    }
+
+    .autoridad-info h3 {
+        font-size: 1em;
+    }
+
+    .personal-info h3 {
+        font-size: 0.9em;
+    }
+}
