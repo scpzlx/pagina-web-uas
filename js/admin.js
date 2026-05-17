@@ -1,7 +1,50 @@
 const API = "api/backend.php";
-// PROTEGER LA PÁGINA (solo admins)
 
+/* ===============================
+   SISTEMA DE TOASTS
+================================*/
+function showToast(msg, type) {
+    var container = document.getElementById("toastContainer");
+    var toast = document.createElement("div");
+    toast.className = "toast" + (type === "error" ? " error" : "");
+    toast.innerHTML =
+        '<span class="toast-icon">' + (type === "error" ? '<i class="fas fa-times-circle"></i>' : '<i class="fas fa-check-circle"></i>') + '</span>' +
+        '<span class="toast-msg">' + msg + '</span>';
+    container.appendChild(toast);
+    setTimeout(function () {
+        toast.style.animation = "toastOut 0.3s ease forwards";
+        setTimeout(function () { toast.remove(); }, 300);
+    }, 3500);
+}
 
+/* ===============================
+   NAVEGACIÓN POR TABS
+================================*/
+function switchTab(tab) {
+    // Desactivar todos los botones y paneles
+    document.querySelectorAll(".tab-btn").forEach(function (btn) {
+        btn.classList.remove("active");
+        btn.setAttribute("aria-selected", "false");
+    });
+    document.querySelectorAll(".tab-panel").forEach(function (panel) {
+        panel.classList.remove("active");
+    });
+
+    // Activar el tab seleccionado
+    var activeBtn = document.getElementById("tabBtn-" + tab);
+    var activePanel = document.getElementById("tab-" + tab);
+    if (activeBtn) {
+        activeBtn.classList.add("active");
+        activeBtn.setAttribute("aria-selected", "true");
+    }
+    if (activePanel) activePanel.classList.add("active");
+
+    // Recargar datos al entrar en cada tab para tenerlos frescos
+    if (tab === "categorias")    loadAllCategories();
+    if (tab === "subcategorias") loadAllSubcategories();
+    if (tab === "preguntas")     { loadAllCategories(); loadQuestions(); }
+    if (tab === "respuestas")    { loadQuestionDropdown(); loadAnswers(); }
+}
 
 /* ===============================
    ABRIR / CERRAR MODAL
@@ -36,12 +79,15 @@ async function loadAllCategories() {
     // Tabla categorías
     let table = document.getElementById("categoriesTable");
     table.innerHTML = "";
-    if (!data.success || !data.data) return;
+    if (!data.success || !data.data || data.data.length === 0) {
+        table.innerHTML = '<tr><td colspan="3" class="empty-row">Sin categorías registradas aún.</td></tr>';
+        return;
+    }
     data.data.forEach(c => {
         table.innerHTML += `
             <tr>
                 <td>${c.nombre}</td>
-                <td>${c.descripcion}</td>
+                <td>${c.descripcion || '—'}</td>
                 <td>
                     <button class="edit-btn" onclick='editCategory(${JSON.stringify(c)})'>Editar</button>
                     <button class="delete-btn" onclick="deleteCategory(${c.id})">Eliminar</button>
@@ -62,7 +108,7 @@ async function deleteCategory(id) {
     fd.append("id", id);
     const res = await fetch(API, { method:"POST", body:fd });
     const data = await res.json();
-    alert(data.message);
+    showToast(data.message, data.success ? "success" : "error");
     if (data.success) {
         loadAllCategories();
         loadAllSubcategories();
@@ -84,15 +130,18 @@ async function loadAllSubcategories() {
     let table = document.getElementById("subcategoriesTable");
     table.innerHTML = "";
 
-    if (!subData.success || !subData.data) return;
+    if (!subData.success || !subData.data || subData.data.length === 0) {
+        table.innerHTML = '<tr><td colspan="4" class="empty-row">Sin subcategorías registradas aún.</td></tr>';
+        return;
+    }
 
     subData.data.forEach(sc => {
-        let catName = catData.data.find(c => c.id == sc.categoria_id)?.nombre ?? "";
+        let catName = (catData.data || []).find(c => c.id == sc.categoria_id)?.nombre ?? "—";
         table.innerHTML += `
             <tr>
                 <td>${catName}</td>
                 <td>${sc.nombre}</td>
-                <td>${sc.descripcion}</td>
+                <td>${sc.descripcion || '—'}</td>
                 <td>
                     <button class="edit-btn" onclick='editSubcategory(${JSON.stringify(sc)})'>Editar</button>
                     <button class="delete-btn" onclick="deleteSubcategory(${sc.id})">Eliminar</button>
@@ -113,7 +162,7 @@ async function deleteSubcategory(id) {
     fd.append("id", id);
     const res = await fetch(API, { method:"POST", body:fd });
     const data = await res.json();
-    alert(data.message);
+    showToast(data.message, data.success ? "success" : "error");
     if (data.success) {
         loadAllSubcategories();
         loadQuestions();
@@ -154,7 +203,7 @@ document.getElementById("categoryForm").addEventListener("submit", async e => {
     fd.append("descripcion", document.getElementById("categoriaDescripcion").value);
     const res = await fetch(API, { method: "POST", body: fd });
     const data = await res.json();
-    alert(data.message);
+    showToast(data.message, data.success ? "success" : "error");
     if (data.success) {
         document.getElementById("categoriaNombre").value = "";
         document.getElementById("categoriaDescripcion").value = "";
@@ -174,7 +223,7 @@ document.getElementById("subcategoryForm").addEventListener("submit", async e =>
     fd.append("descripcion", document.getElementById("subcategoriaDescripcion").value);
     const res = await fetch(API, { method: "POST", body: fd });
     const data = await res.json();
-    alert(data.message);
+    showToast(data.message, data.success ? "success" : "error");
     if (data.success) {
         document.getElementById("subcategoriaNombre").value = "";
         document.getElementById("subcategoriaDescripcion").value = "";
@@ -190,8 +239,8 @@ function editCategory(cat) {
         <label>Nombre</label>
         <input id="editCategoriaNombre" value="${cat.nombre}">
         <label>Descripción</label>
-        <textarea id="editCategoriaDescripcion">${cat.descripcion}</textarea>
-        <button onclick="saveCategoryEdit(${cat.id})">Guardar Cambios</button>
+        <textarea id="editCategoriaDescripcion">${cat.descripcion || ''}</textarea>
+        <button class="modal-save-btn" onclick="saveCategoryEdit(${cat.id})">Guardar Cambios</button>
     `;
     openModal("Editar Categoría", html);
 }
@@ -205,9 +254,8 @@ async function saveCategoryEdit(id) {
     fd.append("descripcion", descripcion);
     const res = await fetch(API, { method:"POST", body:fd });
     const data = await res.json();
-    alert(data.message);
-    closeModal();
-    loadAllCategories();
+    showToast(data.message, data.success ? "success" : "error");
+    if (data.success) { closeModal(); loadAllCategories(); }
 }
 
 /* ===============================
@@ -218,8 +266,8 @@ function editSubcategory(sc) {
         <label>Nombre</label>
         <input id="editSubcategoriaNombre" value="${sc.nombre}">
         <label>Descripción</label>
-        <textarea id="editSubcategoriaDescripcion">${sc.descripcion}</textarea>
-        <button onclick="saveSubcategoryEdit(${sc.id})">Guardar Cambios</button>
+        <textarea id="editSubcategoriaDescripcion">${sc.descripcion || ''}</textarea>
+        <button class="modal-save-btn" onclick="saveSubcategoryEdit(${sc.id})">Guardar Cambios</button>
     `;
     openModal("Editar Subcategoría", html);
 }
@@ -233,9 +281,8 @@ async function saveSubcategoryEdit(id) {
     fd.append("descripcion", descripcion);
     const res = await fetch(API, { method:"POST", body:fd });
     const data = await res.json();
-    alert(data.message);
-    closeModal();
-    loadAllSubcategories();
+    showToast(data.message, data.success ? "success" : "error");
+    if (data.success) { closeModal(); loadAllSubcategories(); }
 }
 
 /* ===============================
@@ -246,13 +293,20 @@ async function loadQuestions() {
     const data = await res.json();
     let table = document.getElementById("questionsTable");
     table.innerHTML = "";
-    if (!data.success || !data.data) return;
+    if (!data.success || !data.data || data.data.length === 0) {
+        table.innerHTML = '<tr><td colspan="5" class="empty-row">Sin preguntas registradas aún.</td></tr>';
+        return;
+    }
     data.data.forEach(row => {
+        const respBadge = row.respuesta && row.respuesta.trim()
+            ? '<span class="badge-ok"><i class="fas fa-check"></i> Con respuesta</span>'
+            : '<span class="badge-none">Sin respuesta</span>';
         table.innerHTML += `
             <tr>
-                <td>${row.categoria}</td>
-                <td>${row.subcategoria}</td>
+                <td>${row.categoria ?? '—'}</td>
+                <td>${row.subcategoria ?? '—'}</td>
                 <td>${row.pregunta}</td>
+                <td>${respBadge}</td>
                 <td>
                     <button class="edit-btn" onclick='editQuestion(${JSON.stringify(row)})'>Editar</button>
                     <button class="delete-btn" onclick="deleteQuestion(${row.id})">Eliminar</button>
@@ -270,7 +324,7 @@ function editQuestion(row) {
     let html = `
         <label>Pregunta</label>
         <input id="editPregunta" value="${row.pregunta}">
-        <button onclick="saveQuestionEdit(${row.id})">Guardar Cambios</button>
+        <button class="modal-save-btn" onclick="saveQuestionEdit(${row.id})">Guardar Cambios</button>
     `;
     openModal("Editar Pregunta", html);
 }
@@ -282,10 +336,8 @@ async function saveQuestionEdit(id) {
     fd.append("pregunta", pregunta);
     const res = await fetch(API, { method:"POST", body:fd });
     const data = await res.json();
-    alert(data.message);
-    closeModal();
-    loadQuestions();
-    loadQuestionDropdown();
+    showToast(data.message, data.success ? "success" : "error");
+    if (data.success) { closeModal(); loadQuestions(); loadQuestionDropdown(); }
 }
 
 /* ===============================
@@ -298,10 +350,8 @@ async function deleteQuestion(id) {
     fd.append("id", id);
     const res = await fetch(API, { method:"POST", body:fd });
     const data = await res.json();
-    alert(data.message);
-    loadQuestions();
-    loadQuestionDropdown();
-    loadAnswers();
+    showToast(data.message, data.success ? "success" : "error");
+    if (data.success) { loadQuestions(); loadQuestionDropdown(); loadAnswers(); }
 }
 
 /* ===============================
@@ -330,7 +380,7 @@ document.getElementById("questionForm").addEventListener("submit", async e => {
     fd.append("pregunta", document.getElementById("pregunta").value);
     const res = await fetch(API, { method:"POST", body:fd });
     const data = await res.json();
-    alert(data.message);
+    showToast(data.message, data.success ? "success" : "error");
     if (data.success) {
         document.getElementById("pregunta").value = "";
         loadQuestions();
@@ -346,12 +396,19 @@ async function loadAnswers() {
     const data = await res.json();
     let table = document.getElementById("answersTable");
     table.innerHTML = "";
-    if (!data.success || !data.data) return;
+    if (!data.success || !data.data || data.data.length === 0) {
+        table.innerHTML = '<tr><td colspan="3" class="empty-row">Sin respuestas registradas aún.</td></tr>';
+        return;
+    }
     data.data.forEach(row => {
+        // Truncar respuestas largas en la tabla para mejor lectura
+        const respCorta = row.respuesta && row.respuesta.length > 120
+            ? row.respuesta.substring(0, 117) + '...'
+            : (row.respuesta || '—');
         table.innerHTML += `
             <tr>
                 <td>${row.pregunta}</td>
-                <td>${row.respuesta}</td>
+                <td title="${row.respuesta}">${respCorta}</td>
                 <td>
                     <button class="edit-btn" onclick='editAnswer(${JSON.stringify(row)})'>Editar</button>
                     <button class="delete-btn" onclick="deleteAnswer(${row.id})">Eliminar</button>
@@ -370,8 +427,8 @@ function editAnswer(row) {
         <label>Pregunta</label>
         <input id="editAnswerPregunta" value="${row.pregunta}" disabled style="background:#f0f0f0;">
         <label>Respuesta</label>
-        <textarea id="editAnswerRespuesta" rows="4">${row.respuesta}</textarea>
-        <button onclick="saveAnswerEdit(${row.pregunta_id})">Guardar Cambios</button>
+        <textarea id="editAnswerRespuesta" rows="5">${row.respuesta}</textarea>
+        <button class="modal-save-btn" onclick="saveAnswerEdit(${row.pregunta_id})">Guardar Cambios</button>
     `;
     openModal("Editar Respuesta", html);
 }
@@ -383,10 +440,8 @@ async function saveAnswerEdit(pregunta_id) {
     fd.append("respuesta", respuesta);
     const res = await fetch(API, { method:"POST", body:fd });
     const data = await res.json();
-    alert(data.message);
-    closeModal();
-    loadAnswers();
-    loadQuestions();
+    showToast(data.message, data.success ? "success" : "error");
+    if (data.success) { closeModal(); loadAnswers(); loadQuestions(); }
 }
 
 /* ===============================
@@ -399,9 +454,8 @@ async function deleteAnswer(id) {
     fd.append("id", id);
     const res = await fetch(API, { method:"POST", body:fd });
     const data = await res.json();
-    alert(data.message);
-    loadAnswers();
-    loadQuestions();
+    showToast(data.message, data.success ? "success" : "error");
+    if (data.success) { loadAnswers(); loadQuestions(); }
 }
 
 /* ===============================
@@ -415,7 +469,7 @@ document.getElementById("answerForm").addEventListener("submit", async e => {
     fd.append("respuesta", document.getElementById("respuesta").value);
     const res = await fetch(API, { method:"POST", body:fd });
     const data = await res.json();
-    alert(data.message);
+    showToast(data.message, data.success ? "success" : "error");
     if (data.success) {
         document.getElementById("respuesta").value = "";
         loadAnswers();

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Panel EDAV - UAS</title>
+    <link rel="icon" type="image/png" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/admin-shell.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div class="admin-app">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="admin-sidebar" aria-label="Navegacion principal">
+        <div class="sidebar-brand">
+            <img src="images/LogoUas.png" alt="UAS" class="sidebar-brand__logo">
+            <div class="sidebar-brand__text">
+                <span class="sidebar-brand__title">EDAV</span>
+                <span class="sidebar-brand__sub">Panel Admin</span>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-section__label">Principal</div>
+            <nav class="sidebar-nav" role="navigation">
+                <a href="dashboard.html" class="nav-item" data-page="dashboard.html">
+                    <i class="fas fa-gauge-high" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-section__label" style="margin-top: 1.5rem;">Modulos</div>
+            <nav class="sidebar-nav" role="navigation">
+                <a href="admin-panel-noticias.html" class="nav-item" data-page="admin-panel-noticias.html">
+                    <i class="fas fa-newspaper" aria-hidden="true"></i>
+                    <span>Noticias</span>
+                </a>
+                <a href="admin-panel-eventos.html" class="nav-item" data-page="admin-panel-eventos.html">
+                    <i class="fas fa-calendar-check" aria-hidden="true"></i>
+                    <span>Eventos</span>
+                </a>
+                <a href="admin.html" class="nav-item" data-page="admin.html">
+                    <i class="fas fa-robot" aria-hidden="true"></i>
+                    <span>Chatbot</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item" target="_blank" rel="noopener">
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                <span>Ver sitio publico</span>
+            </a>
+            <button type="button" class="nav-item nav-item--logout" onclick="logout()">
+                <i class="fas fa-right-from-bracket" aria-hidden="true"></i>
+                <span>Cerrar sesion</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ===== MAIN ===== -->
+    <div class="admin-main">
+
+        <!-- TOPBAR -->
+        <header class="admin-topbar" role="banner">
+            <div class="topbar-left">
+                <button type="button" class="sidebar-toggle" aria-label="Alternar menu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+                <div class="page-title">
+                    <span class="page-title__eyebrow">Panel EDAV</span>
+                    <span class="page-title__name">Dashboard</span>
+                </div>
+            </div>
+
+            <div class="topbar-actions">
+                <span class="topbar-date">
+                    <i class="fas fa-calendar-day" aria-hidden="true"></i>
+                    <span id="topbarDate"></span>
+                </span>
+                <div class="topbar-user">
+                    <div class="user-avatar" aria-hidden="true">A</div>
+                    <div class="user-meta">
+                        <span class="user-meta__name">Administrador</span>
+                        <span class="user-meta__role">EDAV</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <main class="admin-content" role="main">
+
+            <!-- HERO -->
+            <section class="dash-hero" aria-label="Bienvenida">
+                <div class="dash-hero__content">
+                    <span class="dash-hero__eyebrow">
+                        <i class="fas fa-shield-halved" aria-hidden="true"></i>
+                        Acceso administrativo
+                    </span>
+                    <h1 class="dash-hero__title">Bienvenido al Panel EDAV</h1>
+                    <p class="dash-hero__desc">
+                        Gestiona el contenido institucional de la Escuela de Diseno y Artes Visuales
+                        desde un solo lugar: noticias, eventos y el asistente virtual para estudiantes.
+                    </p>
+                </div>
+                <div class="dash-hero__ornament" aria-hidden="true">
+                    <img src="images/LogoUas.png" alt="">
+                </div>
+            </section>
+
+            <!-- MODULES -->
+            <section class="dash-section" aria-label="Modulos de gestion">
+                <header class="dash-section__header">
+                    <h2 class="dash-section__title">
+                        <span class="dash-section__bar"></span>
+                        Modulos de gestion
+                    </h2>
+                    <span class="dash-section__hint">Selecciona un modulo para comenzar</span>
+                </header>
+
+                <div class="modules-grid">
+
+                    <!-- Noticias -->
+                    <a href="admin-panel-noticias.html" class="module-card" aria-label="Ir al panel de noticias">
+                        <div class="module-card__top module-card__top--noticias">
+                            <div class="module-card__icon">
+                                <i class="fas fa-newspaper" aria-hidden="true"></i>
+                            </div>
+                            <span class="module-card__tag">Contenido</span>
+                        </div>
+                        <div class="module-card__body">
+                            <h3 class="module-card__title">Noticias</h3>
+                            <p class="module-card__desc">
+                                Publica y administra las noticias de la escuela con imagenes,
+                                galerias y contenido multimedia.
+                            </p>
+                        </div>
+                        <div class="module-card__footer">
+                            <span>Gestionar noticias</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </div>
+                    </a>
+
+                    <!-- Eventos -->
+                    <a href="admin-panel-eventos.html" class="module-card" aria-label="Ir al panel de eventos">
+                        <div class="module-card__top module-card__top--eventos">
+                            <div class="module-card__icon">
+                                <i class="fas fa-calendar-check" aria-hidden="true"></i>
+                            </div>
+                            <span class="module-card__tag">Agenda</span>
+                        </div>
+                        <div class="module-card__body">
+                            <h3 class="module-card__title">Eventos</h3>
+                            <p class="module-card__desc">
+                                Crea y gestiona los eventos academicos, culturales y deportivos
+                                que organiza la facultad.
+                            </p>
+                        </div>
+                        <div class="module-card__footer">
+                            <span>Gestionar eventos</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </div>
+                    </a>
+
+                    <!-- Chatbot -->
+                    <a href="admin.html" class="module-card" aria-label="Ir al panel del chatbot">
+                        <div class="module-card__top module-card__top--chatbot">
+                            <div class="module-card__icon">
+                                <i class="fas fa-robot" aria-hidden="true"></i>
+                            </div>
+                            <span class="module-card__tag">Asistente</span>
+                        </div>
+                        <div class="module-card__body">
+                            <h3 class="module-card__title">Chatbot</h3>
+                            <p class="module-card__desc">
+                                Configura categorias, preguntas y respuestas del asistente virtual
+                                disponible para los estudiantes.
+                            </p>
+                        </div>
+                        <div class="module-card__footer">
+                            <span>Gestionar chatbot</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+
+            <!-- INFO INSTITUCIONAL -->
+            <section class="dash-section" aria-label="Informacion institucional">
+                <div class="info-strip">
+                    <div class="info-strip__icon">
+                        <i class="fas fa-university" aria-hidden="true"></i>
+                    </div>
+                    <div class="info-strip__text">
+                        <strong>Universidad Autonoma de Sinaloa</strong>
+                        <span>Escuela de Diseno y Artes Visuales &middot; Administracion web</span>
+                    </div>
+                    <div class="info-strip__actions">
+                        <a href="index.html" class="btn btn-secondary btn-sm" target="_blank" rel="noopener">
+                            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                            Ver sitio
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="admin-footer" role="contentinfo">
+            <span>&copy; <span id="footerYear"></span> Universidad Autonoma de Sinaloa &middot; Escuela de Diseno y Artes Visuales</span>
+        </footer>
+    </div>
+
+</div>
+
+<script>
+    /* Si no hay sesion activa, regresar al login. */
+    (async () => {
+        try {
+            const res = await fetch("api/auth.php?action=check_session", { credentials: "same-origin" });
+            const data = await res.json();
+            if (!data.success) {
+                window.location.href = "login.html";
+            }
+        } catch (e) {
+            console.error("Error verificando sesion:", e);
+            window.location.href = "login.html";
+        }
+    })();
+
+    document.getElementById("footerYear").textContent = new Date().getFullYear();
+</script>
+<script src="js/admin-shell.js"></script>
+
+</body>
+</html>

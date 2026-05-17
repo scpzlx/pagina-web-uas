@@ -1,199 +1,446 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador EDAV</title>
+    <title>Chatbot | Panel EDAV - UAS</title>
+    <link rel="icon" type="image/png" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/admin-shell.css">
     <link rel="stylesheet" href="css/admin.css">
-    <link rel="icon" type="image/png" href="images/favicon.ico" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <span>Panel Administrativo • Chat EDAV</span>
-        <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
-    </header>
+<div class="admin-app">
 
-    <!-- CONTAINER PRINCIPAL -->
-    <div class="container">
-
-        <!-- GRID DE FORMULARIOS -->
-        <div class="forms-grid">
-
-            <!-- FORMULARIO DE CATEGORIAS -->
-            <div class="form-section">
-                <h2>Registrar Categoria</h2>
-                <form id="categoryForm">
-                    <div>
-                        <label>Nombre de categoría</label>
-                        <input type="text" id="categoriaNombre" required placeholder="Ej: Servicios Escolares">
-                    </div>
-
-                    <div>
-                        <label>Descripción</label>
-                        <textarea id="categoriaDescripcion"
-                            placeholder="Describe brevemente esta categoría..."></textarea>
-                    </div>
-
-                    <button type="submit">Guardar Categoria</button>
-                </form>
-            </div>
-
-            <!-- FORMULARIO DE SUBCATEGORIAS -->
-            <div class="form-section">
-                <h2>Registrar Subcategoria</h2>
-                <form id="subcategoryForm">
-                    <div>
-                        <label>Categoria</label>
-                        <select id="categoriaSelect" required>
-                            <option value="">Seleccione una categoria</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label>Nombre de subcategoría</label>
-                        <input type="text" id="subcategoriaNombre" required placeholder="Ej: Trámites de Titulación">
-                    </div>
-
-                    <div>
-                        <label>Descripción</label>
-                        <textarea id="subcategoriaDescripcion" placeholder="Describe esta subcategoría..."></textarea>
-                    </div>
-
-                    <button type="submit">Guardar Subcategoría</button>
-                </form>
-            </div>
-
-            <!-- FORMULARIO DE PREGUNTAS -->
-            <div class="form-section">
-                <h2>Registrar Pregunta</h2>
-                <form id="questionForm">
-                    <div>
-                        <label>Categoría</label>
-                        <select id="categoria" required>
-                            <option value="">Seleccione una categoría</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label>Subcategoría</label>
-                        <select id="subcategoria" required>
-                            <option value="">Seleccione una subcategoría</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label>Pregunta</label>
-                        <input type="text" id="pregunta" required placeholder="¿Cuál es tu pregunta?">
-                    </div>
-
-                    <button type="submit">Guardar Pregunta</button>
-                </form>
-            </div>
-
-            <!-- FORMULARIO DE RESPUESTAS -->
-            <div class="form-section">
-                <h2>Registrar Respuesta</h2>
-                <form id="answerForm">
-                    <div>
-                        <label>Pregunta</label>
-                        <select id="preguntaSelect" required>
-                            <option value="">Seleccione una pregunta</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label>Respuesta</label>
-                        <textarea id="respuesta" rows="4" required
-                            placeholder="Escribe la respuesta detallada..."></textarea>
-                    </div>
-
-                    <button type="submit">Guardar Respuesta</button>
-                </form>
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="admin-sidebar" aria-label="Navegacion principal">
+        <div class="sidebar-brand">
+            <img src="images/LogoUas.png" alt="UAS" class="sidebar-brand__logo">
+            <div class="sidebar-brand__text">
+                <span class="sidebar-brand__title">EDAV</span>
+                <span class="sidebar-brand__sub">Panel Admin</span>
             </div>
         </div>
 
-        <!-- SECCION DE TABLAS -->
-        <h2 class="section-title">Registros del Sistema</h2>
+        <div class="sidebar-section">
+            <div class="sidebar-section__label">Principal</div>
+            <nav class="sidebar-nav" role="navigation">
+                <a href="dashboard.html" class="nav-item" data-page="dashboard.html">
+                    <i class="fas fa-gauge-high" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </a>
+            </nav>
 
-        <!-- TABLA DE CATEGORIAS -->
-        <div class="table-section">
-            <h2>Categorías Regostradas</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="categoriesTable"></tbody>
-            </table>
+            <div class="sidebar-section__label" style="margin-top: 1.5rem;">Modulos</div>
+            <nav class="sidebar-nav" role="navigation">
+                <a href="admin-panel-noticias.html" class="nav-item" data-page="admin-panel-noticias.html">
+                    <i class="fas fa-newspaper" aria-hidden="true"></i>
+                    <span>Noticias</span>
+                </a>
+                <a href="admin-panel-eventos.html" class="nav-item" data-page="admin-panel-eventos.html">
+                    <i class="fas fa-calendar-check" aria-hidden="true"></i>
+                    <span>Eventos</span>
+                </a>
+                <a href="admin.html" class="nav-item" data-page="admin.html">
+                    <i class="fas fa-robot" aria-hidden="true"></i>
+                    <span>Chatbot</span>
+                </a>
+            </nav>
         </div>
 
-        <!-- TABLA DE SUBCATEGORIAS -->
-        <div class="table-section">
-            <h2>Subcategorías Registradas</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Categoría</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="subcategoriesTable"></tbody>
-            </table>
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item" target="_blank" rel="noopener">
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                <span>Ver sitio publico</span>
+            </a>
+            <button type="button" class="nav-item nav-item--logout" onclick="logout()">
+                <i class="fas fa-right-from-bracket" aria-hidden="true"></i>
+                <span>Cerrar sesion</span>
+            </button>
         </div>
+    </aside>
 
-        <!-- TABLA DE PREGUNTAS -->
-        <div class="table-section">
-            <h2>Preguntas Registradas</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Categoría</th>
-                        <th>Subcategoría</th>
-                        <th>Pregunta</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="questionsTable"></tbody>
-            </table>
-        </div>
+    <!-- ===== MAIN ===== -->
+    <div class="admin-main">
 
-        <!-- TABLA DE RESPUESTAS -->
-        <div class="table-section">
-            <h2>Respuestas Registradas</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Pregunta</th>
-                        <th>Respuesta</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="answersTable"></tbody>
-            </table>
-        </div>
+        <!-- TOPBAR -->
+        <header class="admin-topbar" role="banner">
+            <div class="topbar-left">
+                <button type="button" class="sidebar-toggle" aria-label="Alternar menu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+                <div class="page-title">
+                    <span class="page-title__eyebrow">Panel EDAV &middot; Modulos</span>
+                    <span class="page-title__name">Chatbot institucional</span>
+                </div>
+            </div>
 
+            <div class="topbar-actions">
+                <span class="topbar-date">
+                    <i class="fas fa-calendar-day" aria-hidden="true"></i>
+                    <span id="topbarDate"></span>
+                </span>
+                <div class="topbar-user">
+                    <div class="user-avatar" aria-hidden="true">A</div>
+                    <div class="user-meta">
+                        <span class="user-meta__name">Administrador</span>
+                        <span class="user-meta__role">EDAV</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- TOASTS -->
+        <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+        <!-- CONTENT -->
+        <main class="admin-content" role="main">
+
+            <header class="admin-content__header">
+                <h1 class="admin-content__title">Gestion del Chatbot</h1>
+                <p class="admin-content__desc">
+                    Configura las categorias, subcategorias, preguntas y respuestas del asistente virtual
+                    que ayuda a los estudiantes en el sitio publico.
+                </p>
+            </header>
+
+            <!-- TABS -->
+            <nav class="tablist" role="tablist" aria-label="Secciones del panel chatbot">
+                <button class="tab-btn tablist__btn active"
+                        role="tab" aria-selected="true"
+                        aria-controls="tab-categorias"
+                        id="tabBtn-categorias"
+                        onclick="switchTab('categorias')">
+                    <i class="fas fa-folder" aria-hidden="true"></i>
+                    Categorias
+                </button>
+                <button class="tab-btn tablist__btn"
+                        role="tab" aria-selected="false"
+                        aria-controls="tab-subcategorias"
+                        id="tabBtn-subcategorias"
+                        onclick="switchTab('subcategorias')">
+                    <i class="fas fa-folder-tree" aria-hidden="true"></i>
+                    Subcategorias
+                </button>
+                <button class="tab-btn tablist__btn"
+                        role="tab" aria-selected="false"
+                        aria-controls="tab-preguntas"
+                        id="tabBtn-preguntas"
+                        onclick="switchTab('preguntas')">
+                    <i class="fas fa-circle-question" aria-hidden="true"></i>
+                    Preguntas
+                </button>
+                <button class="tab-btn tablist__btn"
+                        role="tab" aria-selected="false"
+                        aria-controls="tab-respuestas"
+                        id="tabBtn-respuestas"
+                        onclick="switchTab('respuestas')">
+                    <i class="fas fa-comment-dots" aria-hidden="true"></i>
+                    Respuestas
+                </button>
+            </nav>
+
+            <!-- ============ TAB: CATEGORIAS ============ -->
+            <div class="tab-panel active" id="tab-categorias" role="tabpanel" aria-labelledby="tabBtn-categorias">
+                <div class="split-grid">
+
+                    <section class="surface">
+                        <header class="surface__header">
+                            <h2 class="surface__title">
+                                <i class="fas fa-circle-plus" aria-hidden="true"></i>
+                                Nueva categoria
+                            </h2>
+                        </header>
+                        <div class="surface__body">
+                            <form id="categoryForm" class="form-grid" novalidate>
+                                <div class="form-field">
+                                    <label class="form-label" for="categoriaNombre">
+                                        Nombre de categoria
+                                        <span class="required">*</span>
+                                    </label>
+                                    <input type="text" id="categoriaNombre" class="form-input"
+                                           required placeholder="Ej: Servicios Escolares">
+                                </div>
+                                <div class="form-field">
+                                    <label class="form-label" for="categoriaDescripcion">Descripcion</label>
+                                    <textarea id="categoriaDescripcion" class="form-textarea"
+                                              placeholder="Describe brevemente esta categoria..."></textarea>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-floppy-disk" aria-hidden="true"></i>
+                                        Guardar categoria
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+
+                    <section class="surface">
+                        <header class="surface__header">
+                            <h2 class="surface__title">
+                                <i class="fas fa-list" aria-hidden="true"></i>
+                                Categorias registradas
+                            </h2>
+                        </header>
+                        <div class="table-wrap" style="border: none; border-radius: 0;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Descripcion</th>
+                                        <th style="text-align: right;">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="categoriesTable">
+                                    <tr class="empty-row"><td colspan="3">Cargando...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+
+            <!-- ============ TAB: SUBCATEGORIAS ============ -->
+            <div class="tab-panel" id="tab-subcategorias" role="tabpanel" aria-labelledby="tabBtn-subcategorias">
+                <div class="split-grid">
+
+                    <section class="surface">
+                        <header class="surface__header">
+                            <h2 class="surface__title">
+                                <i class="fas fa-circle-plus" aria-hidden="true"></i>
+                                Nueva subcategoria
+                            </h2>
+                        </header>
+                        <div class="surface__body">
+                            <form id="subcategoryForm" class="form-grid" novalidate>
+                                <div class="form-field">
+                                    <label class="form-label" for="categoriaSelect">
+                                        Categoria
+                                        <span class="required">*</span>
+                                    </label>
+                                    <select id="categoriaSelect" class="form-select" required>
+                                        <option value="">Seleccione una categoria</option>
+                                    </select>
+                                </div>
+                                <div class="form-field">
+                                    <label class="form-label" for="subcategoriaNombre">
+                                        Nombre de subcategoria
+                                        <span class="required">*</span>
+                                    </label>
+                                    <input type="text" id="subcategoriaNombre" class="form-input"
+                                           required placeholder="Ej: Tramites de Titulacion">
+                                </div>
+                                <div class="form-field">
+                                    <label class="form-label" for="subcategoriaDescripcion">Descripcion</label>
+                                    <textarea id="subcategoriaDescripcion" class="form-textarea"
+                                              placeholder="Describe esta subcategoria..."></textarea>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-floppy-disk" aria-hidden="true"></i>
+                                        Guardar subcategoria
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+
+                    <section class="surface">
+                        <header class="surface__header">
+                            <h2 class="surface__title">
+                                <i class="fas fa-list" aria-hidden="true"></i>
+                                Subcategorias registradas
+                            </h2>
+                        </header>
+                        <div class="table-wrap" style="border: none; border-radius: 0;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Categoria</th>
+                                        <th>Nombre</th>
+                                        <th>Descripcion</th>
+                                        <th style="text-align: right;">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="subcategoriesTable">
+                                    <tr class="empty-row"><td colspan="4">Cargando...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+
+            <!-- ============ TAB: PREGUNTAS ============ -->
+            <div class="tab-panel" id="tab-preguntas" role="tabpanel" aria-labelledby="tabBtn-preguntas">
+                <div class="split-grid">
+
+                    <section class="surface">
+                        <header class="surface__header">
+                            <h2 class="surface__title">
+                                <i class="fas fa-circle-plus" aria-hidden="true"></i>
+                                Nueva pregunta
+                            </h2>
+                        </header>
+                        <div class="surface__body">
+                            <form id="questionForm" class="form-grid" novalidate>
+                                <div class="form-field">
+                                    <label class="form-label" for="categoria">
+                                        Categoria
+                                        <span class="required">*</span>
+                                    </label>
+                                    <select id="categoria" class="form-select" required>
+                                        <option value="">Seleccione una categoria</option>
+                                    </select>
+                                </div>
+                                <div class="form-field">
+                                    <label class="form-label" for="subcategoria">
+                                        Subcategoria
+                                        <span class="required">*</span>
+                                    </label>
+                                    <select id="subcategoria" class="form-select" required>
+                                        <option value="">Primero seleccione una categoria</option>
+                                    </select>
+                                </div>
+                                <div class="form-field">
+                                    <label class="form-label" for="pregunta">
+                                        Pregunta
+                                        <span class="required">*</span>
+                                    </label>
+                                    <input type="text" id="pregunta" class="form-input"
+                                           required placeholder="Cual es la pregunta frecuente?">
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-floppy-disk" aria-hidden="true"></i>
+                                        Guardar pregunta
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+
+                    <section class="surface">
+                        <header class="surface__header">
+                            <h2 class="surface__title">
+                                <i class="fas fa-list" aria-hidden="true"></i>
+                                Preguntas registradas
+                            </h2>
+                        </header>
+                        <div class="table-wrap" style="border: none; border-radius: 0;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Categoria</th>
+                                        <th>Subcategoria</th>
+                                        <th>Pregunta</th>
+                                        <th>Respuesta</th>
+                                        <th style="text-align: right;">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="questionsTable">
+                                    <tr class="empty-row"><td colspan="5">Cargando...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+
+            <!-- ============ TAB: RESPUESTAS ============ -->
+            <div class="tab-panel" id="tab-respuestas" role="tabpanel" aria-labelledby="tabBtn-respuestas">
+                <div class="split-grid">
+
+                    <section class="surface">
+                        <header class="surface__header">
+                            <h2 class="surface__title">
+                                <i class="fas fa-circle-plus" aria-hidden="true"></i>
+                                Nueva respuesta
+                            </h2>
+                        </header>
+                        <div class="surface__body">
+                            <p class="form-hint" style="margin-bottom: 1rem;">
+                                Selecciona una pregunta sin respuesta y escribe su respuesta.
+                                Si la pregunta ya tiene respuesta, se reemplazara.
+                            </p>
+                            <form id="answerForm" class="form-grid" novalidate>
+                                <div class="form-field">
+                                    <label class="form-label" for="preguntaSelect">
+                                        Pregunta
+                                        <span class="required">*</span>
+                                    </label>
+                                    <select id="preguntaSelect" class="form-select" required>
+                                        <option value="">Seleccione una pregunta</option>
+                                    </select>
+                                </div>
+                                <div class="form-field">
+                                    <label class="form-label" for="respuesta">
+                                        Respuesta
+                                        <span class="required">*</span>
+                                    </label>
+                                    <textarea id="respuesta" class="form-textarea" rows="5"
+                                              required placeholder="Escribe la respuesta detallada..."></textarea>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-floppy-disk" aria-hidden="true"></i>
+                                        Guardar respuesta
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+
+                    <section class="surface">
+                        <header class="surface__header">
+                            <h2 class="surface__title">
+                                <i class="fas fa-list" aria-hidden="true"></i>
+                                Respuestas registradas
+                            </h2>
+                        </header>
+                        <div class="table-wrap" style="border: none; border-radius: 0;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Pregunta</th>
+                                        <th>Respuesta</th>
+                                        <th style="text-align: right;">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="answersTable">
+                                    <tr class="empty-row"><td colspan="3">Cargando...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+
+        </main>
     </div>
 
-    <!-- MODAL PARA EDITAR ELEMENTOS -->
-     <div class="modal-bg" id="modalBg">
-        <div class="modal">
+</div>
+
+<!-- MODAL DE EDICION -->
+<div class="modal-bg" id="modalBg" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+        <header class="modal-header">
             <h3 id="modalTitle">Editar</h3>
-            <div id="modalContent"></div>
-            <button onclick="closeModal()">Cerrar</button>
-        </div>
-     </div>
+            <button type="button" class="close-modal modal-close-btn" onclick="closeModal()" aria-label="Cerrar">
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+        </header>
+        <div class="modal-body" id="modalContent"></div>
+    </div>
+</div>
 
-    <script src="js/admin.js"></script>
+<script src="js/admin-shell.js"></script>
+<script src="js/admin.js"></script>
 </body>
-
 </html>

@@ -1,0 +1,424 @@
+/* ============================================================
+   DASHBOARD - Panel EDAV
+   Solo estilos especificos del dashboard (el shell esta en admin-shell.css)
+   ============================================================ */
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.dash-hero {
+    position: relative;
+    background:
+        linear-gradient(135deg, var(--uas-blue-900) 0%, var(--uas-blue-800) 55%, var(--uas-blue-700) 100%);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8) var(--space-10);
+    color: #fff;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-6);
+    align-items: center;
+    margin-bottom: var(--space-8);
+    box-shadow: 0 12px 32px rgba(13, 23, 87, 0.25);
+    isolation: isolate;
+}
+
+/* Capa decorativa */
+.dash-hero::before {
+    content: "";
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 213, 0, 0.16) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.dash-hero::after {
+    content: "";
+    position: absolute;
+    bottom: -60%;
+    left: 35%;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(57, 73, 171, 0.5) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.dash-hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 60ch;
+}
+
+.dash-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 0.3rem 0.75rem;
+    background: rgba(255, 213, 0, 0.12);
+    border: 1px solid rgba(255, 213, 0, 0.3);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-4);
+}
+
+.dash-hero__title {
+    font-size: 1.95rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin-bottom: var(--space-3);
+}
+
+.dash-hero__desc {
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.dash-hero__ornament {
+    position: relative;
+    z-index: 1;
+    width: 110px;
+    height: 110px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius-lg);
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+}
+
+.dash-hero__ornament img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0.92;
+}
+
+/* ============================================================
+   SECTION HEADERS
+   ============================================================ */
+.dash-section {
+    margin-bottom: var(--space-8);
+}
+
+.dash-section__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+    flex-wrap: wrap;
+}
+
+.dash-section__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    letter-spacing: -0.005em;
+}
+
+.dash-section__bar {
+    width: 4px;
+    height: 22px;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+.dash-section__hint {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+/* ============================================================
+   MODULE CARDS
+   ============================================================ */
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+}
+
+.module-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-xs);
+    transition: transform var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease), border-color var(--t-base) var(--ease);
+    position: relative;
+    isolation: isolate;
+}
+
+.module-card:hover,
+.module-card:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--uas-blue-200);
+}
+
+.module-card__top {
+    position: relative;
+    padding: var(--space-5) var(--space-5) var(--space-8);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-3);
+    color: #fff;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.module-card__top::before {
+    content: "";
+    position: absolute;
+    top: -40%;
+    right: -30%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.module-card__top::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 213, 0, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.module-card__top--noticias {
+    background: linear-gradient(135deg, var(--uas-blue-800) 0%, var(--uas-blue-600) 100%);
+}
+
+.module-card__top--eventos {
+    background: linear-gradient(135deg, var(--uas-blue-900) 0%, var(--uas-blue-700) 100%);
+}
+
+.module-card__top--chatbot {
+    background: linear-gradient(135deg, var(--uas-blue-700) 0%, var(--uas-blue-500) 100%);
+}
+
+.module-card__icon {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-md);
+    font-size: 1.35rem;
+    color: #fff;
+    backdrop-filter: blur(4px);
+}
+
+.module-card__tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.6rem;
+    background: rgba(255, 213, 0, 0.18);
+    color: var(--accent);
+    border: 1px solid rgba(255, 213, 0, 0.3);
+    border-radius: var(--radius-full);
+}
+
+.module-card__body {
+    flex: 1;
+    padding: var(--space-5) var(--space-5) var(--space-4);
+}
+
+.module-card__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+    letter-spacing: -0.005em;
+}
+
+.module-card__desc {
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+
+.module-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-5);
+    border-top: 1px solid var(--border);
+    color: var(--brand);
+    font-weight: 600;
+    font-size: 0.86rem;
+    background: var(--gray-50);
+    transition: background var(--t-fast) var(--ease);
+}
+
+.module-card__footer i {
+    transition: transform var(--t-base) var(--ease);
+}
+
+.module-card:hover .module-card__footer {
+    background: var(--uas-blue-50);
+}
+
+.module-card:hover .module-card__footer i {
+    transform: translateX(4px);
+}
+
+/* ============================================================
+   INFO STRIP
+   ============================================================ */
+.info-strip {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xs);
+}
+
+.info-strip__icon {
+    width: 48px;
+    height: 48px;
+    background: var(--uas-blue-50);
+    color: var(--brand);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    border: 1px solid var(--uas-blue-100);
+}
+
+.info-strip__text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.info-strip__text strong {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.info-strip__text span {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.info-strip__actions {
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.admin-footer {
+    padding: var(--space-5) var(--space-6);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+    background: var(--bg-surface);
+    margin-top: auto;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes dashFadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.dash-hero                { animation: dashFadeUp 0.5s var(--ease-out) both; }
+.module-card:nth-child(1) { animation: dashFadeUp 0.5s 0.1s var(--ease-out) both; }
+.module-card:nth-child(2) { animation: dashFadeUp 0.5s 0.2s var(--ease-out) both; }
+.module-card:nth-child(3) { animation: dashFadeUp 0.5s 0.3s var(--ease-out) both; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+    .modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dash-hero {
+        padding: var(--space-6) var(--space-6);
+    }
+
+    .dash-hero__title {
+        font-size: 1.65rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .dash-hero {
+        grid-template-columns: 1fr;
+        padding: var(--space-5);
+    }
+
+    .dash-hero__ornament {
+        display: none;
+    }
+
+    .dash-hero__title {
+        font-size: 1.35rem;
+    }
+
+    .dash-hero__desc {
+        font-size: 0.9rem;
+    }
+
+    .modules-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .module-card__top {
+        padding: var(--space-4) var(--space-4) var(--space-6);
+    }
+
+    .info-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--space-4);
+    }
+}

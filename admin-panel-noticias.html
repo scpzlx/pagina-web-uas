@@ -1,373 +1,365 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel de Administración - Noticias</title>
-    <link rel="stylesheet" href="/css/styles-admin.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias | Panel EDAV - UAS</title>
+    <link rel="icon" type="image/png" href="images/favicon.ico">
+    <link rel="stylesheet" href="/css/admin-shell.css">
+    <link rel="stylesheet" href="/css/styles-admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
 
-  <body>
-    <div class="admin-container">
-      <!-- Header -->
-      <header class="admin-header">
-        <h1>
-          <i class="fas fa-newspaper"></i> Panel de Administración de Noticias
-        </h1>
-        <div class="header-actions">
-          <button
-            class="btn-view-site"
-            onclick="window.open('/index.html', '_blank')"
-          >
-            <i class="fas fa-eye"></i> Ver Sitio
-          </button>
-        </div>
-      </header>
+<div class="admin-app">
 
-      <!-- Contenido principal -->
-      <div class="admin-content">
-        <!-- Tabs -->
-        <div class="tabs">
-          <button class="tab-btn active" onclick="showTab('crear')">
-            <i class="fas fa-plus-circle"></i> Crear Noticia
-          </button>
-          <button class="tab-btn" onclick="showTab('gestionar')">
-            <i class="fas fa-list"></i> Gestionar Noticias
-          </button>
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="admin-sidebar" aria-label="Navegacion principal">
+        <div class="sidebar-brand">
+            <img src="/images/LogoUas.png" alt="UAS" class="sidebar-brand__logo">
+            <div class="sidebar-brand__text">
+                <span class="sidebar-brand__title">EDAV</span>
+                <span class="sidebar-brand__sub">Panel Admin</span>
+            </div>
         </div>
 
-        <!-- Tab: Crear Noticia -->
-        <div id="tab-crear" class="tab-content active">
-          <div class="form-container">
-            <h2>Nueva Noticia</h2>
+        <div class="sidebar-section">
+            <div class="sidebar-section__label">Principal</div>
+            <nav class="sidebar-nav" role="navigation">
+                <a href="dashboard.html" class="nav-item" data-page="dashboard.html">
+                    <i class="fas fa-gauge-high" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </a>
+            </nav>
 
-            <form id="news-form">
-              <!-- Título -->
-              <div class="form-group">
-                <label for="news-title-input">
-                  <i class="fas fa-heading"></i> Título de la Noticia *
-                </label>
-                <input
-                  type="text"
-                  id="news-title-input"
-                  class="form-control"
-                  placeholder="Escribe el título completo de la noticia"
-                  required
-                />
-                <small
-                  >Este será el título principal que aparecerá en ambas
-                  páginas</small
-                >
-              </div>
-
-              <!-- Descripción corta -->
-              <div class="form-group">
-                <label for="news-short-desc">
-                  <i class="fas fa-align-left"></i> Descripción Corta *
-                </label>
-                <textarea
-                  id="news-short-desc"
-                  class="form-control"
-                  rows="3"
-                  placeholder="Escribe una descripción breve para la lista de noticias (máximo 200 caracteres)"
-                  maxlength="200"
-                  required
-                ></textarea>
-                <small>Aparecerá en la página principal de noticias</small>
-              </div>
-
-              <!-- Fecha -->
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="news-date">
-                    <i class="fas fa-calendar"></i> Fecha de Publicación *
-                  </label>
-                  <input
-                    type="date"
-                    id="news-date"
-                    class="form-control"
-                    required
-                  />
-                </div>
-
-                <!-- Categoría -->
-                <div class="form-group">
-                  <label for="news-category">
-                    <i class="fas fa-tag"></i> Categoría *
-                  </label>
-                  <select id="news-category" class="form-control" required>
-                    <option value="">Seleccionar categoría</option>
-                    <option value="actividades-generales">
-                      Actividades Generales
-                    </option>
-                    <option value="academico">Académico</option>
-                    <option value="investigacion">Investigación</option>
-                    <option value="extension">Extensión</option>
-                    <option value="cultura">Cultura</option>
-                    <option value="deportes">Deportes</option>
-                  </select>
-                </div>
-              </div>
-
-              <!-- Contenido completo -->
-              <div class="form-group">
-                <label for="news-content">
-                  <i class="fas fa-file-alt"></i> Contenido Completo *
-                </label>
-                <div class="content-helper">
-                  <button
-                    type="button"
-                    class="btn-helper"
-                    onclick="addParagraph()"
-                  >
-                    <i class="fas fa-plus"></i> Agregar Párrafo
-                  </button>
-                  <small
-                    >Cada línea será un párrafo separado en la noticia</small
-                  >
-                </div>
-                <div id="paragraphs-container">
-                  <div class="paragraph-item">
-                    <textarea
-                      class="form-control paragraph-input"
-                      rows="4"
-                      placeholder="Escribe el primer párrafo de la noticia..."
-                      required
-                    ></textarea>
-                    <button
-                      type="button"
-                      class="btn-remove-paragraph"
-                      onclick="removeParagraph(this)"
-                      style="display: none"
-                    >
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Imágenes -->
-              <div class="form-group">
-                <label> <i class="fas fa-images"></i> Imágenes </label>
-
-                <!-- Imagen miniatura -->
-                <div class="image-input-group">
-                  <label for="news-thumbnail"
-                    >Imagen Miniatura (para lista) *</label
-                  >
-                  <div class="file-input-wrapper">
-                    <input
-                      type="url"
-                      id="news-thumbnail"
-                      class="form-control"
-                      placeholder="https://ejemplo.com/imagen-miniatura.jpg"
-                    />
-                    <div class="file-input-container">
-                      <input
-                        type="file"
-                        id="thumbnail-file"
-                        accept="image/*"
-                        onchange="handleFileSelect(event, 'thumbnail')"
-                      />
-                      <label
-                        for="thumbnail-file"
-                        class="file-input-label"
-                        title="Subir desde PC"
-                      >
-                        <i class="fas fa-upload"></i>
-                      </label>
-                    </div>
-                  </div>
-                  <div id="thumbnail-preview" class="file-preview"></div>
-                  <small
-                    >Imagen pequeña para la lista (máx. 2MB, 800x600px
-                    recomendado)</small
-                  >
-                </div>
-
-                <!-- Imagen hero -->
-                <div class="image-input-group">
-                  <label for="news-hero">Imagen Principal/Hero *</label>
-                  <div class="file-input-wrapper">
-                    <input
-                      type="url"
-                      id="news-hero"
-                      class="form-control"
-                      placeholder="https://ejemplo.com/imagen-hero.jpg"
-                    />
-                    <div class="file-input-container">
-                      <input
-                        type="file"
-                        id="hero-file"
-                        accept="image/*"
-                        onchange="handleFileSelect(event, 'hero')"
-                      />
-                      <label
-                        for="hero-file"
-                        class="file-input-label"
-                        title="Subir desde PC"
-                      >
-                        <i class="fas fa-upload"></i>
-                      </label>
-                    </div>
-                  </div>
-                  <div id="hero-preview" class="file-preview"></div>
-                  <small
-                    >Imagen grande para el detalle (máx. 5MB, 1920x1080px
-                    recomendado)</small
-                  >
-                </div>
-              </div>
-
-              <!-- Galería de imágenes -->
-              <div class="form-group">
-                <label>
-                  <i class="fas fa-images"></i> Galería de Imágenes (Opcional)
-                </label>
-                <div class="gallery-helper">
-                  <button
-                    type="button"
-                    class="btn-helper"
-                    onclick="addGalleryImage()"
-                  >
-                    <i class="fas fa-plus"></i> Agregar Imagen a Galería
-                  </button>
-                  <small
-                    >Imágenes que aparecerán en el carrusel (máx. 3MB cada una,
-                    1200x900px recomendado)</small
-                  >
-                </div>
-                <div id="gallery-container">
-                  <!-- Las imágenes de galería se agregarán aquí -->
-                </div>
-              </div>
-
-              <!-- Video (opcional) -->
-              <div class="form-group">
-                <label for="news-video">
-                  <i class="fas fa-video"></i> Video (Opcional)
-                </label>
-                <div class="image-input-group">
-                  <div class="file-input-wrapper">
-                    <input
-                      type="url"
-                      id="news-video"
-                      class="form-control"
-                      placeholder="Pega aquí el link de YouTube o Facebook"
-                    />
-                    <div class="file-input-container">
-                      <input
-                        type="file"
-                        id="video-file"
-                        accept="video/*"
-                        onchange="handleVideoUpload(event)"
-                      />
-                      <label
-                        for="video-file"
-                        class="file-input-label"
-                        title="Subir video desde PC"
-                      >
-                        <i class="fas fa-video"></i>
-                      </label>
-                    </div>
-                  </div>
-                  <div id="video-preview" class="file-preview"></div>
-                  <small
-                    ><strong>Instrucciones:</strong> Puedes pegar cualquier link
-                    de YouTube o Facebook (se convierte automáticamente) o subir
-                    un video desde tu PC (máx. 50MB).</small
-                  >
-                </div>
-              </div>
-
-              <!-- Botones de acción -->
-              <div class="form-actions">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  onclick="resetForm()"
-                >
-                  <i class="fas fa-times"></i> Cancelar
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  onclick="previewNews()"
-                >
-                  <i class="fas fa-eye"></i> Vista Previa
-                </button>
-                <button type="submit" class="btn btn-success">
-                  <i class="fas fa-save"></i> Guardar Noticia
-                </button>
-              </div>
-            </form>
-          </div>
+            <div class="sidebar-section__label" style="margin-top: 1.5rem;">Modulos</div>
+            <nav class="sidebar-nav" role="navigation">
+                <a href="admin-panel-noticias.html" class="nav-item" data-page="admin-panel-noticias.html">
+                    <i class="fas fa-newspaper" aria-hidden="true"></i>
+                    <span>Noticias</span>
+                </a>
+                <a href="admin-panel-eventos.html" class="nav-item" data-page="admin-panel-eventos.html">
+                    <i class="fas fa-calendar-check" aria-hidden="true"></i>
+                    <span>Eventos</span>
+                </a>
+                <a href="admin.html" class="nav-item" data-page="admin.html">
+                    <i class="fas fa-robot" aria-hidden="true"></i>
+                    <span>Chatbot</span>
+                </a>
+            </nav>
         </div>
 
-        <!-- Tab: Gestionar Noticias -->
-        <div id="tab-gestionar" class="tab-content">
-          <div class="manage-container">
-            <h2>Noticias Publicadas</h2>
+        <div class="sidebar-footer">
+            <a href="index.html" class="nav-item" target="_blank" rel="noopener">
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                <span>Ver sitio publico</span>
+            </a>
+            <button type="button" class="nav-item nav-item--logout" onclick="logout()">
+                <i class="fas fa-right-from-bracket" aria-hidden="true"></i>
+                <span>Cerrar sesion</span>
+            </button>
+        </div>
+    </aside>
 
-            <div class="search-bar">
-              <input
-                type="text"
-                id="search-news"
-                class="form-control"
-                placeholder="Buscar noticias..."
-                onkeyup="searchNews()"
-              />
+    <!-- ===== MAIN ===== -->
+    <div class="admin-main">
+
+        <!-- TOPBAR -->
+        <header class="admin-topbar" role="banner">
+            <div class="topbar-left">
+                <button type="button" class="sidebar-toggle" aria-label="Alternar menu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+                <div class="page-title">
+                    <span class="page-title__eyebrow">Panel EDAV &middot; Modulos</span>
+                    <span class="page-title__name">Noticias</span>
+                </div>
             </div>
 
-            <div id="news-list" class="news-list">
-              <!-- La lista de noticias se cargará aquí -->
+            <div class="topbar-actions">
+                <span class="topbar-date">
+                    <i class="fas fa-calendar-day" aria-hidden="true"></i>
+                    <span id="topbarDate"></span>
+                </span>
+                <div class="topbar-user">
+                    <div class="user-avatar" aria-hidden="true">A</div>
+                    <div class="user-meta">
+                        <span class="user-meta__name">Administrador</span>
+                        <span class="user-meta__role">EDAV</span>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
+        </header>
+
+        <!-- CONTENT -->
+        <main class="admin-content admin-container" role="main">
+
+            <header class="admin-content__header">
+                <h1 class="admin-content__title">Gestion de Noticias</h1>
+                <p class="admin-content__desc">
+                    Crea, edita y administra las noticias publicadas en el sitio de la escuela.
+                    Cada noticia puede incluir imagenes, galeria y video.
+                </p>
+            </header>
+
+            <!-- Tabs -->
+            <nav class="tabs tablist" role="tablist" aria-label="Secciones de noticias">
+                <button class="tab-btn tablist__btn active" onclick="showTab('crear')">
+                    <i class="fas fa-circle-plus" aria-hidden="true"></i>
+                    Crear noticia
+                </button>
+                <button class="tab-btn tablist__btn" onclick="showTab('gestionar')">
+                    <i class="fas fa-list" aria-hidden="true"></i>
+                    Gestionar noticias
+                </button>
+            </nav>
+
+            <!-- Tab: Crear Noticia -->
+            <div id="tab-crear" class="tab-content active">
+                <section class="surface form-container">
+                    <header class="surface__header">
+                        <h2 class="surface__title">
+                            <i class="fas fa-pen-to-square" aria-hidden="true"></i>
+                            Nueva noticia
+                        </h2>
+                    </header>
+                    <div class="surface__body">
+                        <form id="news-form" class="form-grid" novalidate>
+
+                            <!-- Titulo -->
+                            <div class="form-field form-group">
+                                <label class="form-label" for="news-title-input">
+                                    <i class="fas fa-heading" aria-hidden="true"></i>
+                                    Titulo de la noticia
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="text" id="news-title-input" class="form-control form-input"
+                                       placeholder="Escribe el titulo completo de la noticia" required>
+                                <small>Este sera el titulo principal que aparecera en ambas paginas.</small>
+                            </div>
+
+                            <!-- Descripcion corta -->
+                            <div class="form-field form-group">
+                                <label class="form-label" for="news-short-desc">
+                                    <i class="fas fa-align-left" aria-hidden="true"></i>
+                                    Descripcion corta
+                                    <span class="required">*</span>
+                                </label>
+                                <textarea id="news-short-desc" class="form-control form-textarea" rows="3"
+                                          placeholder="Escribe una descripcion breve para la lista de noticias (maximo 200 caracteres)"
+                                          maxlength="200" required></textarea>
+                                <small>Aparecera en la pagina principal de noticias.</small>
+                            </div>
+
+                            <!-- Fecha + Categoria -->
+                            <div class="form-row">
+                                <div class="form-field form-group">
+                                    <label class="form-label" for="news-date">
+                                        <i class="fas fa-calendar" aria-hidden="true"></i>
+                                        Fecha de publicacion
+                                        <span class="required">*</span>
+                                    </label>
+                                    <input type="date" id="news-date" class="form-control form-input" required>
+                                </div>
+                                <div class="form-field form-group">
+                                    <label class="form-label" for="news-category">
+                                        <i class="fas fa-tag" aria-hidden="true"></i>
+                                        Categoria
+                                        <span class="required">*</span>
+                                    </label>
+                                    <select id="news-category" class="form-control form-select" required>
+                                        <option value="">Seleccionar categoria</option>
+                                        <option value="actividades-generales">Actividades generales</option>
+                                        <option value="academico">Academico</option>
+                                        <option value="investigacion">Investigacion</option>
+                                        <option value="extension">Extension</option>
+                                        <option value="cultura">Cultura</option>
+                                        <option value="deportes">Deportes</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Contenido completo -->
+                            <div class="form-field form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-file-alt" aria-hidden="true"></i>
+                                    Contenido completo
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="content-helper">
+                                    <button type="button" class="btn btn-secondary btn-sm btn-helper" onclick="addParagraph()">
+                                        <i class="fas fa-plus" aria-hidden="true"></i>
+                                        Agregar parrafo
+                                    </button>
+                                    <small>Cada bloque sera un parrafo separado en la noticia.</small>
+                                </div>
+                                <div id="paragraphs-container">
+                                    <div class="paragraph-item">
+                                        <textarea class="form-control paragraph-input" rows="4"
+                                                  placeholder="Escribe el primer parrafo de la noticia..." required></textarea>
+                                        <button type="button" class="btn-remove-paragraph" onclick="removeParagraph(this)" style="display: none;">
+                                            <i class="fas fa-times" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Imagenes -->
+                            <div class="form-field form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-images" aria-hidden="true"></i>
+                                    Imagenes
+                                </label>
+
+                                <div class="image-input-group">
+                                    <label for="news-thumbnail" class="image-input-group__label">Imagen miniatura (para lista)<span class="required">*</span></label>
+                                    <div class="file-input-wrapper">
+                                        <input type="url" id="news-thumbnail" class="form-control"
+                                               placeholder="https://ejemplo.com/imagen-miniatura.jpg">
+                                        <div class="file-input-container">
+                                            <input type="file" id="thumbnail-file" accept="image/*"
+                                                   onchange="handleFileSelect(event, 'thumbnail')">
+                                            <label for="thumbnail-file" class="file-input-label" title="Subir desde PC">
+                                                <i class="fas fa-upload" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div id="thumbnail-preview" class="file-preview"></div>
+                                    <small>Imagen pequena para la lista (max. 2MB, 800x600px recomendado).</small>
+                                </div>
+
+                                <div class="image-input-group">
+                                    <label for="news-hero" class="image-input-group__label">Imagen principal / Hero<span class="required">*</span></label>
+                                    <div class="file-input-wrapper">
+                                        <input type="url" id="news-hero" class="form-control"
+                                               placeholder="https://ejemplo.com/imagen-hero.jpg">
+                                        <div class="file-input-container">
+                                            <input type="file" id="hero-file" accept="image/*"
+                                                   onchange="handleFileSelect(event, 'hero')">
+                                            <label for="hero-file" class="file-input-label" title="Subir desde PC">
+                                                <i class="fas fa-upload" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div id="hero-preview" class="file-preview"></div>
+                                    <small>Imagen grande para el detalle (max. 5MB, 1920x1080px recomendado).</small>
+                                </div>
+                            </div>
+
+                            <!-- Galeria -->
+                            <div class="form-field form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-images" aria-hidden="true"></i>
+                                    Galeria de imagenes (opcional)
+                                </label>
+                                <div class="gallery-helper">
+                                    <button type="button" class="btn btn-secondary btn-sm btn-helper" onclick="addGalleryImage()">
+                                        <i class="fas fa-plus" aria-hidden="true"></i>
+                                        Agregar imagen a galeria
+                                    </button>
+                                    <small>Imagenes que apareceran en el carrusel (max. 3MB cada una, 1200x900px recomendado).</small>
+                                </div>
+                                <div id="gallery-container"></div>
+                            </div>
+
+                            <!-- Video -->
+                            <div class="form-field form-group">
+                                <label class="form-label" for="news-video">
+                                    <i class="fas fa-video" aria-hidden="true"></i>
+                                    Video (opcional)
+                                </label>
+                                <div class="image-input-group">
+                                    <div class="file-input-wrapper">
+                                        <input type="url" id="news-video" class="form-control"
+                                               placeholder="Pega aqui el link de YouTube o Facebook">
+                                        <div class="file-input-container">
+                                            <input type="file" id="video-file" accept="video/*"
+                                                   onchange="handleVideoUpload(event)">
+                                            <label for="video-file" class="file-input-label" title="Subir video desde PC">
+                                                <i class="fas fa-video" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div id="video-preview" class="file-preview"></div>
+                                    <small><strong>Instrucciones:</strong> puedes pegar un link de YouTube o Facebook (se convierte automaticamente) o subir un video desde tu PC (max. 50MB).</small>
+                                </div>
+                            </div>
+
+                            <!-- Botones -->
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                                    <i class="fas fa-xmark" aria-hidden="true"></i>
+                                    Cancelar
+                                </button>
+                                <button type="button" class="btn btn-ghost" onclick="previewNews()">
+                                    <i class="fas fa-eye" aria-hidden="true"></i>
+                                    Vista previa
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-floppy-disk" aria-hidden="true"></i>
+                                    Guardar noticia
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Tab: Gestionar Noticias -->
+            <div id="tab-gestionar" class="tab-content">
+                <section class="surface manage-container">
+                    <header class="surface__header">
+                        <h2 class="surface__title">
+                            <i class="fas fa-newspaper" aria-hidden="true"></i>
+                            Noticias publicadas
+                        </h2>
+                    </header>
+                    <div class="surface__body">
+                        <div class="search-bar">
+                            <input type="text" id="search-news" class="form-control form-input"
+                                   placeholder="Buscar noticias..." onkeyup="searchNews()">
+                        </div>
+                        <div id="news-list" class="news-list"></div>
+                    </div>
+                </section>
+            </div>
+
+        </main>
     </div>
 
-    <!-- Modal de Vista Previa -->
-    <div id="preview-modal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>Vista Previa de la Noticia</h2>
-          <button class="close-modal" onclick="closePreview()">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <div class="modal-body" id="preview-content">
-          <!-- La vista previa se mostrará aquí -->
-        </div>
-      </div>
-    </div>
+</div>
 
-    <!-- Modal de Confirmación -->
-    <div id="confirm-modal" class="modal">
-      <div class="modal-content modal-small">
+<!-- Modal de Vista Previa -->
+<div id="preview-modal" class="modal">
+    <div class="modal-content">
+        <header class="modal-header">
+            <h2>Vista previa de la noticia</h2>
+            <button class="close-modal" onclick="closePreview()" aria-label="Cerrar">
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+        </header>
+        <div class="modal-body" id="preview-content"></div>
+    </div>
+</div>
+
+<!-- Modal de Confirmacion -->
+<div id="confirm-modal" class="modal">
+    <div class="modal-content modal-small">
         <div class="modal-body">
-          <i
-            class="fas fa-exclamation-triangle"
-            style="font-size: 48px; color: #ff9800; margin-bottom: 20px"
-          ></i>
-          <h3 id="confirm-title">¿Estás seguro?</h3>
-          <p id="confirm-message">Esta acción no se puede deshacer.</p>
-          <div class="modal-actions">
-            <button class="btn btn-secondary" onclick="closeConfirm()">
-              Cancelar
-            </button>
-            <button class="btn btn-danger" id="confirm-action-btn">
-              Eliminar
-            </button>
-          </div>
+            <div class="modal-icon-warning">
+                <i class="fas fa-triangle-exclamation" aria-hidden="true"></i>
+            </div>
+            <h3 id="confirm-title">Estas seguro?</h3>
+            <p id="confirm-message">Esta accion no se puede deshacer.</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeConfirm()">Cancelar</button>
+                <button class="btn btn-danger" id="confirm-action-btn">Eliminar</button>
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
-    <script src="/js/news/scriptAdmin.js"></script>
-  </body>
+<script src="/js/admin-shell.js"></script>
+<script src="/js/news/scriptAdmin.js"></script>
+</body>
 </html>

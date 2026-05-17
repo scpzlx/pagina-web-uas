@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chat Informativo UAS</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
     body {
@@ -225,7 +226,7 @@
 </head>
 <body>
 
-<div class="chat-btn" onclick="toggleChat()">💬 Ayuda</div>
+<div class="chat-btn" onclick="toggleChat()"><i class="fas fa-comments"></i> Ayuda</div>
 
 <div class="chat-window" id="chatWindow">
     <div class="chat-header">
@@ -308,7 +309,7 @@ function toggleChat() {
 }
 
 function initChat() {
-    addBotMessage("👋 ¡Hola! Soy tu asistente virtual de la Facultad de Diseño y Artes Visuales de la UAS.");
+    addBotMessage('<i class="fas fa-robot"></i> ¡Hola! Soy tu asistente virtual de la Facultad de Diseño y Artes Visuales de la UAS.');
     setTimeout(() => {
         addBotMessage("Estoy aquí para ayudarte a encontrar la información que necesitas. Escribe 'hola' o 'ayuda' para comenzar.");
     }, 500);
@@ -383,7 +384,7 @@ function processMessage(text) {
     }
 
     // Si no reconoce el comando
-    addBotMessage("🤔 No entendí tu mensaje. Escribe 'menu' para ver las opciones disponibles.");
+    addBotMessage('<i class="fas fa-question-circle"></i> No entendí tu mensaje. Escribe \'menu\' para ver las opciones disponibles.');
 }
 
 function resetConversation() {
@@ -404,7 +405,7 @@ function showCategorias() {
     showTyping();
     setTimeout(() => {
         removeTyping();
-        addBotMessage("📚 Selecciona una categoría para continuar:");
+        addBotMessage('<i class="fas fa-list"></i> Selecciona una categoría para continuar:');
         
         let chatBody = document.getElementById("chatBody");
         let optionsDiv = document.createElement("div");
@@ -445,14 +446,14 @@ function selectCategoria(catId, catNombre) {
         let subsDeCategoria = subcategorias.filter(s => s.categoria_id == catId);
         
         if (subsDeCategoria.length === 0) {
-            addBotMessage("😕 No hay subcategorías disponibles para esta categoría.");
+            addBotMessage('<i class="fas fa-info-circle"></i> No hay subcategorías disponibles para esta categoría.');
             setTimeout(() => {
                 addBotMessage("Escribe 'menu' para volver al inicio.");
             }, 500);
             return;
         }
         
-        addBotMessage("📋 Perfecto, selecciona una subcategoría:");
+        addBotMessage('<i class="fas fa-clipboard-list"></i> Perfecto, selecciona una subcategoría:');
         
         let chatBody = document.getElementById("chatBody");
         let optionsDiv = document.createElement("div");
@@ -469,7 +470,7 @@ function selectCategoria(catId, catNombre) {
         // Botón de regresar
         let backBtn = document.createElement("button");
         backBtn.classList.add("option-btn", "back-btn");
-        backBtn.innerText = "⬅️ Volver a categorías";
+        backBtn.innerHTML = '<i class="fas fa-arrow-left"></i> Volver a categorías';
         backBtn.onclick = () => showCategorias();
         optionsDiv.appendChild(backBtn);
         
@@ -496,14 +497,14 @@ function selectSubcategoria(subId, subNombre) {
         let preguntasDeSubcategoria = preguntas.filter(p => p.subcategoria_id == subId);
         
         if (preguntasDeSubcategoria.length === 0) {
-            addBotMessage("😕 No hay preguntas disponibles para esta subcategoría.");
+            addBotMessage('<i class="fas fa-info-circle"></i> No hay preguntas disponibles para esta subcategoría.');
             setTimeout(() => {
                 addBotMessage("Escribe 'menu' para volver al inicio.");
             }, 500);
             return;
         }
         
-        addBotMessage("❓ Selecciona la pregunta que deseas consultar:");
+        addBotMessage('<i class="fas fa-question-circle"></i> Selecciona la pregunta que deseas consultar:');
         
         let chatBody = document.getElementById("chatBody");
         let optionsDiv = document.createElement("div");
@@ -520,7 +521,7 @@ function selectSubcategoria(subId, subNombre) {
         // Botón de regresar
         let backBtn = document.createElement("button");
         backBtn.classList.add("option-btn", "back-btn");
-        backBtn.innerText = "⬅️ Volver a subcategorías";
+        backBtn.innerHTML = '<i class="fas fa-arrow-left"></i> Volver a subcategorías';
         backBtn.onclick = () => {
             addUserMessage("Volver");
             selectCategoria(selectedCategoria, "");
@@ -544,9 +545,9 @@ function showRespuesta(pregunta, respuesta) {
         removeTyping();
         
         if (!respuesta || respuesta.trim() === "") {
-            addBotMessage("😕 Lo siento, aún no tengo una respuesta para esta pregunta.");
+            addBotMessage('<i class="fas fa-exclamation-circle"></i> Lo siento, aún no tengo una respuesta para esta pregunta.');
         } else {
-            addBotMessage("✅ " + respuesta);
+            addBotMessage('<i class="fas fa-check-circle"></i> ' + respuesta);
         }
         
         setTimeout(() => {
@@ -558,7 +559,7 @@ function showRespuesta(pregunta, respuesta) {
             
             let btnOtraPregunta = document.createElement("button");
             btnOtraPregunta.classList.add("option-btn");
-            btnOtraPregunta.innerText = "❓ Hacer otra pregunta";
+            btnOtraPregunta.innerHTML = '<i class="fas fa-redo"></i> Hacer otra pregunta';
             btnOtraPregunta.onclick = () => {
                 addUserMessage("Hacer otra pregunta");
                 selectCategoria(selectedCategoria, "");
@@ -567,7 +568,7 @@ function showRespuesta(pregunta, respuesta) {
             
             let btnMenu = document.createElement("button");
             btnMenu.classList.add("option-btn");
-            btnMenu.innerText = "🏠 Volver al menú principal";
+            btnMenu.innerHTML = '<i class="fas fa-home"></i> Volver al menú principal';
             btnMenu.onclick = () => {
                 addUserMessage("Menú principal");
                 showCategorias();
