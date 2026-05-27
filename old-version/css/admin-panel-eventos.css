@@ -1,0 +1,445 @@
+/* ============================================================
+   ADMIN EVENTOS - overrides especificos
+   El resto del estilo viene de admin-shell.css
+   ============================================================ */
+
+/* ---- Modal (JS usa .show) ---- */
+.modal.show { display: flex; }
+
+.modal-icon-warning {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto var(--space-4);
+    border-radius: 50%;
+    background: var(--warning-50);
+    color: var(--warning-500);
+    font-size: 2rem;
+    border: 1px solid #fde68a;
+}
+
+.modal-small .modal-body {
+    text-align: center;
+    padding: var(--space-6);
+}
+
+.modal-small h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.modal-small p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    margin-bottom: var(--space-5);
+}
+
+.modal-small .modal-actions {
+    justify-content: center;
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+/* ============================================================
+   PARRAFOS DINAMICOS
+   ============================================================ */
+.content-helper,
+.gallery-helper {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    padding: var(--space-3) var(--space-4);
+    background: var(--gray-50);
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-3);
+}
+
+.content-helper small,
+.gallery-helper small {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+
+.paragraph-item {
+    position: relative;
+    margin-bottom: var(--space-3);
+}
+
+.paragraph-item .paragraph-input {
+    width: 100%;
+    padding: 0.65rem 2.75rem 0.65rem 0.85rem;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    min-height: 96px;
+    resize: vertical;
+    line-height: 1.55;
+    font-family: inherit;
+    transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+}
+
+.paragraph-item .paragraph-input:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.12);
+}
+
+.btn-remove-paragraph {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all var(--t-fast) var(--ease);
+    font-size: 0.82rem;
+}
+
+.btn-remove-paragraph:hover {
+    background: var(--danger-50);
+    color: var(--danger-600);
+    border-color: #fecaca;
+}
+
+/* ============================================================
+   GALERIA
+   ============================================================ */
+#gallery-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+#gallery-container .gallery-item,
+#gallery-container > div {
+    display: flex;
+    gap: var(--space-2);
+    align-items: stretch;
+}
+
+.gallery-item-inputs {
+    flex: 1;
+    display: flex;
+    gap: var(--space-2);
+}
+
+.gallery-item-inputs .gallery-input {
+    flex: 1;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.88rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    font-family: inherit;
+}
+
+.gallery-item-inputs .gallery-input:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.12);
+}
+
+.btn-remove-gallery {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    height: 38px;
+    padding: 0 0.85rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--t-fast) var(--ease);
+    flex-shrink: 0;
+}
+
+.btn-remove-gallery:hover {
+    background: var(--danger-50);
+    color: var(--danger-600);
+    border-color: #fecaca;
+}
+
+/* ============================================================
+   IMAGE INPUT GROUP
+   ============================================================ */
+.image-input-group {
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px dashed var(--border);
+}
+
+.image-input-group:first-of-type {
+    margin-top: var(--space-2);
+    padding-top: 0;
+    border-top: none;
+}
+
+.image-input-group__label,
+.image-input-group > label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.image-input-group__label .required,
+.image-input-group > label .required {
+    color: var(--danger-500);
+    margin-left: 0.2rem;
+}
+
+.file-input-wrapper {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--bg-surface);
+    transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+}
+
+.file-input-wrapper:focus-within {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.12);
+}
+
+.file-input-wrapper .form-control {
+    flex: 1;
+    border: none;
+    border-radius: 0;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.88rem;
+    background: transparent;
+}
+
+.file-input-wrapper .form-control:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.file-input-container {
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    border-left: 1px solid var(--border);
+}
+
+.file-input-container input[type="file"] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.file-input-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    background: var(--gray-50);
+    color: var(--brand);
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+    min-width: 48px;
+}
+
+.file-input-label:hover {
+    background: var(--uas-blue-50);
+    color: var(--uas-blue-700);
+}
+
+.file-preview {
+    margin-top: var(--space-2);
+    padding: 0.55rem 0.75rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    background: var(--gray-50);
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-sm);
+    display: none;
+}
+
+.file-preview:not(:empty) {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.file-preview i { color: var(--brand); }
+.file-preview .fa-check-circle { color: var(--success-500); }
+.file-preview .fa-exclamation-triangle { color: var(--danger-500); }
+.file-preview .fa-spinner { color: var(--brand); }
+
+/* ============================================================
+   LISTA DE EVENTOS (gestionar)
+   ============================================================ */
+.events-list {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.events-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+
+.events-item:hover {
+    border-color: var(--uas-blue-200);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+}
+
+.events-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.events-item h3 {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.35rem;
+    line-height: 1.3;
+}
+
+.events-item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.events-item-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.events-item-meta i {
+    color: var(--brand);
+    opacity: 0.7;
+    font-size: 0.78rem;
+}
+
+.events-item-actions {
+    display: flex;
+    gap: var(--space-2);
+    flex-shrink: 0;
+}
+
+/* Iconos de accion (JS genera estas clases) */
+.btn-icon.btn-edit,
+.btn-icon.btn-delete {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    background: transparent;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all var(--t-fast) var(--ease);
+    font-size: 0.88rem;
+}
+
+.btn-icon.btn-edit:hover {
+    background: var(--uas-blue-50);
+    color: var(--brand);
+    border-color: var(--uas-blue-200);
+}
+
+.btn-icon.btn-delete:hover {
+    background: var(--danger-50);
+    color: var(--danger-600);
+    border-color: #fecaca;
+}
+
+/* ============================================================
+   COMPAT / LEGACY
+   ============================================================ */
+.form-group { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-1); }
+.form-group small { font-size: 0.76rem; color: var(--text-muted); line-height: 1.5; }
+.form-container { padding: 0; }
+.manage-container { padding: 0; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+    .events-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .events-item-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .content-helper,
+    .gallery-helper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .file-input-wrapper {
+        flex-direction: column;
+    }
+
+    .file-input-container {
+        border-left: none;
+        border-top: 1px solid var(--border);
+    }
+
+    .file-input-label {
+        width: 100%;
+        padding: 0.55rem;
+    }
+
+    #gallery-container .gallery-item,
+    #gallery-container > div {
+        flex-direction: column;
+    }
+
+    .btn-remove-gallery {
+        width: 100%;
+        justify-content: center;
+    }
+}

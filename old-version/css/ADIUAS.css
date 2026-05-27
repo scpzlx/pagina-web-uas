@@ -1,0 +1,834 @@
+
+
+/* BOTONES */
+.btn-continuar {
+    background: #1a237e;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.btn-continuar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-continuar.hidden {
+    display: none;
+}
+
+/* SECCION 1 */
+.hero-section {
+    background: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.hero-logo {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-logo img {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+}
+
+.main-title {
+    font-size: 2.8em;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.hero-description {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-description p {
+    font-size: 1.15em;
+    line-height: 1.8;
+    color: #333;
+    text-align: justify;
+}
+
+/* SECCION 2 */
+.presentacion-section {
+    background: #ffd500;
+    padding: 60px 20px;
+}
+
+.presentacion-content {
+    display: grid;
+    grid-template-columns: 0.6fr 1.4fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.presentacion-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.presentacion-text h2 {
+    color: #1a237e;
+    font-size: 2.5em;
+    margin-bottom: 25px;
+}
+
+.presentacion-text p {
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: justify;
+    font-size: 1.05em;
+}
+
+.presentacion-hidden {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+}
+
+.presentacion-hidden.show {
+    display: block;
+    opacity: 1;
+}
+
+.firma {
+    text-align: right;
+    font-style: italic;
+    color: #1a237e;
+    font-weight: bold;
+    margin-top: 30px;
+    font-size: 1.1em;
+}
+
+/* SECCION 3 */
+.mision-section {
+    background: white;
+    padding: 60px 20px;
+}
+
+.mision-content {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.mision-text h2 {
+    color: #1a237e;
+    font-size: 2.5em;
+    margin-bottom: 25px;
+}
+
+.mision-text p {
+    line-height: 1.8;
+    color: #333;
+    text-align: justify;
+    font-size: 1.05em;
+}
+
+.mision-image img {
+    width: 100%;
+    height: auto;
+    border: 10px;
+}
+
+/* SECCION 4 */
+.vision-section {
+    background: #ffd500;
+    padding: 60px 20px;
+}
+
+.vision-content {
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.vision-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.vision-text h2 {
+    color: #1a237e;
+    font-size: 2.5em;
+    margin-bottom: 25px;
+}
+
+.vision-text p {
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: justify;
+    font-size: 1.05em;
+}
+
+.vision-hidden {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+}
+
+.vision-hidden.show {
+    display: block;
+    opacity: 1;
+}
+
+/* SECCION 5 */
+.objetivos-section {
+    background: white;
+    padding: 60px 20px;
+}
+
+.objetivos-content {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.objetivos-text {
+    padding: 0 30px;
+}
+
+.objetivos-text h2 {
+    color: #1a237e;
+    font-size: 2.5em;
+    margin-bottom: 25px;
+    margin-top: 30px;
+}
+
+.objetivos-lista {
+    padding-left: 25px;
+    margin-bottom: 20px;
+    counter-reset: item;
+    list-style: none
+}
+
+.objetivos-lista li {
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: justify;
+    font-size: 1.05em;
+    counter-increment: item;
+    position: relative;
+    padding-left: 0;
+}
+
+.objetivos-lista li::before {
+    content: counter(item) ". ";
+    font-weight: normal;
+    margin-right: 5px;
+}
+
+.objetivos-lista li.objetivos-hidden {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.objetivos-lista li.objetivos-hidden.show {
+    opacity: 1;
+    margin-bottom: 15px;
+}
+
+.btn-vision {
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.objetivos-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* SECCION 6 */
+.programas-section {
+    background: white;
+}
+
+.programas-header {
+    background: #ffd500;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.programas-header h2 {
+    color: #1a237e;
+    font-size: 2.5em;
+    font-weight: 700;
+    margin: 0;
+}
+
+.programas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 60px 20px;
+}
+
+.programa-card {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.programa-card:hover {
+    transform: translateY(-5px);
+}
+
+.programa-card.yellow-bg {
+    background: #ffd500;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.programa-image {
+    margin-bottom: 15px;
+}
+
+.programa-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.programa-card p {
+    color: #1a237e;
+    font-weight: 600;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/* SECCION 7 ENLACES RELACIONADOS */
+.enlaces-section {
+    background: #f5f5f5;
+    padding: 60px 20px;
+}
+
+.enlaces-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.enlaces-column h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.enlaces-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.enlaces-column li {
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.enlaces-column a {
+    color: #1976d2;
+    text-decoration: underline;
+    font-size: 1.05em;
+    transition: all 0.3s ease;
+}
+
+.enlaces-column a:hover {
+    color: #1a237e;
+    text-decoration: none;
+}
+
+.section-title {
+    color: #1a237e;
+    font-size: 2.5em;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* RESPONSIVE */
+/* Tablets y pantallas medianas (hasta 1024px) */
+@media screen and (max-width: 1024px) {
+    .main-title {
+        font-size: 2em;
+    }
+
+    .hero-logo img {
+        max-width: 500px;
+    }
+
+    .hero-description p {
+        font-size: 1.05em;
+    }
+
+    .presentacion-content {
+        gap: 35px;
+    }
+
+    .presentacion-text h2 {
+        font-size: 2.2em;
+    }
+
+    .mision-content {
+        gap: 40px;
+    }
+
+    .mision-text h2 {
+        font-size: 2.2em;
+    }
+
+    .vision-content {
+        gap: 35px;
+    }
+
+    .vision-text h2 {
+        font-size: 2.2em;
+    }
+
+    .objetivos-content {
+        gap: 40px;
+    }
+
+    .objetivos-text h2 {
+        font-size: 2.2em;
+    }
+
+    .programas-header h2 {
+        font-size: 2.2em;
+    }
+
+    .programas-grid {
+        gap: 25px;
+    }
+
+    .enlaces-grid {
+        gap: 35px;
+    }
+}
+
+/* Tablets pequeñas (hasta 768px) */
+@media screen and (max-width: 768px) {
+    /* SECCION 1 HERO */
+    .hero-section {
+        padding: 40px 15px;
+    }
+
+    .hero-logo img {
+        max-width: 400px;
+    }
+
+    .main-title {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+
+    .hero-description p {
+        font-size: 0.95em;
+    }
+
+    /* SECCION 2 PRESENTACION */
+    .presentacion-section {
+        padding: 40px 15px;
+    }
+
+    .presentacion-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .presentacion-image {
+        order: -1;
+    }
+
+    .presentacion-text h2 {
+        font-size: 1.8em;
+        text-align: center;
+    }
+
+    .presentacion-text p {
+        font-size: 0.95em;
+        margin-bottom: 18px;
+    }
+
+    .firma {
+        font-size: 1em;
+        margin-top: 25px;
+    }
+
+    /* SECCION 3 MISION */
+    .mision-section {
+        padding: 40px 15px;
+    }
+
+    .mision-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .mision-image {
+        order: 2;
+    }
+
+    .mision-text h2 {
+        font-size: 1.8em;
+        text-align: center;
+    }
+
+    .mision-text p {
+        font-size: 0.95em;
+    }
+
+    /* SECCION 4 VISION */
+    .vision-section {
+        padding: 40px 15px;
+    }
+
+    .vision-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .vision-image {
+        order: -1;
+    }
+
+    .vision-text h2 {
+        font-size: 1.8em;
+        text-align: center;
+    }
+
+    .vision-text p {
+        font-size: 0.95em;
+        margin-bottom: 18px;
+    }
+
+    /* SECCION 5 OBJETIVOS */
+    .objetivos-section {
+        padding: 40px 15px;
+    }
+
+    .objetivos-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .objetivos-image {
+        order: 2;
+    }
+
+    .objetivos-text h2 {
+        font-size: 1.8em;
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .objetivos-lista {
+        padding-left: 20px;
+    }
+
+    .objetivos-lista li {
+        font-size: 0.95em;
+        margin-bottom: 12px;
+    }
+
+    .objetivos-continuar {
+        font-size: 0.95em;
+    }
+
+    .btn-vision {
+        margin-bottom: 30px;
+    }
+
+    /* SECCION 6 PROGRAMAS */
+    .programas-header {
+        padding: 25px 15px;
+    }
+
+    .programas-header h2 {
+        font-size: 1.8em;
+    }
+
+    .programas-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 40px 15px;
+    }
+
+    .programa-image img {
+        height: 200px;
+    }
+
+    /* SECCION 7 ENLACES */
+    .enlaces-section {
+        padding: 40px 15px;
+    }
+
+    .enlaces-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .enlaces-column h3 {
+        font-size: 1.3em;
+    }
+
+    .enlaces-column a {
+        font-size: 0.95em;
+    }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media screen and (max-width: 480px) {
+    /* SECCION 1 HERO */
+    .hero-section {
+        padding: 30px 15px;
+    }
+
+    .hero-logo img {
+        max-width: 320px;
+    }
+
+    .main-title {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+
+    .hero-description p {
+        font-size: 0.9em;
+    }
+
+    /* SECCION 2 PRESENTACION */
+    .presentacion-section {
+        padding: 30px 15px;
+    }
+
+    .presentacion-text h2 {
+        font-size: 1.6em;
+    }
+
+    .presentacion-text p {
+        font-size: 0.9em;
+        margin-bottom: 15px;
+    }
+
+    .firma {
+        font-size: 0.95em;
+        margin-top: 20px;
+    }
+
+    /* SECCION 3 MISION */
+    .mision-section {
+        padding: 30px 15px;
+    }
+
+    .mision-text h2 {
+        font-size: 1.6em;
+    }
+
+    .mision-text p {
+        font-size: 0.9em;
+    }
+
+    /* SECCION 4 VISION */
+    .vision-section {
+        padding: 30px 15px;
+    }
+
+    .vision-text h2 {
+        font-size: 1.6em;
+    }
+
+    .vision-text p {
+        font-size: 0.9em;
+        margin-bottom: 15px;
+    }
+
+    /* SECCION 5 OBJETIVOS */
+    .objetivos-section {
+        padding: 30px 15px;
+    }
+
+    .objetivos-text h2 {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+
+    .objetivos-lista {
+        padding-left: 18px;
+    }
+
+    .objetivos-lista li {
+        font-size: 0.9em;
+        margin-bottom: 10px;
+    }
+
+    .objetivos-continuar {
+        font-size: 0.9em;
+    }
+
+    .btn-vision {
+        margin-bottom: 20px;
+    }
+
+    /* SECCION 6 PROGRAMAS */
+    .programas-header {
+        padding: 20px 15px;
+    }
+
+    .programas-header h2 {
+        font-size: 1.6em;
+    }
+
+    .programas-grid {
+        padding: 30px 15px;
+        gap: 20px;
+    }
+
+    .programa-image img {
+        height: 180px;
+    }
+
+    .programa-card p {
+        font-size: 0.95em;
+    }
+
+    /* SECCION 7 ENLACES */
+    .enlaces-section {
+        padding: 30px 15px;
+    }
+
+    .enlaces-column h3 {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+
+    .enlaces-column li {
+        margin-bottom: 10px;
+    }
+
+    .enlaces-column a {
+        font-size: 0.9em;
+    }
+
+    /* BOTONES */
+    .btn-continuar {
+        padding: 10px 25px;
+        font-size: 0.95em;
+    }
+}
+
+/* Móviles muy pequeños (hasta 375px) */
+@media screen and (max-width: 375px) {
+    .hero-logo img {
+        max-width: 280px;
+    }
+
+    .main-title {
+        font-size: 1.4em;
+    }
+
+    .hero-description p {
+        font-size: 0.85em;
+    }
+
+    .presentacion-text h2 {
+        font-size: 1.4em;
+    }
+
+    .presentacion-text p {
+        font-size: 0.85em;
+    }
+
+    .firma {
+        font-size: 0.9em;
+    }
+
+    .mision-text h2 {
+        font-size: 1.4em;
+    }
+
+    .mision-text p {
+        font-size: 0.85em;
+    }
+
+    .vision-text h2 {
+        font-size: 1.4em;
+    }
+
+    .vision-text p {
+        font-size: 0.85em;
+    }
+
+    .objetivos-text h2 {
+        font-size: 1.4em;
+    }
+
+    .objetivos-lista {
+        padding-left: 15px;
+    }
+
+    .objetivos-lista li {
+        font-size: 0.85em;
+        margin-bottom: 8px;
+    }
+
+    .objetivos-continuar {
+        font-size: 0.85em;
+    }
+
+    .programas-header h2 {
+        font-size: 1.4em;
+    }
+
+    .programa-image img {
+        height: 160px;
+    }
+
+    .programa-card p {
+        font-size: 0.9em;
+    }
+
+    .enlaces-column h3 {
+        font-size: 1.1em;
+    }
+
+    .enlaces-column a {
+        font-size: 0.85em;
+    }
+
+    .btn-continuar {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}

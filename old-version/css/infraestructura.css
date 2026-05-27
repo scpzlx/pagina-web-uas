@@ -1,0 +1,893 @@
+
+/* SECCIONES CON FONDOS DIFERENCIADOS */
+.seccion-infraestructura {
+    background-color: #f5f5f5;
+    padding: 60px 0;
+}
+
+.seccion-especializada {
+    background-color: white;
+    padding: 60px 0;
+}
+
+.seccion-comunes {
+    background-color: #f5f5f5;
+    padding: 60px 0;
+}
+
+.seccion-estadisticas {
+    background-color: white;
+    padding: 60px 0;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    background-color: #1e28b7;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+}
+
+.navbar .logoUas img {
+    height: 60px;
+}
+
+/* BANNER */
+.banner {
+    background-color: #ffd500;
+    padding: 39px 20px;
+    text-align: center;
+}
+
+.banner h1 {
+    color: #1e1fb2;
+    font-size: 2.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* INTRODUCCIÓN */
+.intro-section {
+    background: white;
+    margin: 3px auto 30px;
+    max-width: 1100px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border-left: 6px solid #ffd500;
+}
+
+.intro-section h2 {
+    color: #1e1fb2;
+    font-size: 2em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.intro-section p {
+    color: #555;
+    line-height: 1.9;
+    font-size: 1.05em;
+    text-align: justify;
+}
+
+/* SECTION TITLE */
+.section-title {
+    text-align: center;
+    color: #1e1fb2;
+    font-size: 2.2em;
+    margin: 0 0 40px 0;
+    padding-top: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: #ffc107;
+    margin: 20px auto 0;
+    border-radius: 2px;
+}
+
+/* GRID DE ÁREAS */
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin: 40px auto;
+    max-width: 1400px;
+    padding: 0 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.area-card {
+    background: white;
+    border-radius: 15px;
+    padding: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-top: 5px solid #ffd500;
+    position: relative;
+    overflow: hidden;
+}
+
+.area-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #ffc107, #ff9800);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.area-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.area-card:hover::before {
+    transform: scaleX(1);
+}
+
+.area-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.area-card h3 {
+    color: #1a237e;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+}
+
+.area-tag {
+    background: #e3f2fd;
+    color: #1a237e;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.area-card p {
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+/* LISTA DE CARACTERÍSTICAS */
+.caracteristicas {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.caracteristicas li {
+    padding: 8px 0;
+    padding-left: 30px;
+    position: relative;
+    color: #555;
+    line-height: 1.6;
+    font-size: 0.95em;
+}
+
+.caracteristicas li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #ffc107;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* COLORES DIFERENCIADOS PARA CADA ÁREA */
+.color-verde {
+    border-top: 5px solid #4CAF50;
+}
+
+.color-verde::before {
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+}
+
+.color-verde .caracteristicas li::before {
+    color: #4CAF50;
+}
+
+.color-azul {
+    border-top: 5px solid #2196F3;
+}
+
+.color-azul::before {
+    background: linear-gradient(90deg, #2196F3, #1976D2);
+}
+
+.color-azul .caracteristicas li::before {
+    color: #2196F3;
+}
+
+.color-naranja {
+    border-top: 5px solid #FF5722;
+}
+
+.color-naranja::before {
+    background: linear-gradient(90deg, #FF5722, #E64A19);
+}
+
+.color-naranja .caracteristicas li::before {
+    color: #FF5722;
+}
+
+.color-morado {
+    border-top: 5px solid #9C27B0;
+}
+
+.color-morado::before {
+    background: linear-gradient(90deg, #9C27B0, #7B1FA2);
+}
+
+.color-morado .caracteristicas li::before {
+    color: #9C27B0;
+}
+
+.color-rosa {
+    border-top: 5px solid #E91E63;
+}
+
+.color-rosa::before {
+    background: linear-gradient(90deg, #E91E63, #C2185B);
+}
+
+.color-rosa .caracteristicas li::before {
+    color: #E91E63;
+}
+
+.color-cyan {
+    border-top: 5px solid #00BCD4;
+}
+
+.color-cyan::before {
+    background: linear-gradient(90deg, #00BCD4, #0097A7);
+}
+
+.color-cyan .caracteristicas li::before {
+    color: #00BCD4;
+}
+
+.color-amarillo {
+    border-top: 5px solid #FFC107;
+}
+
+.color-amarillo::before {
+    background: linear-gradient(90deg, #FFC107, #FFA000);
+}
+
+.color-amarillo .caracteristicas li::before {
+    color: #FFC107;
+}
+
+.color-rojo {
+    border-top: 5px solid #F44336;
+}
+
+.color-rojo::before {
+    background: linear-gradient(90deg, #F44336, #D32F2F);
+}
+
+.color-rojo .caracteristicas li::before {
+    color: #F44336;
+}
+
+.color-indigo {
+    border-top: 5px solid #3F51B5;
+}
+
+.color-indigo::before {
+    background: linear-gradient(90deg, #3F51B5, #303F9F);
+}
+
+.color-indigo .caracteristicas li::before {
+    color: #3F51B5;
+}
+
+.color-teal {
+    border-top: 5px solid #009688;
+}
+
+.color-teal::before {
+    background: linear-gradient(90deg, #009688, #00796B);
+}
+
+.color-teal .caracteristicas li::before {
+    color: #009688;
+}
+
+.color-lime {
+    border-top: 5px solid #CDDC39;
+}
+
+.color-lime::before {
+    background: linear-gradient(90deg, #CDDC39, #AFB42B);
+}
+
+.color-lime .caracteristicas li::before {
+    color: #CDDC39;
+}
+
+.color-deep-orange {
+    border-top: 5px solid #FF6F00;
+}
+
+.color-deep-orange::before {
+    background: linear-gradient(90deg, #FF6F00, #E65100);
+}
+
+.color-deep-orange .caracteristicas li::before {
+    color: #FF6F00;
+}
+
+/* ESTADÍSTICAS */
+.stats-section {
+    background: white;
+    margin: 0 auto;
+    max-width: 1100px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.stat-number {
+    font-size: 2.5em;
+    color: #1a237e;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+/* RESPONSIVE */
+/* * Tablets y pantallas medianas (hasta 1024px) */ 
+@media screen and (max-width: 1024px) {
+  /* SECCIONES */
+  .seccion-infraestructura,
+  .seccion-especializada,
+  .seccion-comunes,
+  .seccion-estadisticas {
+    padding: 50px 0;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .navbar .logoUas img {
+    height: 55px;
+  }
+
+  /* BANNER */
+  .banner {
+    padding: 35px 15px;
+  }
+
+  .banner h1 {
+    font-size: 2.2em;
+    gap: 15px;
+  }
+
+  /* INTRODUCCIÓN */
+  .intro-section {
+    max-width: 95%;
+    padding: 35px 30px;
+    margin: 30px auto;
+  }
+
+  .intro-section h2 {
+    font-size: 1.8em;
+    gap: 12px;
+  }
+
+  .intro-section p {
+    font-size: 1em;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 2em;
+    padding-top: 50px;
+    margin-bottom: 35px;
+  }
+
+  .section-title::after {
+    width: 80px;
+    height: 3px;
+    margin: 15px auto 0;
+  }
+
+  /* AREAS GRID */
+  .areas-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 0 30px;
+    margin: 30px auto;
+  }
+
+  .area-card {
+    padding: 30px;
+  }
+
+  .area-icon {
+    font-size: 2.5em;
+  }
+
+  .area-card h3 {
+    font-size: 1.4em;
+  }
+
+  /* ESTADÍSTICAS */
+  .stats-section {
+    max-width: 95%;
+    padding: 35px 30px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+  }
+
+  .stat-number {
+    font-size: 2.2em;
+  }
+
+  .stat-label {
+    font-size: 0.95em;
+  }
+}
+
+/* Tablets pequeñas (hasta 768px) */
+@media screen and (max-width: 768px) {
+  /* SECCIONES */
+  .seccion-infraestructura,
+  .seccion-especializada,
+  .seccion-comunes,
+  .seccion-estadisticas {
+    padding: 40px 0;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .navbar .logoUas img {
+    height: 50px;
+  }
+
+  /* BANNER */
+  .banner {
+    padding: 30px 15px;
+  }
+
+  .banner h1 {
+    font-size: 1.9em;
+    gap: 12px;
+    flex-direction: column;
+  }
+
+  /* INTRODUCCIÓN */
+  .intro-section {
+    max-width: 95%;
+    padding: 30px 25px;
+    margin: 25px auto;
+    border-left: 4px solid #ffd500;
+  }
+
+  .intro-section h2 {
+    font-size: 1.6em;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .intro-section p {
+    font-size: 0.95em;
+    line-height: 1.7;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 1.8em;
+    padding-top: 40px;
+    margin-bottom: 30px;
+  }
+
+  .section-title::after {
+    width: 70px;
+    margin: 12px auto 0;
+  }
+
+  /* AREAS GRID */
+  .areas-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 20px;
+    margin: 25px auto;
+  }
+
+  .area-card {
+    padding: 25px;
+  }
+
+  .area-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .area-icon {
+    font-size: 2.2em;
+    margin-bottom: 12px;
+  }
+
+  .area-card h3 {
+    font-size: 1.3em;
+    margin-bottom: 12px;
+  }
+
+  .area-tag {
+    padding: 6px 10px;
+    font-size: 0.8em;
+    margin-bottom: 12px;
+  }
+
+  .area-card p {
+    font-size: 0.95em;
+    margin-bottom: 15px;
+  }
+
+  .caracteristicas li {
+    padding: 6px 0;
+    padding-left: 25px;
+    font-size: 0.9em;
+  }
+
+  .caracteristicas li::before {
+    font-size: 1.1em;
+  }
+
+  /* ESTADÍSTICAS */
+  .stats-section {
+    max-width: 95%;
+    padding: 30px 25px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .stat-item {
+    padding: 18px 15px;
+  }
+
+  .stat-number {
+    font-size: 2em;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 0.9em;
+  }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media screen and (max-width: 480px) {
+  /* SECCIONES */
+  .seccion-infraestructura,
+  .seccion-especializada,
+  .seccion-comunes,
+  .seccion-estadisticas {
+    padding: 30px 0;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    padding: 8px 12px;
+  }
+
+  .navbar .logoUas img {
+    height: 45px;
+  }
+
+  /* BANNER */
+  .banner {
+    padding: 25px 10px;
+  }
+
+  .banner h1 {
+    font-size: 1.6em;
+    gap: 10px;
+  }
+
+  /* INTRODUCCIÓN */
+  .intro-section {
+    max-width: 95%;
+    padding: 25px 20px;
+    margin: 20px auto;
+    border-radius: 12px;
+  }
+
+  .intro-section h2 {
+    font-size: 1.4em;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .intro-section p {
+    font-size: 0.9em;
+    line-height: 1.6;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 1.5em;
+    padding-top: 30px;
+    margin-bottom: 25px;
+  }
+
+  .section-title::after {
+    width: 60px;
+    height: 3px;
+    margin: 10px auto 0;
+  }
+
+  /* AREAS GRID */
+  .areas-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 0 15px;
+    margin: 20px auto;
+  }
+
+  .area-card {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .area-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .area-icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+
+  .area-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+
+  .area-tag {
+    padding: 5px 8px;
+    font-size: 0.75em;
+    margin-bottom: 10px;
+  }
+
+  .area-card p {
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .caracteristicas {
+    margin-top: 12px;
+  }
+
+  .caracteristicas li {
+    padding: 5px 0;
+    padding-left: 22px;
+    font-size: 0.85em;
+  }
+
+  .caracteristicas li::before {
+    font-size: 1em;
+  }
+
+  /* ESTADÍSTICAS */
+  .stats-section {
+    max-width: 95%;
+    padding: 25px 20px;
+    border-radius: 12px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .stat-item {
+    padding: 15px 12px;
+    border-radius: 8px;
+  }
+
+  .stat-number {
+    font-size: 1.8em;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 0.85em;
+  }
+}
+
+/* Móviles muy pequeños (hasta 375px) */
+@media screen and (max-width: 375px) {
+  /* SECCIONES */
+  .seccion-infraestructura,
+  .seccion-especializada,
+  .seccion-comunes,
+  .seccion-estadisticas {
+    padding: 25px 0;
+  }
+
+  /* NAVBAR */
+  .navbar .logoUas img {
+    height: 40px;
+  }
+
+  /* BANNER */
+  .banner {
+    padding: 20px 8px;
+  }
+
+  .banner h1 {
+    font-size: 1.4em;
+    gap: 8px;
+  }
+
+  /* INTRODUCCIÓN */
+  .intro-section {
+    padding: 20px 15px;
+    margin: 15px auto;
+  }
+
+  .intro-section h2 {
+    font-size: 1.3em;
+    gap: 6px;
+  }
+
+  .intro-section p {
+    font-size: 0.85em;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 1.3em;
+    padding-top: 25px;
+    margin-bottom: 20px;
+  }
+
+  .section-title::after {
+    width: 50px;
+    height: 2px;
+  }
+
+  /* AREAS GRID */
+  .areas-grid {
+    gap: 15px;
+    padding: 0 10px;
+    margin: 15px auto;
+  }
+
+  .area-card {
+    padding: 18px;
+  }
+
+  .area-icon {
+    font-size: 1.8em;
+  }
+
+  .area-card h3 {
+    font-size: 1.1em;
+  }
+
+  .area-tag {
+    padding: 4px 7px;
+    font-size: 0.7em;
+  }
+
+  .area-card p {
+    font-size: 0.85em;
+  }
+
+  .caracteristicas li {
+    padding: 4px 0;
+    padding-left: 20px;
+    font-size: 0.8em;
+  }
+
+  /* ESTADÍSTICAS */
+  .stats-section {
+    padding: 20px 15px;
+  }
+
+  .stats-grid {
+    gap: 12px;
+  }
+
+  .stat-item {
+    padding: 12px 10px;
+  }
+
+  .stat-number {
+    font-size: 1.6em;
+  }
+
+  .stat-label {
+    font-size: 0.8em;
+  }
+}
+
+/* Landscape para móviles */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .banner {
+    padding: 20px 15px;
+  }
+
+  .banner h1 {
+    font-size: 1.5em;
+  }
+
+  .section-title {
+    padding-top: 25px;
+    margin-bottom: 20px;
+  }
+
+  .intro-section,
+  .stats-section {
+    padding: 25px 20px;
+  }
+
+  .areas-grid {
+    margin: 20px auto;
+  }
+
+  .area-card {
+    padding: 20px;
+  }
+}

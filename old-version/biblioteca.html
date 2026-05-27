@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <title>Biblioteca</title>
+    <link rel="stylesheet" href="/css/biblioteca-style.css" />
+    <link rel="stylesheet" href="css/styles-base.css">
+    <link rel="icon" type="image/png" href="images/favicon.ico" />
+    <link rel="stylesheet" href="css/chat-widget.css" />
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div id="header-container"></div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="departamento-indicator">
+        <h1>📚 Biblioteca</h1>
+    </div>
+
+    <!-- SERVICIOS -->
+    <section class="servicios-section">
+        <div class="container">
+            <h2 class="section-title">
+                <div class="biblioteca">Nuestros Servicios
+            </h2>
+            <div class="servicios-grid">
+                <div class="servicio-card">
+                    <div class="servicio-icon">🗄️</div>
+                    <h3>Estanteria abierta</h3>
+                    <p>Acceso directo a materiales documentales en diferentes clasificaciones. Toma los recursos que
+                        necesites o solicitudes al personal.</p>
+                </div>
+
+                <div class="servicio-card destacado">
+                    <div class="servicio-icon">📖</div>
+                    <h3>Área de consulta</h3>
+                    <p>Espacio cómodo y tranquilo para estudiar y consultar materiales bibliograficos especializados.
+                    </p>
+                </div>
+
+                <div class="servicio-card">
+                    <div class="servicio-icon">🔖</div>
+                    <h3>Préstamo Externo</h3>
+                    <p>Para usuarios internos con credencial vigente. Hasta 2 ejemplares simultáneos según
+                        disponibilidad.</p>
+                </div>
+
+                <div class="servicio-card">
+                    <div class="servicio-icon">💳</div>
+                    <h3>Credencial de Usuario</h3>
+                    <p>Credencial única e intransferible para acceder a todos los servicios bibliotecarios del sistema.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGLAMENTO -->
+    <section class="reglamento-section">
+        <div class="container">
+            <h2 class="section-title">Reglamento de Biblioteca</h2>
+
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab(event, 'derechos')">Derechos</button>
+                <button class="tab-button" onclick="openTab(event, 'obligaciones')">Obligaciones</button>
+                <button class="tab-button" onclick="openTab(event, 'sanciones')">Sanciones</button>
+            </div>
+
+            <!-- Derechos tab -->
+            <div id="derechos" class="tab-content active">
+                <div class="reglamento-grid">
+                    <div class="reglamento-item">
+                        <h4>Uso de Material</h4>
+                        <ul>
+                            <li>Acceso a material documental en todos sus clasificaciones</li>
+                            <li>Toma directa de estanteria abierta</li>
+                            <li>Asistencia del personal disponible</li>
+                        </ul>
+                    </div>
+
+                    <div class="reglamento-item">
+                        <h4>Fotocopiado</h4>
+                        <ul>
+                            <li>Disponible para todos los usuarios</li>
+                            <li>Excepto tesis y colección antiguas</li>
+                            <li>Costo por servicio</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Obligaciones tab -->
+            <div id="obligaciones" class="tab-content">
+                <div class="reglamento-grid">
+                    <div class="reglamento-item">
+                        <h4>Casilleros</h4>
+                        <ul>
+                            <li>Depositar pertenencias durante la estancia</li>
+                            <li>Uso obligatorio para todos los usuarios</li>
+                        </ul>
+                    </div>
+
+                    <div class="reglamento-item">
+                        <h4>Registro</h4>
+                        <ul>
+                            <li>Todo usuario debe registrarse en el Control de Usuarios</li>
+                            <li>Sin excepciones</li>
+                        </ul>
+                    </div>
+
+                    <div class="reglamento-item">
+                        <h4>Conducta Respetuosa</h4>
+                        <ul>
+                            <li>Conservar el material proporcionado</li>
+                            <li>Prohibido introducir alimentos y bebidas</li>
+                            <li>No fumar en las instalaciones</li>
+                            <li>Silenciar equipos electronicos</li>
+                            <li>Mantener silencio en las áreas de servicio</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sanciones Tab -->
+            <div id="sanciones" class="tab-content">
+                <div class="reglamento-grid">
+                    <div class="reglamento-item">
+                        <h4>Danos al servicio</h4>
+                        <ul>
+                            <li>Pago del importe de reposicion</li>
+                            <li>Costo determinado por el responsable</li>
+                        </ul>
+                    </div>
+
+                    <div class="reglamento-item">
+                        <h4>Mutilación o Pérdida</h4>
+                        <ul>
+                            <li>Reposición con obra idéntica en máximo 1 semana</li>
+                            <li>Si no es posible: 2 libros nuevos de la misma materia</li>
+                            <li>Suspensión de derechos hasta reposición</li>
+                        </ul>
+                    </div>
+
+                    <div class="reglamento-item">
+                        <h4>Retraso en Devolución</h4>
+                        <ul>
+                            <li>$5.00 diarios por cada libro</li>
+                            <li>Suspensión hasta cubrir multa o devolver material</li>
+                            <li>Retención de credencial por adeudos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CREDENCIAL -->
+    <section class="credencial-section">
+        <div class="container">
+            <div class="credencial-box">
+                <h3>Credencial de Servicios Bibliotecarios</h3>
+                <p style="text-align: center; font-size: 1.1em; margin-bottom: 20px;">
+                    Única e intransferible - Primera expedicion GRATUITA
+                </p>
+
+                <div class="requisitos-list">
+                    <h4>Requisitos para Reposición</h4>
+                    <ul>
+                        <li>Llenar solicitud de registro</li>
+                        <li>Entregar fotografia tamano infantil</li>
+                        <li>Presentar credencial vigente o recibo de inscripción</li>
+                        <li>Personal universitario: credencial y/o último talón de cheque</li>
+                    </ul>
+
+                    <div class="costo-destacado">
+                        Costo de Reposición: $50.00
+                    </div>
+
+                    <p style="margin-top: 20px; font-style: italic; color: #666;">
+                        * Trámite dispobible en días hábiles según calendario escolar. Renovación anual obligatoria.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRESTAMO EXTERNO -->
+    <section class="servicios-section">
+        <div class="container">
+            <h2 class="section-title">Préstamo Externo</h2>
+            <p style="text-align: center; margin-bottom: 40px; font-size: 1.1em; color: #666;">
+                Exlusivo para usuarios internos con credencial vigente
+            </p>
+
+            <div class="prestamo-info">
+                <div class="prestamo-card">
+                    <h3>Varios Ejemplares</h3>
+                    <div class="dias">7</div>
+                    <p>días de préstamo</p>
+                </div>
+
+                <div class="prestamo-card">
+                    <h3>Ejemplar Único</h3>
+                    <div class="dias">2</div>
+                    <p>días de préstamo</p>
+                </div>
+
+                <div class="prestamo-card">
+                    <h3>Máximo</h3>
+                    <div class="dias">2</div>
+                    <p>Libros por persona</p>
+                </div>
+            </div>
+
+            <div
+                style="margin-top: 30px; text-align: center; background-color: white; padding: 20px; border-radius: 10px;">
+                <p style="color: #666; font-size: 0.95em">
+                    <strong>Nota importante:</strong> Si ya se prestó un ejemplar de un libro que tiene varios, los
+                    restantes
+                    se prestarán
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div id="footer-container"></div>
+
+    <script src="/js/biblioteca.js"></script>
+    <script src="presentation/header.js"></script>
+    <script src="presentation/footer.js"></script>
+    <script src="js/chat-widget.js"></script>
+</body>
+
+</html>

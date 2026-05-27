@@ -1,0 +1,272 @@
+
+/* HEADER DEL DEPARTAMENTO */
+.departamento-header {
+    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.departamento-header h1 {
+    font-size: 2em;
+    font-weight: 700;
+}
+
+/* CONSEJO SECTION */
+.consejo-section {
+    padding: 60px 20px;
+}
+
+.consejo-title {
+    background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* CONSEJEROS BLOCK */
+.consejeros-block {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.consejeros-subtitle {
+    background: #1a237e;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.4em;
+    font-weight: 700;
+    margin-bottom: 30px;
+    border-radius: 8px;
+}
+
+.consejeros-subtitle.alumnos {
+    background: #1a237e;
+}
+
+/* DIRECTIVOS GRID */
+.directivos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.directivo-card {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 5px solid #ffd500;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.directivo-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.directivo-cargo {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #1a237e;
+    margin-bottom: 10px;
+}
+
+.directivo-nombre {
+    font-size: 1.15em;
+    color: #555;
+}
+
+/* TABLA */
+.tabla-wrapper {
+    overflow-x: auto;
+}
+
+.consejeros-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.consejeros-table thead {
+    background: #e0e0e0;
+}
+
+.consejeros-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 700;
+    color: #1a237e;
+    font-size: 1.1em;
+    border-bottom: 2px solid #ffd500;
+}
+
+.consejeros-table tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.consejeros-table td {
+    padding: 15px;
+    color: #555;
+}
+
+.consejeros-table td:first-child {
+    font-weight: 600;
+    color: #333;
+}
+
+.consejeros-table td:last-child {
+    text-align: center;
+    color: #1a237e;
+    font: 600;
+}
+
+/* RESPONSIVE */
+/* Tablets y pantallas medianas (hasta 1024px) */
+@media screen and (max-width: 1024px) {
+    .consejo-title {
+        font-size: 1.8em;
+    }
+
+    .consejeros-subtitle {
+        font-size: 1.3em;
+    }
+
+    .directivos-grid {
+        gap: 20px;
+    }
+}
+
+/* Tablets pequeñas (hasta 768px) */
+@media screen and (max-width: 768px) {
+    .departamento-header {
+        padding: 25px 15px;
+    }
+
+    .departamento-header h1 {
+        font-size: 1.7em;
+    }
+
+    .consejo-section {
+        padding: 40px 15px;
+    }
+
+    .consejo-title {
+        font-size: 1.5em;
+        padding: 15px;
+        margin-bottom: 30px;
+    }
+
+    .consejeros-block {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .consejeros-subtitle {
+        font-size: 1.2em;
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+
+    .directivos-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .directivo-card {
+        padding: 20px;
+    }
+
+    .consejeros-table th,
+    .consejeros-table td {
+        padding: 12px 10px;
+        font-size: 0.95em;
+    }
+
+    .consejeros-table th {
+        font-size: 1em;
+    }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media screen and (max-width: 480px) {
+    .departamento-header {
+        padding: 25px 10px;
+    }
+
+    .departamento-header h1 {
+        font-size: 1.6em;
+    }
+
+    .consejo-section {
+        padding: 30px 15px;
+    }
+
+    .consejo-title {
+        font-size: 1.3em;
+        padding: 12px;
+    }
+
+    .consejeros-block {
+        padding: 15px;
+    }
+
+    .consejeros-subtitle {
+        font-size: 1.1em;
+        padding: 10px;
+    }
+
+    .directivo-card {
+        padding: 15px;
+    }
+
+    .directivo-cargo {
+        font-size: 1em;
+    }
+
+    .directivo-nombre {
+        font-size: 1em;
+    }
+
+    .consejeros-table th,
+    .consejeros-table td {
+        padding: 10px 8px;
+        font-size: 0.9em;
+    }
+
+    .consejeros-table th {
+        font-size: 0.95em;
+    }
+}
+
+/* Móviles muy pequeños (hasta 375px) */
+@media screen and (max-width: 375px) {
+    .departamento-header h1 {
+        font-size: 1.3em;
+    }
+
+    .consejo-title {
+        font-size: 1.2em;
+    }
+
+    .consejeros-subtitle {
+        font-size: 1em;
+    }
+
+    .consejeros-table th,
+    .consejeros-table td {
+        padding: 8px 6px;
+        font-size: 0.85em;
+    }
+}
+

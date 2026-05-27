@@ -1,0 +1,10 @@
+Options -MultiViews
+RewriteEngine On
+
+# Si el archivo o directorio existe, sírvelo directamente
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Todo lo demás lo maneja Vue Router
+RewriteRule ^ index.html [L]

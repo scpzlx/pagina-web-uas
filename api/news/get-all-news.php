@@ -5,76 +5,56 @@ $conn = getConnection();
 
 try {
     $sql = "SELECT 
-                id, 
-                title, 
-                short_description as shortDescription,
-                date,
-                category,
-                category_label as categoryLabel,
-                thumbnail_image as thumbnailImage,
-                hero_image as heroImage,
-                video_url as videoUrl,
-                status
+                id, title, short_description as shortDescription, date, category,
+                category_label as categoryLabel, thumbnail_image as thumbnailImage,
+                hero_image as heroImage, video_url as videoUrl, status
             FROM noticias 
             WHERE status = 'published'
             ORDER BY date DESC, id DESC";
-    
+
     $result = $conn->query($sql);
-    
+
     if ($result === false) {
         throw new Exception('Error en la consulta: ' . $conn->error);
     }
-    
+
     $news = [];
-    
+
     while ($row = $result->fetch_assoc()) {
-        $contentSql = "SELECT paragraph_text 
-                       FROM noticia_content 
-                       WHERE noticia_id = ? 
-                       ORDER BY paragraph_order ASC";
-        $contentStmt = $conn->prepare($contentSql);
+        // Contenido
+        $contentStmt = $conn->prepare("SELECT paragraph_text FROM noticia_content WHERE noticia_id = ? ORDER BY paragraph_order ASC");
         $contentStmt->bind_param("i", $row['id']);
         $contentStmt->execute();
-        $contentResult = $contentStmt->get_result();
-        
+        $contentStmt->store_result();
+        $contentStmt->bind_result($paragraph_text);
         $content = [];
-        while ($contentRow = $contentResult->fetch_assoc()) {
-            $content[] = $contentRow['paragraph_text'];
+        while ($contentStmt->fetch()) {
+            $content[] = $paragraph_text;
         }
         $row['content'] = $content;
         $contentStmt->close();
-        
-        $gallerySql = "SELECT image_url 
-                       FROM noticia_gallery 
-                       WHERE noticia_id = ? 
-                       ORDER BY image_order ASC";
-        $galleryStmt = $conn->prepare($gallerySql);
+
+        // Galería
+        $galleryStmt = $conn->prepare("SELECT image_url FROM noticia_gallery WHERE noticia_id = ? ORDER BY image_order ASC");
         $galleryStmt->bind_param("i", $row['id']);
         $galleryStmt->execute();
-        $galleryResult = $galleryStmt->get_result();
-        
+        $galleryStmt->store_result();
+        $galleryStmt->bind_result($image_url);
         $gallery = [];
-        while ($galleryRow = $galleryResult->fetch_assoc()) {
-            $gallery[] = $galleryRow['image_url'];
+        while ($galleryStmt->fetch()) {
+            $gallery[] = $image_url;
         }
         $row['gallery'] = $gallery;
         $galleryStmt->close();
-        
+
         $news[] = $row;
     }
-    
-    echo json_encode([
-        'success' => true,
-        'data' => $news,
-        'count' => count($news)
-    ]);
-    
+
+    echo json_encode(['success' => true, 'data' => $news, 'count' => count($news)], JSON_UNESCAPED_UNICODE);
+
 } catch (Exception $e) {
     http_response_code(500);
-    echo json_encode([
-        'success' => false,
-        'message' => $e->getMessage()
-    ]);
+    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
 }
 
 closeConnection($conn);

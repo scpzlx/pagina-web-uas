@@ -1,0 +1,505 @@
+<template>
+  <div class="eventos-page">
+
+    <!-- HERO — amarillo -->
+    <section class="hero-eventos">
+      <div class="hero-inner">
+        <div class="hero-breadcrumb">
+          <RouterLink to="/">Inicio</RouterLink>
+          <i class="ti ti-chevron-right"></i>
+          <span>Difusión</span>
+          <i class="ti ti-chevron-right"></i>
+          <span>Eventos</span>
+        </div>
+        <h1>Eventos</h1>
+        <p>Conoce todas las actividades, exposiciones y conferencias de la Facultad de Artes · UAS</p>
+        <div class="hero-badges">
+          <span><i class="ti ti-calendar-event"></i> Ciclo 2025–2026</span>
+          <span><i class="ti ti-map-pin"></i> Culiacán, Sinaloa</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTROS — azul -->
+    <section class="filtros-section">
+      <div class="container">
+        <div class="filter-bar">
+          <div class="filter-label">
+            <i class="ti ti-adjustments-horizontal"></i>
+            Filtrar
+          </div>
+          <div class="filter-group">
+            <label>Mes</label>
+            <select v-model="filtros.mes" class="filter-select">
+              <option value="">Todos</option>
+              <option value="1">Enero</option>
+              <option value="2">Febrero</option>
+              <option value="3">Marzo</option>
+              <option value="4">Abril</option>
+              <option value="5">Mayo</option>
+              <option value="6">Junio</option>
+              <option value="7">Julio</option>
+              <option value="8">Agosto</option>
+              <option value="9">Septiembre</option>
+              <option value="10">Octubre</option>
+              <option value="11">Noviembre</option>
+              <option value="12">Diciembre</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Año</label>
+            <select v-model="filtros.anio" class="filter-select">
+              <option value="">Todos</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Categoría</label>
+            <select v-model="filtros.categoria" class="filter-select">
+              <option value="">Todas</option>
+              <option value="actividades-generales">Actividades Generales</option>
+              <option value="academico">Académico</option>
+              <option value="investigacion">Investigación</option>
+              <option value="extension">Extensión</option>
+              <option value="cultura">Cultura</option>
+              <option value="deportes">Deportes</option>
+            </select>
+          </div>
+          <button v-if="hayFiltros" class="btn-clear" @click="limpiarFiltros">
+            <i class="ti ti-x"></i> Limpiar
+          </button>
+        </div>
+        <div v-if="hayFiltros" class="resultados-count">
+          {{ eventosFiltrados.length }} resultado{{ eventosFiltrados.length !== 1 ? 's' : '' }} encontrado{{ eventosFiltrados.length !== 1 ? 's' : '' }}
+        </div>
+      </div>
+    </section>
+
+    <!-- LISTA DE EVENTOS — blanco -->
+    <section class="eventos-section">
+      <div class="container">
+
+        <div v-if="loading" class="estado-msg">
+          <i class="ti ti-loader-2 spin"></i>
+          <p>Cargando eventos...</p>
+        </div>
+
+        <div v-else-if="error" class="estado-msg error">
+          <i class="ti ti-alert-circle"></i>
+          <p>No se pudieron cargar los eventos. Por favor, intenta más tarde.</p>
+        </div>
+
+        <div v-else-if="eventosFiltrados.length === 0 && hayFiltros" class="estado-msg">
+          <i class="ti ti-search-off"></i>
+          <p>No se encontraron eventos con los filtros seleccionados.</p>
+          <button class="btn-clear-big" @click="limpiarFiltros">Ver todos los eventos</button>
+        </div>
+
+        <div v-else-if="eventosFiltrados.length === 0" class="estado-msg">
+          <i class="ti ti-calendar-off"></i>
+          <p>No hay eventos disponibles por el momento.</p>
+        </div>
+
+        <div v-else class="eventos-list">
+          <article
+            v-for="evento in eventosFiltrados"
+            :key="evento.id"
+            class="evento-card"
+            @click="$router.push(`/eventos/${evento.id}`)"
+          >
+            <div class="evento-img">
+              <img v-if="evento.thumbnailImage" :src="evento.thumbnailImage" :alt="evento.title" loading="lazy" />
+              <div v-else class="evento-img-placeholder">
+                <i class="ti ti-calendar-event"></i>
+              </div>
+              <span class="evento-cat">{{ evento.categoryLabel }}</span>
+            </div>
+            <div class="evento-body">
+              <div class="evento-fecha">
+                <div class="fecha-dia">{{ getDia(evento.date) }}</div>
+                <div class="fecha-mes">{{ getMes(evento.date) }}</div>
+                <div class="fecha-anio">{{ getAnio(evento.date) }}</div>
+              </div>
+              <div class="evento-info">
+                <h2 class="evento-titulo">{{ evento.title }}</h2>
+                <p class="evento-desc">{{ truncate(evento.shortDescription, 180) }}</p>
+                <div class="evento-footer">
+                  <span v-if="evento.location" class="evento-lugar">
+                    <i class="ti ti-map-pin"></i> {{ evento.location }}
+                  </span>
+                  <span class="evento-leer">
+                    Ver evento <i class="ti ti-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+import { RouterLink } from 'vue-router'
+import axios from 'axios'
+
+const eventos = ref<any[]>([])
+const loading = ref(true)
+const error = ref(false)
+
+const filtros = ref({
+  mes: '',
+  anio: '',
+  categoria: ''
+})
+
+const hayFiltros = computed(() =>
+  filtros.value.mes !== '' || filtros.value.anio !== '' || filtros.value.categoria !== ''
+)
+
+const eventosFiltrados = computed(() => {
+  let lista = eventos.value
+
+  if (filtros.value.mes) {
+    lista = lista.filter(e => {
+      const d = new Date(e.date + 'T00:00:00')
+      return (d.getMonth() + 1) === parseInt(filtros.value.mes)
+    })
+  }
+
+  if (filtros.value.anio) {
+    lista = lista.filter(e => {
+      const d = new Date(e.date + 'T00:00:00')
+      return d.getFullYear() === parseInt(filtros.value.anio)
+    })
+  }
+
+  if (filtros.value.categoria) {
+    lista = lista.filter(e => e.category === filtros.value.categoria)
+  }
+
+  return lista
+})
+
+function limpiarFiltros() {
+  filtros.value = { mes: '', anio: '', categoria: '' }
+}
+
+const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']
+function getDia(d: string) { return new Date(d + 'T00:00:00').getDate() }
+function getMes(d: string) { return meses[new Date(d + 'T00:00:00').getMonth()] }
+function getAnio(d: string) { return new Date(d + 'T00:00:00').getFullYear() }
+function truncate(text: string, max: number) {
+  if (!text) return ''
+  return text.length <= max ? text : text.substring(0, max) + '...'
+}
+
+onMounted(async () => {
+  try {
+    const res = await axios.get('/api/events/get-all-events.php')
+    if (res.data.success) eventos.value = res.data.data
+    else error.value = true
+  } catch {
+    error.value = true
+  } finally {
+    loading.value = false
+  }
+})
+</script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css');
+
+.eventos-page {
+  font-family: 'Outfit', sans-serif;
+  background: #f4f5f9;
+}
+
+/* ─── HERO — amarillo ───────────────────────────────── */
+.hero-eventos {
+  background: #ffd500;
+  padding: 64px 48px 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-eventos::before {
+  content: '';
+  position: absolute;
+  right: -60px; top: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: rgba(15, 26, 140, 0.06);
+}
+
+.hero-eventos::after {
+  content: '';
+  position: absolute;
+  right: 100px; bottom: -40px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: rgba(15, 26, 140, 0.04);
+}
+
+.hero-inner {
+  position: relative; z-index: 1;
+  max-width: 1100px; margin: 0 auto;
+}
+
+.hero-breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; color: rgba(15,26,140,0.6);
+  margin-bottom: 20px;
+}
+
+.hero-breadcrumb a { color: rgba(15,26,140,0.6); text-decoration: none; }
+.hero-breadcrumb a:hover { color: #0f1a8c; }
+.hero-breadcrumb i { font-size: 12px; }
+
+.hero-eventos h1 {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 800; color: #0f1a8c;
+  letter-spacing: -1.5px; margin-bottom: 14px;
+}
+
+.hero-eventos p {
+  font-size: 15px; color: rgba(15,26,140,0.75);
+  margin-bottom: 24px; max-width: 540px;
+}
+
+.hero-badges { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.hero-badges span {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(15,26,140,0.1); color: #0f1a8c;
+  font-size: 12px; font-weight: 600;
+  padding: 6px 14px; border-radius: 20px;
+  border: 1px solid rgba(15,26,140,0.12);
+}
+
+/* ─── FILTROS — azul ────────────────────────────────── */
+.filtros-section {
+  background: #0f1a8c;
+  padding: 28px 48px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(15,26,140,0.3);
+}
+
+.container { max-width: 1100px; margin: 0 auto; }
+
+.filter-bar {
+  display: flex; align-items: center;
+  gap: 16px; flex-wrap: wrap;
+}
+
+.filter-label {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700;
+  color: #ffd500; text-transform: uppercase;
+  letter-spacing: 1px; margin-right: 4px;
+}
+
+.filter-group { display: flex; align-items: center; gap: 8px; }
+
+.filter-group label {
+  font-size: 11px; font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase; letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.filter-select {
+  background: rgba(255,255,255,0.1);
+  border: 1.5px solid rgba(255,255,255,0.2);
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px; font-weight: 500;
+  padding: 8px 32px 8px 14px;
+  border-radius: 8px; cursor: pointer;
+  min-width: 140px; transition: all 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #ffd500;
+  background-color: rgba(255,255,255,0.15);
+}
+
+.filter-select option { background: #0f1a8c; color: white; }
+
+.btn-clear {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,213,0,0.15);
+  border: 1.5px solid rgba(255,213,0,0.4);
+  color: #ffd500;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px; font-weight: 700;
+  padding: 8px 16px; border-radius: 8px;
+  cursor: pointer; transition: all 0.2s;
+  text-transform: uppercase; letter-spacing: 0.3px;
+  margin-left: auto;
+}
+
+.btn-clear:hover { background: rgba(255,213,0,0.25); border-color: #ffd500; }
+
+.resultados-count {
+  font-size: 12px; color: rgba(255,255,255,0.5);
+  margin-top: 10px; font-weight: 500;
+}
+
+/* ─── LISTA — blanco ────────────────────────────────── */
+.eventos-section {
+  background: white;
+  padding: 56px 48px;
+  min-height: 400px;
+}
+
+.eventos-list {
+  display: flex; flex-direction: column; gap: 20px;
+}
+
+.evento-card {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.evento-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(15,26,140,0.1);
+}
+
+.evento-img {
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #0f1a8c, #1a3bcc);
+}
+
+.evento-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.4s ease;
+}
+
+.evento-card:hover .evento-img img { transform: scale(1.05); }
+
+.evento-img-placeholder {
+  width: 100%; height: 100%; min-height: 200px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px; color: rgba(255,255,255,0.15);
+}
+
+.evento-cat {
+  position: absolute; top: 14px; left: 14px;
+  background: #ffd500; color: #0f1a8c;
+  font-size: 10px; font-weight: 800;
+  padding: 4px 12px; border-radius: 20px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+.evento-body { display: flex; gap: 0; }
+
+.evento-fecha {
+  background: #0f1a8c;
+  min-width: 80px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 20px 12px;
+  border-right: 3px solid #ffd500;
+  flex-shrink: 0;
+}
+
+.fecha-dia { font-size: 36px; font-weight: 800; color: #ffd500; line-height: 1; }
+.fecha-mes { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+.fecha-anio { font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 3px; }
+
+.evento-info {
+  flex: 1; padding: 24px 28px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+.evento-titulo { font-size: 18px; font-weight: 700; color: #1a1a2e; line-height: 1.35; margin: 0; }
+.evento-desc { font-size: 13px; color: #666; line-height: 1.7; flex: 1; margin: 0; }
+
+.evento-footer {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid rgba(0,0,0,0.07);
+  margin-top: auto; flex-wrap: wrap; gap: 8px;
+}
+
+.evento-lugar { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #999; }
+.evento-lugar i { font-size: 14px; color: #0f1a8c; }
+.evento-leer { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: #0f1a8c; }
+
+/* ─── ESTADOS ───────────────────────────────────────── */
+.estado-msg { text-align: center; padding: 80px 24px; color: #999; }
+.estado-msg i { font-size: 48px; display: block; margin-bottom: 16px; color: #ccc; }
+.estado-msg.error i { color: #ffaaaa; }
+.estado-msg.error p { color: #c0392b; }
+.estado-msg p { font-size: 16px; margin: 0 0 20px; }
+
+.btn-clear-big {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #0f1a8c; color: white;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px; font-weight: 700;
+  padding: 10px 24px; border-radius: 10px;
+  border: none; cursor: pointer; transition: all 0.2s;
+}
+
+.btn-clear-big:hover { background: #1a2db5; }
+
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.spin { animation: spin 1s linear infinite; }
+
+/* ─── RESPONSIVE ────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-eventos { padding: 48px 24px 40px; }
+  .filtros-section { padding: 20px 24px; position: static; }
+  .eventos-section { padding: 40px 24px; }
+  .filter-bar { gap: 12px; }
+  .filter-select { min-width: 120px; }
+  .evento-card { grid-template-columns: 1fr; }
+  .evento-img { height: 220px; }
+  .evento-img-placeholder { min-height: 220px; }
+}
+
+@media (max-width: 600px) {
+  .hero-eventos { padding: 40px 16px 32px; }
+  .filtros-section { padding: 16px; }
+  .eventos-section { padding: 32px 16px; }
+  .filter-bar { flex-direction: column; align-items: stretch; gap: 10px; }
+  .filter-group { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .filter-select { width: 100%; min-width: unset; }
+  .btn-clear { margin-left: 0; width: 100%; justify-content: center; }
+  .evento-body { flex-direction: column; }
+  .evento-fecha {
+    flex-direction: row; gap: 12px;
+    padding: 14px 20px; border-right: none;
+    border-bottom: 3px solid #ffd500;
+    justify-content: flex-start; min-width: unset;
+  }
+  .fecha-dia { font-size: 28px; }
+  .evento-info { padding: 16px 20px; }
+}
+</style>

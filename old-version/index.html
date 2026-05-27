@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escuela de diseño y artes visuales</title>
+  <link rel="stylesheet" href="/css/style-original.css" />
+  <link rel="stylesheet" href="css/styles-noticias-index.css" />
+  <link rel="stylesheet" href="css/eventos-index.css">
+  <link rel="stylesheet" href="css/styles-base.css" />
+  <link rel="stylesheet" href="css/chat-widget.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="icon" type="image/png" href="images/favicon.ico" />
+  <link rel="apple-touch-icon" href="images/favicon.ico" />
+</head>
+
+<body>
+  <!-- HEADER -->
+  <div id="header-container"></div>
+
+  <div class="overlay" id="overlay"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>
+        Escuela de Diseño y <br />
+        Artes Visuales
+      </h1>
+      <p>
+        En la Escuela de Diseño y Artes Visuales de la UAS creemos en el poder
+        del arte para transformar la realidad. Aquí formamos creadores capaces
+        de comunicar ideas, emociones y valores a través de la imagen, el
+        color y la forma. Fomentamos la experimentación, la innovación y el
+        pensamiento crítico, impulsando proyectos que combinan técnica,
+        creatividad y compromiso con la cultura y la sociedad. Nuestro
+        objetivo es que cada estudiante encuentre su propia voz artística y
+        contribuya al mundo con una visión única y auténtica.
+      </p>
+      <!-- <button class="btn">Saber más</button> -->
+    </div>
+  </section>
+
+  <!-- EVENTOS -->
+  <section class="eventos">
+    <h2>Eventos</h2>
+    <div class="events-section" id="latest-events-container">
+      <!-- los ultimos 3 eventos se cargarán aquí dinámicamente -->
+    </div>
+    <div class="eventos-button-container">
+      <button class="btn" onclick="window.location.href='eventos.html'">
+        Ver todos los eventos
+      </button>
+    </div>
+  </section>
+
+  <!-- NOTICIAS -->
+  <section class="noticias">
+    <h2>Noticias</h2>
+    <div class="news-section" id="latest-news-container">
+      <!-- Las 3 últimas noticias se cargarán aquí dinámicamente -->
+    </div>
+    <div class="noticias-button-container">
+      <button class="btn" onclick="window.location.href='noticias.html'">
+        Ver todas las noticias
+      </button>
+    </div>
+  </section>
+
+  <!-- CALENDARIO -->
+  <section class="calendario">
+    <div class="calendario-container">
+      <div class="calendario-info">
+        <h2>Calendario escolar <br />ciclo 2025- 2026</h2>
+        <p>
+          ¡Ya está disponible el calendario escolar del ciclo 2025–2026! Aquí
+          podrás conocer los periodos de clases, vacaciones, inscripciones,
+          exámenes y eventos académicos. Mantente al día y prepárate para un
+          año lleno de aprendizaje, creatividad y experiencias artísticas en
+          la Escuela de Diseño y Artes Visuales.
+        </p>
+        <img src="images/Maestros.jpg" alt="Universitarios ilustres" />
+      </div>
+
+      <div class="calendario-img">
+        <img src="images/calendario.jpg" alt="Calendario escolar 2025-2026" id="calendarioImg" />
+      </div>
+    </div>
+  </section>
+
+  <div id="overlayCalendario" class="overlay-calendario">
+    <span class="close-overlay">&times;</span>
+    <div class="img-container">
+      <img id="imgOverlay" class="img-overlay" alt="Calendario ampliado">
+    </div>
+  </div> 
+
+  <!-- FOOTER -->
+  <div id="footer-container"></div>
+
+  <script src="js/news/noticia-index.js"></script>
+  <script src="js/events/evento-index.js"></script>
+  <script src="js/calendario-image.js"></script>
+  <script src="js/hero-animation.js"></script>
+  <script src="js/noticias-animation.js"></script>
+  <script src="presentation/footer.js"></script>
+  <script src="presentation/header.js"></script>
+
+  <!-- CHAT WIDGET FLOTANTE (se auto-inyecta) -->
+  <script src="js/chat-widget.js"></script>
+</body>
+
+</html>

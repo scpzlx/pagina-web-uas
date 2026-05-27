@@ -1,0 +1,426 @@
+/* HERO */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 10%;
+  min-height: 500px;
+  background-image: url(/images/EscuelaEntrada.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  transition: background-image 1s ease-in-out;
+  background-color: #1e28b7;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.hero-text {
+  max-width: 700px;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  color: #ffd500;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-text p {
+  color: #fff;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.btnHero {
+  background-color: #ffd500;
+  color: #1e28b7;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold; 
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnHero:hover {
+  background-color: #d1ae00;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* BOTONES */
+.btn:hover {
+  background-color: #1e28b7;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #ddd;
+  border: none;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.btn-secondary:hover {
+  background-color: #fff;
+  transform: scale(1.05);
+}
+
+/* CALENDARIO */
+.calendario {
+  background-color: #d4d4d4;
+  padding: 50px 20px;
+  font-family: arial, sans-serif;
+}
+
+.calendario-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.calendario-info {
+  flex: 1;
+}
+
+.calendario-info h2 {
+  font-size: 2rem;
+  color: #2f4f4f;
+  margin-bottom: 20px;
+}
+
+.calendario-info p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.calendario-info img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+  display: block;
+  margin: 30px 0 auto;
+}
+
+.calendario-img {
+  flex: 1;
+  text-align: center;
+}
+
+.calendario-img img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 8px;
+}
+
+.calendario-img img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.overlay-calendario {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  overflow: hidden;
+}
+
+.overlay-calendario.show {
+  display: block;
+}
+
+.img-container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+}
+
+.img-container:active {
+  cursor: grabbing;
+}
+
+.img-overlay {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+  transform-origin: center center;
+}
+
+.close-overlay {
+  position: fixed;
+  top: 20px;
+  right: 40px;
+  color: #fff;
+  font-size: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000;
+  transition: color 0.3s;
+}
+
+.close-overlay:hover {
+  color: #ffd500;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* Tablets y pantallas medianas (hasta 1024px) */
+@media screen and (max-width: 1024px) {
+
+  .hero {
+    padding: 80px 5%;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .calendario-container {
+    gap: 20px;
+  }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media screen and (max-width: 480px) {
+
+  /* HERO */
+  .hero {
+    padding: 60px 20px;
+    min-height: 400px;
+  }
+
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+}
+/* Móviles pequeños (hasta 480px) */
+@media screen and (max-width: 480px) {
+  /* HERO */
+  .hero {
+    padding: 60px 20px;
+    min-height: 400px;
+  }
+
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  /* CONVOCATORIAS */
+  .convocatorias {
+    padding: 40px 15px;
+  }
+
+  .convocatorias h2 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+
+  .carousel-container {
+    padding: 0 20px;
+  }
+
+  .viewport {
+    padding: 0 40px;
+  }
+
+  .card {
+    min-width: 250px;
+    padding: 30px 20px;
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+  }
+
+  /* CALENDARIO */
+  .calendario {
+    padding: 40px 15px;
+  }
+
+  .calendario-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .calendario-info h2 {
+    font-size: 1.6rem;
+  }
+
+  .calendario-info p {
+    font-size: 0.95rem;
+  }
+
+  .calendario-info img {
+    max-width: 100%;
+  }
+
+  .calendario-img img {
+    max-width: 100%;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 40px 15px;
+    min-height: 350px;
+  }
+
+  .hero-text h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .hero-text p {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .btnHero {
+    padding: 10px 25px;
+    font-size: 0.9rem;
+  }
+
+  /* CONVOCATORIAS */
+  .convocatorias {
+    padding: 30px 10px;
+  }
+
+  .convocatorias h2 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  .carousel-container {
+    padding: 0 10px;
+  }
+
+  .viewport {
+    padding: 0 30px;
+  }
+
+  .card {
+    min-width: 220px;
+    padding: 25px 15px;
+  }
+
+  .card .icon {
+    font-size: 2.5rem;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+
+  .card p {
+    font-size: 0.8rem;
+    min-height: 50px;
+  }
+
+  .btn-secondary {
+    padding: 8px 20px;
+    font-size: 0.85rem;
+  }
+
+  .arrow {
+    font-size: 1.5rem;
+    padding: 5px;
+  }
+
+  .arrow.left {
+    left: 5px;
+  }
+
+  .arrow.right {
+    right: 5px;
+  }
+
+  .btn {
+    padding: 10px 30px;
+    font-size: 0.9rem;
+  }
+
+  .close-modal {
+    top: 10px;
+    right: 20px;
+    font-size: 40px;
+  }
+
+  .modal-content {
+    margin: 30px auto;
+    width: 95%;
+  }
+}
+
+/* Móviles muy pequeños (hasta 375px) */
+@media screen and (max-width: 375px) {
+  .hero-text h1 {
+    font-size: 1.3rem;
+  }
+
+  .convocatorias h2 {
+    font-size: 1.2rem;
+  }
+
+  .card {
+    min-width: 200px;
+    padding: 20px 12px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .news-title {
+    font-size: 1rem;
+  }
+
+  .calendario-info h2 {
+    font-size: 1.2rem;
+  }
+}
