@@ -12,7 +12,7 @@
             <i class="ti ti-chevron-right"></i>
             <span>Fotografía y Producción de Video</span>
           </div>
-          <div class="hero-area-tag">Área 8 · Ciencias de la Educación y Humanidades</div>
+          <div class="hero-area-tag">Área 3 · Ciencias de la Educación y Humanidades</div>
           <h1>Licenciatura en <br><span>Fotografía y Producción de Video</span></h1>
           <div class="hero-badges">
             <span><i class="ti ti-map-pin"></i> Culiacán, Sinaloa</span>
@@ -25,8 +25,8 @@
             <img src="/images/fotografia.webp" alt="Licenciatura en Fotografía y Producción de Video"
               class="hero-img" />
             <div class="hero-img-badge">
-              <i class="ti ti-camera"></i>
-              <span>Fotografía y Video</span>
+              <i class="ti ti-palette"></i>
+              <span>Fotografía y Producción de Video</span>
             </div>
           </div>
         </div>
@@ -46,26 +46,84 @@
       </div>
     </section>
 
-    <!-- PERFIL DE EGRESO — blanco -->
+    <!-- PESTAÑAS: Perfil / Campo / Video — blanco -->
     <section class="section bg-white">
       <div class="container">
-        <div class="perfil-box">
-          <div class="perfil-icon"><i class="ti ti-user-check"></i></div>
-          <div class="perfil-content">
-            <div class="s-tag">Formación profesional</div>
-            <h2 class="s-title">Perfil de Egreso</h2>
-            <p>El egresado de la Licenciatura en Fotografía y Producción de Video es un profesional en el campo
-              de la producción audiovisual, capacitado para producir fotografía fija y/o contenidos audiovisuales,
-              desde la toma hasta los posteriores trabajos de edición, con refinamiento estético, espíritu
-              creativo, sentido de la oportunidad y máxima eficacia y eficiencia para el aprovechamiento de los
-              recursos disponibles.</p>
+
+        <!-- Tabs -->
+        <div class="tabs-bar">
+          <button v-for="tab in tabs" :key="tab.id" class="tab-btn" :class="{ active: tabActiva === tab.id }"
+            @click="tabActiva = tab.id">
+            <i :class="`ti ${tab.icon}`"></i>
+            {{ tab.label }}
+          </button>
+        </div>
+
+        <!-- Contenido de cada tab -->
+        <div class="tab-content">
+
+          <!-- Perfil de Egreso -->
+          <div v-if="tabActiva === 'perfil'" class="tab-panel">
+            <div class="perfil-box">
+              <div class="perfil-icon"><i class="ti ti-user-check"></i></div>
+              <div class="perfil-texto">
+                <div class="s-tag">Formación profesional</div>
+                <h2 class="s-title">Perfil de Egreso</h2>
+                <p>La Licenciatura en Fotografía y Producción de Video forma profesionales creativos, técnicos y
+                  críticos, capaces de concebir, producir y comunicar historias visuales impactantes a través de
+                  imágenes y video. Durante su formación, el estudiante desarrolla habilidades técnicas en iluminación,
+                  captación, edición digital y narrativa visual, junto con competencias para pensar críticamente,
+                  resolver problemas y expresar ideas con claridad y sensibilidad estética.</p>
+                <p style="margin-top:12px">Este profesional destaca por su capacidad de crear proyectos visuales
+                  originales, trabajar en equipo y adaptarse a entornos dinámicos, siempre con una visión ética y
+                  responsable, lo que le permite vincular sus saberes con contextos sociales, culturales y tecnológicos,
+                  aportando soluciones visuales significativas a su comunidad.</p>
+              </div>
+              <div class="perfil-qr">
+                <div class="qr-label">Más Información</div>
+                <img src="/images/qr_tsu_fotografia_y_produccion_de_video.png" alt="QR Fotografía y Producción de Video"
+                  class="qr-img" />
+                <p>Escanea el código QR para más detalles</p>
+              </div>
+            </div>
           </div>
-          <div class="perfil-qr">
-            <div class="qr-label">Más Información</div>
-            <img src="/images/qr_tsu_fotografia_y_produccion_de_video.png" alt="QR Fotografía y Producción de Video"
-              class="qr-img" />
-            <p>Escanea el código QR para más detalles</p>
+
+          <!-- Campo Profesional -->
+          <div v-if="tabActiva === 'campo'" class="tab-panel">
+            <div class="campo-layout">
+              <div class="campo-intro">
+                <div class="s-tag">Dónde trabaja el egresado</div>
+                <h2 class="s-title">Campo Profesional</h2>
+                <p class="campo-desc">El egresado está preparado para desempeñarse en los sectores creativo, cultural y
+                  de comunicación en Sinaloa y México: desde estudios de fotografía y producción audiovisual, agencias
+                  de publicidad y medios digitales, hasta proyectos propios como emprendedor visual, contribuyendo al
+                  desarrollo cultural y económico con una práctica profesional integral.</p>
+              </div>
+              <div class="campo-grid">
+                <div v-for="campo in camposProfesionales" :key="campo.titulo" class="campo-card">
+                  <div class="campo-icon"><i :class="`ti ${campo.icon}`"></i></div>
+                  <h3>{{ campo.titulo }}</h3>
+                  <p>{{ campo.desc }}</p>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <!-- Video -->
+          <div v-if="tabActiva === 'video'" class="tab-panel">
+            <div class="video-layout">
+              <div class="s-tag">Conoce la carrera</div>
+              <h2 class="s-title">Video de la Carrera</h2>
+              <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/mGafZMTaPHs" frameborder="0" allowfullscreen
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  class="video-iframe"></iframe>
+              </div>
+              <p class="video-caption">Conoce más sobre la Licenciatura en Fotografía y Producción de Video de la EDAV ·
+                UAS</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -88,6 +146,10 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="creditos-total">
+          <i class="ti ti-award"></i>
+          Total de créditos del plan de estudios: <strong>515</strong>
         </div>
       </div>
     </section>
@@ -117,7 +179,7 @@
           <div class="cta-deco">
             <div class="deco-circle c1"></div>
             <div class="deco-circle c2"></div>
-            <i class="ti ti-camera deco-icon"></i>
+            <i class="ti ti-palette deco-icon"></i>
           </div>
           <div class="cta-text">
             <div class="s-tag">Contacto</div>
@@ -134,11 +196,11 @@
               </div>
             </div>
             <div class="cta-btns">
-              <RouterLink to="/carreras/artes-visuales" class="btn-outline">
-                Ver Artes Visuales
+              <RouterLink to="/carreras/diseno-arte-multimedia" class="btn-outline">
+                <i class="ti ti-arrow-left"></i>Ver Diseño y Arte Multimedia
               </RouterLink>
-              <RouterLink to="/carreras/diseno-arte-multimedia" class="btn-primary">
-                Ver Diseño Multimedia <i class="ti ti-arrow-right"></i>
+              <RouterLink to="/carreras/musica" class="btn-primary">
+                Ver Música <i class="ti ti-arrow-right"></i>
               </RouterLink>
             </div>
           </div>
@@ -150,13 +212,61 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+
+type TabId = 'perfil' | 'campo' | 'video'
+
+const tabActiva = ref<TabId>('perfil')
+
+const tabs: {
+  id: TabId,
+  label: string,
+  icon: string,
+}[] = [
+    { id: 'perfil', label: 'Perfil de Egreso', icon: 'ti-user-check' },
+    { id: 'campo', label: 'Campo Profesional', icon: 'ti-briefcase' },
+    { id: 'video', label: 'Video de la Carrera', icon: 'ti-video' },
+  ]
 
 const stats = [
   { icon: 'ti-calendar', number: '8', label: 'Semestres' },
-  { icon: 'ti-book', number: '48', label: 'Materias' },
+  { icon: 'ti-book', number: '515', label: 'Créditos totales' },
   { icon: 'ti-certificate', number: '3', label: 'Certificaciones' },
-  { icon: 'ti-map-pin', number: 'Culiacán', label: 'Sinaloa, México' },
+  { icon: 'ti-map-pin', number: 'Culiacán', label: 'Sinaloa' },
+]
+
+const camposProfesionales = [
+  {
+    icon: 'ti-camera',
+    titulo: 'Fotografía Profesional',
+    desc: 'Producción de proyectos fotográficos artísticos, comerciales y documentales para diversos sectores.'
+  },
+  {
+    icon: 'ti-video',
+    titulo: 'Producción Audiovisual',
+    desc: 'Creación y desarrollo de contenido audiovisual para medios digitales, cine, televisión y plataformas multimedia.'
+  },
+  {
+    icon: 'ti-speakerphone',
+    titulo: 'Publicidad y Comunicación',
+    desc: 'Diseño de campañas visuales, estrategias creativas y materiales de comunicación para organizaciones y empresas.'
+  },
+  {
+    icon: 'ti-device-desktop',
+    titulo: 'Medios Digitales',
+    desc: 'Desarrollo de contenido visual e interactivo para plataformas digitales, redes sociales y entornos multimedia.'
+  },
+  {
+    icon: 'ti-palette',
+    titulo: 'Gestión y Producción Cultural',
+    desc: 'Participación en proyectos artísticos y culturales que promuevan el desarrollo creativo y comunitario.'
+  },
+  {
+    icon: 'ti-briefcase',
+    titulo: 'Emprendimiento Visual',
+    desc: 'Creación y gestión de proyectos profesionales independientes en fotografía, arte, diseño y producción visual.'
+  },
 ]
 
 const planEstudios = [
@@ -167,7 +277,7 @@ const planEstudios = [
       { nombre: 'Análisis visual y principios compositivos', creditos: 9 },
       { nombre: 'Tecnología y creatividad', creditos: 9 },
       { nombre: 'Conceptos esenciales de la luz y el color', creditos: 11 },
-      { nombre: 'Fundamentos de la fotografía', creditos: 12 },
+      { nombre: 'Fundamentos de fotografía', creditos: 12 },
       { nombre: 'Laboratorio de revelado e impresión', creditos: 12 },
     ],
   },
@@ -219,8 +329,8 @@ const planEstudios = [
     semestre: '06', titulo: 'Sexto Semestre',
     materias: [
       { nombre: 'Filosofía y teoría de la imagen', creditos: 9 },
-      { nombre: 'Dirección creativa', creditos: 9 },
       { nombre: 'Innovación y emprendimiento', creditos: 11 },
+      { nombre: 'Dirección creativa', creditos: 9 },
       { nombre: 'Introducción al audio digital', creditos: 12 },
       { nombre: 'Producción de video de ficción', creditos: 12 },
       { nombre: 'Postproducción digital de video', creditos: 12 },
@@ -234,6 +344,9 @@ const planEstudios = [
       { nombre: 'Modelo de negocios', creditos: 11 },
       { nombre: 'Diseño sonoro', creditos: 12 },
       { nombre: 'Producción de video documental', creditos: 12 },
+      { nombre: 'Optativa: Fotoperiodismo', creditos: 12 },
+      { nombre: 'Optativa: Animación en video', creditos: 12 },
+      { nombre: 'Optativa: Diseño de proyectos curatoriales', creditos: 12 },
       { nombre: 'Optativa I', creditos: 12 },
     ],
   },
@@ -245,6 +358,9 @@ const planEstudios = [
       { nombre: 'Integración profesional', creditos: 11 },
       { nombre: 'Seminario de caso práctico', creditos: 12 },
       { nombre: 'Proyecto fotográfico de grado', creditos: 12 },
+      { nombre: 'Optativa: Fotografía digital', creditos: 12 },
+      { nombre: 'Optativa: Inteligencia artificial', creditos: 12 },
+      { nombre: 'Optativa: Gestión de proyectos curatoriales', creditos: 12 },
       { nombre: 'Optativa II', creditos: 12 },
     ],
   },
@@ -288,6 +404,10 @@ const certificaciones = [
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css');
+
+* {
+  box-sizing: border-box;
+}
 
 .carrera-page {
   font-family: 'Outfit', sans-serif;
@@ -366,11 +486,10 @@ const certificaciones = [
   border-radius: 20px;
   display: inline-block;
   margin-bottom: 14px;
-  letter-spacing: 0.3px;
 }
 
 .hero-carrera h1 {
-  font-size: clamp(22px, 3vw, 40px);
+  font-size: clamp(26px, 3.5vw, 44px);
   font-weight: 800;
   color: #0f1a8c;
   line-height: 1.15;
@@ -379,7 +498,6 @@ const certificaciones = [
 }
 
 .hero-carrera h1 span {
-  color: #1a3a8c;
   opacity: 0.75;
 }
 
@@ -519,14 +637,60 @@ const certificaciones = [
   font-weight: 800;
   color: #1a1a2e;
   letter-spacing: -0.5px;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .s-title.light {
   color: white;
 }
 
-/* ─── PERFIL ───────────────────────────────────────── */
+/* ─── TABS ─────────────────────────────────────────── */
+.tabs-bar {
+  display: flex;
+  gap: 8px;
+  border-bottom: 2px solid #e8ecff;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  border-radius: 8px 8px 0 0;
+}
+
+.tab-btn i {
+  font-size: 16px;
+}
+
+.tab-btn:hover {
+  color: #0f1a8c;
+  background: #f0f3ff;
+}
+
+.tab-btn.active {
+  color: #0f1a8c;
+  border-bottom-color: #ffd500;
+  background: #f0f3ff;
+}
+
+.tab-content {
+  min-height: 200px;
+}
+
+/* ─── PERFIL TAB ───────────────────────────────────── */
 .perfil-box {
   background: #f4f5f9;
   border-radius: 16px;
@@ -544,9 +708,8 @@ const certificaciones = [
   margin-top: 4px;
 }
 
-.perfil-content {
+.perfil-texto {
   flex: 1;
-  min-width: 0;
 }
 
 .perfil-box .s-tag {
@@ -573,7 +736,7 @@ const certificaciones = [
   width: 160px;
 }
 
-.perfil-qr .qr-label {
+.qr-label {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -582,7 +745,7 @@ const certificaciones = [
   margin-bottom: 12px;
 }
 
-.perfil-qr .qr-img {
+.qr-img {
   width: 120px;
   height: 120px;
   display: block;
@@ -597,11 +760,101 @@ const certificaciones = [
   margin: 0 !important;
 }
 
+/* ─── CAMPO TAB ────────────────────────────────────── */
+.campo-layout {}
+
+.campo-intro {
+  margin-bottom: 32px;
+}
+
+.campo-desc {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.8;
+  max-width: 720px;
+}
+
+.campo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.campo-card {
+  background: #f4f5f9;
+  border-radius: 14px;
+  padding: 24px;
+  border-top: 3px solid #0f1a8c;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.campo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.campo-icon {
+  font-size: 28px;
+  color: #0f1a8c;
+  margin-bottom: 12px;
+}
+
+.campo-card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f1a8c;
+  margin-bottom: 8px;
+}
+
+.campo-card p {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* ─── VIDEO TAB ────────────────────────────────────── */
+.video-layout {
+  text-align: center;
+}
+
+.video-layout .s-tag {
+  text-align: left;
+}
+
+.video-layout .s-title {
+  text-align: left;
+}
+
+.video-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(15, 26, 140, 0.15);
+  margin-bottom: 16px;
+}
+
+.video-iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-caption {
+  font-size: 13px;
+  color: #888;
+  text-align: center;
+}
+
 /* ─── PLAN DE ESTUDIOS ─────────────────────────────── */
 .semestres-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
+  margin-bottom: 24px;
 }
 
 .sem-card {
@@ -678,6 +931,28 @@ const certificaciones = [
   padding: 2px 8px;
   border-radius: 20px;
   flex-shrink: 0;
+}
+
+.creditos-total {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border-radius: 12px;
+  padding: 16px 24px;
+  border-left: 4px solid #0f1a8c;
+  font-size: 15px;
+  color: #555;
+}
+
+.creditos-total i {
+  font-size: 20px;
+  color: #ffd500;
+}
+
+.creditos-total strong {
+  color: #0f1a8c;
+  font-size: 18px;
 }
 
 /* ─── CERTIFICACIONES ──────────────────────────────── */
@@ -790,7 +1065,7 @@ const certificaciones = [
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 28px;
 }
 
 .contacto-item {
@@ -827,7 +1102,6 @@ const certificaciones = [
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 24px;
 }
 
 .btn-primary {
@@ -875,6 +1149,10 @@ const certificaciones = [
 @media (max-width: 1100px) {
   .semestres-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .campo-grid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -939,6 +1217,10 @@ const certificaciones = [
     grid-template-columns: 1fr;
   }
 
+  .campo-grid {
+    grid-template-columns: 1fr;
+  }
+
   .perfil-box {
     flex-direction: column;
     gap: 16px;
@@ -951,6 +1233,11 @@ const certificaciones = [
   .perfil-qr .qr-img {
     width: 100px;
     height: 100px;
+  }
+
+  .tab-btn {
+    font-size: 13px;
+    padding: 10px 14px;
   }
 }
 </style>

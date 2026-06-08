@@ -61,6 +61,33 @@ const router = createRouter({
       name: 'fotografia-produccion-video',
       component: () => import('../views/carreras/FotografiaProduccionVideoView.vue'),
     },
+    {
+      path: '/carreras/musica',
+      name: 'musica',
+      component: () => import('../views/carreras/MusicaView.vue'),
+    },
+    {
+      path: '/carreras/musica-popular-contemporanea',
+      name: 'musica-popular',
+      component: () => import('../views/carreras/MusicaPopularView.vue'),
+    },
+    {
+      path: '/carreras/educacion-artistica',
+      name: 'educacion-artistica',
+      component: () => import('../views/carreras/EducacionArtisticaView.vue'),
+    },
+    {
+      path: '/carreras/artes-escenicas',
+      name: 'artes-escenicas',
+      component: () => import('../views/carreras/ArtesEscenicasView.vue'),
+    },
+
+    // Posgrado
+    {
+      path: '/posgrado/maestria-educacion-artistica',
+      name: 'maestria-educacion-artistica',
+      component: () => import('../views/posgrado/MaestriaEducacionArtisticaView.vue'),
+    },
 
     // Departamentos
     {

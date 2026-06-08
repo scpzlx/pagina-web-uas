@@ -81,6 +81,12 @@ const menus = [
             { to: '/carreras/artes-visuales', icon: 'ti-palette', label: 'Artes Visuales' },
             { to: '/carreras/diseno-arte-multimedia', icon: 'ti-devices', label: 'Diseño y Arte Multimedia' },
             { to: '/carreras/fotografia-produccion-video', icon: 'ti-camera', label: 'Fotografía y Producción de Video' },
+            { to: '/carreras/musica', icon: 'ti-music', label: 'Música' },
+            { to: '/carreras/musica-popular-contemporanea', icon: 'ti-vinyl', label: 'Música Popular y Contemporánea' },
+            { to: '/carreras/educacion-artistica', icon: 'ti-school', label: 'Educación Artística' },
+            { to: '/carreras/artes-escenicas', icon: 'ti-masks-theater', label: 'Artes Escénicas   ' },
+            {divider: true},
+            { to: '/posgrado/maestria-educacion-artistica', icon: 'ti-certificate', label: 'Maestría en Educación Artística' },
         ],
     },
     {

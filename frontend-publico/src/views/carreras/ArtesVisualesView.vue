@@ -45,26 +45,82 @@
       </div>
     </section>
 
-    <!-- PERFIL DE EGRESO — blanco -->
+    <!-- PESTAÑAS: Perfil / Campo / Video — blanco -->
     <section class="section bg-white">
       <div class="container">
-        <div class="perfil-box">
-          <div class="perfil-icon"><i class="ti ti-user-check"></i></div>
-          <div>
-            <div class="s-tag">Formación profesional</div>
-            <h2 class="s-title">Perfil de Egreso</h2>
-            <p>El egresado de la Licenciatura en Artes Visuales analiza la teoría e historia del arte, sus conceptos y
-              metodologías esenciales, y los aplica en la interpretación de obra artística producida en el pasado y en
-              el presente, así como en la fundamentación, documentación, gestión, difusión y creación de sus proyectos
-              artísticos, con iniciativa en la dirección que las exigencias colectivas le impongan, para subsanar
-              carencias y detonar el desarrollo social, asumiendo su rol de profesionista comprometido, eficiente y
-              creativo, en su localidad, país y el mundo.</p>
+
+        <!-- Tabs -->
+        <div class="tabs-bar">
+          <button v-for="tab in tabs" :key="tab.id" class="tab-btn" :class="{ active: tabActiva === tab.id }" @click="tabActiva = tab.id">
+            <i :class="`ti ${tab.icon}`"></i>
+            {{ tab.label }}
+          </button>
+        </div>
+
+        <!-- Contenido de cada tab -->
+        <div class="tab-content">
+
+          <!-- Perfil de Egreso -->
+          <div v-if="tabActiva === 'perfil'" class="tab-panel">
+            <div class="perfil-box">
+              <div class="perfil-icon"><i class="ti ti-user-check"></i></div>
+              <div class="perfil-texto">
+                <div class="s-tag">Formación profesional</div>
+                <h2 class="s-title">Perfil de Egreso</h2>
+                <p>El egresado de la Licenciatura en Artes Visuales es un profesional creativo y reflexivo, capaz de
+                  comprender y aplicar la teoría e historia del arte para interpretar, producir y fundamentar proyectos
+                  visuales significativos. Combina el dominio de técnicas artísticas con habilidades conceptuales y
+                  comunicativas que le permiten desarrollar ideas originales, trabajar de forma colaborativa y responder
+                  con sensibilidad a los retos culturales y sociales de su tiempo.</p>
+                <p style="margin-top:12px">Su formación integral le permite gestionar, documentar y difundir procesos y
+                  productos artísticos, así como participar activamente en espacios culturales, educativos y
+                  comunitarios, contribuyendo al desarrollo artístico y cultural de Sinaloa y México. Gracias a su
+                  enfoque crítico, ético e innovador, puede insertarse en ámbitos como la producción artística, la
+                  gestión cultural, la docencia, la curaduría y la investigación visual.</p>
+              </div>
+              <div class="perfil-qr">
+                <div class="qr-label">Más Información</div>
+                <img src="/images/qr_artes_visuales.png" alt="QR Artes visuales" class="qr-img" />
+                <p>Escanea el código QR para más detalles</p>
+              </div>
+            </div>
           </div>
-          <div class="perfil-qr">
-            <div class="qr-label">Más Información</div>
-            <img src="/images/qr_artes_visuales.png" alt="QR Artes visuales" class="qr-img" />
-            <p>Escanea el código QR para más detalles</p>
+
+          <!-- Campo Profesional -->
+          <div v-if="tabActiva === 'campo'" class="tab-panel">
+            <div class="campo-layout">
+              <div class="campo-intro">
+                <div class="s-tag">Dónde trabaja el egresado</div>
+                <h2 class="s-title">Campo Profesional</h2>
+                <p class="campo-desc">Este profesional destaca por su capacidad de adaptarse a entornos dinámicos,
+                  resolver problemas creativos y comunicarse con claridad, impulsando iniciativas que enriquecen la vida
+                  cultural y visual de su comunidad y fortalecen su trayectoria laboral tanto a nivel local como
+                  nacional.</p>
+              </div>
+              <div class="campo-grid">
+                <div v-for="campo in camposProfesionales" :key="campo.titulo" class="campo-card">
+                  <div class="campo-icon"><i :class="`ti ${campo.icon}`"></i></div>
+                  <h3>{{ campo.titulo }}</h3>
+                  <p>{{ campo.desc }}</p>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <!-- Video -->
+          <div v-if="tabActiva === 'video'" class="tab-panel">
+            <div class="video-layout">
+              <div class="s-tag">Conoce la carrera</div>
+              <h2 class="s-title">Video de la Carrera</h2>
+              <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/2KjwYQ-nuNo" frameborder="0" allowfullscreen
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  class="video-iframe"></iframe>
+              </div>
+              <p class="video-caption">Conoce más sobre la Licenciatura en Artes Visuales de la EDAV · UAS</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -87,6 +143,10 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="creditos-total">
+          <i class="ti ti-award"></i>
+          Total de créditos del plan de estudios: <strong>522</strong>
         </div>
       </div>
     </section>
@@ -136,9 +196,6 @@
               <RouterLink to="/carreras/diseno-arte-multimedia" class="btn-primary">
                 Ver Diseño Multimedia <i class="ti ti-arrow-right"></i>
               </RouterLink>
-              <RouterLink to="/carreras/fotografia-produccion-video" class="btn-outline">
-                Ver Fotografía y Video
-              </RouterLink>
             </div>
           </div>
         </div>
@@ -149,13 +206,37 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+
+type TabId = 'perfil' | 'campo' | 'video'
+
+const tabActiva = ref<TabId>('perfil')
+
+const tabs : {
+  id: TabId,
+  label: string,
+  icon: string,
+}[] = [
+  { id: 'perfil', label: 'Perfil de Egreso', icon: 'ti-user-check' },
+  { id: 'campo', label: 'Campo Profesional', icon: 'ti-briefcase' },
+  { id: 'video', label: 'Video de la Carrera', icon: 'ti-video' },
+]
 
 const stats = [
   { icon: 'ti-calendar', number: '8', label: 'Semestres' },
-  { icon: 'ti-book', number: '48', label: 'Materias' },
+  { icon: 'ti-book', number: '522', label: 'Créditos totales' },
   { icon: 'ti-certificate', number: '3', label: 'Certificaciones' },
-  { icon: 'ti-map-pin', number: 'Culiacán', label: 'Sinaloa, México' },
+  { icon: 'ti-map-pin', number: 'Culiacán', label: 'Sinaloa' },
+]
+
+const camposProfesionales = [
+  { icon: 'ti-palette', titulo: 'Producción Artística', desc: 'Creación y desarrollo de proyectos plásticos y visuales propios o colaborativos.' },
+  { icon: 'ti-building-community', titulo: 'Gestión Cultural', desc: 'Coordinación y administración de espacios, programas y proyectos culturales.' },
+  { icon: 'ti-school', titulo: 'Docencia', desc: 'Enseñanza de artes visuales en instituciones educativas de nivel medio y superior.' },
+  { icon: 'ti-photo', titulo: 'Curaduría', desc: 'Selección, investigación y montaje de exposiciones artísticas en galerías y museos.' },
+  { icon: 'ti-search', titulo: 'Investigación Visual', desc: 'Estudio y análisis del arte contemporáneo, historia del arte y teoría visual.' },
+  { icon: 'ti-calendar-event', titulo: 'Difusión Cultural', desc: 'Organización de festivales, eventos y actividades de promoción artística comunitaria.' },
 ]
 
 const planEstudios = [
@@ -218,33 +299,39 @@ const planEstudios = [
     semestre: '06', titulo: 'Sexto Semestre',
     materias: [
       { nombre: 'Arte precolombino y colonial', creditos: 9 },
-      { nombre: 'Arte y posmodernidad', creditos: 9 },
+      { nombre: 'Arte y posmodernidad', creditos: 11 },
       { nombre: 'Dinámicas museográficas', creditos: 11 },
       { nombre: 'Grabado ecológico', creditos: 12 },
       { nombre: 'Fotografía', creditos: 12 },
-      { nombre: 'Técnicas interdisciplinares', creditos: 12 },
+      { nombre: 'Técnicas interdisciplinarias', creditos: 12 },
     ],
   },
   {
     semestre: '07', titulo: 'Séptimo Semestre',
     materias: [
+      { nombre: 'Optativa I', creditos: 12 },
       { nombre: 'Arte moderno mexicano', creditos: 9 },
       { nombre: 'Arte y transhumanismo', creditos: 9 },
       { nombre: 'Curaduría', creditos: 11 },
-      { nombre: 'Optativa', creditos: 12 },
       { nombre: 'Videoarte', creditos: 12 },
       { nombre: 'Diseño de estrategias artísticas', creditos: 12 },
+      { nombre: 'Optativa: Pintura digital', creditos: 12 },
+      { nombre: 'Optativa: Proyectos gráficos', creditos: 12 },
+      { nombre: 'Optativa: Escultura en ferrocemento', creditos: 12 },
     ],
   },
   {
     semestre: '08', titulo: 'Octavo Semestre',
     materias: [
+      { nombre: 'Optativa II', creditos: 12 },
       { nombre: 'Arte contemporáneo', creditos: 9 },
       { nombre: 'Retórica y crítica de arte', creditos: 9 },
       { nombre: 'Administración de empresas culturales', creditos: 11 },
-      { nombre: 'Optativa II', creditos: 12 },
       { nombre: 'Proyecto artístico de grado', creditos: 12 },
+      { nombre: 'Optativa: Pintura digital II', creditos: 12 },
       { nombre: 'Seminario de investigación', creditos: 12 },
+      { nombre: 'Optativa: Proyectos gráficos en gran formato', creditos: 12 },
+      { nombre: 'Optativa: Cerámica', creditos: 12 },
     ],
   },
 ]
@@ -287,6 +374,10 @@ const certificaciones = [
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css');
+
+* {
+  box-sizing: border-box;
+}
 
 .carrera-page {
   font-family: 'Outfit', sans-serif;
@@ -365,7 +456,6 @@ const certificaciones = [
   border-radius: 20px;
   display: inline-block;
   margin-bottom: 14px;
-  letter-spacing: 0.3px;
 }
 
 .hero-carrera h1 {
@@ -378,7 +468,6 @@ const certificaciones = [
 }
 
 .hero-carrera h1 span {
-  color: #1a3a8c;
   opacity: 0.75;
 }
 
@@ -518,14 +607,60 @@ const certificaciones = [
   font-weight: 800;
   color: #1a1a2e;
   letter-spacing: -0.5px;
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .s-title.light {
   color: white;
 }
 
-/* ─── PERFIL ───────────────────────────────────────── */
+/* ─── TABS ─────────────────────────────────────────── */
+.tabs-bar {
+  display: flex;
+  gap: 8px;
+  border-bottom: 2px solid #e8ecff;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  border-radius: 8px 8px 0 0;
+}
+
+.tab-btn i {
+  font-size: 16px;
+}
+
+.tab-btn:hover {
+  color: #0f1a8c;
+  background: #f0f3ff;
+}
+
+.tab-btn.active {
+  color: #0f1a8c;
+  border-bottom-color: #ffd500;
+  background: #f0f3ff;
+}
+
+.tab-content {
+  min-height: 200px;
+}
+
+/* ─── PERFIL TAB ───────────────────────────────────── */
 .perfil-box {
   background: #f4f5f9;
   border-radius: 16px;
@@ -541,6 +676,10 @@ const certificaciones = [
   color: #0f1a8c;
   flex-shrink: 0;
   margin-top: 4px;
+}
+
+.perfil-texto {
+  flex: 1;
 }
 
 .perfil-box .s-tag {
@@ -567,7 +706,7 @@ const certificaciones = [
   width: 160px;
 }
 
-.perfil-qr .qr-label {
+.qr-label {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -576,7 +715,7 @@ const certificaciones = [
   margin-bottom: 12px;
 }
 
-.perfil-qr .qr-img {
+.qr-img {
   width: 120px;
   height: 120px;
   display: block;
@@ -591,11 +730,101 @@ const certificaciones = [
   margin: 0 !important;
 }
 
+/* ─── CAMPO TAB ────────────────────────────────────── */
+.campo-layout {}
+
+.campo-intro {
+  margin-bottom: 32px;
+}
+
+.campo-desc {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.8;
+  max-width: 720px;
+}
+
+.campo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.campo-card {
+  background: #f4f5f9;
+  border-radius: 14px;
+  padding: 24px;
+  border-top: 3px solid #0f1a8c;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.campo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.campo-icon {
+  font-size: 28px;
+  color: #0f1a8c;
+  margin-bottom: 12px;
+}
+
+.campo-card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f1a8c;
+  margin-bottom: 8px;
+}
+
+.campo-card p {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* ─── VIDEO TAB ────────────────────────────────────── */
+.video-layout {
+  text-align: center;
+}
+
+.video-layout .s-tag {
+  text-align: left;
+}
+
+.video-layout .s-title {
+  text-align: left;
+}
+
+.video-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(15, 26, 140, 0.15);
+  margin-bottom: 16px;
+}
+
+.video-iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-caption {
+  font-size: 13px;
+  color: #888;
+  text-align: center;
+}
+
 /* ─── PLAN DE ESTUDIOS ─────────────────────────────── */
 .semestres-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
+  margin-bottom: 24px;
 }
 
 .sem-card {
@@ -672,6 +901,28 @@ const certificaciones = [
   padding: 2px 8px;
   border-radius: 20px;
   flex-shrink: 0;
+}
+
+.creditos-total {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border-radius: 12px;
+  padding: 16px 24px;
+  border-left: 4px solid #0f1a8c;
+  font-size: 15px;
+  color: #555;
+}
+
+.creditos-total i {
+  font-size: 20px;
+  color: #ffd500;
+}
+
+.creditos-total strong {
+  color: #0f1a8c;
+  font-size: 18px;
 }
 
 /* ─── CERTIFICACIONES ──────────────────────────────── */
@@ -869,6 +1120,10 @@ const certificaciones = [
   .semestres-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .campo-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 900px) {
@@ -932,6 +1187,10 @@ const certificaciones = [
     grid-template-columns: 1fr;
   }
 
+  .campo-grid {
+    grid-template-columns: 1fr;
+  }
+
   .perfil-box {
     flex-direction: column;
     gap: 16px;
@@ -944,6 +1203,11 @@ const certificaciones = [
   .perfil-qr .qr-img {
     width: 100px;
     height: 100px;
+  }
+
+  .tab-btn {
+    font-size: 13px;
+    padding: 10px 14px;
   }
 }
 </style>
