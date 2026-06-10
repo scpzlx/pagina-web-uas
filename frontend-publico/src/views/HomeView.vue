@@ -56,8 +56,12 @@
     <!-- STATS BAR -->
     <section class="stats-bar">
       <div class="stat">
-        <div class="stat-n">3</div>
+        <div class="stat-n">7</div>
         <div class="stat-l">Licenciaturas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">1</div>
+        <div class="stat-l">Maestría</div>
       </div>
       <div class="stat">
         <div class="stat-n">500+</div>
@@ -509,7 +513,7 @@ onUnmounted(() => {
   background: #ffd500;
   padding: 24px 48px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .stat {
@@ -1214,14 +1218,28 @@ onUnmounted(() => {
   }
 
   .stats-bar {
-    padding: 20px 24px;
-    grid-template-columns: repeat(2, 1fr);
+    padding: 16px 12px;
+    grid-template-columns: repeat(5, 1fr);
+    overflow-x: auto;
   }
 
   .stat {
+    border-right: 1px solid rgba(15, 26, 140, 0.15);
+    border-bottom: none;
+    padding: 8px 4px;
+    min-width: 60px;
+  }
+
+  .stat:last-child {
     border-right: none;
-    border-bottom: 1px solid rgba(15, 26, 140, 0.15);
-    padding-bottom: 12px;
+  }
+
+  .stat-n {
+    font-size: 18px;
+  }
+
+  .stat-l {
+    font-size: 9px;
   }
 }
 
@@ -1251,8 +1269,22 @@ onUnmounted(() => {
   }
 
   .stats-bar {
-    padding: 16px;
-    grid-template-columns: repeat(2, 1fr);
+    padding: 12px 8px;
+    grid-template-columns: repeat(5, 1fr);
+    overflow-x: auto;
+  }
+
+  .stat {
+    min-width: 56px;
+    padding: 6px 2px;
+  }
+
+  .stat-n {
+    font-size: 15px;
+  }
+
+  .stat-l {
+    font-size: 8px;
   }
 
   .cal-img {
