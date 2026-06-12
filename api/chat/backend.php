@@ -15,6 +15,23 @@ function response($success, $message, $data = null)
 $method = $_SERVER['REQUEST_METHOD'];
 $action = $_GET['action'] ?? $_POST['action'] ?? '';
 
+/* ===================== CONTROL DE ACCESO =====================
+ * Las acciones de solo lectura son públicas porque las consume el
+ * chat del sitio público. Cualquier acción de escritura (guardar,
+ * actualizar o eliminar) requiere una sesión de administrador.
+ */
+$publicReadActions = [
+    'get_categories',
+    'get_all_subcategories',
+    'get_subcategories',
+    'get_questions',
+    'get_answers',
+];
+
+if (!in_array($action, $publicReadActions, true)) {
+    require_once __DIR__ . '/../middleware.php';
+}
+
 /* ===================== 1. GET CATEGORIES ===================== */
 if ($method === "GET" && $action === "get_categories") {
     $sql = "SELECT id, nombre, descripcion FROM categorias ORDER BY nombre";

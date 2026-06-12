@@ -26,6 +26,9 @@
                     <RouterLink to="/eventos" class="nav-item" @click="closeSidebar">
                         <i class="ti ti-calendar-check"></i><span>Eventos</span>
                     </RouterLink>
+                    <RouterLink to="/chatbot" class="nav-item" @click="closeSidebar">
+                        <i class="ti ti-robot"></i><span>Chatbot</span>
+                    </RouterLink>
                 </nav>
             </div>
 

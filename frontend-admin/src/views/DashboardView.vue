@@ -26,6 +26,9 @@
                     <RouterLink to="/eventos" class="nav-item" @click="closeSidebar">
                         <i class="ti ti-calendar-check"></i><span>Eventos</span>
                     </RouterLink>
+                    <RouterLink to="/chatbot" class="nav-item" @click="closeSidebar">
+                        <i class="ti ti-robot"></i><span>Chatbot</span>
+                    </RouterLink>
                 </nav>
             </div>
 
@@ -176,6 +179,23 @@
                             </div>
                             <div class="module-card-footer">
                                 <span>Gestionar eventos</span>
+                                <i class="ti ti-arrow-right"></i>
+                            </div>
+                        </RouterLink>
+                        <RouterLink to="/chatbot" class="module-card">
+                            <div class="module-card-top module-top-chatbot">
+                                <div class="module-card-icon"><i class="ti ti-robot"></i></div>
+                                <span class="module-card-tag">Asistente</span>
+                            </div>
+                            <div class="module-card-body">
+                                <h3 class="module-card-title">Chatbot</h3>
+                                <p class="module-card-desc">
+                                    Configura las categorías, subcategorías, preguntas y respuestas del asistente
+                                    virtual del sitio público.
+                                </p>
+                            </div>
+                            <div class="module-card-footer">
+                                <span>Gestionar chatbot</span>
                                 <i class="ti ti-arrow-right"></i>
                             </div>
                         </RouterLink>
@@ -825,6 +845,10 @@ onMounted(async () => {
 
 .module-top-eventos {
     background: #1a2db5;
+}
+
+.module-top-chatbot {
+    background: #2536c9;
 }
 
 .module-card-icon {
