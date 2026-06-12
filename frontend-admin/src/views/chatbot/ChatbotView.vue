@@ -10,6 +10,35 @@
             </div>
         </div>
 
+        <!-- ===================== MODO IA ===================== -->
+        <section class="ia-banner" :class="{ on: iaModo }">
+            <div class="ia-banner-main">
+                <div class="ia-icon"><i class="ti ti-sparkles"></i></div>
+                <div>
+                    <div class="ia-title">
+                        Respuestas con Inteligencia Artificial
+                        <span class="ia-state" :class="iaModo ? 'state-on' : 'state-off'">
+                            {{ iaModo ? 'Activada' : 'Desactivada' }}
+                        </span>
+                    </div>
+                    <p class="ia-desc">
+                        Con la IA activada, el asistente del sitio responde en lenguaje natural usando
+                        únicamente la información publicada en la página. Si la apagas, el chat vuelve al
+                        modo de selección por categorías que configuras abajo.
+                    </p>
+                    <p v-if="iaModo && !iaDisponible" class="ia-warn">
+                        <i class="ti ti-alert-triangle"></i>
+                        Falta configurar las claves de IA en el servidor (archivo
+                        <code>ai_config.php</code>). Mientras tanto, el chat seguirá usando el modo de selección.
+                    </p>
+                </div>
+            </div>
+            <label class="switch" :title="iaModo ? 'Desactivar IA' : 'Activar IA'">
+                <input type="checkbox" :checked="iaModo" :disabled="iaLoading" @change="toggleIA" />
+                <span class="slider"></span>
+            </label>
+        </section>
+
         <!-- TABS -->
         <nav class="tablist" role="tablist" aria-label="Secciones del panel chatbot">
             <button v-for="t in tabs" :key="t.id" type="button" class="tab-btn" :class="{ active: activeTab === t.id }"
@@ -426,6 +455,11 @@ const loading = ref(true)
 const saving = ref(false)
 const deleting = ref(false)
 
+// Estado del modo IA del asistente público
+const iaModo = ref(false)
+const iaDisponible = ref(false)
+const iaLoading = ref(false)
+
 const catForm = ref({ nombre: '', descripcion: '' })
 const subForm = ref({ categoria_id: '' as number | '', nombre: '', descripcion: '' })
 const pregForm = ref({ categoria_id: '' as number | '', subcategoria_id: '' as number | '', pregunta: '' })
@@ -502,6 +536,38 @@ async function loadAll() {
         showToast('Error al cargar la información', 'error')
     } finally {
         loading.value = false
+    }
+}
+
+// ─── Modo IA ──────────────────────────────────────────────────────────────────
+async function loadChatbotConfig() {
+    try {
+        const res = await api.get('/chat/backend.php?action=get_chatbot_config')
+        if (res.data.success && res.data.data) {
+            iaModo.value = !!res.data.data.modo_ia
+            iaDisponible.value = !!res.data.data.ia_disponible
+        }
+    } catch {
+        /* silencioso: el panel del FAQ sigue funcionando aunque falle esta lectura */
+    }
+}
+
+async function toggleIA() {
+    iaLoading.value = true
+    const nuevo = iaModo.value ? 0 : 1
+    try {
+        const data = await postAction({ action: 'set_chatbot_config', modo_ia: nuevo })
+        if (data.success) {
+            iaModo.value = !!data.data?.modo_ia
+            iaDisponible.value = !!data.data?.ia_disponible
+            showToast(data.message, 'success')
+        } else {
+            showToast(data.message || 'No se pudo actualizar la configuración', 'error')
+        }
+    } catch {
+        showToast('Error de conexión', 'error')
+    } finally {
+        iaLoading.value = false
     }
 }
 
@@ -680,7 +746,10 @@ async function ejecutarEliminacion() {
     }
 }
 
-onMounted(loadAll)
+onMounted(() => {
+    loadAll()
+    loadChatbotConfig()
+})
 </script>
 
 <style scoped>
@@ -689,6 +758,163 @@ onMounted(loadAll)
 
 .content-header {
     margin-bottom: 24px;
+}
+
+/* ─── BANNER MODO IA ──────────────────────────────────── */
+.ia-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #cbd5e1;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 24px;
+    font-family: 'Outfit', sans-serif;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.ia-banner.on {
+    border-left-color: #0f1a8c;
+    background: #fafbff;
+}
+
+.ia-banner-main {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.ia-icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #eef2ff;
+    color: #0f1a8c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.ia-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+}
+
+.ia-state {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 9px;
+    border-radius: 20px;
+}
+
+.state-on {
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+}
+
+.state-off {
+    background: #f1f5f9;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+}
+
+.ia-desc {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.55;
+    max-width: 70ch;
+    margin: 0;
+}
+
+.ia-warn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 10px 0 0;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #c2410c;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+.ia-warn code {
+    background: #ffedd5;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #cbd5e1;
+    border-radius: 28px;
+    transition: background 0.2s;
+}
+
+.slider::before {
+    content: '';
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.switch input:checked + .slider {
+    background: #0f1a8c;
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(24px);
+}
+
+.switch input:disabled + .slider {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+    .ia-banner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 .content-title {

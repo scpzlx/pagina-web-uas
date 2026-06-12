@@ -1,0 +1,3 @@
+# Configuración sensible y estado en runtime (solo viven en el servidor)
+chat/ai_config.php
+chat/ai_estado.json

@@ -35,7 +35,8 @@
             </div>
 
             <div class="chat-widget-footer">
-                <input type="text" v-model="inputText" placeholder="Escribe 'hola' para comenzar..."
+                <input type="text" v-model="inputText"
+                    :placeholder="modoIA ? 'Escribe tu pregunta...' : 'Escribe \'hola\' para comenzar...'"
                     @keydown.enter="sendMessage" />
                 <button type="button" @click="sendMessage" aria-label="Enviar">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -60,12 +61,20 @@ const inputText = ref('')
 const bodyRef = ref<HTMLElement | null>(null)
 const selectedCatId = ref<number | null>(null)
 
+// Modo del asistente: true = responde con IA (texto libre); false = menú de selección
+const modoIA = ref(false)
+
 const mensajes = ref<{ tipo: 'bot' | 'user'; html: string }[]>([])
 const opciones = ref<{ label: string; action: () => void; back?: boolean }[]>([])
+
+// Historial breve para dar contexto a la IA en preguntas de seguimiento
+const histIA = ref<{ tipo: 'user' | 'bot'; texto: string }[]>([])
 
 let categorias: any[] = []
 let subcategorias: any[] = []
 let preguntas: any[] = []
+
+const CONTACTO = 'No encontré esa información en el sitio. Para una respuesta directa puedes comunicarte con la escuela:\n📞 +52 667 758 1400\n✉️ sau.uas@uas.edu.mx'
 
 function toggleChat() {
     if (chatOpen.value) {
@@ -75,7 +84,7 @@ function toggleChat() {
         closing.value = false
         if (!chatInit.value) {
             chatInit.value = true
-            loadData().then(initChat)
+            iniciar()
         }
     }
 }
@@ -84,6 +93,24 @@ function closeChat() {
     chatOpen.value = false
     closing.value = true
     setTimeout(() => { closing.value = false }, 280)
+}
+
+async function iniciar() {
+    await loadConfig()
+    await loadData()
+    initChat()
+}
+
+async function loadConfig() {
+    try {
+        const res = await api.get('/chat/backend.php?action=get_chatbot_config')
+        if (res.data.success && res.data.data) {
+            // Solo modo IA si está activado Y hay proveedor configurado en el servidor
+            modoIA.value = !!res.data.data.modo_ia && !!res.data.data.ia_disponible
+        }
+    } catch {
+        modoIA.value = false // ante cualquier duda, modo selección (nunca se rompe)
+    }
 }
 
 async function loadData() {
@@ -108,13 +135,26 @@ function scrollDown() {
     })
 }
 
+function escapar(s: string) {
+    return s
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+}
+
+// Convierte el texto de la IA en HTML seguro (escapa, enlaza correo/teléfono y saltos de línea)
+function formatoIA(texto: string) {
+    let h = escapar(texto)
+    h = h.replace(/([\w.+-]+@[\w-]+\.[\w.]+)/g, '<a href="mailto:$1">$1</a>')
+    h = h.replace(/(\+?\d[\d ]{7,}\d)/g, (m) => `<a href="tel:${m.replace(/\s/g, '')}">${m.trim()}</a>`)
+    return h.replace(/\n/g, '<br>')
+}
+
 function botMsg(html: string) {
     mensajes.value.push({ tipo: 'bot', html })
     scrollDown()
 }
 
 function userMsg(text: string) {
-    mensajes.value.push({ tipo: 'user', html: text })
+    mensajes.value.push({ tipo: 'user', html: escapar(text) })
     scrollDown()
 }
 
@@ -129,8 +169,16 @@ function showTypingThen(fn: () => void, delay = 700) {
 }
 
 function initChat() {
-    botMsg('¡Hola! Soy el asistente virtual de la <strong>Escuela de Diseño y Artes Visuales</strong>. Estoy aquí para ayudarte.')
-    setTimeout(showCategorias, 700)
+    if (modoIA.value) {
+        botMsg('¡Hola! Soy el asistente virtual de la <strong>Escuela de Diseño y Artes Visuales</strong>. Pregúntame lo que necesites sobre la escuela: carreras, trámites, departamentos, la maestría y más.')
+        opciones.value = [
+            { label: '📋 Ver temas frecuentes', action: () => { userMsg('Ver temas'); showCategorias() } },
+        ]
+        scrollDown()
+    } else {
+        botMsg('¡Hola! Soy el asistente virtual de la <strong>Escuela de Diseño y Artes Visuales</strong>. Estoy aquí para ayudarte.')
+        setTimeout(showCategorias, 700)
+    }
 }
 
 function sendMessage() {
@@ -138,6 +186,11 @@ function sendMessage() {
     if (!text) return
     inputText.value = ''
     userMsg(text)
+
+    if (modoIA.value) {
+        preguntarIA(text)
+        return
+    }
 
     const t = text.toLowerCase()
     const triggers = ['hola', 'ayuda', 'inicio', 'empezar', 'comenzar', 'menu', 'menú', 'volver', 'regresar', 'buenos dias', 'buenas tardes', 'buenas noches']
@@ -147,6 +200,26 @@ function sendMessage() {
         setTimeout(() => {
             botMsg('No entendí tu mensaje. Escribe <strong>hola</strong> o <strong>ayuda</strong> para ver las opciones disponibles.')
         }, 500)
+    }
+}
+
+async function preguntarIA(text: string) {
+    histIA.value.push({ tipo: 'user', texto: text })
+    typing.value = true
+    opciones.value = []
+    scrollDown()
+    try {
+        const res = await api.post('/chat/ai.php', {
+            mensaje: text,
+            historial: histIA.value.slice(-6),
+        })
+        typing.value = false
+        const respuesta = res.data?.respuesta || CONTACTO
+        botMsg(formatoIA(respuesta))
+        histIA.value.push({ tipo: 'bot', texto: respuesta })
+    } catch {
+        typing.value = false
+        botMsg(formatoIA(CONTACTO)) // si algo falla, nunca se rompe: damos el contacto
     }
 }
 

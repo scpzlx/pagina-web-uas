@@ -12,7 +12,76 @@ function response($success, $message, $data = null)
     exit();
 }
 
+/* ===================== HELPERS DE CONFIGURACIÓN ===================== */
+function ensureConfigTable($conn)
+{
+    $conn->query(
+        "CREATE TABLE IF NOT EXISTS configuracion (
+            clave VARCHAR(64) PRIMARY KEY,
+            valor TEXT
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4"
+    );
+    // El modo IA viene activado por defecto
+    $conn->query("INSERT IGNORE INTO configuracion (clave, valor) VALUES ('chatbot_modo_ia', '1')");
+}
+
+function getConfigValue($conn, $clave, $default = null)
+{
+    $stmt = $conn->prepare("SELECT valor FROM configuracion WHERE clave = ?");
+    $stmt->bind_param("s", $clave);
+    $stmt->execute();
+    $stmt->bind_result($valor);
+    $found = $stmt->fetch();
+    $stmt->close();
+    return $found ? $valor : $default;
+}
+
+function setConfigValue($conn, $clave, $valor)
+{
+    $stmt = $conn->prepare(
+        "INSERT INTO configuracion (clave, valor) VALUES (?, ?)
+         ON DUPLICATE KEY UPDATE valor = VALUES(valor)"
+    );
+    $stmt->bind_param("ss", $clave, $valor);
+    $stmt->execute();
+    $stmt->close();
+}
+
+// ¿Hay al menos un proveedor de IA con su key configurada en el servidor?
+function iaDisponible()
+{
+    $path = __DIR__ . '/ai_config.php';
+    if (!is_file($path))
+        return false;
+    $cfg = include $path;
+    if (!is_array($cfg) || empty($cfg['proveedores']))
+        return false;
+    foreach ($cfg['proveedores'] as $p) {
+        if (!empty($p['api_key']))
+            return true;
+    }
+    return false;
+}
+
 $method = $_SERVER['REQUEST_METHOD'];
+
+/* Lectura robusta de la entrada: si el cuerpo llega como JSON o como
+ * urlencoded que PHP no alcanzó a parsear (p. ej. tras una redirección),
+ * lo volcamos en $_POST para que el resto del archivo funcione igual. */
+$rawBody = file_get_contents('php://input');
+$contentType = $_SERVER['CONTENT_TYPE'] ?? $_SERVER['HTTP_CONTENT_TYPE'] ?? '';
+if ($rawBody !== '' && empty($_POST)) {
+    if (stripos($contentType, 'application/json') !== false) {
+        $decoded = json_decode($rawBody, true);
+        if (is_array($decoded))
+            $_POST = $decoded;
+    } else {
+        parse_str($rawBody, $parsed);
+        if (is_array($parsed) && $parsed)
+            $_POST = $parsed;
+    }
+}
+
 $action = $_GET['action'] ?? $_POST['action'] ?? '';
 
 /* ===================== CONTROL DE ACCESO =====================
@@ -26,6 +95,7 @@ $publicReadActions = [
     'get_subcategories',
     'get_questions',
     'get_answers',
+    'get_chatbot_config',
 ];
 
 if (!in_array($action, $publicReadActions, true)) {
@@ -363,5 +433,26 @@ if ($method === "POST" && $action === "delete_answer") {
     response(true, "Respuesta eliminada correctamente");
 }
 
-response(false, "Acción no válida.");
+/* ===================== 15. GET CHATBOT CONFIG (público) ===================== */
+if ($method === "GET" && $action === "get_chatbot_config") {
+    ensureConfigTable($conn);
+    $modo = getConfigValue($conn, 'chatbot_modo_ia', '1');
+    response(true, "Configuración del chatbot", [
+        'modo_ia' => $modo === '1',
+        'ia_disponible' => iaDisponible(),
+    ]);
+}
+
+/* ===================== 16. SET CHATBOT CONFIG (admin) ===================== */
+if ($method === "POST" && $action === "set_chatbot_config") {
+    ensureConfigTable($conn);
+    $valor = intval($_POST["modo_ia"] ?? 0) === 1 ? '1' : '0';
+    setConfigValue($conn, 'chatbot_modo_ia', $valor);
+    response(true, $valor === '1' ? "IA activada" : "IA desactivada", [
+        'modo_ia' => $valor === '1',
+        'ia_disponible' => iaDisponible(),
+    ]);
+}
+
+response(false, "Acción no válida: '" . $action . "' (" . $method . ")");
 ?>

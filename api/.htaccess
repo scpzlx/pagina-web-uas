@@ -8,3 +8,13 @@
     Order Allow,Deny
     Deny from all
 </Files>
+
+<Files "ai_config.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+<Files "ai_estado.json">
+    Order Allow,Deny
+    Deny from all
+</Files>
