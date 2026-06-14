@@ -11,7 +11,7 @@
             <i class="ti ti-palette"></i>
             Facultad de Artes · UAS
           </div>
-          <h1>Escuela de Diseño y <span>Artes Visuales</span></h1>
+          <h1>Facultad de <span>Artes </span></h1>
           <p>Formamos creadores capaces de comunicar ideas, emociones y valores a través de la imagen, el color y la
             forma. Fomentamos la experimentación, la innovación y el pensamiento crítico.</p>
           <div class="hero-btns">
@@ -181,6 +181,45 @@
       </div>
     </section>
 
+    <!-- GALERÍA VIRTUAL — gris claro -->
+    <section class="galeria-section">
+      <div class="galeria-inner">
+        <div class="galeria-texto">
+          <div class="galeria-eyebrow">
+            <i class="ti ti-360-view"></i>
+            Exposición Virtual
+          </div>
+          <h2>Galería de Artes <span>EDAV</span></h2>
+          <p>Explora nuestra galería virtual y sumérgete en las obras de estudiantes y egresados de la Facultad de
+            Artes. Una experiencia inmersiva que celebra la creatividad y el talento artístico sinaloense.</p>
+          <div class="galeria-chips">
+            <span><i class="ti ti-palette"></i> Arte Visual</span>
+            <span><i class="ti ti-360-view"></i> Recorrido 360°</span>
+            <span><i class="ti ti-device-desktop"></i> Experiencia inmersiva</span>
+          </div>
+          <a href="https://artspaces.kunstmatrix.com/en/exhibition/15295023/homo-techne-el-limite-humano"
+            target="_blank" rel="noopener noreferrer" class="galeria-btn">
+            <i class="ti ti-external-link"></i>
+            Visitar galería virtual
+          </a>
+        </div>
+        <div class="galeria-preview">
+          <a href="https://artspaces.kunstmatrix.com/en/exhibition/15295023/homo-techne-el-limite-humano"
+            target="_blank" rel="noopener noreferrer" class="galeria-img-wrap">
+            <img src="/images/galeria-artes.png" alt="Homo Techne - El límite Humano" class="galeria-img">
+            <div class="galeria-img-overlay">
+              <i class="ti ti-external-link"></i>
+              <span>Abrir galería</span>
+            </div>
+          </a>
+          <div class="galeria-badge">
+            <i class="ti ti-sparkles"></i>
+            Exposición activa
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CALENDARIO — blanco -->
     <section class="calendario-section">
       <div class="cal-info">
@@ -345,10 +384,7 @@ onUnmounted(() => {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right,
-      rgba(10, 10, 30, 0.80) 0%,
-      rgba(10, 10, 30, 0.55) 45%,
-      rgba(0, 0, 0, 0.15) 100%);
+  background: linear-gradient(to right, rgba(10, 10, 30, 0.80) 0%, rgba(10, 10, 30, 0.55) 45%, rgba(0, 0, 0, 0.15) 100%);
   z-index: 2;
 }
 
@@ -511,7 +547,7 @@ onUnmounted(() => {
 /* ─── STATS BAR ──────────────────────────────────────── */
 .stats-bar {
   background: #ffd500;
-  padding: 24px 48px;
+  padding: 24px 16px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
@@ -519,7 +555,7 @@ onUnmounted(() => {
 .stat {
   text-align: center;
   border-right: 1px solid rgba(15, 26, 140, 0.15);
-  padding: 8px 0;
+  padding: 8px 4px;
 }
 
 .stat:last-child {
@@ -942,13 +978,6 @@ onUnmounted(() => {
   object-fit: cover;
 }
 
-.video-preview {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-}
-
 .video-play {
   position: absolute;
   width: 44px;
@@ -1000,6 +1029,177 @@ onUnmounted(() => {
   font-weight: 600;
   color: white;
   line-height: 1.4;
+}
+
+/* ─── GALERÍA VIRTUAL ────────────────────────────────── */
+.galeria-section {
+  background: #f4f5f9;
+  padding: 64px 48px;
+  border-top: 3px solid #ffd500;
+}
+
+.galeria-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.galeria-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #0f1a8c;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+
+.galeria-texto h2 {
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 800;
+  color: #1a1a2e;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.galeria-texto h2 span {
+  color: #0f1a8c;
+}
+
+.galeria-texto p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 24px;
+  max-width: 480px;
+}
+
+.galeria-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.galeria-chips span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0f1a8c;
+  background: white;
+  border: 1px solid rgba(15, 26, 140, 0.15);
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.galeria-chips span i {
+  font-size: 14px;
+  color: #0f1a8c;
+}
+
+.galeria-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #0f1a8c;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 8px 24px rgba(15, 26, 140, 0.2);
+}
+
+.galeria-btn:hover {
+  background: #1a2db5;
+  transform: translateY(-2px);
+}
+
+.galeria-btn i {
+  font-size: 18px;
+}
+
+.galeria-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+
+/* Preview lado derecho */
+.galeria-preview {
+  position: relative;
+}
+
+.galeria-img-wrap {
+  display: block;
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  position: relative;
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, #0f1a8c 0%, #1a2db5 40%, #ffd500 100%);
+  box-shadow: 0 20px 60px rgba(15, 26, 140, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.galeria-img-wrap:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 64px rgba(15, 26, 140, 0.25);
+}
+
+.galeria-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 26, 140, 0.65);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.galeria-img-overlay i {
+  font-size: 32px;
+}
+
+.galeria-img-wrap:hover .galeria-img-overlay {
+  opacity: 1;
+}
+
+.galeria-badge {
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffd500;
+  color: #0f1a8c;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(255, 213, 0, 0.3);
 }
 
 /* ─── CALENDARIO ─────────────────────────────────────── */
@@ -1181,114 +1381,168 @@ onUnmounted(() => {
 }
 
 /* ─── RESPONSIVE ─────────────────────────────────────── */
-@media (max-width: 900px) {
-  .hero-content {
+:root {
+  --container: 1320px;
+}
+
+.hero-content,
+.galeria-inner,
+.calendario-section,
+.section > *,
+.stats-bar {
+  width: min(100%, var(--container));
+  margin-inline: auto;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.stats-bar {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.eventos-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
+.galeria-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  gap: clamp(32px, 5vw, 64px);
+}
+
+.calendario-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(380px, 520px);
+  gap: 48px;
+}
+
+@media (max-width: 1024px) {
+  .hero-content,
+  .galeria-inner,
+  .calendario-section,
+  .eventos-layout {
     grid-template-columns: 1fr;
-    padding: 48px 24px;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-text p {
+    max-width: 700px;
+  }
+
+  .hero-btns,
+  .galeria-chips {
+    justify-content: center;
   }
 
   .hero-visual {
     display: none;
   }
+}
 
-  .section {
-    padding: 48px 24px;
-  }
-
-  .eventos-layout {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
   }
 
   .evento-featured {
-    grid-template-columns: 90px 1fr;
-  }
-
-  .cards-grid {
     grid-template-columns: 1fr;
   }
 
-  .videos-grid {
-    grid-template-columns: 1fr 1fr;
+  .evento-featured-img {
+    min-height: 120px;
+    border-right: 0;
+    border-bottom: 3px solid #ffd500;
   }
 
-  .calendario-section {
-    grid-template-columns: 1fr;
-    padding: 48px 24px;
-    gap: 32px;
+  .hero-btns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-primary,
+  .btn-outline,
+  .galeria-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .video-iframe {
+    width: 95vw;
+    height: 53vw;
   }
 
   .stats-bar {
-    padding: 16px 12px;
+    padding: 16px 8px;
     grid-template-columns: repeat(5, 1fr);
-    overflow-x: auto;
-  }
-
-  .stat {
-    border-right: 1px solid rgba(15, 26, 140, 0.15);
-    border-bottom: none;
-    padding: 8px 4px;
-    min-width: 60px;
-  }
-
-  .stat:last-child {
-    border-right: none;
   }
 
   .stat-n {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .stat-l {
-    font-size: 9px;
+    font-size: 10px;
+    line-height: 1.2;
   }
 }
 
-@media (max-width: 600px) {
-  .section {
-    padding: 40px 16px;
-  }
-
-  .hero-content {
-    padding: 40px 16px;
-  }
-
-  .calendario-section {
-    padding: 40px 16px;
-  }
-
-  .evento-featured {
-    grid-template-columns: 80px 1fr;
-  }
-
-  .ef-day {
-    font-size: 28px;
-  }
-
-  .videos-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .stats-bar {
-    padding: 12px 8px;
-    grid-template-columns: repeat(5, 1fr);
-    overflow-x: auto;
-  }
-
-  .stat {
-    min-width: 56px;
-    padding: 6px 2px;
-  }
-
+@media (max-width: 480px) {
   .stat-n {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .stat-l {
     font-size: 8px;
   }
+}
 
-  .cal-img {
-    width: 100%;
+@media (max-width: 480px) {
+  .hero-content,
+  .section,
+  .galeria-section,
+  .calendario-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-text h1 {
+    font-size: 28px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+
+  .cal-title {
+    font-size: 26px;
+  }
+
+  .galeria-img-wrap {
+    aspect-ratio: 1 / 1;
   }
 }
+
 </style>

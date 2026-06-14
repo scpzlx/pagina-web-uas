@@ -13,7 +13,7 @@
             <span>Normatividad</span>
           </div>
           <h1>Normatividad</h1>
-          <p>La Facultad de Diseño y Artes Visuales cuenta con normas y procedimientos para el correcto funcionamiento
+          <p>La Facultad Artes cuenta con normas y procedimientos para el correcto funcionamiento
             de los diferentes espacios, regulados por los encargados de cada área.</p>
           <div class="hero-badges">
             <span><i class="ti ti-file-text"></i>Normatividad Institucional</span>

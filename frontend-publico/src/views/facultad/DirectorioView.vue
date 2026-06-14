@@ -13,8 +13,7 @@
             <span>Directorio</span>
           </div>
           <h1>Directorio</h1>
-          <p>Conoce a nuestro equipo directivo, jefaturas de carrera y personal administrativo de la Facultad de Diseño
-            y Artes Visuales.</p>
+          <p>Conoce a nuestro equipo directivo, jefaturas de carrera y personal administrativo de la Facultad de Artes.</p>
           <div class="hero-badges">
             <span><i class="ti ti-crown"></i> Autoridades</span>
             <span><i class="ti ti-school"></i> Jefaturas de Carrera</span>
@@ -135,14 +134,14 @@
 import { RouterLink } from 'vue-router'
 
 const heroStats = [
-  { number: '3', label: 'Autoridades principales' },
-  { number: '3', label: 'Jefaturas de carrera' },
-  { number: '9', label: 'Departamentos' },
+  { number: '2', label: 'Autoridades principales' },
+  { number: '7', label: 'Jefaturas de carrera' },
+  { number: '10', label: 'Departamentos' },
 ]
 
 const autoridades = [
   { nombre: 'M.C. Juan Pedro Cervantes Ayala', cargo: 'Dirección', foto: '/images/JuanPedroCervantesAyala.jpg' },
-  { nombre: 'Dra. Martha Alicia Jiménez Meza', cargo: 'Secretaría Académica', foto: '/images/MarthaAliciaJimenezMeza.jpg' },
+  // { nombre: 'Dra. Martha Alicia Jiménez Meza', cargo: 'Secretaría Académica', foto: '/images/MarthaAliciaJimenezMeza.jpg' },
   { nombre: 'Dra. Ruth Mora', cargo: 'Secretaría Administrativa', foto: '' },
 ]
 
@@ -150,13 +149,19 @@ const jefaturas = [
   { nombre: 'M.C. Cristian Demetrio Estrella Iturrios', cargo: 'Licenciatura en Artes Visuales', foto: '' },
   { nombre: 'L.A.P. Dalia Margarita Payán Sánchez', cargo: 'Diseño y Arte Multimedia', foto: '' },
   { nombre: 'L.M. María del Carmen Félix Pérez', cargo: 'Fotografía y Producción de Video', foto: '' },
+  { nombre: 'Nombre', cargo: 'Música', foto: '' },
+  { nombre: 'Nombre', cargo: 'Música Popular Contemporánea', foto: '' },
+  { nombre: 'Nombre', cargo: 'Educación Artística', foto: '' },
+  { nombre: 'Nombre', cargo: 'Artes Escénicas', foto: '' },
+  { nombre: 'Nombre', cargo: 'Maestria en Educación Artística', foto: '' },
 ]
 
 const departamentos = [
   { nombre: 'L.A.P. Emmanuel Salomón Arellano', cargo: 'Difusión Cultural', foto: '' },
   { nombre: 'L.C.P. Sonia Grisel Angulo', cargo: 'Control Escolar', foto: '' },
   { nombre: 'Jessica Jennifer Ríos Hernández', cargo: 'Vinculación / Auxiliar', foto: '' },
-  { nombre: 'M.C. José Roberto Leyva Romero', cargo: 'Tutorías', foto: '/images/JoseRobertoLeyvaRomero.jpeg' },
+  { nombre: 'Lic. Erika Yazmin Osorio Valenzuela', cargo: 'Tutorías', foto: 'https://tutorarte.uas.edu.mx/imagenes/encargado.jpg' },
+  { nombre: 'M.C. José Roberto Leyva Romero', cargo: 'Laboratorio de cómputo', foto: '/images/JoseRobertoLeyvaRomero.jpeg' },
   { nombre: 'Lic. Rosalía Ponce Acia', cargo: 'Apoyo Especial', foto: '' },
   { nombre: 'L.C.P. Uriel Ibarra Jiménez', cargo: 'Servicio Social / Becas', foto: '' },
   { nombre: 'L.A.E. Karen Medina Burgos', cargo: 'Contabilidad', foto: '' },

@@ -742,61 +742,39 @@ async function handleLogin() {
 }
 
 /* ── RESPONSIVE ──────────────────────────── */
+/* TABLETS */
 @media (max-width: 900px) {
+
     .login-shell {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
     }
 
+    /* Panel institucional superior */
     .login-brand-panel {
-        min-height: 180px;
-        max-height: 220px;
+        min-height: auto;
+        max-height: none;
     }
 
     .login-brand-content {
-        padding: 22px 28px;
-        flex-direction: row;
-        align-items: center;
-        gap: 20px;
+        padding: 24px 28px;
         max-width: none;
-    }
-
-    .login-logos {
-        flex-shrink: 0;
-    }
-
-    .login-logo-wrap {
-        width: 44px;
-        height: 44px;
-    }
-
-    .login-logo-wrap img {
-        width: 34px;
-        height: 34px;
-    }
-
-    .login-logos-divider {
-        height: 28px;
-    }
-
-    .login-brand-logo {
-        width: 52px;
-        height: 52px;
-        flex-shrink: 0;
     }
 
     .login-brand-text {
         margin: 0;
-        padding: 0;
-        flex: 1;
+        padding: 20px 0 0;
     }
 
     .login-brand-eyebrow {
         font-size: 10px;
-        margin-bottom: 6px;
+        margin-bottom: 8px;
     }
 
     .login-brand-title {
-        font-size: 18px;
+        font-size: 26px;
+        line-height: 1.2;
     }
 
     .login-brand-title br {
@@ -804,11 +782,98 @@ async function handleLogin() {
     }
 
     .login-brand-sub {
-        display: none;
+        font-size: 13px;
+        margin-bottom: 20px;
+        max-width: none;
     }
 
     .login-brand-footer {
         display: none;
+    }
+
+    /* Logos superiores */
+    .login-logo-wrap {
+        width: 48px;
+        height: 48px;
+    }
+
+    .login-logo-wrap img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .login-logos-divider {
+        height: 28px;
+    }
+
+    /* Login */
+    .login-form-panel {
+        padding: 40px 24px;
+    }
+
+    .login-card {
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .login-card-header {
+        text-align: center;
+    }
+
+    .login-card-icon {
+        display: none;
+    }
+
+    .login-card-title {
+        font-size: 30px;
+    }
+
+    .login-card-sub {
+        font-size: 14px;
+    }
+
+    /* Logos dentro del login */
+    .login-logos-mobile {
+        display: flex;
+    }
+}
+
+
+/* CELULARES */
+@media (max-width: 600px) {
+
+    .login-shell {
+        display: block;
+        min-height: 100vh;
+    }
+
+    /* Ocultar panel azul */
+    .login-brand-panel {
+        display: none;
+    }
+
+    .login-form-panel {
+        min-height: 100vh;
+        padding: 32px 20px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .login-card {
+        max-width: 100%;
+        gap: 20px;
+    }
+
+    .login-card-header {
+        text-align: center;
+    }
+
+    .login-card-title {
+        font-size: 28px;
+    }
+
+    .login-card-sub {
+        font-size: 14px;
     }
 
     .login-logos-mobile {
@@ -819,39 +884,48 @@ async function handleLogin() {
         display: none;
     }
 
-    .login-card-header {
-        text-align: left;
+    .form-input {
+        font-size: 16px;
+    }
+
+    .btn-login {
+        font-size: 16px;
+    }
+
+    .login-card-footer {
+        margin-top: 10px;
     }
 }
 
-@media (max-width: 600px) {
-    .login-brand-panel {
-        min-height: 140px;
-        max-height: 160px;
-    }
 
-    .login-brand-title {
-        font-size: 15px;
-    }
-
-    .login-logo-wrap {
-        width: 38px;
-        height: 38px;
-    }
-
-    .login-logo-wrap img {
-        width: 30px;
-        height: 30px;
-    }
+/* CELULARES MUY PEQUEÑOS */
+@media (max-width: 400px) {
 
     .login-form-panel {
         padding: 24px 16px;
     }
 
     .login-card-title {
-        font-size: 22px;
+        font-size: 24px;
     }
 
+    .login-card-sub {
+        font-size: 13px;
+    }
 
+    .login-logo-wrap.sm {
+        width: 44px;
+        height: 44px;
+    }
+
+    .login-logo-wrap.sm img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .btn-login {
+        padding: 12px;
+        font-size: 15px;
+    }
 }
 </style>

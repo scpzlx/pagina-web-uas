@@ -147,12 +147,12 @@
               </a>
             </div>
             <div class="cta-btns">
-              <RouterLink to="/facultad/directorio" class="btn-primary">
+              <!-- <RouterLink to="/facultad/directorio" class="btn-primary">
                 Ver Directorio <i class="ti ti-arrow-right"></i>
               </RouterLink>
               <RouterLink to="/facultad/organigrama" class="btn-outline">
                 Ver Organigrama
-              </RouterLink>
+              </RouterLink> -->
             </div>
           </div>
         </div>

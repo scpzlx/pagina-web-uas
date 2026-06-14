@@ -102,6 +102,7 @@ const menus = [
             { to: '/departamentos/taller-grabado', icon: 'ti-tools', label: 'Taller de Grabado' },
             { to: '/departamentos/secretaria-academica', icon: 'ti-clipboard-list', label: 'Secretaría Académica' },
             { to: '/departamentos/secretaria-administrativa', icon: 'ti-briefcase', label: 'Secretaría Administrativa' },
+            { to: '/departamentos/tutorias', icon: 'ti-user-star', label: 'Tutorías' },
             { to: '/departamentos/adiuas', icon: 'ti-building-community', label: 'ADIUAS' },
         ],
     },

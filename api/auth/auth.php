@@ -208,7 +208,7 @@ if ($method === 'POST' && $action === 'login') {
     }
 
     // Verificar contraseña
-    if (hash('sha256', $password) !== $user['password']) {
+    if (!password_verify($password, $user['password'])) {
         $blocked = registerFailedAttempt($conn, $user['id'], $ip);
         $remaining = MAX_ATTEMPTS_USER - ($user['failed_attempts'] + 1);
 
@@ -317,14 +317,15 @@ if ($method === 'POST' && $action === 'change_password') {
     $stmt->fetch();
     $stmt->close();
 
-    if (hash('sha256', $current) !== $currentHash)
+    if (!password_verify($current, $currentHash))
         response(false, 'La contraseña actual es incorrecta');
 
     // Verificar que la nueva no sea igual a la actual
-    if (hash('sha256', $new) === $currentHash)
+    if (password_verify($new, $currentHash))
         response(false, 'La nueva contraseña debe ser diferente a la actual');
 
-    $newHash = hash('sha256', $new);
+    $newHash = password_hash($new, PASSWORD_DEFAULT);
+
     $stmt = $conn->prepare("UPDATE usuarios SET password = ? WHERE id = ?");
     $stmt->bind_param("si", $newHash, $_SESSION['user_id']);
 

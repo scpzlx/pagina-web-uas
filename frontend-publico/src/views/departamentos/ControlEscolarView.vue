@@ -18,7 +18,7 @@
           <h1>Control <br /><span>Escolar</span></h1>
           <p class="hero-desc">
             Gestión académica y administrativa al servicio de los estudiantes y
-            docentes de la Escuela de Diseño y Artes Visuales de la UAS.
+            docentes de la Facultad Artes de la UAS.
           </p>
           <div class="hero-badges">
             <span><i class="ti ti-clock"></i> Lun–Vie 8:00–15:00</span>
@@ -164,9 +164,9 @@
               <a href="https://siu.uas.net.mx/acceso/" target="_blank" class="btn-primary">
                 Acceder al SIU <i class="ti ti-external-link"></i>
               </a>
-              <RouterLink to="/departamentos/biblioteca" class="btn-outline">
+              <!-- <RouterLink to="/departamentos/biblioteca" class="btn-outline">
                 Ver Biblioteca
-              </RouterLink>
+              </RouterLink> -->
             </div>
           </div>
         </div>

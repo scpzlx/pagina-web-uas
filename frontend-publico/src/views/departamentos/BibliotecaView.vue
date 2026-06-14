@@ -17,7 +17,7 @@
         <h1>Biblioteca</h1>
         <p class="hero-desc">
           Espacio de conocimiento y consulta al servicio de la comunidad universitaria
-          de la Escuela de Diseño y Artes Visuales de la UAS.
+          de la Facultad de Artes de la UAS.
         </p>
         <div class="hero-badges">
           <span><i class="ti ti-clock"></i> Lun–Vie 8:00–15:00</span>
@@ -154,9 +154,9 @@
             </div>
 
             <div class="cta-btns">
-              <RouterLink to="/departamentos/control-escolar" class="btn-outline">
+              <!-- <RouterLink to="/departamentos/control-escolar" class="btn-outline">
                 Ver Control Escolar
-              </RouterLink>
+              </RouterLink> -->
             </div>
           </div>
         </div>

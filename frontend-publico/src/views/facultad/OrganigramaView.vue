@@ -13,7 +13,7 @@
             <span>Organigrama</span>
           </div>
           <h1>Organigrama</h1>
-          <p>Estructura organizacional de la Secretaría Administrativa de la Facultad de Diseño y Artes Visuales de la
+          <p>Estructura organizacional de la Secretaría Administrativa de la Facultad de Artes de la
             UAS.</p>
           <div class="hero-badges">
             <span><i class="ti ti-sitemap"></i> Estructura Organizacional</span>

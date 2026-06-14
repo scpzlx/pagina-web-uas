@@ -86,7 +86,7 @@
       </div>
     </section>
 
-    <!-- INCIDENCIAS — blanco -->
+    <!-- INCIDENCIAS — blanco
     <section class="section bg-white">
       <div class="container">
         <div class="s-tag">Trámites</div>
@@ -118,9 +118,9 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <!-- CONTACTO — gris con borde amarillo -->
+    <!-- CONTACTO — gris con borde amarillo
     <section class="section bg-gray cta-section">
       <div class="container">
         <div class="s-tag">Atención directa</div>
@@ -139,7 +139,7 @@
         </div>
         <p class="contacto-nota">Para mayor información comunícate al Departamento de Secretaría Académica.</p>
       </div>
-    </section>
+    </section> -->
 
   </div>
 </template>

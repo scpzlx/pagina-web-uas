@@ -14,7 +14,7 @@
           </div>
           <h1>Consejos Técnicos</h1>
           <p>Órgano colegiado de representación académica y estudiantil que participa en la toma de decisiones de la
-            Facultad de Diseño y Artes Visuales.</p>
+            Facultad de Artes.</p>
           <div class="hero-badges">
             <span><i class="ti ti-school"></i> Consejeros Académicos</span>
             <span><i class="ti ti-users"></i> Consejeros Alumnos</span>

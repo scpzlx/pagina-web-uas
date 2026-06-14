@@ -191,14 +191,14 @@
             <p>Observa y cumple todo el reglamento. Es con el fin de que tú mismo te beneficies, ayudando a que estas
               instalaciones pensadas para apoyar el desempeño académico de estudiantes y maestros brinden un servicio
               continuo y eficaz.</p>
-            <div class="cta-btns">
+            <!-- <div class="cta-btns">
               <RouterLink to="/departamentos/biblioteca" class="btn-primary">
                 Ver Biblioteca <i class="ti ti-arrow-right"></i>
               </RouterLink>
               <RouterLink to="/facultad/infraestructura" class="btn-outline">
                 Ver Infraestructura
               </RouterLink>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

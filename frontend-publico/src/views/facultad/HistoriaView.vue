@@ -12,7 +12,7 @@
           <span>Nuestra Historia</span>
         </div>
         <h1>Historia y Filosofía <br><span>de la EDAV</span></h1>
-        <p>Conoce los orígenes, la misión y el impacto cultural de la Escuela de Diseño y Artes Visuales de la
+        <p>Conoce los orígenes, la misión y el impacto cultural de la Facultad de Artes de la
           Universidad Autónoma de Sinaloa.</p>
         <div class="hero-stats">
           <div class="h-stat"><strong>1957</strong><span>Fundación oficial</span></div>
@@ -133,7 +133,7 @@
             <p>La EDAV contribuye no solo a formar artistas y diseñadores, sino a fortalecer la cultura local, construir
               identidad colectiva y abrir espacios de diálogo social a través del arte.</p>
             <blockquote>
-              La Escuela de Diseño y Artes Visuales de la UAS representa un esfuerzo institucional por consolidar la
+              La Facultad de Artes de la UAS representa un esfuerzo institucional por consolidar la
               formación artística y cultural en Sinaloa, integrando tradición plástica, innovación multimedia,
               compromiso social y formación integral.
             </blockquote>
@@ -170,6 +170,11 @@ const licenciaturas = [
   { num: '01', icon: 'ti-palette', title: 'Artes Visuales', desc: 'Pintura, escultura, grabado y medios contemporáneos para formar artistas con visión crítica y técnica sólida.', to: '/carreras/artes-visuales', tags: ['4 años', 'Licenciatura', 'Presencial'] },
   { num: '02', icon: 'ti-devices', title: 'Diseño y Arte Multimedia', desc: 'Diseño gráfico, animación digital, multimedia e interfaces para el mundo creativo y tecnológico actual.', to: '/carreras/diseno-arte-multimedia', tags: ['4 años', 'Licenciatura', 'Presencial'] },
   { num: '03', icon: 'ti-camera', title: 'Fotografía y Producción de Video', desc: 'Imagen fija, edición, producción audiovisual y narrativa visual para medios y proyectos culturales.', to: '/carreras/fotografia-produccion-video', tags: ['4 años', 'Licenciatura', 'Presencial'] },
+  { num: '04', icon: 'ti-music', title: 'Música', desc: 'Interpretación instrumental, composición y dirección musical con formación artística integral para contribuir al desarrollo cultural y educativo.', to: '/carreras/musica', tags: ['4 años', 'Licenciatura', 'Presencial'] },
+  { num: '05', icon: 'ti-vinyl', title: 'Música Popular Contemporánea', desc: 'Interpretación, composición y producción de música popular contemporánea para formar artistas capaces de desarrollarse en la industria musical actual.', to: '/carreras/musica-popular-contemporanea', tags: ['3.5 años', 'Licenciatura', 'Presencial'] },
+  { num: '06', icon: 'ti-school', title: 'Educación Artística', desc: 'Formación en artes, pedagogía y gestión cultural para preparar profesionales capaces de enseñar y promover la educación artística.', to: '/carreras/educacion-artistica', tags: ['4 años', 'Licenciatura', 'Mixta'] },
+  { num: '07', icon: 'ti-masks-theater', title: 'Artes Escénicas', desc: 'Actuación, dirección, producción y creación escénica para formar profesionales capaces de desarrollar proyectos artísticos y culturales.', to: '/carreras/artes-escenicas', tags: ['4 años', 'Licenciatura', 'Presencial'] },
+  { num: '08', icon: 'ti-certificate', title: 'Maestria en Educación Artística', desc: 'Investigación, innovación pedagógica y gestión educativa en las artes para formar especialistas capaces de fortalecer la educación artística.', to: '/posgrado/maestria-educacion-artistica', tags: ['2 años', 'Posgrado', 'Presencial'] },
 ]
 
 const impacto = [

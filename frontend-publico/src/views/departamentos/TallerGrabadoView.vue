@@ -113,10 +113,10 @@
             <p>Para conocer el reglamento completo del Taller de Grabado o resolver cualquier duda, puedes consultar con
               la Secretaría Administrativa o con Control Escolar.</p>
             <div class="cta-btns">
-              <RouterLink to="/facultad/normatividad" class="btn-primary">
+              <!-- <RouterLink to="/facultad/normatividad" class="btn-primary">
                 Ver normatividad <i class="ti ti-arrow-right"></i>
-              </RouterLink>
-              <RouterLink to="/departamentos/secretaria-administrativa" class="btn-outline">
+              </RouterLink> -->
+              <RouterLink to="/departamentos/secretaria-administrativa" class="btn-primary">
                 Secretaría Administrativa
               </RouterLink>
             </div>

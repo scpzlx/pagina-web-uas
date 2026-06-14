@@ -136,6 +136,11 @@ const router = createRouter({
       component: () => import('../views/departamentos/SecretariaAdministrativaView.vue'),
     },
     {
+      path: '/departamentos/tutorias',
+      name: 'tutorias',
+      component: () => import('../views/departamentos/TutoriasView.vue'),
+    },
+    {
       path: '/departamentos/adiuas',
       name: 'adiuas',
       component: () => import('../views/departamentos/AdiuasView.vue'),
