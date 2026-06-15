@@ -6,33 +6,36 @@ import api from '@/services/api'
 export const useAuthStore = defineStore('auth', () => {
     const isAuthenticated = ref(false)
     const usuario = ref('')
+    const rol = ref('')
     const loading = ref(false)
+    const sessionChecked = ref(false)
 
-    // ─── Check session ────────────────────────────────────────────────────────
     async function checkSession() {
         try {
             const res = await api.get('/auth/auth.php?action=check_session')
-
-            // Sesión expirada
             if (res.data?.expired) {
                 isAuthenticated.value = false
                 usuario.value = ''
+                rol.value = ''
                 return false
             }
-
             if (res.data.success && res.data.data?.logged_in) {
                 isAuthenticated.value = true
                 usuario.value = res.data.data.usuario || ''
+                rol.value = res.data.data.rol || 'admin'
                 return true
             }
-        } catch { }
 
-        isAuthenticated.value = false
-        usuario.value = ''
-        return false
+        } catch {
+            isAuthenticated.value = false
+            usuario.value = ''
+            rol.value = ''
+            return false
+        } finally {
+            sessionChecked.value = true
+        }
     }
 
-    // ─── Login ────────────────────────────────────────────────────────────────
     async function login(usuarioInput: string, password: string) {
         loading.value = true
         try {
@@ -48,12 +51,10 @@ export const useAuthStore = defineStore('auth', () => {
             if (res.data.success) {
                 isAuthenticated.value = true
                 usuario.value = res.data.data?.usuario || usuarioInput
+                rol.value = res.data.data?.rol || 'admin'
                 return { success: true }
             }
-
-            // Devolver el mensaje exacto del PHP (incluye "Intentos restantes: X" o "Cuenta bloqueada")
             return { success: false, message: res.data.message || 'Credenciales incorrectas' }
-
         } catch {
             return { success: false, message: 'Error de conexión. Intenta de nuevo.' }
         } finally {
@@ -61,7 +62,6 @@ export const useAuthStore = defineStore('auth', () => {
         }
     }
 
-    // ─── Logout ───────────────────────────────────────────────────────────────
     async function logout() {
         try {
             const form = new FormData()
@@ -70,16 +70,14 @@ export const useAuthStore = defineStore('auth', () => {
                 headers: { 'Content-Type': 'multipart/form-data' },
             })
         } catch { }
-
         isAuthenticated.value = false
         usuario.value = ''
+        rol.value = ''
     }
 
-    return { isAuthenticated, usuario, loading, checkSession, login, logout }
+    return { isAuthenticated, usuario, rol, loading, sessionChecked, checkSession, login, logout }  // ← rol en el return
 })
 
-// ─── Composable para manejar sesión expirada en cualquier componente ──────────
-// Úsalo en App.vue para que funcione globalmente
 export function useSessionExpiredHandler() {
     const router = useRouter()
     const auth = useAuthStore()
@@ -90,11 +88,6 @@ export function useSessionExpiredHandler() {
         router.push({ name: 'Login' })
     }
 
-    onMounted(() => {
-        window.addEventListener('session-expired', handleExpired)
-    })
-
-    onUnmounted(() => {
-        window.removeEventListener('session-expired', handleExpired)
-    })
+    onMounted(() => { window.addEventListener('session-expired', handleExpired) })
+    onUnmounted(() => { window.removeEventListener('session-expired', handleExpired) })
 }

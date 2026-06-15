@@ -60,6 +60,12 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
+      path: '/usuarios',
+      name: 'Usuarios',
+      component: () => import('../views/users/UsersView.vue'),
+      meta: { requiresAuth: true, requiresSuperAdmin: true },
+    },
+    {
       path: '/:pathMatch(.*)*',
       redirect: '/',
     },
@@ -82,6 +88,11 @@ router.beforeEach(async (to) => {
 
   // Ya autenticado intenta ir al login → dashboard
   if (to.meta.requiresGuest && auth.isAuthenticated) {
+    return { name: 'Dashboard' }
+  }
+
+  // Ruta solo para superadmin
+  if (to.meta.requiresSuperAdmin && auth.rol !== 'superadmin') {
     return { name: 'Dashboard' }
   }
 })

@@ -29,6 +29,9 @@
                     <RouterLink to="/chatbot" class="nav-item" @click="closeSidebar">
                         <i class="ti ti-robot"></i><span>Chatbot</span>
                     </RouterLink>
+                    <RouterLink v-if="auth.sessionChecked && auth.rol === 'superadmin'" to="/usuarios" class="nav-item" @click="closeSidebar">
+                        <i class="ti ti-users"></i><span>Usuarios</span>
+                    </RouterLink>
                 </nav>
             </div>
 
