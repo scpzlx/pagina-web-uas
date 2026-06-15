@@ -799,8 +799,8 @@ small {
 
 .pass-toggle:hover { color: #0f1a8c; background: #f1f5f9; }
 
-.input-error { border-color: #fca5a5 !important };
-.input-ok { border-color: #6ee7b7 !important };
+.input-error { border-color: #fca5a5 !important }
+.input-ok { border-color: #6ee7b7 !important }
 
 .password-checks {
     display: flex;
